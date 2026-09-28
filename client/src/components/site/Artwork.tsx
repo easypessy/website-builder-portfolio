@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import type { Project, Visual } from "@/data";
 
 /**
@@ -407,16 +408,39 @@ function Copy({ v, title }: P) {
   );
 }
 
+import * as WL from "./artwork/webLayouts";
+import * as LL from "./artwork/landingLayouts";
+
+/** Bespoke, per-project layouts. Each one is its own composition, researched
+ *  against how that industry actually builds. Archetypes below are fallback. */
+const BESPOKE: Record<string, (p: Project) => ReactElement> = {
+  "northline-atelier": WL.NorthlineAtelier,
+  "morrow-house": WL.MorrowHouse,
+  "cedar-advisory": WL.CedarAdvisory,
+  "fieldstone-build": WL.FieldstoneBuild,
+  "luma-skin-studio": WL.LumaSkinStudio,
+  "open-door-learning": WL.OpenDoorLearning,
+  "harbour-and-home": WL.HarbourAndHome,
+  "sunday-table-preorder": LL.SundayTable,
+  "quiet-hours-consult": LL.QuietHours,
+  "atlas-crm-saas": LL.AtlasCRM,
+  "brightline-course": LL.Brightline,
+  "homebase-workshop-event": LL.HomebaseWorkshop,
+  "aster-property-single": LL.AsterProperty,
+  "first-step-finance-lead": LL.FirstStepFinance,
+};
+
 const MAP = {
   website: Website, landing: Landing, chat: Chat, workflow: Workflow,
   social: Social, strategy: Strategy, report: Report, copy: Copy,
 } as const;
 
 export default function Artwork({ project, className = "" }: { project: Project; className?: string }) {
+  const Bespoke = BESPOKE[project.slug];
   const C = MAP[project.visual.archetype] ?? Website;
   return (
     <div className={`artwork ${className}`} data-arch={project.visual.archetype}>
-      <C v={project.visual} title={project.title} />
+      {Bespoke ? <Bespoke {...project} /> : <C v={project.visual} title={project.title} />}
     </div>
   );
 }
