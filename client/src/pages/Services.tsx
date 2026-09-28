@@ -88,7 +88,7 @@ export default function Services() {
                   <div>
                     <p className="eyebrow">0{i + 1}</p>
                     <h2 style={{ fontSize: "var(--t-xl)", maxWidth: "14ch" }}>{c}</h2>
-                    <Link href={`/work?c=${encodeURIComponent(c)}`} className="textlink">
+                    <Link href={`/projects?c=${encodeURIComponent(c)}`} className="textlink">
                       {countFor(c)} projects →
                     </Link>
                   </div>

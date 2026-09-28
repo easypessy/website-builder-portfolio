@@ -55,6 +55,8 @@ export interface Project {
   visual: Visual;
   /** optional real screenshot path (used where genuine work exists) */
   shot?: string;
+  /** live, publicly reachable build of this project (a real deployed demo) */
+  liveUrl?: string;
   /** editorial weight on the work index: 1 = standard, 2 = wide, 3 = feature */
   weight?: 1 | 2 | 3;
 }

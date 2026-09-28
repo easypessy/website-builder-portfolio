@@ -6,9 +6,10 @@ export default function ProjectCard({ p }: { p: Project }) {
   const w = p.weight ?? 1;
   return (
     <article className={`card ${w === 3 ? "card--w3" : w === 2 ? "card--w2" : ""}`}>
-      <Link href={`/work/${p.slug}`} aria-label={`${p.title} — ${p.category} case study`}>
+      <Link href={`/projects/${p.slug}`} aria-label={`${p.title} — ${p.category} case study`}>
         <div className="card-media">
           <Artwork project={p} />
+          {p.liveUrl && <span className="live-tag">Live build</span>}
         </div>
         <div className="card-meta">
           <span className="card-cat">{p.category} · {p.industry}</span>

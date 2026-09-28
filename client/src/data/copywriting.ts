@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const copywriting: Project[] = [
   {
     slug: "clear-homepage-rewrite",
+    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/copy-vault/",
     title: "The Clear Homepage",
     category: "Copywriting",
     industry: "Professional services",

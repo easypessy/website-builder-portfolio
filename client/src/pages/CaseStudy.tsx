@@ -1,5 +1,5 @@
 import { Link, useRoute } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { bySlug, related } from "@/data";
 import Artwork from "@/components/site/Artwork";
 import ProjectCard from "@/components/site/ProjectCard";
@@ -7,7 +7,7 @@ import NotFound from "@/pages/NotFound";
 import { Seo, Reveal, WA } from "@/components/site/Layout";
 
 export default function CaseStudy() {
-  const [, params] = useRoute("/work/:slug");
+  const [, params] = useRoute("/projects/:slug");
   const p = params?.slug ? bySlug(params.slug) : undefined;
   if (!p) return <NotFound />;
   const rel = related(p, 3);
@@ -17,14 +17,14 @@ export default function CaseStudy() {
       <Seo
         title={`${p.title} — ${p.category} | Easywurld`}
         description={p.summary}
-        path={`/work/${p.slug}`}
+        path={`/projects/${p.slug}`}
         type="article"
       />
 
       <section className="cs-hero">
         <div className="wrap">
-          <Link href="/work" className="kicker" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-            <ArrowLeft size={14} /> All work
+          <Link href="/projects" className="kicker" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <ArrowLeft size={14} /> All projects
           </Link>
 
           <div style={{ marginTop: 26, display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
@@ -34,6 +34,22 @@ export default function CaseStudy() {
 
           <h1 style={{ marginTop: 18, maxWidth: "16ch" }}>{p.title}</h1>
           <p className="lead" style={{ maxWidth: "54ch" }}>{p.summary}</p>
+
+          {p.liveUrl && (
+            <p style={{ marginTop: 24 }}>
+              <a
+                className="btn btn-solid"
+                href={p.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open the live build <ArrowUpRight size={16} />
+              </a>
+              <span className="kicker" style={{ display: "block", marginTop: 10 }}>
+                Opens the working site in a new tab.
+              </span>
+            </p>
+          )}
 
           <dl className="cs-facts">
             <div><dt>Industry</dt><dd>{p.industry}</dd></div>
@@ -50,8 +66,17 @@ export default function CaseStudy() {
             <Artwork project={p} />
           </div>
           <p className="kicker" style={{ marginTop: 12 }}>
-            Mockup — generated for this case study, not a photograph of a live site.
+            {p.liveUrl
+              ? "Layout study for this project. The working build is linked above and below."
+              : "Mockup — generated for this case study, not a photograph of a live site."}
           </p>
+          {p.liveUrl && (
+            <p style={{ marginTop: 20 }}>
+              <a className="textlink" href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                Visit the live build <ArrowUpRight size={14} />
+              </a>
+            </p>
+          )}
         </Reveal>
       </div>
 

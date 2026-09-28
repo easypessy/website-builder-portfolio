@@ -296,3 +296,37 @@ section { padding-block: clamp(64px, 9vw, 132px); }
 @media print {
   .hdr, .ftr, .wa-float, .marquee { display: none; }
 }
+
+/* live build indicator on project cards */
+.card-media { position: relative; }
+.live-tag {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 8px;
+  font-family: var(--sans, inherit);
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--green, #1E3D2F);
+  border-radius: 999px;
+}
+.live-tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7ED9A0;
+  box-shadow: 0 0 0 0 rgba(126, 217, 160, .7);
+  animation: livepulse 2.2s infinite;
+}
+@keyframes livepulse {
+  0%   { box-shadow: 0 0 0 0 rgba(126, 217, 160, .65); }
+  70%  { box-shadow: 0 0 0 7px rgba(126, 217, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(126, 217, 160, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .live-tag::before { animation: none; } }

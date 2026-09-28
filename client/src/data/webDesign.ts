@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const webDesign: Project[] = [
   {
     slug: "northline-atelier",
+    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/vanta-label/",
     title: "Northline Atelier",
     category: "Web Design",
     industry: "Fashion",
@@ -44,6 +45,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "morrow-house",
+    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/harvest-hearth/",
     title: "Morrow House",
     category: "Web Design",
     industry: "Restaurant",
@@ -85,6 +87,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "cedar-advisory",
+    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/northline/",
     title: "Cedar & Co. Advisory",
     category: "Web Design",
     industry: "Professional services",
@@ -249,6 +252,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "harbour-and-home",
+    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/lotus-ridge/",
     title: "Harbour & Home",
     category: "Web Design",
     industry: "Real estate",

@@ -69,6 +69,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "estateflow-lead-qualification",
+    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/estateflow/",
     title: "EstateFlow Lead Desk",
     category: "AI Automation",
     industry: "Real estate",
@@ -102,6 +103,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "bookflow-appointments",
+    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/bookflow/",
     title: "BookFlow Appointments",
     category: "AI Automation",
     industry: "Salon & clinic",
@@ -135,6 +137,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "vendorreply-order-capture",
+    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/vendorreply/",
     title: "VendorReply",
     category: "AI Automation",
     industry: "E-commerce",

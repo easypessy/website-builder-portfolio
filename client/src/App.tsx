@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Redirect, Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Layout from "./components/site/Layout";
@@ -16,8 +16,11 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/work" component={Work} />
-      <Route path="/work/:slug" component={CaseStudy} />
+      <Route path="/projects" component={Work} />
+      <Route path="/projects/:slug" component={CaseStudy} />
+      {/* legacy /work URLs keep working */}
+      <Route path="/work"><Redirect to="/projects" /></Route>
+      <Route path="/work/:slug">{(p) => <Redirect to={`/projects/${p.slug}`} />}</Route>
       <Route path="/services" component={Services} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />

@@ -52,7 +52,7 @@ export default function About() {
               </p>
               <p>
                 We'd rather you judge the thinking. There are{" "}
-                <Link href="/work" className="textlink">{projects.length} projects</Link> here,
+                <Link href="/projects" className="textlink">{projects.length} projects</Link> here,
                 each with a written case study explaining the problem, the decision and what we'd
                 change. That's a more useful thing to assess than a wall of logos.
               </p>

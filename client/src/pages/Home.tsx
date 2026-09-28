@@ -56,7 +56,7 @@ export default function Home() {
                 content and automation.
               </p>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", paddingBottom: 6 }}>
-                <Link href="/work" className="btn btn-solid">
+                <Link href="/projects" className="btn btn-solid">
                   Explore our work <ArrowUpRight size={17} />
                 </Link>
                 <a href={WA} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
@@ -139,7 +139,7 @@ export default function Home() {
                 <p className="eyebrow">03 / Selected work</p>
                 <h2 style={{ maxWidth: "16ch", margin: 0 }}>A body of work with a point of view.</h2>
               </div>
-              <Link href="/work" className="textlink">
+              <Link href="/projects" className="textlink">
                 All {projects.length} projects →
               </Link>
             </div>
@@ -156,7 +156,7 @@ export default function Home() {
           </div>
           <div style={{ marginTop: 56, display: "flex", gap: 10, flexWrap: "wrap" }}>
             {CATEGORIES.map((c) => (
-              <Link key={c} href={`/work?c=${encodeURIComponent(c)}`} className="filters">
+              <Link key={c} href={`/projects?c=${encodeURIComponent(c)}`} className="filters">
                 <button type="button">{c}<span className="n">{countFor(c)}</span></button>
               </Link>
             ))}

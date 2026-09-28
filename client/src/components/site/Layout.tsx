@@ -65,7 +65,7 @@ export function Reveal({ children, delay = 0, as: As = "div" }: any) {
 }
 
 const NAV = [
-  ["Work", "/work"],
+  ["Projects", "/projects"],
   ["Services", "/services"],
   ["About", "/about"],
   ["Contact", "/contact"],
@@ -136,12 +136,12 @@ function Footer() {
             </div>
           </div>
           <div>
-            <h4>Work</h4>
+            <h4>Projects</h4>
             <div className="ftr-links">
-              <Link href="/work">All projects</Link>
-              <Link href="/work?c=Web+Design">Web design</Link>
-              <Link href="/work?c=AI+Automation">AI automation</Link>
-              <Link href="/work?c=Social+Media">Social media</Link>
+              <Link href="/projects">All projects</Link>
+              <Link href="/projects?c=Web+Design">Web design</Link>
+              <Link href="/projects?c=AI+Automation">AI automation</Link>
+              <Link href="/projects?c=Social+Media">Social media</Link>
             </div>
           </div>
           <div>
