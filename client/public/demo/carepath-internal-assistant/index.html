@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carepath Internal Desk — Find the Current Policy, Not Last Year's</title>
+<meta name="description" content="An internal knowledge assistant for healthcare admin staff. Every answer cites the document, the revision and the date, and flags when two versions exist.">
+<style>
+:root{--ink:#111c22;--paper:#f4f7f8;--blue:#245d78;--amber:#b5761f;--line:#dde6ea;--mut:#61727a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
+.w{max-width:1100px;margin:0 auto;padding:0 22px}
+header{background:var(--blue);color:#fff}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:13px 0;font-size:14px;flex-wrap:wrap;gap:8px}
+.logo{font-weight:700;font-size:16px}
+.hero{padding:44px 0 34px;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(26px,4.2vw,38px);line-height:1.13;letter-spacing:-.02em;max-width:20ch}
+.hero p{color:var(--mut);max-width:60ch;margin-top:14px}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:430px;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:30px 0 10px}
+.side{background:var(--paper);border-right:1px solid var(--line);padding:16px}
+.side h4{font-size:11px;letter-spacing:.14em;color:var(--mut);margin-bottom:10px}
+.side a{display:block;font-size:14px;color:var(--ink);text-decoration:none;padding:7px 0;border-bottom:1px solid var(--line)}
+.main{padding:18px}
+.q{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.q button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:8px 12px;font:inherit;font-size:13.5px;cursor:pointer}
+.q button:hover{border-color:var(--blue);color:var(--blue)}
+.ans{border:1px solid var(--line);border-radius:8px;padding:18px;background:var(--paper)}
+.ans h3{font-size:19px;margin-bottom:8px}
+.cite{display:inline-block;background:#e4eef3;color:var(--blue);font-size:12.5px;padding:4px 9px;border-radius:5px;margin:8px 8px 0 0}
+.conf{background:#fff6e6;border:1px solid #f0dcb4;border-radius:8px;padding:14px;margin-top:14px;font-size:14.5px}
+.conf b{color:var(--amber)}
+section{padding:46px 0;border-top:1px solid var(--line)}
+h2{font-size:23px;margin-bottom:8px}
+.sub{color:var(--mut);max-width:62ch;margin-bottom:22px}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.g h3{font-size:16px;margin-bottom:5px}
+.g p{color:var(--mut);font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+td,th{text-align:left;padding:11px 0;border-bottom:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.1em;color:var(--mut)}
+footer{padding:30px 0 70px;color:var(--mut);font-size:14px}
+.note{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;font-size:12px;text-align:center;padding:8px}
+.note a{color:#8fc6dd}
+@media(max-width:820px){.app{grid-template-columns:1fr}.side{display:none}.g{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="w bar"><span class="logo">Carepath Internal Desk</span><span>Staff only · 412 documents indexed · last sync 07:10</span></div></header>
+<div class="w hero"><h1>Which referral form is current?</h1>
+<p>Admin teams don't lack documents — they have too many, in too many versions, on a shared drive nobody has pruned since 2023. This desk answers from the document set and shows you which revision it read.</p></div>
+<div class="w"><div class="app">
+<div class="side"><h4>SOURCES</h4>
+<a href="#">Policy 4.2 — Referrals</a><a href="#">Policy 7.1 — Consent</a><a href="#">Form library</a><a href="#">Rota &amp; escalation</a><a href="#">Archive (read-only)</a></div>
+<div class="main"><div class="q" id="q"></div>
+<div class="ans" id="ans"><h3>Ask something staff actually ask</h3>
+<p style="color:var(--mut)">Pick a question above. Every answer names the document, the revision number and the date it was approved.</p></div></div></div></div>
+<section><div class="w"><h2>Why version conflicts are the whole problem</h2>
+<p class="sub">The assistant's most useful behaviour isn't answering — it's refusing to answer cleanly when two documents disagree, and telling a named person about it.</p>
+<table><tr><th>Situation</th><th>What it does</th></tr>
+<tr><td>One current document</td><td>Answers, with citation and approval date</td></tr>
+<tr><td>Two versions found</td><td>Shows both, flags the conflict, routes to the policy owner</td></tr>
+<tr><td>Document older than 12 months</td><td>Answers, but marks the age in the reply</td></tr>
+<tr><td>Nothing found</td><td>Says so and opens a request to the governance inbox</td></tr></table></div></section>
+<section><div class="w"><h2>How it's built</h2><div class="g">
+<div><h3>Indexed, not trained</h3><p>The document set is searched at question time, so a superseded file stops being quoted the day it's archived.</p></div>
+<div><h3>Citation is mandatory</h3><p>An answer without a source doesn't render. There's no fallback to general knowledge.</p></div>
+<div><h3>Read-only by design</h3><p>It can't edit policy, approve anything, or answer clinical questions. It points at documents.</p></div></div>
+<p class="sub" style="margin-top:22px">Concept workflow. No live deployment, so no time-saved figures are claimed.</p></div></section>
+<footer><div class="w">Carepath Internal Desk · a concept build · <a href="https://wa.me/2349050690837" style="color:var(--blue)">Talk to Easywurld</a></div></footer>
+<div class="note">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/carepath-internal-assistant">Easywurld</a> — Carepath is not a real organisation.</div>
+<script>
+var d=[["Which referral form do I use for physio?","Form R-12 (rev. Mar 2026)","Use R-12 for all musculoskeletal physio referrals. R-09 was withdrawn in March and should be recycled if you still have printed copies.",["Source: Policy 4.2, §3","Approved 14 Mar 2026"],""],
+["How long do we keep consent forms?","Seven years from last contact","For under-18s, seven years from their eighteenth birthday, whichever is later.",["Source: Policy 7.1, §5","Approved 2 Nov 2025"],""],
+["What's the escalation route out of hours?","Two versions found","The rota document and the escalation policy disagree on who is contacted after 8pm.",["Rota (rev. Sep 2026) — on-call manager","Policy 4.9 (rev. Jan 2025) — duty clinician"],"Conflict flagged to the policy owner (H. Bassey). Until it's resolved, follow the rota and record what you did."],
+["Do we accept faxed referrals?","No current document says","Nothing in the indexed set covers fax. I've opened a question with the governance inbox rather than guess.",["Searched: 412 documents","No match"],""]];
+var q=document.getElementById('q'),ans=document.getElementById('ans');
+d.forEach(function(x){var b=document.createElement('button');b.textContent=x[0];
+b.onclick=function(){ans.innerHTML='<h3>'+x[1]+'</h3><p>'+x[2]+'</p>'+x[3].map(function(c){return '<span class="cite">'+c+'</span>'}).join('')+(x[4]?'<div class="conf"><b>Version conflict.</b> '+x[4]+'</div>':'');};
+q.appendChild(b);});
+</script></body></html>

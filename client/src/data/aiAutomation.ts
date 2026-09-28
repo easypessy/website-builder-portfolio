@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const aiAutomation: Project[] = [
   {
     slug: "after-hours-reception",
+    liveUrl: "/demo/after-hours-reception/index.html",
     title: "After-hours Reception",
     category: "AI Automation",
     industry: "Dental practice",
@@ -36,6 +37,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "market-lane-assistant",
+    liveUrl: "/demo/market-lane-assistant/index.html",
     title: "Market Lane Assistant",
     category: "AI Automation",
     industry: "Retail",
@@ -171,6 +173,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "carepath-internal-assistant",
+    liveUrl: "/demo/carepath-internal-assistant/index.html",
     title: "Carepath Internal Desk",
     category: "AI Automation",
     industry: "Healthcare admin",
@@ -204,6 +207,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "follow-up-loop",
+    liveUrl: "/demo/follow-up-loop/index.html",
     title: "Follow-up Loop",
     category: "AI Automation",
     industry: "Professional services",

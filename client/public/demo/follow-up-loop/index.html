@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Follow-up Loop — The Three Messages Nobody Ever Sends</title>
+<meta name="description" content="A three-message follow-up workflow that stops the moment someone replies. Day 2, day 6, day 14 — then silence, on purpose.">
+<style>
+:root{--ink:#191b17;--paper:#f7f6f1;--moss:#40614a;--line:#e0ded4;--mut:#6b6d63}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.65 ui-sans-serif,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
+.w{max-width:1040px;margin:0 auto;padding:0 22px}
+header{border-bottom:1px solid var(--line)}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:15px 0;flex-wrap:wrap;gap:8px}
+.logo{font-weight:700}
+nav a{margin-left:18px;font-size:14.5px;color:var(--mut);text-decoration:none}
+.hero{padding:50px 0;background:var(--paper);border-bottom:1px solid var(--line)}
+h1{font-size:clamp(27px,4.4vw,40px);line-height:1.12;letter-spacing:-.02em;max-width:19ch}
+.hero p{color:var(--mut);max-width:58ch;margin-top:14px}
+section{padding:48px 0;border-bottom:1px solid var(--line)}
+h2{font-size:23px;margin-bottom:8px}
+.sub{color:var(--mut);max-width:62ch;margin-bottom:24px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:26px}
+.node{border-top:3px solid var(--line);padding:14px 14px 0 0}
+.node.on{border-top-color:var(--moss)}
+.node b{display:block;font-size:12px;letter-spacing:.12em;color:var(--mut);margin-bottom:6px}
+.node span{font-size:15px}
+.mail{border:1px solid var(--line);border-radius:10px;overflow:hidden;max-width:620px}
+.mail .h{background:var(--paper);border-bottom:1px solid var(--line);padding:12px 16px;font-size:14px}
+.mail .h b{display:block}
+.mail .b{padding:18px 16px;font-size:15.5px;white-space:pre-line}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:6px;font:inherit;font-size:14px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--moss);color:#fff;border-color:var(--moss)}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rules h3{font-size:16px;margin-bottom:5px}
+.rules p{color:var(--mut);font-size:15px}
+.stop{background:#eef2ec;border-left:4px solid var(--moss);padding:18px;margin-top:24px;font-size:15.5px}
+footer{padding:30px 0 70px;color:var(--mut);font-size:14px}
+.note{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;font-size:12px;text-align:center;padding:8px}
+.note a{color:#a8d0b4}
+@media(max-width:820px){.flow,.rules{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.flow,.rules{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="w bar"><span class="logo">Follow-up Loop</span><nav><a href="#seq">The sequence</a><a href="#rules">Rules</a><a href="#stop">When it stops</a></nav></div></header>
+<div class="hero"><div class="w"><h1>The three messages after the first conversation that nobody ever sends.</h1>
+<p>Most small firms lose work in the gap between "I'll send something over" and nothing. Not because the lead was cold — because Tuesday happened. This is the smallest workflow that closes that gap without becoming nagging.</p></div></div>
+<section id="seq"><div class="w"><h2>Day 2, day 6, day 14 — then stop</h2>
+<p class="sub">Three messages, each with a different job. Read the actual copy.</p>
+<div class="flow">
+<div class="node on"><b>DAY 0</b><span>First conversation ends</span></div>
+<div class="node on"><b>DAY 2</b><span>The thing you promised</span></div>
+<div class="node on"><b>DAY 6</b><span>One useful nudge</span></div>
+<div class="node"><b>DAY 14</b><span>The closing note</span></div></div>
+<div class="tabs" id="tabs"></div>
+<div class="mail"><div class="h" id="mh"></div><div class="b" id="mb"></div></div></div></section>
+<section id="rules"><div class="w"><h2>The rules that keep it from being spam</h2>
+<div class="rules">
+<div><h3>Any reply kills the sequence</h3><p>Including "not right now". The workflow's job is to start a conversation, not to finish a funnel.</p></div>
+<div><h3>Each message carries something</h3><p>A document, an answer, a decision. No message exists purely to check in.</p></div>
+<div><h3>Three, then silence</h3><p>The fourth message is where goodwill goes to die. There is no fourth message.</p></div></div>
+<div class="stop" id="stop"><b>Day 14 ends it properly:</b> "I'll assume the timing isn't right and stop emailing. If it changes, reply to this and we'll pick it up where we left off." Nobody has to feel rude, and the door stays open.</div>
+<p class="sub" style="margin-top:22px">Concept workflow. No live send data, so no open or reply rates are claimed.</p></div></section>
+<footer><div class="w">Follow-up Loop · a concept workflow · <a href="https://wa.me/2349050690837" style="color:var(--moss)">Have Easywurld set one up</a></div></footer>
+<div class="note">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/follow-up-loop">Easywurld</a> — sample copy, not a real campaign.</div>
+<script>
+var m=[["Day 2 — the thing you promised","Subject: The scope note I mentioned","Hi Ada,\n\nHere's the one-page scope note from Tuesday. Page two has the two options we discussed and what each would cost.\n\nNo need to reply if you're still weighing it up. If the second option looks closer, say so and I'll price it properly.\n\nTunde"],
+["Day 6 — one useful nudge","Subject: One thing worth deciding first","Hi Ada,\n\nOne thing that'll make the rest easier: decide whether the October deadline is fixed or preferred. If it's fixed we'd sequence the work differently, and that changes the cost more than anything else on the list.\n\nHappy to talk it through for ten minutes this week.\n\nTunde"],
+["Day 14 — the closing note","Subject: Closing this off","Hi Ada,\n\nI'll assume the timing isn't right and stop emailing — no hard feelings at all.\n\nIf it changes, reply to this and we'll pick it up where we left off. The scope note stays valid until the end of the year.\n\nTunde"]];
+var tabs=document.getElementById('tabs');
+function show(i){document.getElementById('mh').innerHTML='<b>'+m[i][1]+'</b>To: ada@example.com · from Easywurld sample sequence';
+document.getElementById('mb').textContent=m[i][2];
+[].forEach.call(tabs.children,function(b,j){b.setAttribute('aria-pressed',j===i)});}
+m.forEach(function(x,i){var b=document.createElement('button');b.textContent=x[0];b.onclick=function(){show(i)};tabs.appendChild(b);});
+show(0);
+</script></body></html>

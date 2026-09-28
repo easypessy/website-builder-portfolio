@@ -37,6 +37,7 @@ export const copywriting: Project[] = [
   },
   {
     slug: "morrow-menu-voice",
+    liveUrl: "/demo/morrow-menu-voice/index.html",
     title: "Morrow Menu Voice",
     category: "Copywriting",
     industry: "Restaurant",
@@ -70,6 +71,7 @@ export const copywriting: Project[] = [
   },
   {
     slug: "northline-product-edit",
+    liveUrl: "/demo/northline-product-edit/index.html",
     title: "Northline Product Edit",
     category: "Copywriting",
     industry: "Fashion",
@@ -103,6 +105,7 @@ export const copywriting: Project[] = [
   },
   {
     slug: "carepath-service-pages",
+    liveUrl: "/demo/carepath-service-pages/index.html",
     title: "Carepath Service Pages",
     category: "Copywriting",
     industry: "Healthcare",
@@ -136,6 +139,7 @@ export const copywriting: Project[] = [
   },
   {
     slug: "brightline-email-series",
+    liveUrl: "/demo/brightline-email-series/index.html",
     title: "Brightline Email Series",
     category: "Copywriting",
     industry: "Education",

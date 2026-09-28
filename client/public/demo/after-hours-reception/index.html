@@ -1,0 +1,103 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>After-hours Reception — An Assistant That Answers When the Practice Is Closed</title>
+<meta name="description" content="A bounded after-hours assistant for dental practices: answers logistics from the practice's own information, books a call-back, and refuses clinical advice.">
+<style>
+:root{--ink:#152026;--paper:#f7f9fa;--teal:#1f7a8c;--line:#dde5e8;--mut:#6d7e86}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.65 ui-sans-serif,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
+.w{max-width:1060px;margin:0 auto;padding:0 22px}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:9}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:14px 0;flex-wrap:wrap;gap:10px}
+.logo{font-weight:700;letter-spacing:.04em}
+nav a{color:var(--mut);text-decoration:none;margin-left:20px;font-size:14.5px}
+nav a:hover{color:var(--teal)}
+.hero{background:var(--paper);padding:56px 0;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(28px,4.6vw,42px);line-height:1.1;letter-spacing:-.02em;max-width:18ch}
+.hero p{color:var(--mut);max-width:56ch;margin-top:16px}
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+h2{font-size:24px;letter-spacing:-.01em;margin-bottom:8px}
+.sub{color:var(--mut);margin-bottom:26px;max-width:60ch}
+.demo{display:grid;grid-template-columns:1fr 340px;gap:34px;align-items:start}
+.chat{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.chat .top{background:var(--paper);padding:11px 14px;font-size:13px;color:var(--mut);border-bottom:1px solid var(--line)}
+.log{padding:16px;min-height:290px}
+.m{max-width:80%;padding:10px 13px;border-radius:10px;margin-bottom:10px;font-size:15px}
+.m.u{background:var(--teal);color:#fff;margin-left:auto;border-bottom-right-radius:2px}
+.m.a{background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:2px}
+.src{display:block;font-size:12px;color:var(--mut);margin-top:6px}
+.ask{display:flex;gap:8px;flex-wrap:wrap;padding:14px;border-top:1px solid var(--line);background:#fcfdfd}
+.ask button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:13.5px;cursor:pointer}
+.ask button:hover{border-color:var(--teal);color:var(--teal)}
+.rules li{list-style:none;border-left:3px solid var(--teal);padding:2px 0 2px 14px;margin-bottom:16px;font-size:15px}
+.rules b{display:block}
+.rules span{color:var(--mut);font-size:14px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.cols h3{font-size:17px;margin-bottom:6px}
+.cols p{color:var(--mut);font-size:15px}
+.digest{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px}
+.digest h4{font-size:13px;letter-spacing:.1em;color:var(--mut);margin-bottom:12px}
+.row{border-top:1px solid var(--line);padding:11px 0;font-size:14.5px}
+.row b{display:block}
+.row span{color:var(--mut);font-size:13px}
+.warn{background:#fff5ec;border:1px solid #f0dcc4;border-radius:8px;padding:16px;font-size:15px;margin-top:20px}
+footer{padding:34px 0 70px;color:var(--mut);font-size:14px}
+.note{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;font-size:12px;text-align:center;padding:8px}
+.note a{color:#7ecfdd}
+@media(max-width:860px){.demo,.cols{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="w bar"><span class="logo">After-hours Reception</span>
+<nav><a href="#try">Try it</a><a href="#rules">Boundaries</a><a href="#digest">Morning digest</a><a href="#build">How it's built</a></nav></div></header>
+<div class="hero"><div class="w"><h1>The enquiries that arrive after you lock up.</h1>
+<p>Most dental enquiries land between 6pm and midnight. By morning the caller has booked with whoever answered first. Voicemail doesn't fix this — people don't leave them. This assistant answers logistics, captures the reason for contact, books a call-back, and never pretends to be a clinician.</p></div></div>
+<section id="try"><div class="w"><h2>Try the conversation</h2>
+<p class="sub">Tap a question a real patient would ask at 10pm. Every answer comes from the practice's own information — nothing is generated from outside it.</p>
+<div class="demo"><div class="chat"><div class="top">Lagoon Dental · assistant · not a clinician</div>
+<div class="log" id="log"><div class="m a">Evening. I can help with opening times, fees, parking, insurers and booking a call-back. I can't give clinical advice.</div></div>
+<div class="ask" id="ask"></div></div>
+<div><div class="digest"><h4>WHAT IT'S ALLOWED TO USE</h4>
+<div class="row"><b>Opening hours</b><span>Source: practice settings</span></div>
+<div class="row"><b>Fee list</b><span>Source: price list, updated monthly</span></div>
+<div class="row"><b>Insurers accepted</b><span>Source: finance page</span></div>
+<div class="row"><b>Front-desk availability</b><span>Source: live calendar</span></div></div>
+<div class="warn"><b>It cannot</b> diagnose, advise on pain, recommend treatment, or estimate what your specific case will cost.</div></div></div></div></section>
+<section id="rules"><div class="w"><h2>Where it stops</h2>
+<p class="sub">In healthcare, an assistant that appears human is a liability. This one is deliberately plain.</p>
+<ul class="rules">
+<li><b>Refuses clinical questions outright</b><span>"I can't advise on pain. If it's severe or you have facial swelling, call 111 or go to A&amp;E."</span></li>
+<li><b>No avatar, no personality, no fake typing</b><span>Plain text on white. It reads like a form that talks back, because that's what it is.</span></li>
+<li><b>Says when it doesn't know</b><span>Unanswered questions become a call-back with the question attached, not a guess.</span></li>
+<li><b>States what it is on every screen</b><span>The "not a clinician" line is fixed, not buried in a disclaimer.</span></li></ul></div></section>
+<section id="digest"><div class="w"><h2>What the desk sees at 8am</h2>
+<p class="sub">One digest, ordered by urgency, not by time received.</p>
+<div class="cols">
+<div class="digest"><h4>CALL FIRST</h4>
+<div class="row"><b>Chinelo A. · 23:14</b><span>Swelling, advised A&amp;E, wants a review Monday</span></div>
+<div class="row"><b>Mark T. · 21:02</b><span>Crown came off, asked for earliest slot</span></div></div>
+<div class="digest"><h4>BOOKED CALL-BACKS</h4>
+<div class="row"><b>Aisha B. · 19:40</b><span>New patient, wants 9–10am Tuesday</span></div>
+<div class="row"><b>Sam O. · 22:11</b><span>Insurer question, happy with any time</span></div></div>
+<div class="digest"><h4>ANSWERED, NO ACTION</h4>
+<div class="row"><b>4 conversations</b><span>Hours, parking, Saturday opening</span></div></div></div></div></section>
+<section id="build"><div class="w"><h2>How it's built</h2>
+<div class="cols">
+<div><h3>Bounded knowledge base</h3><p>Hours, location, fees, insurers, parking. Nothing else is in scope, so nothing else can be invented.</p></div>
+<div><h3>Refusal designed first</h3><p>The clinical-advice boundary was written before the helpful answers were.</p></div>
+<div><h3>Real calendar, real slots</h3><p>Call-backs are booked against front-desk availability, so nobody is promised a time that doesn't exist.</p></div></div>
+<p class="sub" style="margin-top:26px">Concept workflow. No live deployment, so there is no capture-rate data to quote. The designed benefit is that an out-of-hours enquiry becomes a scheduled call-back instead of a missed call.</p></div></section>
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837" style="color:var(--teal)">Talk to Easywurld about one for your practice</a></div></footer>
+<div class="note">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/after-hours-reception">Easywurld</a> — Lagoon Dental is not a real practice.</div>
+<script>
+var qa=[["Are you open on Saturday?","We open 9am–2pm on Saturdays. Last appointment is 1:30pm.","Source: opening hours"],
+["How much is a check-up?","A new-patient exam is ₦18,000, which includes two small x-rays if they're needed.","Source: fee list, updated 1 Sep"],
+["My tooth is really painful, what should I take?","I can't advise on pain or medication. If it's severe, or there's facial swelling or fever, please call 111 or attend A&E. I can book you the first available emergency slot.","Boundary: clinical advice refused"],
+["Do you take Hygeia?","Yes, Hygeia and Reliance. We're not currently on the AXA list.","Source: finance page"],
+["Is there parking?","Two free spaces behind the building, entrance on Norman Williams Street. Street parking is free after 6pm.","Source: location page"],
+["Can someone call me tomorrow?","Yes. The desk has 9:20, 9:40 and 11:00 free tomorrow. Which suits?","Source: live front-desk calendar"]];
+var ask=document.getElementById('ask'),log=document.getElementById('log');
+qa.forEach(function(p,i){var b=document.createElement('button');b.textContent=p[0];
+b.onclick=function(){b.remove();
+var u=document.createElement('div');u.className='m u';u.textContent=p[0];log.appendChild(u);
+setTimeout(function(){var a=document.createElement('div');a.className='m a';
+a.innerHTML=p[1].replace(/&/g,'&amp;')+'<span class="src">'+p[2]+'</span>';log.appendChild(a);
+log.scrollTop=log.scrollHeight;},350);};ask.appendChild(b);});
+</script></body></html>
