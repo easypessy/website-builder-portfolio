@@ -8,7 +8,17 @@ export default function ProjectCard({ p }: { p: Project }) {
     <article className={`card ${w === 3 ? "card--w3" : w === 2 ? "card--w2" : ""}`}>
       <Link href={`/projects/${p.slug}`} aria-label={`${p.title} — ${p.category} case study`}>
         <div className="card-media">
-          <Artwork project={p} />
+          {p.shot ? (
+            <img
+              src={p.shot}
+              alt={`${p.title} — screenshot of the live ${p.industry.toLowerCase()} site`}
+              loading="lazy"
+              width={1000}
+              height={625}
+            />
+          ) : (
+            <Artwork project={p} />
+          )}
           {p.liveUrl && <span className="live-tag">Live build</span>}
         </div>
         <div className="card-meta">

@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const aiAutomation: Project[] = [
   {
     slug: "after-hours-reception",
+    shot: "/shots/after-hours-reception.jpg",
     liveUrl: "/demo/after-hours-reception/index.html",
     title: "After-hours Reception",
     category: "AI Automation",
@@ -37,6 +38,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "market-lane-assistant",
+    shot: "/shots/market-lane-assistant.jpg",
     liveUrl: "/demo/market-lane-assistant/index.html",
     title: "Market Lane Assistant",
     category: "AI Automation",
@@ -71,6 +73,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "estateflow-lead-qualification",
+    shot: "/shots/estateflow-lead-qualification.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/estateflow/",
     title: "EstateFlow Lead Desk",
     category: "AI Automation",
@@ -105,6 +108,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "bookflow-appointments",
+    shot: "/shots/bookflow-appointments.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/bookflow/",
     title: "BookFlow Appointments",
     category: "AI Automation",
@@ -139,6 +143,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "vendorreply-order-capture",
+    shot: "/shots/vendorreply-order-capture.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/vendorreply/",
     title: "VendorReply",
     category: "AI Automation",
@@ -173,6 +178,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "carepath-internal-assistant",
+    shot: "/shots/carepath-internal-assistant.jpg",
     liveUrl: "/demo/carepath-internal-assistant/index.html",
     title: "Carepath Internal Desk",
     category: "AI Automation",
@@ -207,6 +213,7 @@ export const aiAutomation: Project[] = [
   },
   {
     slug: "follow-up-loop",
+    shot: "/shots/follow-up-loop.jpg",
     liveUrl: "/demo/follow-up-loop/index.html",
     title: "Follow-up Loop",
     category: "AI Automation",

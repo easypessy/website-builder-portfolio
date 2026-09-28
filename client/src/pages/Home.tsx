@@ -39,7 +39,7 @@ export default function Home() {
       />
 
       {/* HERO */}
-      <section style={{ paddingBottom: "clamp(40px,6vw,72px)" }}>
+      <section style={{ paddingTop: "clamp(28px,4vw,48px)", paddingBottom: "clamp(28px,4vw,52px)" }}>
         <div className="wrap">
           <Reveal>
             <p className="eyebrow">Marketing clarity for small businesses</p>
@@ -48,7 +48,7 @@ export default function Home() {
             </h1>
           </Reveal>
           <Reveal delay={90}>
-            <div style={{ display: "grid", gridTemplateColumns: "1.15fr 1fr", gap: 60, alignItems: "end", marginTop: 34 }}
+            <div style={{ display: "grid", gridTemplateColumns: "1.15fr 1fr", gap: 48, alignItems: "end", marginTop: 26 }}
               className="hero-split">
               <p className="lead" style={{ maxWidth: "46ch" }}>
                 Easywurld helps businesses simplify their message, improve their online
@@ -88,12 +88,12 @@ export default function Home() {
             <p className="eyebrow">01 / What usually brings people here</p>
             <h2 style={{ maxWidth: "18ch" }}>Four problems, over and over.</h2>
           </Reveal>
-          <div style={{ marginTop: 48 }}>
+          <div style={{ marginTop: 32 }}>
             {PROBLEMS.map(([t, d], i) => (
               <Reveal key={t} delay={i * 60}>
                 <div style={{
                   display: "grid", gridTemplateColumns: "56px 1fr 1.4fr", gap: 24,
-                  padding: "26px 0", borderTop: "1px solid var(--line)", alignItems: "start",
+                  padding: "20px 0", borderTop: "1px solid var(--line)", alignItems: "start",
                 }} className="prob-row">
                   <span className="kicker">0{i + 1}</span>
                   <h3 style={{ margin: 0, fontSize: "var(--t-md)" }}>{t}</h3>
@@ -112,12 +112,12 @@ export default function Home() {
             <p className="eyebrow">02 / What we do</p>
             <h2 style={{ maxWidth: "20ch" }}>Seven services, one connected system.</h2>
           </Reveal>
-          <div style={{ marginTop: 44, borderTop: "1px solid var(--line)" }}>
+          <div style={{ marginTop: 30, borderTop: "1px solid var(--line)" }}>
             {SERVICES.map(([n, t, d], i) => (
               <Reveal key={n} delay={i * 40}>
                 <Link href="/services" style={{
                   display: "grid", gridTemplateColumns: "56px 1.1fr 1.5fr 24px", gap: 22,
-                  padding: "22px 0", borderBottom: "1px solid var(--line)", alignItems: "center",
+                  padding: "18px 0", borderBottom: "1px solid var(--line)", alignItems: "center",
                 }} className="svc-row">
                   <span className="kicker">{n}</span>
                   <h3 style={{ margin: 0, fontSize: "var(--t-md)" }}>{t}</h3>
@@ -144,7 +144,7 @@ export default function Home() {
               </Link>
             </div>
           </Reveal>
-          <div className="note" style={{ margin: "30px 0 44px", maxWidth: "70ch" }}>
+          <div className="note" style={{ margin: "22px 0 30px", maxWidth: "70ch" }}>
             <p>
               Easywurld is a young studio. Every project below is a <strong>concept</strong> or
               <strong> sample</strong> build, and each one says so on its card. We don't publish
@@ -154,7 +154,7 @@ export default function Home() {
           <div className="work-grid">
             {feature.map((p) => <ProjectCard key={p.slug} p={p} />)}
           </div>
-          <div style={{ marginTop: 56, display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <div style={{ marginTop: 36, display: "flex", gap: 10, flexWrap: "wrap" }}>
             {CATEGORIES.map((c) => (
               <Link key={c} href={`/projects?c=${encodeURIComponent(c)}`} className="filters">
                 <button type="button">{c}<span className="n">{countFor(c)}</span></button>
@@ -173,7 +173,7 @@ export default function Home() {
               Understand. Simplify. Build. Optimize.
             </h2>
           </Reveal>
-          <div className="grid-2" style={{ marginTop: 52, alignItems: "start" }}>
+          <div className="grid-2" style={{ marginTop: 34, alignItems: "start" }}>
             <p style={{ color: "#C3D2C8", maxWidth: "40ch" }}>
               Four stages, run in order, with a deliverable you can hold at the end of each.
               Nothing starts until we agree what the actual problem is — most briefs describe

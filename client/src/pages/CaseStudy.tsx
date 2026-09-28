@@ -63,11 +63,21 @@ export default function CaseStudy() {
       <div className="wrap">
         <Reveal>
           <div style={{ border: "1px solid var(--line)" }}>
-            <Artwork project={p} />
+            {p.shot ? (
+              <img
+                src={p.shot}
+                alt={`${p.title} — screenshot of the live site`}
+                style={{ display: "block", width: "100%", height: "auto" }}
+                width={1000}
+                height={625}
+              />
+            ) : (
+              <Artwork project={p} />
+            )}
           </div>
           <p className="kicker" style={{ marginTop: 12 }}>
-            {p.liveUrl
-              ? "Layout study for this project. The working build is linked above and below."
+            {p.shot
+              ? "Screenshot of the live build linked above."
               : "Mockup — generated for this case study, not a photograph of a live site."}
           </p>
           {p.liveUrl && (

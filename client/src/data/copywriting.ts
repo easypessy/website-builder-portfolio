@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const copywriting: Project[] = [
   {
     slug: "clear-homepage-rewrite",
+    shot: "/shots/clear-homepage-rewrite.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/copy-vault/",
     title: "The Clear Homepage",
     category: "Copywriting",
@@ -37,6 +38,7 @@ export const copywriting: Project[] = [
   },
   {
     slug: "morrow-menu-voice",
+    shot: "/shots/morrow-menu-voice.jpg",
     liveUrl: "/demo/morrow-menu-voice/index.html",
     title: "Morrow Menu Voice",
     category: "Copywriting",
@@ -71,6 +73,7 @@ export const copywriting: Project[] = [
   },
   {
     slug: "northline-product-edit",
+    shot: "/shots/northline-product-edit.jpg",
     liveUrl: "/demo/northline-product-edit/index.html",
     title: "Northline Product Edit",
     category: "Copywriting",
@@ -105,6 +108,7 @@ export const copywriting: Project[] = [
   },
   {
     slug: "carepath-service-pages",
+    shot: "/shots/carepath-service-pages.jpg",
     liveUrl: "/demo/carepath-service-pages/index.html",
     title: "Carepath Service Pages",
     category: "Copywriting",
@@ -139,6 +143,7 @@ export const copywriting: Project[] = [
   },
   {
     slug: "brightline-email-series",
+    shot: "/shots/brightline-email-series.jpg",
     liveUrl: "/demo/brightline-email-series/index.html",
     title: "Brightline Email Series",
     category: "Copywriting",

@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const webDesign: Project[] = [
   {
     slug: "northline-atelier",
+    shot: "/shots/northline-atelier.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/vanta-label/",
     title: "Northline Atelier",
     category: "Web Design",
@@ -45,6 +46,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "morrow-house",
+    shot: "/shots/morrow-house.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/harvest-hearth/",
     title: "Morrow House",
     category: "Web Design",
@@ -87,6 +89,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "cedar-advisory",
+    shot: "/shots/cedar-advisory.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/northline/",
     title: "Cedar & Co. Advisory",
     category: "Web Design",
@@ -129,6 +132,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "fieldstone-build",
+    shot: "/shots/fieldstone-build.jpg",
     liveUrl: "/demo/fieldstone-build/index.html",
     title: "Fieldstone Build",
     category: "Web Design",
@@ -171,6 +175,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "luma-skin-studio",
+    shot: "/shots/luma-skin-studio.jpg",
     liveUrl: "/demo/luma-skin-studio/index.html",
     title: "Luma Skin Studio",
     category: "Web Design",
@@ -213,6 +218,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "open-door-learning",
+    shot: "/shots/open-door-learning.jpg",
     liveUrl: "/demo/open-door-learning/index.html",
     title: "Open Door Learning",
     category: "Web Design",
@@ -255,6 +261,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "harbour-and-home",
+    shot: "/shots/harbour-and-home.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/lotus-ridge/",
     title: "Harbour & Home",
     category: "Web Design",

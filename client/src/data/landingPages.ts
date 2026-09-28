@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const landingPages: Project[] = [
   {
     slug: "sunday-table-preorder",
+    shot: "/shots/sunday-table-preorder.jpg",
     liveUrl: "/demo/sunday-table-preorder/index.html",
     title: "The Sunday Table",
     category: "Landing Pages",
@@ -37,6 +38,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "quiet-hours-consult",
+    shot: "/shots/quiet-hours-consult.jpg",
     liveUrl: "/demo/quiet-hours-consult/index.html",
     title: "Quiet Hours",
     category: "Landing Pages",
@@ -71,6 +73,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "atlas-crm-saas",
+    shot: "/shots/atlas-crm-saas.jpg",
     liveUrl: "/demo/atlas-crm-saas/index.html",
     title: "Atlas CRM",
     category: "Landing Pages",
@@ -105,6 +108,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "brightline-course",
+    shot: "/shots/brightline-course.jpg",
     liveUrl: "/demo/brightline-course/index.html",
     title: "Brightline Course Launch",
     category: "Landing Pages",
@@ -139,6 +143,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "homebase-workshop-event",
+    shot: "/shots/homebase-workshop-event.jpg",
     liveUrl: "/demo/homebase-workshop-event/index.html",
     title: "Homebase Workshop",
     category: "Landing Pages",
@@ -173,6 +178,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "aster-property-single",
+    shot: "/shots/aster-property-single.jpg",
     liveUrl: "/demo/aster-property-single/index.html",
     title: "Aster Property",
     category: "Landing Pages",
@@ -207,6 +213,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "first-step-finance-lead",
+    shot: "/shots/first-step-finance-lead.jpg",
     liveUrl: "/demo/first-step-finance-lead/index.html",
     title: "First Step Finance",
     category: "Landing Pages",

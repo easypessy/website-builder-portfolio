@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const digitalMarketing: Project[] = [
   {
     slug: "local-first-visibility",
+    shot: "/shots/local-first-visibility.jpg",
     liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/swiftsend/",
     title: "Local First",
     category: "Digital Marketing",
