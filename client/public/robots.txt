@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: /sitemap.xml
+
+Sitemap: https://website-builder-portfolio.vercel.app/sitemap.xml

@@ -1,0 +1,22 @@
+import { Link } from "wouter";
+import type { Project } from "@/data";
+import Artwork from "./Artwork";
+
+export default function ProjectCard({ p }: { p: Project }) {
+  const w = p.weight ?? 1;
+  return (
+    <article className={`card ${w === 3 ? "card--w3" : w === 2 ? "card--w2" : ""}`}>
+      <Link href={`/work/${p.slug}`} aria-label={`${p.title} — ${p.category} case study`}>
+        <div className="card-media">
+          <Artwork project={p} />
+        </div>
+        <div className="card-meta">
+          <span className="card-cat">{p.category} · {p.industry}</span>
+          <h3>{p.title}</h3>
+          <p>{p.summary}</p>
+          <span className="badge" data-s={p.status} style={{ marginTop: 8 }}>{p.status}</span>
+        </div>
+      </Link>
+    </article>
+  );
+}

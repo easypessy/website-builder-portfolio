@@ -203,7 +203,16 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+// Dev-only tooling. These inject a large inline runtime; shipping them to
+// production previously produced a 370kB index.html. Keep them out of builds.
+const isProd = process.argv.includes("build");
+const plugins = [
+  react(),
+  tailwindcss(),
+  ...(isProd
+    ? []
+    : [jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()]),
+];
 
 export default defineConfig({
   plugins,
