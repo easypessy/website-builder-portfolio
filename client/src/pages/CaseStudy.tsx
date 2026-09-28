@@ -43,10 +43,12 @@ export default function CaseStudy() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Open the live build <ArrowUpRight size={16} />
+                {p.liveUrl.endsWith(".pdf") ? "Open the full document" : "Open the live build"} <ArrowUpRight size={16} />
               </a>
               <span className="kicker" style={{ display: "block", marginTop: 10 }}>
-                Opens the working site in a new tab.
+                {p.liveUrl.endsWith(".pdf")
+                  ? "Opens the full PDF in a new tab — the real document, every page."
+                  : "Opens the working site in a new tab."}
               </span>
             </p>
           )}
@@ -77,7 +79,9 @@ export default function CaseStudy() {
           </div>
           <p className="kicker" style={{ marginTop: 12 }}>
             {p.shot
-              ? "Screenshot of the live build linked above."
+              ? (p.liveUrl?.endsWith(".pdf")
+                  ? "Page one of the document linked above."
+                  : "Screenshot of the live build linked above.")
               : "Mockup — generated for this case study, not a photograph of a live site."}
           </p>
           {p.liveUrl && (

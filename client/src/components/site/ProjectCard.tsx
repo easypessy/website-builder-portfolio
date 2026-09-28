@@ -19,7 +19,9 @@ export default function ProjectCard({ p }: { p: Project }) {
           ) : (
             <Artwork project={p} />
           )}
-          {p.liveUrl && <span className="live-tag">Live build</span>}
+          {p.liveUrl && (
+            <span className="live-tag">{p.liveUrl.endsWith(".pdf") ? "PDF document" : "Live build"}</span>
+          )}
         </div>
         <div className="card-meta">
           <span className="card-cat">{p.category} · {p.industry}</span>

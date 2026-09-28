@@ -178,6 +178,8 @@ export const copywriting: Project[] = [
   },
   {
     slug: "buildwise-about-story",
+    shot: "/shots/buildwise-about-story.jpg",
+    liveUrl: "/demo/buildwise-about-story/index.html",
     title: "Buildwise About",
     category: "Copywriting",
     industry: "Construction",
@@ -211,6 +213,8 @@ export const copywriting: Project[] = [
   },
   {
     slug: "quiet-hours-faq",
+    shot: "/shots/quiet-hours-faq.jpg",
+    liveUrl: "/demo/quiet-hours-faq/index.html",
     title: "Quiet Hours FAQ",
     category: "Copywriting",
     industry: "Wellness",

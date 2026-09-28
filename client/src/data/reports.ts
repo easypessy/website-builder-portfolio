@@ -3,6 +3,8 @@ import type { Project } from "./types";
 export const reports: Project[] = [
   {
     slug: "field-notes-report",
+    shot: "/shots/field-notes-report.jpg",
+    liveUrl: "/demo/field-notes-report/field-notes-report.pdf",
     title: "Field Notes Report",
     category: "Reports & Presentations",
     industry: "Research",
@@ -36,6 +38,8 @@ export const reports: Project[] = [
   },
   {
     slug: "civic-proposal-template",
+    shot: "/shots/civic-proposal-template.jpg",
+    liveUrl: "/demo/civic-proposal-template/civic-proposal-template.pdf",
     title: "Civic Proposal",
     category: "Reports & Presentations",
     industry: "Professional services",
@@ -69,6 +73,8 @@ export const reports: Project[] = [
   },
   {
     slug: "open-door-deck",
+    shot: "/shots/open-door-deck.jpg",
+    liveUrl: "/demo/open-door-deck/open-door-deck.pdf",
     title: "Open Door Enrolment Deck",
     category: "Reports & Presentations",
     industry: "Education",
@@ -102,6 +108,8 @@ export const reports: Project[] = [
   },
   {
     slug: "aster-market-brief",
+    shot: "/shots/aster-market-brief.jpg",
+    liveUrl: "/demo/aster-market-brief/aster-market-brief.pdf",
     title: "Aster Market Brief",
     category: "Reports & Presentations",
     industry: "Real estate",
@@ -135,6 +143,8 @@ export const reports: Project[] = [
   },
   {
     slug: "good-harvest-plan",
+    shot: "/shots/good-harvest-plan.jpg",
+    liveUrl: "/demo/good-harvest-plan/good-harvest-plan.pdf",
     title: "Good Harvest Season Plan",
     category: "Reports & Presentations",
     industry: "Food retail",
@@ -168,6 +178,8 @@ export const reports: Project[] = [
   },
   {
     slug: "northline-lookbook",
+    shot: "/shots/northline-lookbook.jpg",
+    liveUrl: "/demo/northline-lookbook/northline-lookbook.pdf",
     title: "Northline Lookbook",
     category: "Reports & Presentations",
     industry: "Fashion",
@@ -201,6 +213,8 @@ export const reports: Project[] = [
   },
   {
     slug: "buildwise-project-report",
+    shot: "/shots/buildwise-project-report.jpg",
+    liveUrl: "/demo/buildwise-project-report/buildwise-project-report.pdf",
     title: "Buildwise Project Report",
     category: "Reports & Presentations",
     industry: "Construction",
