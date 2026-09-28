@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>First Step Finance — See a Decision Range Before You Give Us Your Number</title>
+<meta name="description" content="Four short steps, about 90 seconds. No credit check, no phone calls, and a decision range rather than a yes or no.">
+<style>
+:root{--ink:#10243a;--paper:#f5f8fb;--gold:#c58b2b;--line:#dde4ec;--mut:#5f6f81}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink)}
+header{background:var(--ink);color:#fff}
+.bar{max-width:1040px;margin:0 auto;padding:16px 22px;display:flex;justify-content:space-between;font-size:14px;flex-wrap:wrap;gap:8px}
+.bar b{font-size:16px}
+.w{max-width:1040px;margin:0 auto;padding:0 22px}
+.rail{display:flex;gap:6px;padding:30px 0 6px}
+.st{flex:1;text-align:center;font-size:12.5px;color:var(--mut)}
+.st i{display:block;width:28px;height:28px;line-height:28px;border-radius:50%;margin:0 auto 8px;border:1px solid #c9d3de;font-style:normal;font-size:12px}
+.st.on i{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:700}
+.st.on{color:var(--ink);font-weight:600}
+.st.done i{background:rgba(197,139,43,.35);border-color:transparent}
+.grid{display:grid;grid-template-columns:1.4fr 1fr;gap:36px;padding:16px 0 60px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px}
+.lab{font-size:11px;letter-spacing:.16em;color:var(--gold);margin-bottom:10px}
+h2{font-size:21px;margin-bottom:16px}
+.opt{display:block;border:1px solid var(--line);border-radius:5px;padding:13px 14px;margin-bottom:10px;cursor:pointer;font-size:15px}
+.opt input{margin-right:10px}
+.opt.sel{background:#fdf6ea;border-color:var(--gold)}
+.row{display:flex;gap:14px;align-items:center;margin-top:18px;flex-wrap:wrap}
+button{background:var(--ink);color:#fff;border:0;padding:13px 30px;font:inherit;border-radius:5px;cursor:pointer}
+.ghost{background:none;color:var(--mut);padding:13px 0}
+.side h3{font-size:16px;margin:0 0 4px}
+.side div{border-top:1px solid var(--line);padding:14px 0}
+.side p{font-size:14px;color:var(--mut)}
+.disc{font-size:13px;color:var(--mut);padding-bottom:40px}
+.note{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;font-size:12px;text-align:center;padding:8px}
+.note a{color:#f0c87e}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="bar"><b>First Step Finance</b><span>Regulated · we never sell your data</span></div></header>
+<div class="w"><div class="rail" id="rail">
+<div class="st done"><i>1</i>Amount</div><div class="st on"><i>2</i>Purpose</div>
+<div class="st"><i>3</i>Eligibility</div><div class="st"><i>4</i>Contact</div></div>
+<div class="grid"><div class="card" id="card">
+<p class="lab">STEP 2 OF 4</p><h2>What's the money for?</h2>
+<label class="opt"><input type="radio" name="p">Stock or equipment</label>
+<label class="opt sel"><input type="radio" name="p" checked>Covering a slow month</label>
+<label class="opt"><input type="radio" name="p">Hiring someone</label>
+<label class="opt"><input type="radio" name="p">Something else</label>
+<div class="row"><button onclick="next()">Continue</button><span style="font-size:14px;color:var(--mut)">Back · Takes about 90 seconds</span></div></div>
+<div class="side"><p class="lab">BEFORE YOU START</p>
+<div><h3>No credit check yet</h3><p>Nothing here touches your score.</p></div>
+<div><h3>No phone calls</h3><p>We only ring if you ask us to.</p></div>
+<div><h3>You'll see a decision range</h3><p>Not a yes or no. A range, with the rate attached.</p></div></div></div>
+<p class="disc">Sample project. No lender partnerships implied and no approval rates claimed.</p></div>
+<div class="note">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/first-step-finance-lead">Easywurld</a> — not a real lender.</div>
+<script>
+document.querySelectorAll('.opt').forEach(function(o){o.onclick=function(){
+document.querySelectorAll('.opt').forEach(function(x){x.classList.remove('sel')});o.classList.add('sel');}});
+function next(){document.getElementById('card').innerHTML='<p class="lab">STEP 3 OF 4</p><h2>Quick eligibility check</h2>'+
+'<label class="opt sel"><input type="radio" name="e" checked>Trading over 12 months</label>'+
+'<label class="opt"><input type="radio" name="e">Trading 6–12 months</label>'+
+'<label class="opt"><input type="radio" name="e">Less than 6 months</label>'+
+'<div class="row"><button onclick="fin()">Continue</button></div>';
+var s=document.querySelectorAll('.st');s[1].className='st done';s[2].className='st on';}
+function fin(){document.getElementById('card').innerHTML='<p class="lab">INDICATIVE RANGE</p><h2>₦1.5m – ₦4m, 18–24% APR</h2>'+
+'<p style="color:var(--mut);font-size:15px">This is a range, not an offer. Step 4 asks how to reach you — and only then.</p>'+
+'<div class="row"><a href="https://wa.me/2349050690837"><button>Continue on WhatsApp</button></a></div>';
+var s=document.querySelectorAll('.st');s[2].className='st done';s[3].className='st on';}
+</script></body></html>

@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const landingPages: Project[] = [
   {
     slug: "sunday-table-preorder",
+    liveUrl: "/demo/sunday-table-preorder/index.html",
     title: "The Sunday Table",
     category: "Landing Pages",
     industry: "Food & beverage",
@@ -36,6 +37,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "quiet-hours-consult",
+    liveUrl: "/demo/quiet-hours-consult/index.html",
     title: "Quiet Hours",
     category: "Landing Pages",
     industry: "Wellness",
@@ -69,6 +71,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "atlas-crm-saas",
+    liveUrl: "/demo/atlas-crm-saas/index.html",
     title: "Atlas CRM",
     category: "Landing Pages",
     industry: "SaaS",
@@ -102,6 +105,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "brightline-course",
+    liveUrl: "/demo/brightline-course/index.html",
     title: "Brightline Course Launch",
     category: "Landing Pages",
     industry: "Education",
@@ -135,6 +139,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "homebase-workshop-event",
+    liveUrl: "/demo/homebase-workshop-event/index.html",
     title: "Homebase Workshop",
     category: "Landing Pages",
     industry: "Local business",
@@ -168,6 +173,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "aster-property-single",
+    liveUrl: "/demo/aster-property-single/index.html",
     title: "Aster Property",
     category: "Landing Pages",
     industry: "Real estate",
@@ -201,6 +207,7 @@ export const landingPages: Project[] = [
   },
   {
     slug: "first-step-finance-lead",
+    liveUrl: "/demo/first-step-finance-lead/index.html",
     title: "First Step Finance",
     category: "Landing Pages",
     industry: "Financial services",

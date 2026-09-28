@@ -129,6 +129,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "fieldstone-build",
+    liveUrl: "/demo/fieldstone-build/index.html",
     title: "Fieldstone Build",
     category: "Web Design",
     industry: "Construction",
@@ -170,6 +171,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "luma-skin-studio",
+    liveUrl: "/demo/luma-skin-studio/index.html",
     title: "Luma Skin Studio",
     category: "Web Design",
     industry: "Beauty",
@@ -211,6 +213,7 @@ export const webDesign: Project[] = [
   },
   {
     slug: "open-door-learning",
+    liveUrl: "/demo/open-door-learning/index.html",
     title: "Open Door Learning",
     category: "Web Design",
     industry: "Education",
