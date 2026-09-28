@@ -232,6 +232,7 @@ export default defineConfig({
       ".manusvm.computer",
       "localhost",
       "127.0.0.1",
+      ".e2b.app",
     ],
     fs: {
       strict: true,
