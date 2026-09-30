@@ -15,7 +15,7 @@ const SERVICES = [
   ["01", "Digital marketing strategy", "Audience, positioning, content and customer journeys — the thinking before the making."],
   ["02", "Web design", "Business, service and local sites built to be understood in ten seconds."],
   ["03", "Landing pages", "One offer, one action, and the objections handled in between."],
-  ["04", "AI business automation", "Receptionists, qualification and follow-up workflows with honest boundaries."],
+  ["04", "business systems", "Receptionists, qualification and follow-up workflows with honest boundaries."],
   ["05", "Social media management", "A content system that survives a busy month."],
   ["06", "Copywriting & business content", "Plain words for websites, offers, emails and services."],
   ["07", "Reports & presentations", "Documents people finish reading."],
@@ -33,8 +33,8 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Easywurld — Digital Marketing, Web Design & AI Business Automation"
-        description="Easywurld brings marketing strategy, web design, content and practical automation together for small businesses in Lagos. Simplify. Optimize. Grow."
+        title="Easywurld | Web Design & SEO for Lagos Small Businesses"
+        description="Web design, SEO and content for small businesses in Lagos. Clear sites that rank, load fast and turn visitors into enquiries. Simplify. Optimize. Grow."
         path="/"
       />
 
@@ -53,7 +53,7 @@ export default function Home() {
               <p className="lead" style={{ maxWidth: "46ch" }}>
                 Easywurld helps businesses simplify their message, improve their online
                 presence and build practical digital systems through strategy, design,
-                content and automation.
+                content and practical systems.
               </p>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", paddingBottom: 6 }}>
                 <Link href="/projects" className="btn btn-solid">
@@ -72,7 +72,7 @@ export default function Home() {
         <div className="marquee-track">
           {[0, 1].map((dup) => (
             <div key={dup} style={{ display: "flex" }}>
-              {["Strategy", "Web design", "Landing pages", "AI automation", "Social media",
+              {["Strategy", "Web design", "Landing pages", "business systems", "Social media",
                 "Copywriting", "Reports & decks", "Lagos, Nigeria"].map((t) => (
                 <span className="marquee-item" key={t}>{t}</span>
               ))}

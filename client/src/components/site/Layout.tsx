@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export const WA = "https://wa.me/2349050690837";
 
@@ -32,7 +32,11 @@ export function Seo({
     meta("og:url", url, true);
     meta("og:type", type, true);
     meta("og:site_name", "Easywurld", true);
+    meta("og:image", origin + "/brand/og.png", true);
+    meta("og:image:width", "1200", true);
+    meta("og:image:height", "630", true);
     meta("twitter:card", "summary_large_image");
+    meta("twitter:image", origin + "/brand/og.png");
     meta("twitter:title", title);
     meta("twitter:description", description);
     set('link[rel="canonical"]', "href", url, () => {
@@ -136,7 +140,7 @@ function Footer() {
               <Link href="/services">Digital marketing strategy</Link>
               <Link href="/services">Web design</Link>
               <Link href="/services">Landing pages</Link>
-              <Link href="/services">AI automation</Link>
+              <Link href="/services">business systems</Link>
               <Link href="/services">Copywriting</Link>
               <Link href="/services">Reports & presentations</Link>
             </div>
@@ -146,7 +150,7 @@ function Footer() {
             <div className="ftr-links">
               <Link href="/projects">All projects</Link>
               <Link href="/projects?c=Web+Design">Web design</Link>
-              <Link href="/projects?c=AI+Automation">AI automation</Link>
+              <Link href="/projects?c=Business+Systems">business systems</Link>
               <Link href="/projects?c=Social+Media">Social media</Link>
             </div>
           </div>
@@ -176,10 +180,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Header />
       <main id="content">{children}</main>
       <Footer />
-      <a className="wa-float" href={WA} target="_blank" rel="noopener noreferrer"
-        aria-label="Message Easywurld on WhatsApp">
-        <MessageCircle size={24} />
-      </a>
     </>
   );
 }
