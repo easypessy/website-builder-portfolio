@@ -38,6 +38,8 @@ export const digitalMarketing: Project[] = [
   },
   {
     slug: "aster-campaign-map",
+    shot: "/shots/aster-campaign-map.jpg",
+    liveUrl: "/demo/aster-campaign-map/index.html",
     title: "Aster Launch Campaign",
     category: "Digital Marketing",
     industry: "Property",
@@ -71,6 +73,8 @@ export const digitalMarketing: Project[] = [
   },
   {
     slug: "mina-audience-map",
+    shot: "/shots/mina-audience-map.jpg",
+    liveUrl: "/demo/mina-audience-map/index.html",
     title: "Mina Audience Map",
     category: "Digital Marketing",
     industry: "E-commerce",
@@ -104,6 +108,8 @@ export const digitalMarketing: Project[] = [
   },
   {
     slug: "civic-clarity-channel",
+    shot: "/shots/civic-clarity-channel.jpg",
+    liveUrl: "/demo/civic-clarity-channel/index.html",
     title: "Civic Clarity",
     category: "Digital Marketing",
     industry: "Consulting",
@@ -137,6 +143,8 @@ export const digitalMarketing: Project[] = [
   },
   {
     slug: "table-season-campaign",
+    shot: "/shots/table-season-campaign.jpg",
+    liveUrl: "/demo/table-season-campaign/index.html",
     title: "Table Season",
     category: "Digital Marketing",
     industry: "Restaurant",
@@ -170,6 +178,8 @@ export const digitalMarketing: Project[] = [
   },
   {
     slug: "good-form-funnel",
+    shot: "/shots/good-form-funnel.jpg",
+    liveUrl: "/demo/good-form-funnel/index.html",
     title: "Good Form Funnel",
     category: "Digital Marketing",
     industry: "Fitness",
@@ -203,6 +213,8 @@ export const digitalMarketing: Project[] = [
   },
   {
     slug: "open-door-enrolment-strategy",
+    shot: "/shots/open-door-enrolment-strategy.jpg",
+    liveUrl: "/demo/open-door-enrolment-strategy/index.html",
     title: "Open Door Enrolment",
     category: "Digital Marketing",
     industry: "Education",

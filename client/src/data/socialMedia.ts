@@ -3,6 +3,8 @@ import type { Project } from "./types";
 export const socialMedia: Project[] = [
   {
     slug: "sol-club-system",
+    shot: "/shots/sol-club-system.jpg",
+    liveUrl: "/demo/sol-club-system/index.html",
     title: "Sol Club",
     category: "Social Media",
     industry: "Fashion",
@@ -34,6 +36,8 @@ export const socialMedia: Project[] = [
   },
   {
     slug: "pulse-method-education",
+    shot: "/shots/pulse-method-education.jpg",
+    liveUrl: "/demo/pulse-method-education/index.html",
     title: "Pulse Method",
     category: "Social Media",
     industry: "Fitness",
@@ -65,6 +69,8 @@ export const socialMedia: Project[] = [
   },
   {
     slug: "morrow-house-social",
+    shot: "/shots/morrow-house-social.jpg",
+    liveUrl: "/demo/morrow-house-social/index.html",
     title: "Morrow House Social",
     category: "Social Media",
     industry: "Restaurant",
@@ -96,6 +102,8 @@ export const socialMedia: Project[] = [
   },
   {
     slug: "oakline-properties-social",
+    shot: "/shots/oakline-properties-social.jpg",
+    liveUrl: "/demo/oakline-properties-social/index.html",
     title: "Oakline Properties",
     category: "Social Media",
     industry: "Real estate",
@@ -127,6 +135,8 @@ export const socialMedia: Project[] = [
   },
   {
     slug: "little-lantern-education",
+    shot: "/shots/little-lantern-education.jpg",
+    liveUrl: "/demo/little-lantern-education/index.html",
     title: "Little Lantern",
     category: "Social Media",
     industry: "Education",
@@ -158,6 +168,8 @@ export const socialMedia: Project[] = [
   },
   {
     slug: "studio-common-founder",
+    shot: "/shots/studio-common-founder.jpg",
+    liveUrl: "/demo/studio-common-founder/index.html",
     title: "Studio Common",
     category: "Social Media",
     industry: "Consulting",
@@ -189,6 +201,8 @@ export const socialMedia: Project[] = [
   },
   {
     slug: "good-harvest-seasonal",
+    shot: "/shots/good-harvest-seasonal.jpg",
+    liveUrl: "/demo/good-harvest-seasonal/index.html",
     title: "Good Harvest",
     category: "Social Media",
     industry: "Food retail",
