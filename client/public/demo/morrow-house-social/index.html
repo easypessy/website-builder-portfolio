@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Morrow House — content built on the kitchen's week</title>
+<meta name="description" content="A restaurant content calendar that follows kitchen operations instead of fighting them. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF4E9;--pap:#FFFDF8;--ink:#2C2114;--mu:#7C7061;--ac:#A94A18;--gr:#4A5A3C;--line:#E4D9C6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.62 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1160px;margin:0 auto;padding:0 26px}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em}
+a{color:var(--ac)}
+
+/* masthead like a chalkboard, not a nav */
+.top{background:var(--ink);color:#F3E9D8;padding:12px 0}
+.top .w{display:flex;justify-content:space-between;gap:16px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;flex-wrap:wrap}
+header .w{padding:44px 0 30px;text-align:left;max-width:820px}
+header h1{font-size:clamp(34px,5.2vw,58px);line-height:1.02;margin:0 0 16px}
+header h1 em{font-style:italic;color:var(--ac)}
+header p{color:var(--mu);margin:0 0 10px;max-width:56ch;font-size:17px}
+
+.strip{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.strip img{width:100%;height:210px;object-fit:cover;display:block}
+.strip figure{margin:0;position:relative;background:var(--pap)}
+.strip figcaption{position:absolute;left:0;bottom:0;background:rgba(44,33,20,.84);color:#F7EEDD;font-size:11.5px;padding:7px 10px;letter-spacing:.06em}
+
+/* the operational week — the core interaction */
+.week-sec{padding:52px 0 20px}
+.week-sec h2{font-size:clamp(26px,3.6vw,38px);margin:0 0 10px}
+.week-sec>.w>p{color:var(--mu);max-width:64ch;margin:0 0 30px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.day{border:1px solid var(--line);background:var(--pap);padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit;
+display:flex;flex-direction:column;min-height:172px;transition:border-color .18s,transform .18s}
+.day:hover{border-color:var(--ac);transform:translateY(-2px)}
+.day:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.day[aria-selected="true"]{border-color:var(--ac);box-shadow:inset 0 0 0 1px var(--ac)}
+.day .dn{font:600 11px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--mu);padding:11px 11px 0}
+.day .ops{padding:8px 11px 10px;font-size:13px;color:var(--gr);border-bottom:1px dashed var(--line);min-height:56px}
+.day .ops b{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:3px;font-weight:600}
+.day .post{padding:9px 11px 12px;font-size:13.5px;line-height:1.35;flex:1}
+.day .post b{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:4px;font-weight:600}
+.day .post.none{color:var(--mu);font-style:italic}
+
+.detail{margin-top:10px;border:1px solid var(--ac);background:var(--pap);display:grid;grid-template-columns:230px 1fr 1fr;gap:0}
+.detail .ph{background:#EFE4D2}
+.detail .ph img{width:100%;height:100%;min-height:210px;object-fit:cover;display:block}
+.detail .c{padding:22px 24px;border-left:1px solid var(--line)}
+.detail h3{margin:0 0 4px;font-size:22px}
+.detail .who{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:12px}
+.detail h4{font:600 10.5px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin:0 0 8px}
+.detail p{margin:0 0 16px;font-size:14.5px}
+.capbox{background:var(--bg);border-left:2px solid var(--ac);padding:13px 15px;font-size:14.5px;white-space:pre-line;margin-bottom:16px}
+.detail ul{margin:0;padding-left:17px;font-size:14px;color:var(--mu)}
+.detail li{margin-bottom:5px}
+
+/* voice guide: two columns, written / not written */
+.voice{padding:56px 0;border-top:1px solid var(--line);margin-top:54px}
+.voice h2{font-size:clamp(24px,3.2vw,34px);margin:0 0 10px}
+.voice>.w>p{color:var(--mu);max-width:62ch;margin:0 0 28px}
+.vg{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}
+.vg>div{padding:26px 28px}
+.vg>div:first-child{border-right:1px solid var(--line);background:var(--pap)}
+.vg h3{font-size:16px;margin:0 0 16px;display:flex;align-items:center;gap:9px}
+.vg h3 i{width:8px;height:8px;border-radius:50%;font-style:normal}
+.vg p{margin:0 0 15px;font-size:15px;padding-left:17px;position:relative}
+.vg p::before{content:"";position:absolute;left:0;top:10px;width:9px;height:1px;background:var(--line)}
+.vg .bad{color:var(--mu);text-decoration:line-through;text-decoration-color:#C9A99A}
+
+.handover{padding:48px 0 10px;border-top:1px solid var(--line)}
+.handover .grid2{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.handover h2{font-size:clamp(24px,3.2vw,34px);margin:0 0 12px}
+.steps{counter-reset:s;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;padding:15px 0 15px 44px;border-top:1px solid var(--line);position:relative;font-size:15px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:14px;width:26px;height:26px;border-radius:50%;background:var(--ink);
+color:var(--bg);font:600 12px/26px 'Inter';text-align:center}
+.steps li b{display:block;font-family:'Fraunces',Georgia,serif;font-size:17px;margin-bottom:3px}
+
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mu);font-size:14px;margin-top:50px}
+.note{background:var(--ink);color:#CFC0A8;font-size:12.5px;padding:13px 26px;text-align:center}
+.note a{color:#E8A574}
+@media(max-width:980px){
+ .strip{grid-template-columns:1fr 1fr}.strip figure:last-child{display:none}
+ .days{grid-template-columns:repeat(4,1fr)}
+ .detail{grid-template-columns:1fr}.detail .c{border-left:0;border-top:1px solid var(--line)}
+ .detail .ph img{min-height:170px}
+ .vg{grid-template-columns:1fr}.vg>div:first-child{border-right:0;border-bottom:1px solid var(--line)}
+ .handover .grid2{grid-template-columns:1fr;gap:26px}
+}
+@media(max-width:600px){.days{grid-template-columns:1fr 1fr}.w{padding:0 18px}.strip{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="w"><span>Morrow House</span><span>Content direction · 2026</span></div></div>
+
+<header><div class="w">
+  <h1>Content that follows <em>the kitchen's week</em>, not a content strategy.</h1>
+  <p>A restaurant posting only finished plates is competing with every other restaurant posting finished plates, usually with worse photographs. Meanwhile the thing that actually makes this kitchen interesting — the Tuesday market run, a chef who knows the farm by name, a board that changes on Wednesday — never appeared anywhere.</p>
+  <p>So the calendar was built backwards from the rota. Select a day below.</p>
+</div></header>
+
+<div class="strip">
+  <figure><img src="/demo/img/restaurant-dish.jpg" alt="A plate of roast chicken with charred lemon on a dark ceramic plate" loading="lazy"><figcaption>Wednesday — the board changes</figcaption></figure>
+  <figure><img src="/demo/img/market-produce.jpg" alt="Crates of squash, kale and beetroot on a market trestle" loading="lazy"><figcaption>Tuesday — 6am market</figcaption></figure>
+  <figure><img src="/demo/img/restaurant-room.jpg" alt="A small dining room at dusk with brass wall lights" loading="lazy"><figcaption>Friday — the room fills</figcaption></figure>
+</div>
+
+<section class="week-sec"><div class="w">
+  <h2>The operational week</h2>
+  <p>The top half of each day is what the kitchen is already doing. The bottom half is the only content that day can realistically produce. Nothing here requires anyone to come in early or stay late.</p>
+  <div class="days" id="days" role="tablist" aria-label="Days of the week"></div>
+  <div class="detail" id="detail"></div>
+</div></section>
+
+<section class="voice"><div class="w">
+  <h2>Caption voice, for people who do not write</h2>
+  <p>The kitchen writes these, not an agency. So the guide is a pair of columns rather than a document — the sous chef can check a caption against it in fifteen seconds.</p>
+  <div class="vg">
+    <div>
+      <h3><i style="background:var(--gr)"></i>How we write it</h3>
+      <p>Braised beef shin, tonight only. Twelve portions.</p>
+      <p>The lamb is from Ashgrove, twenty minutes up the A40. We have used them for four years.</p>
+      <p>Tuesday market. Everything green today was under £2 a kilo, so expect a lot of it this week.</p>
+      <p>Two tables left at 8pm. Ring the restaurant, the booking system is slower than we are.</p>
+    </div>
+    <div>
+      <h3><i style="background:#B87A5E"></i>How we do not</h3>
+      <p class="bad">Indulge in our mouth-watering braised beef shin — a true culinary journey.</p>
+      <p class="bad">We source only the finest, locally-sourced, artisanal ingredients.</p>
+      <p class="bad">Fresh produce alert! Swipe to see what our amazing team picked up today.</p>
+      <p class="bad">Don't miss out! Limited availability — book now to avoid disappointment.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="handover"><div class="w">
+  <div class="grid2">
+    <div>
+      <h2>Designed to be handed over</h2>
+      <p style="color:var(--mu);max-width:52ch">An agency-run account stops the month the agency stops. This one is built so the staff already on shift can keep it running, which means every format has to survive being shot on a phone in a hurry.</p>
+      <p style="color:var(--mu);max-width:52ch;font-size:14.5px">Concept system. It has not been run for a real restaurant, so there are no reach or booking figures here. What is being designed for is survival after handover, not a launch spike.</p>
+    </div>
+    <ol class="steps">
+      <li><b>Phone photography only</b>Daylight where possible, kitchen light where not. No studio shoot, ever — it would contradict the whole premise.</li>
+      <li><b>One person on rota, not "the team"</b>Whoever opens on Tuesday shoots the market. It is a task on the shift sheet, not a favour.</li>
+      <li><b>Templates with the words already in them</b>The specials-board story has the layout fixed; the only variable is the dish and the number left.</li>
+      <li><b>A weekly ten-minute check, not a monthly review</b>Short and frequent beats long and quarterly for a business with no marketing person.</li>
+    </ol>
+  </div>
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a content calendar</a></div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/morrow-house-social">Easywurld</a> — Morrow House is not a real restaurant.</div>
+
+<script>
+var DAYS=[
+{d:'Mon',ops:'Closed. Deliveries booked for Tuesday.',post:null,
+ title:'Nothing scheduled',who:'By design',img:'/demo/img/restaurant-room.jpg',
+ why:'A closed day with a post on it is the first thing that gets skipped, and the first skip is what breaks a calendar. Monday stays empty on purpose.',
+ cap:'—',
+ rules:['No post, no story, no reply obligation','The rota does not mention social on a Monday']},
+
+{d:'Tue',ops:'Market run, 6am. Head chef and one KP.',post:'Market story',
+ title:'Market morning',who:'Shot by whoever drives',img:'/demo/img/market-produce.jpg',
+ why:'This happens whether anyone photographs it or not, which is exactly why it is the anchor of the week. Three frames on a phone in the van park is the entire production cost.',
+ cap:'Tuesday market.\nWhat came back: two crates of chard, the last of the squash, and beetroot that is genuinely good this week.\nMost of it will be on the board tomorrow.',
+ rules:['Three frames maximum, shot in daylight','Name at least one supplier','Never staged after the fact back at the restaurant']},
+
+{d:'Wed',ops:'Menu changes. Board rewritten before service.',post:'The new board',
+ title:'The board changes',who:'Front of house, before doors',img:'/demo/img/restaurant-dish.jpg',
+ why:'The single most useful post of the week for a regular deciding where to eat. It is also the easiest, because the board is being written anyway.',
+ cap:'New board from tonight.\nThe beef shin is back. So is the chard from yesterday.\nSix things, as usual. Kitchen closes at 9:30.',
+ rules:['Photograph the actual board, not a designed graphic','Always include tonight\'s kitchen close time','Posted before 4pm or it is not worth posting']},
+
+{d:'Thu',ops:'Quietest service of the week.',post:'Supplier feature',
+ title:'Meet the farm',who:'Written by the head chef',img:'/demo/img/market-produce.jpg',
+ why:'Thursday needs filling and a supplier story needs no fresh photography — it can be written once and banked. It is the only post in the week that is allowed to be prepared in advance.',
+ cap:'Ashgrove, twenty minutes up the A40.\nWe have bought lamb from them for four years. Same family, same two fields.\nIf it is on the board, it came from there.',
+ rules:['Real farm, real name, permission asked first','No claims about welfare or method that the farm has not made itself','One a month, banked in advance']},
+
+{d:'Fri',ops:'Full service. Both sittings.',post:'Tonight, one frame',
+ title:'The room at 7',who:'Front of house, one photo',img:'/demo/img/restaurant-room.jpg',
+ why:'Proof that the place is alive, posted while people are still deciding where to go. Not a plate — the room.',
+ cap:'Two tables left at 8.\nRing us, it is faster than the booking system.',
+ rules:['Posted between 5 and 6:30pm, never later','No diner photographed without asking','If the room is quiet, do not post a fake full room — post nothing']},
+
+{d:'Sat',ops:'Full service. Prep from 9am.',post:'Prep clip',
+ title:'Prep, nine in the morning',who:'Kitchen, ten seconds',img:'/demo/img/restaurant-dish.jpg',
+ why:'Saturday prep looks like work, which is the point. Ten unedited seconds outperforms a styled plate because nobody else is posting it.',
+ cap:'Saturday, nine o\'clock.\nThis is most of the day before anyone eats anything.',
+ rules:['Unedited, no music, subtitles if anyone speaks','Under fifteen seconds','Never reshoot to make it tidier']},
+
+{d:'Sun',ops:'Lunch only. Closed from 4pm.',post:'Next week',
+ title:'What is coming',who:'Head chef, written Sunday afternoon',img:'/demo/img/restaurant-room.jpg',
+ why:'The only forward-looking post of the week, written while the chef is already planning the order. It also sets up Tuesday, which closes the loop.',
+ cap:'Next week: the last of the squash, and we are trying a whole plaice for two.\nMarket is Tuesday. Board changes Wednesday.',
+ rules:['Never promise a dish that is not already ordered','Short — four lines at most','Written Sunday, posted Sunday, not scheduled ahead']}
+];
+
+var wrap=document.getElementById('days'), det=document.getElementById('detail'), sel=1;
+
+function drawDays(){
+  wrap.innerHTML='';
+  DAYS.forEach(function(x,i){
+    var b=document.createElement('button');
+    b.className='day'; b.type='button'; b.setAttribute('role','tab');
+    b.setAttribute('aria-selected',String(i===sel));
+    b.innerHTML='<span class="dn">'+x.d+'</span>'+
+      '<span class="ops"><b>Kitchen</b>'+x.ops+'</span>'+
+      (x.post?'<span class="post"><b>Content</b>'+x.post+'</span>'
+             :'<span class="post none">No post</span>');
+    b.onclick=function(){sel=i;drawDays();drawDetail();det.scrollIntoView({block:'nearest',behavior:'smooth'})};
+    wrap.appendChild(b);
+  });
+}
+function drawDetail(){
+  var x=DAYS[sel];
+  det.innerHTML=
+    '<div class="ph"><img src="'+x.img+'" alt="" loading="lazy"></div>'+
+    '<div class="c"><div class="who">'+x.d+' · '+x.who+'</div><h3>'+x.title+'</h3>'+
+      '<h4>Why this, on this day</h4><p>'+x.why+'</p></div>'+
+    '<div class="c"><h4>The caption</h4><div class="capbox">'+x.cap+'</div>'+
+      '<h4>Rules</h4><ul>'+x.rules.map(function(r){return '<li>'+r+'</li>'}).join('')+'</ul></div>';
+}
+drawDays();drawDetail();
+</script>
+</body></html>

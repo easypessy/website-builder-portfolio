@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Good Harvest — a seasonal campaign instead of a discount feed</title>
+<meta name="description" content="Replacing price-led posts with seasonality: what is good this week, what it costs, what to do with it. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F7F0;--pap:#FCFDF9;--ink:#1C2C18;--mu:#6E7A68;--ac:#5A7F2E;--warm:#A8641E;--line:#DCE3D3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1120px;margin:0 auto;padding:0 26px}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.008em}
+a{color:var(--ac)}
+
+.rule{border-top:1px solid var(--line)}
+header .w{padding:34px 0 26px;display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap}
+header .n{font:600 21px/1 'Fraunces',Georgia,serif}
+header .s{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
+
+.open{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;padding:34px 0 46px;border-top:1px solid var(--line)}
+.open h1{font-size:clamp(31px,4.8vw,52px);line-height:1.06;margin:0 0 18px}
+.open h1 em{font-style:italic;color:var(--warm)}
+.open p{color:var(--mu);max-width:50ch;margin:0 0 14px}
+.open figure{margin:0}
+.open img{width:100%;display:block;border-radius:3px}
+.open figcaption{font-size:12.5px;color:var(--mu);margin-top:9px;font-style:italic}
+
+/* the problem, stated as two feeds side by side */
+.compare{padding:48px 0;border-top:1px solid var(--line)}
+.compare h2{font-size:clamp(23px,3.2vw,32px);margin:0 0 10px}
+.compare>.w>p{color:var(--mu);max-width:62ch;margin:0 0 26px}
+.feeds{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.feed{border:1px solid var(--line);background:var(--pap);padding:20px 22px}
+.feed h3{font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+.feed .cap{font-size:13px;color:var(--mu);margin:0 0 16px}
+.feed .row{padding:10px 0;border-top:1px dotted var(--line);font-size:15px}
+.feed .row:first-of-type{border-top:0}
+.feed .row small{display:block;color:var(--mu);font-size:13px}
+.feed.old .row{color:var(--mu)}
+.feed.old .row b{color:#A8371E;font-weight:500}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+/* the wheel: month selector */
+.season{padding:54px 0 20px;border-top:1px solid var(--line)}
+.season h2{font-size:clamp(23px,3.2vw,32px);margin:0 0 10px}
+.season>.w>p{color:var(--mu);max-width:62ch;margin:0 0 26px}
+.months{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin-bottom:26px}
+.months button{min-height:54px;border:1px solid var(--line);background:var(--pap);cursor:pointer;
+font:500 13px/1.1 'Inter';color:var(--mu);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 2px}
+.months button i{width:7px;height:7px;border-radius:50%;background:var(--line);font-style:normal}
+.months button:hover{border-color:var(--ac)}
+.months button:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.months button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.months button[aria-pressed="true"] i{background:var(--warm)}
+
+.week{border:1px solid var(--ink);background:var(--pap)}
+.wk-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:20px 26px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.wk-head h3{margin:0;font-size:24px}
+.wk-head span{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}
+.wk-body{display:grid;grid-template-columns:1.25fr 1fr 1fr}
+.wk-body>div{padding:24px 26px;border-right:1px solid var(--line)}
+.wk-body>div:last-child{border-right:0}
+.wk-body h4{font:500 11px/1 'Inter';letter-spacing:.17em;text-transform:uppercase;color:var(--mu);margin:0 0 14px}
+.items{margin:0;padding:0;list-style:none}
+.items li{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-bottom:1px dotted var(--line);font-size:15.5px}
+.items li:last-child{border-bottom:0}
+.items b{font-family:'Fraunces',Georgia,serif;font-weight:600}
+.items small{display:block;color:var(--mu);font-size:13.5px;font-weight:400;font-family:'Inter'}
+.items .price{color:var(--warm);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:14.5px}
+.recipe{background:#F1F4EA;border-left:3px solid var(--ac);padding:15px 17px;font-size:15px}
+.recipe b{display:block;font-family:'Fraunces',Georgia,serif;font-size:17px;margin-bottom:7px}
+.recipe span{color:var(--mu);font-size:13.5px;display:block;margin-top:9px}
+.grower{font-size:15px}
+.grower b{display:block;font-family:'Fraunces',Georgia,serif;font-size:17px;margin-bottom:6px}
+.grower p{margin:0 0 10px;color:var(--mu);font-size:14.5px}
+.grower .miles{font-size:13px;color:var(--ac);letter-spacing:.05em}
+.capline{padding:18px 26px;border-top:1px solid var(--line);background:#F1F4EA;font-size:14.5px;white-space:pre-line}
+.capline b{display:block;font:500 11px/1 'Inter';letter-spacing:.17em;text-transform:uppercase;color:var(--mu);margin-bottom:9px}
+
+/* discount cap meter */
+.cap-sec{padding:52px 0;border-top:1px solid var(--line);margin-top:52px}
+.cap-sec .grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.cap-sec h2{font-size:clamp(22px,3vw,30px);margin:0 0 12px}
+.cap-sec p{color:var(--mu);max-width:52ch}
+.meter{border:1px solid var(--line);background:var(--pap);padding:22px 24px}
+.meter h4{margin:0 0 16px;font-size:15px}
+.mrow{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;margin-bottom:12px;font-size:14px}
+.track{height:20px;background:#EAEFE2;position:relative}
+.track i{display:block;height:100%;background:var(--ac)}
+.track.warn i{background:var(--warm)}
+.track span{position:absolute;right:8px;top:2px;font-size:12px;color:var(--ink)}
+.meter small{display:block;color:var(--mu);font-size:13.5px;margin-top:14px}
+
+.honest{padding:38px 0;border-top:1px solid var(--line);color:var(--mu);font-size:15px}
+.honest .w{max-width:72ch}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size:14px}
+.note{background:var(--ink);color:#B7C4B0;font-size:12.5px;padding:13px 26px;text-align:center}
+.note a{color:#B8D48A}
+@media(max-width:960px){
+ .open{grid-template-columns:1fr;gap:24px}.open figure{order:-1}
+ .feeds{grid-template-columns:1fr}
+ .months{grid-template-columns:repeat(6,1fr)}
+ .wk-body{grid-template-columns:1fr}
+ .wk-body>div{border-right:0;border-bottom:1px solid var(--line)}
+ .cap-sec .grid2{grid-template-columns:1fr;gap:26px}
+}
+@media(max-width:560px){.w{padding:0 18px}.months{grid-template-columns:repeat(4,1fr)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header><div class="w"><span class="n">Good Harvest</span><span class="s">Seasonal campaign · concept · 2026</span></div></header>
+
+<div class="w">
+  <div class="open">
+    <div>
+      <h1>A discount feed teaches people to <em>wait</em>.</h1>
+      <p>The shop was posting price cuts three times a week. It worked, in the sense that things sold — and it trained a whole customer base to hold off until something was reduced. On a grocer's margin that is not a marketing problem, it is a survival one.</p>
+      <p>The replacement is not "stop discounting". It is moving price out of the headline and putting seasonality there instead: what is good this week, what it costs, and what to do with it.</p>
+    </div>
+    <figure>
+      <img src="/demo/img/market-produce.jpg" alt="Crates of squash, kale, beetroot and apples with handwritten price tags" loading="eager">
+      <figcaption>Photography is flat daylight on the shop counter. Nothing styled, nothing sprayed with water.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section class="compare"><div class="w">
+  <h2>Same week, two feeds</h2>
+  <p>Nothing here costs more to produce than what was being posted before. The stock is the same stock. Only the headline changed.</p>
+  <div class="feeds">
+    <div class="feed old">
+      <h3><span class="dot" style="background:#A8371E"></span>Before</h3>
+      <p class="cap">Price in every headline. Four of seven posts are a reduction.</p>
+      <div class="row"><b>25% OFF</b> all salad — today only<small>Mon</small></div>
+      <div class="row">New in: Spanish tomatoes<small>Tue</small></div>
+      <div class="row"><b>2 FOR £3</b> peppers<small>Wed</small></div>
+      <div class="row"><b>END OF DAY</b> — everything reduced from 5pm<small>Thu</small></div>
+      <div class="row">Weekend opening hours<small>Fri</small></div>
+      <div class="row"><b>FLASH SALE</b> — bananas 60p<small>Sat</small></div>
+    </div>
+    <div class="feed">
+      <h3><span class="dot" style="background:var(--ac)"></span>After</h3>
+      <p class="cap">Three formats on rotation. Price still appears; it just stops being the reason to look.</p>
+      <div class="row">Good this week — three items<small>Mon · the anchor post</small></div>
+      <div class="row">What to do with a glut of chard<small>Wed · recipe card</small></div>
+      <div class="row">Meet the grower: Ashgrove, twelve miles<small>Fri · once a fortnight</small></div>
+      <div class="row">Good this week — three items<small>Following Mon</small></div>
+      <div class="row">Recipe card<small>Wed</small></div>
+      <div class="row">End of day, Saturday only<small>Sat · one of two a month</small></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="season"><div class="w">
+  <h2>What "good this week" actually means</h2>
+  <p>The anchor post is three items, every Monday, with the real price next to each. Pick a month to see what it would say — and notice that some months are thin, which is the honest part.</p>
+  <div class="months" id="months" role="group" aria-label="Choose a month"></div>
+  <div class="week" id="week"></div>
+</div></section>
+
+<section class="cap-sec"><div class="w">
+  <div class="grid2">
+    <div>
+      <h2>Two discounts a month, and they are posted late</h2>
+      <p>The cap is the mechanism. Without a hard number, "fewer discount posts" lasts about three weeks — the first quiet Tuesday brings one back, and then the rule is gone.</p>
+      <p>End-of-day reductions still happen in the shop every evening. They are simply not the thing the account is for. A customer who comes at five for a reduced box is welcome; a customer who has learned to only come at five is the problem being solved.</p>
+      <p style="font-size:14.5px">The target is margin per basket, not reach. A feed that halves its impressions and stops training people to wait has done its job.</p>
+    </div>
+    <div class="meter">
+      <h4>Post mix, one month</h4>
+      <div class="mrow"><span>Good this week</span><div class="track"><i style="width:36%"></i><span>4</span></div></div>
+      <div class="mrow"><span>Recipe card</span><div class="track"><i style="width:36%"></i><span>4</span></div></div>
+      <div class="mrow"><span>Grower feature</span><div class="track"><i style="width:18%"></i><span>2</span></div></div>
+      <div class="mrow"><span>Discount</span><div class="track warn"><i style="width:18%"></i><span>2</span></div></div>
+      <div class="mrow"><span>Shop notices</span><div class="track"><i style="width:9%"></i><span>1</span></div></div>
+      <small>Thirteen posts a month. Not thirty — the shop has two people and a delivery round.</small>
+    </div>
+  </div>
+</div></section>
+
+<section class="honest"><div class="w">
+  Concept campaign. It has not been run, so there is no margin, basket-size or engagement data to report and none is implied. Prices shown are illustrative placeholders rather than a real price list, and the growers named are invented. On a live account these would be the shop's actual weekly prices, photographed on the counter the morning they change.
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a seasonal campaign</a></div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/good-harvest-seasonal">Easywurld</a> — Good Harvest is not a real shop.</div>
+
+<script>
+var M=[
+{m:'Jan',t:'Deep winter',items:[['Purple sprouting broccoli','First of it, tight heads','£2.40 / 300g'],['Forced rhubarb','Pale pink, from Yorkshire','£3.10 / bunch'],['Swede','Cheap, ignored, excellent','£0.90 each']],
+ rec:['Rhubarb, roasted, no pan','Halve the sticks, sugar, a splash of orange juice, twenty minutes in a hot oven on a tray. No water, no pan, no stirring.'],
+ grow:['Hetherington & Son','Rhubarb sheds, forced in the dark since the 1950s. Third generation, four varieties, all cut by candlelight.','18 miles'],
+ cap:'Good this week.\nPurple sprouting has started — the first cut is always the best one.\nForced rhubarb is in and will be gone by March.\nSwede is ninety pence and nobody buys it. It is the best value thing in the shop.'},
+
+{m:'Feb',t:'The hungry gap begins',items:[['Leeks','Last of the good ones','£1.60 / 3'],['Seville oranges','Two weeks only, then gone','£2.80 / kg'],['Cavolo nero','Sweeter after the frost','£1.90 / bunch']],
+ rec:['Leeks, slowly, in butter','Sliced, a lid on, twenty-five minutes on low with butter and salt. They collapse into something that does not taste like leeks at all.'],
+ grow:['Marsh Lane','Six acres, three of them leeks. They lift to order, which is why ours are still muddy.','9 miles'],
+ cap:'Good this week.\nSeville oranges are here and they are here for a fortnight. If you make marmalade, now.\nThe cavolo nero is sweeter than it was in December — the frost does that.\nLeeks are at their best and will drop off after this month.'},
+
+{m:'Mar',t:'Thin',items:[['Purple sprouting broccoli','Still the best thing here','£2.40 / 300g'],['Wild garlic','Two weeks early this year','£1.20 / bag']],
+ rec:['Wild garlic, raw, on everything','Do not cook it. Shred it into butter, or over a fried egg, or through hot pasta off the heat.'],
+ grow:[null,null,null],
+ cap:'Good this week — and honestly, only two things.\nMarch is thin. Everything stored is finished and nothing new is ready.\nWild garlic has come early. Purple sprouting is still going.\nThat is it. Next month is better.'},
+
+{m:'Apr',t:'It turns',items:[['Jersey Royals','First week, expensive, worth it','£3.60 / kg'],['Asparagus','English, from the 23rd','£4.20 / bundle'],['Radishes','Whole bunch, tops on','£1.10 / bunch']],
+ rec:['Asparagus, one pan, four minutes','Butter, a splash of water, lid on, four minutes. Lemon at the end. Anything more than that is showing off.'],
+ grow:['Cold Acre','Twelve rows of asparagus and nothing else for six weeks of the year. Cut at dawn, here by nine.','14 miles'],
+ cap:'Good this week.\nEnglish asparagus started on the 23rd. It is six weeks and then it stops, so we will be tedious about it.\nJersey Royals are in and they are expensive. They will be cheaper in three weeks.\nRadishes are a pound ten with the tops on — and the tops are soup.'},
+
+{m:'May',t:'Everything at once',items:[['Asparagus','Peak, and cheaper than April','£3.20 / bundle'],['Broad beans','Small ones, eat the pods','£2.20 / kg'],['New season garlic','Wet, mild, unrecognisable','£1.40 each']],
+ rec:['Broad beans, podded or not','Under an inch, cook the whole pod. Over, pod them. Over two inches, pod them and slip the skins too — tedious, but it is a different vegetable.'],
+ grow:['Cold Acre','Same asparagus, week four. This is the point in the season where the price comes down and nobody notices.','14 miles'],
+ cap:'Good this week.\nAsparagus is a pound cheaper than it was in April and better. This is the week to buy it.\nBroad beans are small enough to eat whole.\nWet garlic is in — it is mild and it does not keep, so buy one, not five.'},
+
+{m:'Jun',t:'Soft fruit',items:[['Strawberries','Ours, not Spanish','£3.00 / punnet'],['Peas in the pod','Sweet for about four days','£2.60 / kg'],['New potatoes','Not Jerseys, but half the price','£1.80 / kg']],
+ rec:['Peas, raw, before they get home','Genuinely. Podded in the car. Anything you cook them in will be a slight downgrade for the first week.'],
+ grow:['Marsh Lane','Two fields of peas, picked Tuesday and Friday mornings only. After four days in the pod the sugar turns to starch.','9 miles'],
+ cap:'Good this week.\nStrawberries are ours now, not flown in. They will not last five days in the fridge and they are not supposed to.\nPeas were picked yesterday morning. Sweetness drops fast, so this week or not at all.\nNew potatoes have come down to £1.80.'},
+
+{m:'Jul',t:'Glut',items:[['Courgettes','Too many. Genuinely too many.','£1.20 / kg'],['Tomatoes','Outdoor grown, ugly, better','£2.90 / kg'],['Blackcurrants','Short window','£3.40 / punnet']],
+ rec:['Courgettes, grated and salted','Grate, salt, twenty minutes in a sieve, then squeeze hard. Fry in a hot pan. It stops being watery and starts being worth eating.'],
+ grow:['Ashgrove','Four polytunnels of tomatoes, none of them round or uniform. They grade for flavour and sell the ugly ones cheapest.','12 miles'],
+ cap:'Good this week.\nThere are too many courgettes. There are always too many courgettes. £1.20 a kilo.\nThe tomatoes are outdoor-grown and look it. They taste considerably better than the tidy ones.\nBlackcurrants for about ten more days.'},
+
+{m:'Aug',t:'The easy month',items:[['Sweetcorn','Cut this morning','£0.80 each'],['Runner beans','Stringed or they are inedible','£2.00 / kg'],['Plums','Victoria, from the orchard road','£2.70 / kg']],
+ rec:['Sweetcorn, no boiling','Straight on a dry hot pan in the husk, fifteen minutes, turning. It steams itself. Butter afterwards.'],
+ grow:['Orchard Road','Nine plum trees and a ladder. They pick to order and it takes as long as it takes.','6 miles'],
+ cap:'Good this week.\nSweetcorn was cut this morning — sugar starts converting within hours, so today matters more than usual.\nRunner beans need stringing. If you do not string them you will not eat them.\nVictoria plums are in and they bruise if you look at them.'},
+
+{m:'Sep',t:'The turn',items:[['Squash','Keeps for months','£2.40 each'],['Blackberries','Free in a hedge, but here if you cannot','£2.80 / punnet'],['Beetroot','With the tops, which are also dinner','£1.50 / bunch']],
+ rec:['Squash, roasted hard','Wedges, skin on, high heat, and leave them alone until the edges blacken. Undercooked squash is the reason people say they do not like it.'],
+ grow:['Ashgrove','Same farm as the summer tomatoes. Squash is what goes in the same ground afterwards.','12 miles'],
+ cap:'Good this week.\nSquash is in and will keep on a shelf until Christmas, which makes £2.40 a reasonable thing to do.\nBeetroot comes with the tops. Cook them like chard. Do not bin them.\nBlackberries are also in every hedge for free and we are fine with that.'},
+
+{m:'Oct',t:'Storage begins',items:[['Apples','Six varieties, all local','£2.20 / kg'],['Kale','Better after the first cold night','£1.80 / bunch'],['Wild mushrooms','Weather dependent, ring first','£—']],
+ rec:['Apples, in a bag, forgotten','Store them in a bag with holes in a cold room. Half these varieties are better in December than they are today.'],
+ grow:['Orchard Road','The plum orchard again. Six apple varieties, three of which supermarkets will not take because they are not the right shape.','6 miles'],
+ cap:'Good this week.\nSix apple varieties and none of them are Gala. Ask and we will tell you which one is for cooking.\nKale is better now than it was a fortnight ago — it needed the cold.\nMushrooms depend entirely on the weather. Ring before you come for those.'},
+
+{m:'Nov',t:'Roots',items:[['Parsnips','After the frost, sweeter','£1.60 / kg'],['Celeriac','Ugly. Excellent.','£1.90 each'],['Cavolo nero','Second season, still good','£1.90 / bunch']],
+ rec:['Celeriac, mashed half-and-half','Half celeriac, half potato, plenty of butter. It is the version of mash people ask about afterwards.'],
+ grow:['Marsh Lane','Roots go in the ground in spring and stay there. They lift them the morning of delivery, which is why they arrive with soil on.','9 miles'],
+ cap:'Good this week.\nParsnips have had a frost on them, which is the only thing that makes them worth eating.\nCeleriac is £1.90 and looks like a rock. Ask us what to do with it and we will tell you.\nNo discount posts this month — the two for November already went out.'},
+
+{m:'Dec',t:'Short and busy',items:[['Sprouts on the stalk','Keeps a week longer that way','£2.80 / stalk'],['Red cabbage','Cheap, and it improves reheated','£1.20 each'],['Clementines','Leaf on, from Spain — we say so','£3.20 / kg']],
+ rec:['Red cabbage, made two days early','Shredded, with vinegar, sugar and an apple, slowly. It is better on the 27th than it was on the 25th.'],
+ grow:['Marsh Lane','Sprouts, grown on the stalk and sold that way because they stay fresh twice as long off the plant.','9 miles'],
+ cap:'Good this week.\nSprouts on the stalk. They keep about a week longer than loose ones.\nRed cabbage is £1.20 and is better made two days before you eat it.\nThe clementines are Spanish. Not everything in December is local and we are not going to pretend otherwise.'}
+];
+
+var mi=8, mb=document.getElementById('months'), wk=document.getElementById('week');
+M.forEach(function(x,i){
+  var b=document.createElement('button'); b.type='button';
+  b.setAttribute('aria-pressed',String(i===mi));
+  b.innerHTML='<i></i>'+x.m;
+  b.onclick=function(){mi=i;
+    Array.prototype.forEach.call(mb.children,function(c,j){c.setAttribute('aria-pressed',String(j===mi))});
+    draw();};
+  mb.appendChild(b);
+});
+
+function draw(){
+  var x=M[mi];
+  var items=x.items.map(function(it){
+    return '<li><span><b>'+it[0]+'</b><small>'+it[1]+'</small></span><span class="price">'+it[2]+'</span></li>';
+  }).join('');
+  var grower=x.grow[0]
+    ? '<div class="grower"><b>'+x.grow[0]+'</b><p>'+x.grow[1]+'</p><span class="miles">'+x.grow[2]+' away</span></div>'
+    : '<div class="grower"><b>No grower feature</b><p>Fortnightly, not weekly. A thin month does not get a padded one — if there is nobody new to visit, the slot stays empty.</p></div>';
+  wk.innerHTML=
+    '<div class="wk-head"><h3>'+x.m+' — '+x.t+'</h3><span>'+x.items.length+' items this week</span></div>'+
+    '<div class="wk-body">'+
+      '<div><h4>Good this week</h4><ul class="items">'+items+'</ul></div>'+
+      '<div><h4>Recipe card</h4><div class="recipe"><b>'+x.rec[0]+'</b>'+x.rec[1]+'<span>One card a week, and it only ever uses what is in the list beside it.</span></div></div>'+
+      '<div><h4>Grower</h4>'+grower+'</div>'+
+    '</div>'+
+    '<div class="capline"><b>The caption, as posted</b>'+x.cap+'</div>';
+}
+draw();
+</script>
+</body></html>

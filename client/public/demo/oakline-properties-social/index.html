@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Oakline Properties — neighbourhood content direction</title>
+<meta name="description" content="Property content that sells the area before the building: neighbourhood guides, buyer questions, and a one-in-four listing rule. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EFF2ED;--pap:#FFFFFF;--ink:#16221A;--mu:#67765F;--ac:#33613F;--line:#D6DED2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.62 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1160px;margin:0 auto;padding:0 26px}
+h1,h2,h3{font-family:'Inter Tight',system-ui,sans-serif;letter-spacing:-.025em;font-weight:600}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+a{color:var(--ac)}
+
+header{border-bottom:1px solid var(--line)}
+header .w{display:flex;align-items:center;justify-content:space-between;padding:20px 26px;gap:16px}
+.lg{font:600 19px/1 'Inter Tight';letter-spacing:-.02em}
+.lg span{display:block;font:400 10.5px/1 'IBM Plex Mono';letter-spacing:.2em;color:var(--mu);margin-top:6px}
+header .meta{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mu);letter-spacing:.06em;text-align:right}
+
+/* hero is a wide documentary frame with an overlaid thesis, not a card */
+.hero{position:relative;border-bottom:1px solid var(--line)}
+.hero img{width:100%;height:clamp(280px,42vw,460px);object-fit:cover;display:block}
+.hero .over{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(14,22,16,.88),rgba(14,22,16,0));
+padding:70px 0 30px;color:#EDF2EA}
+.hero h1{font-size:clamp(27px,4.2vw,46px);line-height:1.05;margin:0 0 12px;max-width:20ch}
+.hero p{margin:0;max-width:56ch;color:#C5D2C2;font-size:16px}
+
+/* the ratio device — a bar of 16 posts */
+.ratio{padding:52px 0;border-bottom:1px solid var(--line)}
+.ratio h2{font-size:clamp(23px,3vw,32px);margin:0 0 10px}
+.ratio>.w>p{color:var(--mu);max-width:64ch;margin:0 0 26px}
+.bar16{display:grid;grid-template-columns:repeat(16,1fr);gap:4px;margin-bottom:14px}
+.bar16 button{aspect-ratio:1/1.25;border:1px solid var(--line);background:var(--pap);cursor:pointer;padding:0;
+display:flex;align-items:flex-end;justify-content:center;font:500 10px/1 'IBM Plex Mono';color:var(--mu);
+padding-bottom:5px;min-height:44px;transition:transform .16s}
+.bar16 button:hover{transform:translateY(-3px)}
+.bar16 button:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.bar16 button[data-k="listing"]{background:var(--ac);border-color:var(--ac);color:#DCE8DA}
+.bar16 button[data-k="guide"]{background:#DCE6D8}
+.bar16 button[data-k="question"]{background:var(--pap)}
+.bar16 button[data-k="partner"]{background:#E8E2D2}
+.bar16 button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ink)}
+.key{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--mu)}
+.key span{display:flex;align-items:center;gap:7px}
+.key i{width:11px;height:11px;border:1px solid var(--line);font-style:normal}
+
+.readout{margin-top:26px;border:1px solid var(--line);background:var(--pap);display:grid;grid-template-columns:1.1fr 1fr;gap:0}
+.readout .l{padding:26px 28px}
+.readout .r{padding:26px 28px;border-left:1px solid var(--line);background:#FAFBF9}
+.readout .kind{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ac);margin-bottom:9px}
+.readout h3{margin:0 0 12px;font-size:21px}
+.readout p{margin:0 0 14px;font-size:15px}
+.readout .cap{font-size:14.5px;white-space:pre-line;border-left:2px solid var(--ac);padding-left:14px;color:var(--ink)}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:7px 18px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;margin-top:4px}
+.spec dt{color:var(--mu)}
+.spec dd{margin:0}
+
+/* the walk — a horizontal sequence, not a grid */
+.walk{padding:56px 0;border-bottom:1px solid var(--line)}
+.walk h2{font-size:clamp(23px,3vw,32px);margin:0 0 10px}
+.walk>.w>p{color:var(--mu);max-width:62ch;margin:0 0 28px}
+.track{display:flex;gap:0;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.stop{flex:0 0 clamp(210px,24vw,260px);border-left:1px solid var(--line);padding:0 20px 0 20px;scroll-snap-align:start}
+.stop:first-child{padding-left:0;border-left:0}
+.stop .t{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ac);letter-spacing:.1em;margin-bottom:10px}
+.stop h4{font:600 17px/1.25 'Inter Tight';margin:0 0 8px}
+.stop p{font-size:14px;color:var(--mu);margin:0}
+.stop .line{height:1px;background:var(--line);margin:14px 0;position:relative}
+.stop .line::before{content:"";position:absolute;left:0;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--ac)}
+
+/* buyer questions as a plain list, expandable */
+.q{padding:56px 0}
+.q h2{font-size:clamp(23px,3vw,32px);margin:0 0 10px}
+.q>.w>p{color:var(--mu);max-width:62ch;margin:0 0 24px}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:17px 40px 17px 0;font:600 17px/1.35 'Inter Tight';position:relative;list-style:none;min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:6px;top:15px;font:400 21px/1 'IBM Plex Mono';color:var(--ac)}
+details[open] summary::after{content:"–"}
+summary:focus-visible{outline:3px solid var(--ac);outline-offset:-2px}
+details p{margin:0 0 18px;color:var(--mu);max-width:70ch;font-size:15px}
+details .num{font-family:'IBM Plex Mono',monospace;color:var(--ac);font-size:13px;margin-right:12px}
+
+.honest{border-top:1px solid var(--line);padding:40px 0;color:var(--mu);font-size:14.5px}
+.honest .w{max-width:70ch}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mu);font-size:14px}
+.note{background:var(--ink);color:#B9C7B4;font-size:12.5px;padding:13px 26px;text-align:center}
+.note a{color:#9BC9A4}
+@media(max-width:980px){
+ .bar16{grid-template-columns:repeat(8,1fr)}
+ .readout{grid-template-columns:1fr}.readout .r{border-left:0;border-top:1px solid var(--line)}
+}
+@media(max-width:600px){.w{padding:0 18px}.bar16{grid-template-columns:repeat(4,1fr)}header .meta{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header><div class="w">
+  <div class="lg">Oakline<span>Properties</span></div>
+  <div class="meta">Brand content direction<br>Concept · 2026</div>
+</div></header>
+
+<section class="hero">
+  <img src="/demo/img/house.jpg" alt="A residential street of period houses in late afternoon light" loading="eager">
+  <div class="over"><div class="w">
+    <h1>People buy an area first and a building second.</h1>
+    <p>Every agency posts the same carousel — five rooms, a price, a phone number. It collects saves from other agents and almost nothing from buyers. This direction moves the subject off the property and onto the street it sits on.</p>
+  </div></div>
+</section>
+
+<section class="ratio"><div class="w">
+  <h2>One listing in four</h2>
+  <p>Sixteen posts, four weeks. Listings are capped at a quarter of the feed — not because listings are bad, but because an account that is only listings has nothing to offer anyone who is not buying this month. Select any square.</p>
+  <div class="bar16" id="bar16"></div>
+  <div class="key">
+    <span><i style="background:var(--ac);border-color:var(--ac)"></i>Listing (4)</span>
+    <span><i style="background:#DCE6D8"></i>Neighbourhood guide (6)</span>
+    <span><i style="background:#fff"></i>Buyer question (4)</span>
+    <span><i style="background:#E8E2D2"></i>Local partnership (2)</span>
+  </div>
+  <div class="readout" id="readout"></div>
+</div></section>
+
+<section class="walk"><div class="w">
+  <h2>The guide format, fixed</h2>
+  <p>Every neighbourhood guide is the same six stops in the same order, which is what makes it a format rather than a series of one-offs. It is written as a walk because that is how a buyer will actually experience the area on viewing day. Scroll sideways.</p>
+  <div class="track">
+    <div class="stop"><div class="t">00:00</div><h4>The station</h4><div class="line"></div><p>Where you start, and the honest walking time — measured, not estimated from a map.</p></div>
+    <div class="stop"><div class="t">00:04</div><h4>The bad bit</h4><div class="line"></div><p>Every area has one. Naming it early is what makes the rest of the post believable.</p></div>
+    <div class="stop"><div class="t">00:09</div><h4>Where people actually eat</h4><div class="line"></div><p>Two places, named, with what they cost on a normal Tuesday. Not a list of twelve.</p></div>
+    <div class="stop"><div class="t">00:14</div><h4>Sunday on this street</h4><div class="line"></div><p>What it sounds like. Parking, church bells, the market, the football traffic.</p></div>
+    <div class="stop"><div class="t">00:18</div><h4>Schools, without the ranking</h4><div class="line"></div><p>Which ones are in catchment and how oversubscribed they were last year. Facts, no adjectives.</p></div>
+    <div class="stop"><div class="t">00:22</div><h4>And then the flat</h4><div class="line"></div><p>The listing arrives last, as the payoff. By now the reader has a reason to care where it is.</p></div>
+  </div>
+</div></section>
+
+<section class="q"><div class="w">
+  <h2>The costs nobody mentions</h2>
+  <p>A recurring series answering the questions a first-time buyer is slightly embarrassed to ask an agent. It is the least glamorous content in the plan and the reason someone follows the account eight months before they buy anything.</p>
+  <details><summary><span class="num">01</span>What do I actually need on the day I exchange?</summary>
+    <p>The deposit, usually ten per cent, has to be with your solicitor as cleared funds before exchange — not on the day. Cleared means it has sat in the account, which for most banks is two to three working days. This is the single most common reason a chain slips by a week.</p></details>
+  <details><summary><span class="num">02</span>Why is the service charge different on two flats in the same building?</summary>
+    <p>Usually floor area, sometimes a share apportioned by the original lease rather than by size. Ask for the last two years of accounts, not the current estimate. An estimate is a forecast; the accounts are what happened.</p></details>
+  <details><summary><span class="num">03</span>Is a short lease always a problem?</summary>
+    <p>Under eighty years it gets expensive to extend, because a payment to the freeholder is added on top. Between eighty and ninety it is manageable but should affect the price. Over ninety-five it is rarely the thing to worry about first.</p></details>
+  <details><summary><span class="num">04</span>What does a survey miss?</summary>
+    <p>A standard homebuyer's report does not lift carpets, move furniture or test drains. If the property is older than about 1930, the extra cost of a full building survey is usually smaller than the first thing it finds.</p></details>
+  <details><summary><span class="num">05</span>How long is "sold subject to contract", realistically?</summary>
+    <p>For a chain-free flat with a cash buyer, six to eight weeks. In a chain of three, twelve to sixteen is normal and nobody should be alarmed at week ten. Anyone quoting four weeks is describing a best case.</p></details>
+</div></section>
+
+<section class="honest"><div class="w">
+  Concept direction. No reach, engagement or enquiry data — it has not been run on a live account, and the agency, the neighbourhood and the listings here are invented. Photography would be documentary and commissioned locally rather than licensed from a stock library; the frame at the top is a placeholder for a real street the agency actually sells on.
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about content direction</a></div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/oakline-properties-social">Easywurld</a> — Oakline Properties is not a real agency.</div>
+
+<script>
+var PLAN=[
+ ['guide','Guide','The walk to the station','Six stops, in order, ending at a flat that happens to be for sale.',
+  'Four minutes to the platform. Measured on a Tuesday at 8:10am, not estimated from a map.\nThe bad bit: the junction at the top is loud until about nine.\nWhole walk below.',{Format:'Carousel, 6 frames',Crop:'3:2 documentary',Listing:'Last frame only'}],
+ ['question','Question','What you need on exchange day','The deposit, cleared, and why "cleared" is the word that matters.',
+  'Ten per cent, with your solicitor, cleared.\nCleared means it has sat in the account for two to three working days.\nThis is the most common reason a chain slips a week.',{Format:'Single frame + caption',Tone:'Plain, no sales line',CTA:'None'}],
+ ['guide','Guide','Sunday on this street','What the area sounds like on the one day a buyer will never visit.',
+  'Church bells at ten. Market until two.\nParking is fine until the football, then it is not.\nThis is the day most people forget to come and look.',{Format:'Video, 20 sec',Audio:'Ambient, subtitled',Listing:'None'}],
+ ['listing','Listing','Two-bed, Oakline Road','The payoff post. Runs only after two guides about the same street.',
+  'Two bedrooms, first floor, south-facing back room.\nFour minutes to the station — the walk we posted last week.\n£——. Viewings Thursday and Saturday.',{Format:'Carousel, 5 frames',Data:'Mono, small, factual',Cap:'1 in 4 posts'}],
+ ['partner','Partner','The cafe on the corner','A named local business, filmed by us, with nothing asked in return.',
+  'Open since 2011. The owner has watched this street change twice.\nWe asked what she would tell someone thinking of moving here.',{Format:'Interview clip',Permission:'Written, on file',Payment:'None either way'}],
+ ['question','Question','Why two flats, two service charges','Floor area, or an apportionment written into the original lease.',
+  'Ask for two years of accounts, not the estimate.\nAn estimate is a forecast. The accounts are what happened.',{Format:'Text frame',Length:'Under 60 words',CTA:'None'}],
+ ['guide','Guide','Where people actually eat','Two places, named, with what they cost on a normal Tuesday.',
+  'Not a list of twelve. Two.\nOne is £9 for lunch and one is somewhere you would take your parents.',{Format:'Carousel, 4 frames',Rule:'Named, visited, paid for'}],
+ ['listing','Listing','Garden flat, Mill Lane','Second listing of the month. Different street, different guide behind it.',
+  'Ground floor, own entrance, forty feet of garden that faces west.\nThe street is the quiet one we filmed in March.',{Format:'Carousel, 5 frames',Data:'Mono, small, factual'}],
+ ['guide','Guide','Schools, without the ranking','Catchment and last year\'s oversubscription. Facts, no adjectives.',
+  'Three primaries in catchment.\nTwo were oversubscribed last year, one was not.\nWe are not going to tell you which is "best".',{Format:'Text + simple table',Source:'Published admissions data'}],
+ ['question','Question','What a survey misses','Carpets, furniture, drains — and when the upgrade pays for itself.',
+  'A homebuyer\'s report does not lift carpets or test drains.\nOlder than about 1930? The full survey usually costs less than the first thing it finds.',{Format:'Text frame',Tone:'Useful, not alarmist'}],
+ ['guide','Guide','The bad bit','Naming the worst part of the area on purpose.',
+  'The junction at the top is loud until nine and the bins are collected at six on Thursdays.\nEvery area has a bad bit. Ours is that.',{Format:'Single frame',Why:'Credibility for everything else'}],
+ ['partner','Partner','The garage on Mill Lane','Second and last partnership of the month.',
+  'Forty years on the same corner. We asked what changes he has watched on this road.',{Format:'Interview clip',Cap:'2 per month'}],
+ ['listing','Listing','Studio, Station Approach','The smallest thing on the books, treated exactly like the largest.',
+  'One room, high ceiling, ninety seconds from the platform.\nHonest about the size: it is a studio and it looks like one.',{Format:'Carousel, 4 frames',Rule:'No wide-angle distortion'}],
+ ['guide','Guide','Getting out of the area','Where the road actually goes at 8am, not what the map says.',
+  'Two routes out. One of them is a mistake between 7:40 and 9.\nFilmed both on the same morning.',{Format:'Video, 30 sec',Audio:'Subtitled'}],
+ ['question','Question','How long is "sold subject to contract"?','The honest range, including the chain-of-three case.',
+  'Chain-free with a cash buyer: six to eight weeks.\nA chain of three: twelve to sixteen.\nAnyone saying four is describing a best case.',{Format:'Text frame',Tone:'Plain'}],
+ ['listing','Listing','Three-bed, Oakline Road','Fourth and final listing of the month.',
+  'Three bedrooms, the one with the extension at the back.\nSame street as the walk we posted in week one.',{Format:'Carousel, 6 frames',Data:'Mono, small, factual'}]
+];
+
+var bar=document.getElementById('bar16'), out=document.getElementById('readout'), cur=0;
+function draw(){
+  bar.innerHTML='';
+  PLAN.forEach(function(p,i){
+    var b=document.createElement('button'); b.type='button'; b.dataset.k=p[0];
+    b.setAttribute('aria-pressed',String(i===cur));
+    b.setAttribute('aria-label','Post '+(i+1)+', '+p[1]+': '+p[2]);
+    b.textContent=i+1;
+    b.onclick=function(){cur=i;draw();show()};
+    bar.appendChild(b);
+  });
+}
+function show(){
+  var p=PLAN[cur];
+  var spec=Object.keys(p[5]).map(function(k){return '<dt>'+k+'</dt><dd>'+p[5][k]+'</dd>'}).join('');
+  out.innerHTML='<div class="l"><div class="kind">Post '+(cur+1)+' of 16 · '+p[1]+'</div>'+
+    '<h3>'+p[2]+'</h3><p>'+p[3]+'</p><dl class="spec">'+spec+'</dl></div>'+
+    '<div class="r"><div class="kind">Caption</div><div class="cap">'+p[4]+'</div></div>';
+}
+draw();show();
+</script>
+</body></html>

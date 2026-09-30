@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sol Club — content system</title>
+<meta name="description" content="A three-pillar monthly content rotation for an independent clothing label. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3EFEA;--ink:#231F1C;--mu:#6E655C;--ac:#8E5335;--line:#DED6CB}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--ac)}
+.w{max-width:1180px;margin:0 auto;padding:0 28px}
+header{padding:38px 0 0}
+.brandline{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.brandline h1{font:500 30px/1 'Playfair Display',Georgia,serif;letter-spacing:.01em;margin:0}
+.brandline span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
+.intro{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:end;padding:44px 0 34px;border-bottom:1px solid var(--line)}
+.intro h2{font:500 clamp(30px,4.6vw,52px)/1.1 'Playfair Display',Georgia,serif;margin:0 0 14px;letter-spacing:-.01em}
+.intro p{margin:0;color:var(--mu);max-width:46ch}
+.intro em{font-style:italic;color:var(--ink)}
+
+/* layout: sticky legend + grid */
+.main{display:grid;grid-template-columns:265px 1fr;gap:56px;padding:40px 0 10px;align-items:start}
+.legend{position:sticky;top:28px}
+.legend h3{font:500 13px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin:0 0 18px}
+.pill{display:block;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:15px 0;cursor:pointer;font:inherit;color:var(--ink);min-height:44px}
+.pill:last-of-type{border-bottom:1px solid var(--line)}
+.pill b{display:flex;align-items:center;gap:9px;font:500 17px/1.2 'Playfair Display',Georgia,serif}
+.pill i{width:9px;height:9px;border-radius:50%;flex:none;font-style:normal}
+.pill small{display:block;color:var(--mu);font-size:13px;margin-top:5px;padding-left:18px}
+.pill[aria-pressed="false"]{opacity:.42}
+.pill:focus-visible{outline:2.5px solid var(--ac);outline-offset:3px}
+.count{margin-top:22px;font-size:13px;color:var(--mu)}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{position:relative;aspect-ratio:4/5;border:0;padding:0;background:#E4DCD1;cursor:pointer;overflow:hidden;display:block}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.tile:hover img{transform:scale(1.035)}
+.tile:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.tile .dot{position:absolute;left:9px;top:9px;width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.75)}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;color:#fff;font-size:12.5px;line-height:1.3;text-align:left;
+background:linear-gradient(to top,rgba(20,16,13,.78),rgba(20,16,13,0))}
+.tile.hide{display:none}
+/* process tiles are deliberately rougher */
+.tile.process img{filter:grayscale(.55) contrast(1.08)}
+.tile.pov{background:var(--ink)}
+.tile.pov .quote{position:absolute;inset:0;display:flex;align-items:center;padding:26px;color:#F3EFEA;
+font:italic 500 19px/1.35 'Playfair Display',Georgia,serif}
+
+/* detail drawer */
+.drawer{position:fixed;inset:auto 0 0 0;background:#fff;border-top:1px solid var(--line);box-shadow:0 -14px 40px rgba(35,31,28,.16);
+transform:translateY(100%);transition:transform .32s cubic-bezier(.22,.7,.3,1);z-index:40;max-height:78vh;overflow:auto}
+.drawer[data-open="true"]{transform:none}
+.drawer .w{padding-top:26px;padding-bottom:34px}
+.dh{display:flex;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:22px}
+.dh h3{margin:0;font:500 24px/1.2 'Playfair Display',Georgia,serif}
+.dh .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;padding:5px 10px;border-radius:2px}
+.x{margin-left:auto;background:none;border:1px solid var(--line);width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:19px;color:var(--mu)}
+.dcols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:38px}
+.dcols h4{font:500 11px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin:0 0 10px}
+.dcols p{margin:0 0 10px;font-size:15px}
+.caption{background:var(--bg);border-left:2px solid var(--ac);padding:14px 16px;font-size:14.5px;white-space:pre-line}
+.rules li{font-size:14.5px;margin-bottom:7px;color:var(--mu)}
+.rules{margin:0;padding-left:18px}
+
+.calendar{border-top:1px solid var(--line);margin-top:60px;padding:44px 0 0}
+.calendar h3{font:500 26px/1.2 'Playfair Display',Georgia,serif;margin:0 0 6px}
+.calendar>.w>p{color:var(--mu);margin:0 0 26px;max-width:58ch}
+.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.wk{background:var(--bg);padding:18px 16px 22px}
+.wk b{display:block;font:500 12px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin-bottom:14px}
+.wk .row{display:flex;align-items:center;gap:8px;font-size:14px;padding:6px 0;border-bottom:1px dotted var(--line)}
+.wk .row:last-child{border:0}
+.wk .row i{width:7px;height:7px;border-radius:50%;flex:none}
+.shoot{margin-top:12px;font-size:12.5px;color:var(--ac);letter-spacing:.04em}
+
+footer{margin-top:64px;border-top:1px solid var(--line);padding:30px 0;color:var(--mu);font-size:14px}
+.note{background:var(--ink);color:#CFC6BA;font-size:12.5px;padding:13px 28px;text-align:center}
+.note a{color:#E7B88F}
+@media(max-width:900px){
+ .intro{grid-template-columns:1fr;gap:22px;align-items:start}
+ .main{grid-template-columns:1fr;gap:28px}
+ .legend{position:static;display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+ .legend h3{grid-column:1/-1}
+ .count{grid-column:1/-1}
+ .dcols{grid-template-columns:1fr;gap:24px}
+ .weeks{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){.grid{gap:6px}.legend{grid-template-columns:1fr}.weeks{grid-template-columns:1fr}.w{padding:0 18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header><div class="w">
+  <div class="brandline"><h1>Sol Club</h1><span>Content system · 2026</span></div>
+</div></header>
+
+<div class="w">
+  <div class="intro">
+    <div>
+      <h2>Three pillars,<br>one rotation.</h2>
+      <p>A clothing label with a catalogue account. Every post was a product, which teaches an audience to scroll. The interesting material — <em>dye runs, pattern cutting, the people who make the clothes</em> — was never posted.</p>
+    </div>
+    <div>
+      <p><strong>How to use this page.</strong> Toggle a pillar on the left to see how the grid composes without it. Select any tile for the crop rule, the caption framework and what that post is actually for.</p>
+    </div>
+  </div>
+</div>
+
+<div class="w">
+<div class="main">
+  <div class="legend">
+    <h3>Pillars</h3>
+    <button class="pill" data-p="product" aria-pressed="true"><b><i style="background:#8E5335"></i>Product</b><small>Clean, still, considered. Sells.</small></button>
+    <button class="pill" data-p="process" aria-pressed="true"><b><i style="background:#5C6B5A"></i>Process</b><small>Rough, handheld, unfinished. Builds trust.</small></button>
+    <button class="pill" data-p="pov" aria-pressed="true"><b><i style="background:#231F1C"></i>Point of view</b><small>Words only. Says why the label exists.</small></button>
+    <p class="count" id="count"></p>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+</div>
+
+<section class="calendar"><div class="w">
+  <h3>One month, batched</h3>
+  <p>Nine posts a month, not thirty. Product and point-of-view alternate; process fills the gap between them. Everything is shot on two days, which is the only reason the rotation survives a busy month.</p>
+  <div class="weeks" id="weeks"></div>
+  <p style="color:var(--mu);font-size:14px;margin-top:22px;max-width:62ch">Concept system. It has not been run on a live account, so there is no reach or engagement data to quote — the deliverable here is the operating system, not a set of results.</p>
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a content system</a></div></footer>
+
+<div class="drawer" id="drawer" role="dialog" aria-modal="false" aria-labelledby="dtitle" hidden>
+  <div class="w">
+    <div class="dh">
+      <span class="tag" id="dtag"></span>
+      <h3 id="dtitle"></h3>
+      <button class="x" id="dx" aria-label="Close post details">×</button>
+    </div>
+    <div class="dcols">
+      <div><h4>What it's for</h4><p id="dpurpose"></p><h4 style="margin-top:20px">Crop</h4><p id="dcrop"></p></div>
+      <div><h4>Caption framework</h4><div class="caption" id="dcap"></div></div>
+      <div><h4>Rules</h4><ul class="rules" id="drules"></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/sol-club-system">Easywurld</a> — Sol Club is not a real label.</div>
+
+<script>
+var IMG={p1:'/demo/img/coat.jpg',p2:'/demo/img/fashion-rail.jpg',p3:'/demo/img/retail.jpg',
+         w1:'/demo/img/fashion-process.jpg',w2:'/demo/img/workshop.jpg'};
+
+var POSTS=[
+ {p:'product',img:IMG.p2,t:'The rail, week one',purpose:'The opening statement of the month. It shows the range as a group so the palette reads before any single garment does.',
+  crop:'4:5, garments centred, one hand-width of wall on each side. Never cropped tight.',
+  cap:'Line one: the object.\nLine two: the material and where it came from.\nLine three: price or a link. No adjectives.',
+  rules:['Shot against the studio wall, never a backdrop','Daylight only — no flash','Colour graded to the same film profile as every other product post']},
+ {p:'process',img:IMG.w1,t:'Pattern cutting',purpose:'Proof that a person makes this. Process posts carry no call to action at all, which is what makes people believe them.',
+  crop:'4:5, hands in frame, face optional. Shot on a phone on purpose.',
+  cap:'One sentence about what is happening.\nOne sentence about why it is difficult.\nNo link.',
+  rules:['Deliberately rougher grade than product posts','Never reshoot it to look nicer','Posted the same week it was shot, not banked for months']},
+ {p:'pov',quote:'“A coat you keep for ten years is a cheaper coat.”',t:'The ten-year coat',purpose:'The argument the label is making. These are the posts people screenshot and send to someone else, which is the only free distribution that exists.',
+  crop:'Text only on ink. No image, no product, nothing to buy.',
+  cap:'The statement in the image.\nBeneath it, three or four lines expanding it in plain words.\nNo hashtags.',
+  rules:['One per fortnight, never more','Must be arguable — if nobody could disagree, it is not a point of view','Set in the brand typeface, not a template']},
+ {p:'product',img:IMG.p1,t:'Single garment, front',purpose:'The workhorse. One garment, full length, so someone can judge the cut before they judge the price.',
+  crop:'4:5, full garment with air above and below. Shoulders not clipped.',
+  cap:'Name. Fabric. Fit note.\nOne line on what it is good for.\nLink.',
+  rules:['Same distance from wall every time so the scale is comparable','No model unless the drape needs a body','Shot in the same two-hour light window as the rest of the batch']},
+ {p:'process',img:IMG.w2,t:'Dye run, third attempt',purpose:'Shows the work that did not go to plan. This is the pillar that turns an audience into people who feel involved.',
+  crop:'4:5, close, messy, no styling.',
+  cap:'What went wrong.\nWhat changed.\nWhat the next attempt is.',
+  rules:['Failures are posted as often as successes','No apology tone','Never staged after the fact']},
+ {p:'product',img:IMG.p3,t:'In the shop',purpose:'Context. The garment somewhere real, so the price stops feeling abstract.',
+  crop:'4:5, environment allowed to take half the frame.',
+  cap:'Where it was taken.\nWhat is in stock.\nOpening hours if relevant.',
+  rules:['Shop light, not studio light','Other stock allowed in frame','No customers photographed without asking']},
+ {p:'pov',quote:'“We do not run sales. The first price is the real one.”',t:'On not discounting',purpose:'Pre-empts the question the label gets most. Answering it publicly once is cheaper than answering it in DMs forever.',
+  crop:'Text only on ink.',
+  cap:'The position.\nThe reasoning in three lines.\nNo defensiveness.',
+  rules:['Only publish a position you will still hold in a year','No competitor mentioned, ever','Comments answered personally for the first 24 hours']},
+ {p:'process',img:IMG.w1,t:'Packing bench',purpose:'The unglamorous end. Fills the week without needing a shoot day, and quietly shows that orders are going out.',
+  crop:'4:5, overhead, no faces.',
+  cap:'One line. Often just a count.',
+  rules:['Shot on the phone at the bench','No captions longer than fifteen words','Never used as an advert']},
+ {p:'product',img:IMG.p2,t:'Detail: seam and selvedge',purpose:'The close-up that justifies the price. It answers the "why is it this much" question without arguing.',
+  crop:'4:5, macro, one detail only.',
+  cap:'What the detail is.\nWhy it costs more to do it that way.\nNo link — this post is not selling today.',
+  rules:['Focus must be genuinely sharp','One detail per post, never a collage','Paired with the full-garment post from the same week']}
+];
+
+var COLS={product:'#8E5335',process:'#5C6B5A',pov:'#231F1C'};
+var NAMES={product:'Product',process:'Process',pov:'Point of view'};
+var on={product:true,process:true,pov:true};
+var grid=document.getElementById('grid'),drawer=document.getElementById('drawer');
+var lastTile=null;
+
+function render(){
+  grid.innerHTML='';
+  var shown=0;
+  POSTS.forEach(function(post,i){
+    if(!on[post.p]) return;
+    shown++;
+    var b=document.createElement('button');
+    b.className='tile '+post.p; b.type='button';
+    b.setAttribute('aria-label',post.t+' — '+NAMES[post.p]+' post, open details');
+    var inner='<span class="dot" style="background:'+COLS[post.p]+'"></span>';
+    if(post.img) inner+='<img src="'+post.img+'" alt="" loading="lazy">';
+    else inner+='<span class="quote">'+post.quote+'</span>';
+    inner+='<span class="cap">'+post.t+'</span>';
+    b.innerHTML=inner;
+    b.onclick=function(){openPost(i,b)};
+    grid.appendChild(b);
+  });
+  document.getElementById('count').textContent=shown+' of '+POSTS.length+' posts shown · a full month is nine posts';
+}
+
+function openPost(i,btn){
+  var p=POSTS[i]; lastTile=btn;
+  document.getElementById('dtag').textContent=NAMES[p.p];
+  document.getElementById('dtag').style.background=COLS[p.p];
+  document.getElementById('dtitle').textContent=p.t;
+  document.getElementById('dpurpose').textContent=p.purpose;
+  document.getElementById('dcrop').textContent=p.crop;
+  document.getElementById('dcap').textContent=p.cap;
+  var ul=document.getElementById('drules'); ul.innerHTML='';
+  p.rules.forEach(function(r){var li=document.createElement('li');li.textContent=r;ul.appendChild(li)});
+  drawer.hidden=false;
+  requestAnimationFrame(function(){drawer.setAttribute('data-open','true')});
+  document.getElementById('dx').focus();
+}
+function closePost(){
+  drawer.setAttribute('data-open','false');
+  setTimeout(function(){drawer.hidden=true},320);
+  if(lastTile) lastTile.focus();
+}
+document.getElementById('dx').onclick=closePost;
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!drawer.hidden)closePost()});
+
+Array.prototype.forEach.call(document.querySelectorAll('.pill'),function(b){
+  b.onclick=function(){
+    var k=b.dataset.p;
+    if(on[k] && Object.keys(on).filter(function(x){return on[x]}).length===1) return; // keep at least one
+    on[k]=!on[k]; b.setAttribute('aria-pressed',String(on[k])); render();
+  };
+});
+
+var WEEKS=[
+ ['Week 1',[['product','Rail — full range'],['process','Pattern cutting'],['pov','The ten-year coat']],'Shoot day 1 — all product'],
+ ['Week 2',[['product','Single garment'],['process','Dye run']],''],
+ ['Week 3',[['product','In the shop'],['pov','On not discounting'],['process','Packing bench']],'Shoot day 2 — shop + process'],
+ ['Week 4',[['product','Seam detail']],'Buffer week — nothing scheduled']
+];
+var wk=document.getElementById('weeks');
+WEEKS.forEach(function(w){
+  var d=document.createElement('div'); d.className='wk';
+  var h='<b>'+w[0]+'</b>';
+  w[1].forEach(function(r){h+='<div class="row"><i style="background:'+COLS[r[0]]+'"></i>'+r[1]+'</div>'});
+  if(w[2]) h+='<div class="shoot">'+w[2]+'</div>';
+  d.innerHTML=h; wk.appendChild(d);
+});
+
+render();
+</script>
+</body></html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pulse Method — carousel series</title>
+<meta name="description" content="A six-slide teaching carousel format for a strength studio, built to be read with the sound off. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0E0E0E;--pan:#171717;--ink:#F5F3F0;--mu:#9A9691;--or:#FF6A13;--line:#2B2B2B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1140px;margin:0 auto;padding:0 26px}
+h1,h2,h3,.big{font-family:'Archivo',system-ui,sans-serif;letter-spacing:-.02em}
+
+/* ticker header — nothing like a normal nav */
+.bar{border-bottom:1px solid var(--line);overflow:hidden;background:var(--or);color:#0E0E0E}
+.bar div{display:flex;gap:44px;white-space:nowrap;padding:9px 0;font:700 12px/1 'Archivo';letter-spacing:.2em;text-transform:uppercase;animation:slide 26s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+header .w{padding-top:34px;padding-bottom:34px;display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap}
+header h1{margin:0;font-size:34px;font-weight:800;text-transform:uppercase}
+header p{margin:0 0 4px;color:var(--mu);font-size:14px}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hero .txt{padding:52px 26px 52px;max-width:600px;margin-left:auto;width:100%}
+.hero h2{font-size:clamp(32px,5vw,58px);line-height:.98;font-weight:800;text-transform:uppercase;margin:0 0 18px}
+.hero h2 em{font-style:normal;color:var(--or)}
+.hero p{color:var(--mu);max-width:44ch;margin:0 0 14px}
+.hero .img{background:#000;position:relative;min-height:300px}
+.hero .img img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.12) grayscale(.2)}
+.hero .img::after{content:"Shot in the studio. Not a stock gym.";position:absolute;left:0;bottom:0;background:var(--or);color:#0E0E0E;
+font:700 11px/1 'Archivo';letter-spacing:.16em;text-transform:uppercase;padding:9px 13px}
+
+/* the carousel player — the centrepiece */
+.player{padding:58px 0 40px;display:grid;grid-template-columns:340px 1fr;gap:54px;align-items:start}
+.phone{background:#000;border:8px solid #1F1F1F;border-radius:30px;overflow:hidden;position:relative;aspect-ratio:4/5;box-shadow:0 22px 60px rgba(0,0,0,.6)}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:flex-end;padding:22px}
+.slide[data-on="true"]{display:flex;animation:fade .25s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.15) grayscale(.35)}
+.slide .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 22%,rgba(0,0,0,.15))}
+.slide .n{position:absolute;top:16px;left:18px;font:800 12px/1 'Archivo';letter-spacing:.18em;color:var(--or)}
+.slide .body{position:relative}
+.slide .kicker{font:700 11px/1 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:9px}
+.slide h3{font-size:27px;line-height:1.02;font-weight:800;text-transform:uppercase;margin:0 0 9px}
+.slide p{margin:0;font-size:14.5px;line-height:1.45;color:#DAD6D1}
+.sub{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(0,0,0,.82);border-left:3px solid var(--or);
+padding:9px 11px;font-size:13.5px;line-height:1.35;z-index:3}
+.slide.wrong h3{color:#FF4A4A}
+.slide.right h3{color:#7BE07B}
+.bars{position:absolute;top:10px;left:18px;right:18px;display:flex;gap:4px;z-index:4}
+.bars span{height:2.5px;flex:1;background:rgba(255,255,255,.28)}
+.bars span.done{background:var(--or)}
+
+.ctrls{display:flex;gap:9px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.ctrls button{min-height:44px;min-width:44px;padding:0 17px;background:transparent;border:1px solid var(--line);color:var(--ink);
+font:600 13px/1 'Inter';border-radius:3px;cursor:pointer}
+.ctrls button:hover{border-color:var(--or);color:var(--or)}
+.ctrls button:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.ctrls button.on{background:var(--or);border-color:var(--or);color:#0E0E0E}
+.ctrls .pos{color:var(--mu);font-size:13px;margin-left:auto}
+
+.why h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin:0 0 18px;font-weight:700}
+.why dl{margin:0;display:grid;gap:0}
+.why dt{font:700 17px/1.3 'Archivo';padding:16px 0 5px;border-top:1px solid var(--line)}
+.why dd{margin:0 0 16px;color:var(--mu);font-size:15px;max-width:58ch}
+.banned{border:1px solid var(--line);border-left:3px solid #FF4A4A;padding:18px 20px;margin-top:8px}
+.banned b{display:block;font:700 12px/1 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:#FF4A4A;margin-bottom:10px}
+.banned ul{margin:0;padding-left:18px;color:var(--mu);font-size:14.5px}
+.banned li{margin-bottom:5px}
+
+/* hook library — a table, not cards */
+.hooks{border-top:1px solid var(--line);padding:52px 0 10px}
+.hooks h2{font-size:clamp(26px,3.4vw,38px);text-transform:uppercase;font-weight:800;margin:0 0 8px}
+.hooks>.w>p{color:var(--mu);max-width:60ch;margin:0 0 26px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font:700 11px/1 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:var(--mu);padding:0 14px 11px 0;border-bottom:1px solid var(--line)}
+td{padding:14px 14px 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--or);font-weight:600;width:30%}
+td:last-child{color:var(--mu);width:26%}
+tr:hover td{background:#131313}
+
+.cadence{padding:48px 0;border-top:1px solid var(--line);margin-top:44px}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+.day{background:var(--bg);padding:14px 10px;min-height:118px}
+.day b{display:block;font:700 11px/1 'Archivo';letter-spacing:.14em;color:var(--mu);margin-bottom:9px}
+.day .ev{background:var(--or);color:#0E0E0E;font:600 12px/1.3 'Inter';padding:6px 7px;margin-bottom:5px}
+.day .ev.ghost{background:transparent;border:1px dashed var(--line);color:var(--mu)}
+.day .note{font-size:11px;color:var(--mu);margin-top:6px;line-height:1.3}
+
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mu);font-size:14px}
+footer a{color:var(--or)}
+.credit{background:#000;color:#8A8681;font-size:12.5px;padding:13px 26px;text-align:center;border-top:1px solid var(--line)}
+.credit a{color:var(--or)}
+@media(max-width:920px){
+ .hero{grid-template-columns:1fr}.hero .img{min-height:230px;order:-1}.hero .txt{padding:36px 26px;max-width:none}
+ .player{grid-template-columns:1fr;gap:34px}.phone{max-width:340px}
+ .week{grid-template-columns:1fr 1fr}
+ td:last-child{display:none}th:last-child{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bar"><div>
+ <span>Sound off by default</span><span>No transformation photos</span><span>Six slides, every time</span><span>Beginners, not enthusiasts</span>
+ <span>Sound off by default</span><span>No transformation photos</span><span>Six slides, every time</span><span>Beginners, not enthusiasts</span>
+</div></div>
+
+<header><div class="w">
+  <h1>Pulse Method</h1>
+  <p>Educational series · content format · 2026</p>
+</div></header>
+
+<section class="hero">
+  <div class="txt">
+    <h2>One mistake.<br>Shown <em>badly</em>,<br>then well.</h2>
+    <p>The account looked like every other fitness page: before-and-afters, motivational captions, intimidating physiques. It attracted people who were already fit and put off the beginners the studio actually sells to.</p>
+    <p>So the whole account became one recurring format. Six slides. A single correction. Nothing aspirational anywhere in it.</p>
+  </div>
+  <div class="img"><img src="/demo/img/gym-studio.jpg" alt="The studio: rubber floor, wooden platform, racked kettlebells, brick wall" loading="lazy"></div>
+</section>
+
+<div class="w">
+<div class="player">
+  <div>
+    <div class="phone" id="phone" aria-live="polite"></div>
+    <div class="ctrls">
+      <button id="prev" aria-label="Previous slide">←</button>
+      <button id="next" aria-label="Next slide">→</button>
+      <button id="subs" class="on" aria-pressed="true">Subtitles on</button>
+      <span class="pos" id="pos"></span>
+    </div>
+    <p style="color:var(--mu);font-size:13.5px;margin-top:14px;max-width:38ch">Arrow keys work too. Turn subtitles off to see what 70% of the audience would actually get.</p>
+  </div>
+
+  <div class="why">
+    <h3>Why the format is fixed</h3>
+    <dl>
+      <dt>Six slides, never five, never eight</dt>
+      <dd>A fixed length means the person making it stops deciding how long it should be. That single removed decision is the difference between posting weekly and posting when inspired.</dd>
+      <dt>The wrong rep comes first</dt>
+      <dd>Recognition before instruction. Someone scrolling has to see themselves in slide two or they will not reach slide four.</dd>
+      <dt>Every frame carries its own caption</dt>
+      <dd>It is designed to be watched silently on a commute. If a slide only works with audio, it does not ship.</dd>
+      <dt>The last slide is not a sales pitch</dt>
+      <dd>It is one thing to try in the next session. The booking link lives in the profile, where it does not cost anything to ignore.</dd>
+    </dl>
+    <div class="banned">
+      <b>Not allowed in this account</b>
+      <ul>
+        <li>Before-and-after photographs</li>
+        <li>The words "journey", "transform", "grind" or "beast"</li>
+        <li>Weight or body-fat numbers of any kind</li>
+        <li>Stock gym photography — everything is shot here, on the actual equipment</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<section class="hooks"><div class="w">
+  <h2>Hook library</h2>
+  <p>Organised by the mistake, not by the week. When it is time to post, the question is which error to cover — never what to write.</p>
+  <table>
+    <thead><tr><th>Slide-one hook</th><th>The mistake underneath it</th><th>Who it is for</th></tr></thead>
+    <tbody>
+      <tr><td>"Your back hurts because of this, not the weight"</td><td>Rounding at the bottom of a hinge</td><td>First six weeks</td></tr>
+      <tr><td>"You are not weak. Your setup is."</td><td>Bar drifting away from the shins</td><td>First six weeks</td></tr>
+      <tr><td>"Stop counting reps for a second"</td><td>Rushing the eccentric</td><td>Three months in</td></tr>
+      <tr><td>"Why your knees cave — and the fix in one cue"</td><td>No external rotation at the hip</td><td>First six weeks</td></tr>
+      <tr><td>"Two warm-up sets is not a waste of time"</td><td>Jumping to a working weight cold</td><td>Anyone</td></tr>
+      <tr><td>"If you can't breathe at the top, the weight isn't the problem"</td><td>Breath held through the whole set</td><td>Three months in</td></tr>
+      <tr><td>"The rep you skip is the one that was working"</td><td>Cutting range at the hardest point</td><td>Anyone</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section class="cadence"><div class="w">
+  <h2 style="font-size:clamp(24px,3vw,32px);text-transform:uppercase;font-weight:800;margin:0 0 8px">Posted against the booking window</h2>
+  <p style="color:var(--mu);max-width:62ch;margin:0">Classes for the following week open on Thursday evening. The teaching carousel lands Tuesday, so it has had two days to be seen before anyone is asked to book anything.</p>
+  <div class="week">
+    <div class="day"><b>Mon</b><div class="ev ghost">—</div></div>
+    <div class="day"><b>Tue</b><div class="ev">Carousel</div><div class="note">The main post. Six slides.</div></div>
+    <div class="day"><b>Wed</b><div class="ev">Story reply</div><div class="note">Answering the questions Tuesday raised.</div></div>
+    <div class="day"><b>Thu</b><div class="ev">Booking opens</div><div class="note">One story frame. No feed post.</div></div>
+    <div class="day"><b>Fri</b><div class="ev ghost">—</div></div>
+    <div class="day"><b>Sat</b><div class="ev">Clip</div><div class="note">Ten seconds from a real class, subtitled.</div></div>
+    <div class="day"><b>Sun</b><div class="ev ghost">—</div></div>
+  </div>
+  <p style="color:var(--mu);font-size:14px;margin-top:24px;max-width:62ch">Concept system. It has not been run on a live account, so there are no follower or booking figures to report. The intent is stated rather than proven: attract the beginner instead of the enthusiast.</p>
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a content format</a></div></footer>
+
+<div class="credit"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/pulse-method-education">Easywurld</a> — Pulse Method is not a real studio.</div>
+
+<script>
+var IMGA='/demo/img/gym-coach.jpg', IMGB='/demo/img/gym-studio.jpg';
+var SLIDES=[
+ {k:'The hook',h:'Your back hurts because of this',p:'Not the weight. Not your age. This.',img:IMGA,cls:'',
+  sub:'Slide 1 of 6. If someone does not stop here, nothing else matters.'},
+ {k:'The mistake',h:'This is the rep',p:'Hips rise first, chest drops, the lower back takes the load the legs were supposed to.',img:IMGA,cls:'wrong',
+  sub:'Shown badly first, deliberately. Recognition before instruction.'},
+ {k:'Why it happens',h:'It is not weakness',p:'The bar starts too far from the shins, so the body compensates the only way it can.',img:IMGB,cls:'',
+  sub:'Give the reason before the fix or the fix will not stick.'},
+ {k:'The fix',h:'Bar over mid-foot',p:'Touching the shins at the start. Chest stays where it is as the hips move back.',img:IMGA,cls:'right',
+  sub:'One cue. Not four.'},
+ {k:'The check',h:'Film one set from the side',p:'If the bar swings out and back on the way up, the setup was wrong, not the weight.',img:IMGB,cls:'',
+  sub:'Something they can do alone, without a coach in the room.'},
+ {k:'Next session',h:'Try it at half your usual weight',p:'Two sets. Nothing to buy, nothing to book.',img:IMGB,cls:'',
+  sub:'The last slide never sells. The link lives in the profile.'}
+];
+var i=0, subsOn=true, phone=document.getElementById('phone');
+
+function draw(){
+  var bars='<div class="bars">'+SLIDES.map(function(_,n){return '<span class="'+(n<=i?'done':'')+'"></span>'}).join('')+'</div>';
+  phone.innerHTML=bars+SLIDES.map(function(s,n){
+    return '<div class="slide '+s.cls+'" data-on="'+(n===i)+'">'+
+      '<img src="'+s.img+'" alt="" loading="lazy"><span class="scrim"></span>'+
+      '<span class="n">'+(n+1)+'/6</span>'+
+      '<div class="body"><div class="kicker">'+s.k+'</div><h3>'+s.h+'</h3><p>'+s.p+'</p></div>'+
+      (subsOn?'<div class="sub">'+s.sub+'</div>':'')+
+    '</div>';
+  }).join('');
+  document.getElementById('pos').textContent='Slide '+(i+1)+' of '+SLIDES.length;
+}
+function go(d){i=(i+d+SLIDES.length)%SLIDES.length;draw()}
+document.getElementById('next').onclick=function(){go(1)};
+document.getElementById('prev').onclick=function(){go(-1)};
+document.getElementById('subs').onclick=function(){
+  subsOn=!subsOn;this.textContent=subsOn?'Subtitles on':'Subtitles off';
+  this.className=subsOn?'on':'';this.setAttribute('aria-pressed',String(subsOn));draw();
+};
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'){go(1)} if(e.key==='ArrowLeft'){go(-1)}
+});
+draw();
+</script>
+</body></html>
