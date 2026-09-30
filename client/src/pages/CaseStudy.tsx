@@ -69,6 +69,7 @@ export default function CaseStudy() {
               <img
                 src={p.shot}
                 alt={`${p.title} — screenshot of the live site`}
+                decoding="async"
                 style={{ display: "block", width: "100%", height: "auto" }}
                 width={1000}
                 height={625}

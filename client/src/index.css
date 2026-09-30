@@ -16,11 +16,11 @@
   /* ink */
   --ink:     #14170F;
   --ink-2:   #3D4438;
-  --muted:   #6B7264;
+  --muted:   #5F6659;
   /* brand */
   --green:   #1E3D2F;
   --green-2: #2E5A44;
-  --accent:  #B4603A;   /* warm terracotta — passes AA on paper at 4.9:1 */
+  --accent:  #9E4E2C;   /* warm terracotta — 5.58:1 on paper, 4.94:1 on beige, AA */
   --line:    #DBD3C4;
 
   --fh: 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -280,13 +280,6 @@ section { padding-block: clamp(44px, 5.4vw, 78px); }
 .marquee-item::after { content: "◆"; color: var(--accent); font-size: 0.55rem; }
 @keyframes mq { to { transform: translateX(-50%); } }
 
-.wa-float {
-  position: fixed; right: 18px; bottom: 18px; z-index: 70;
-  width: 54px; height: 54px; border-radius: 50%; background: #1FA855; color: #fff;
-  display: grid; place-items: center; box-shadow: 0 6px 22px rgba(0,0,0,.2);
-  transition: transform .2s var(--ease);
-}
-.wa-float:hover { transform: scale(1.07); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -297,7 +290,7 @@ section { padding-block: clamp(44px, 5.4vw, 78px); }
 }
 
 @media print {
-  .hdr, .ftr, .wa-float, .marquee { display: none; }
+  .hdr, .ftr, .ew-launch, .ew-panel, .marquee { display: none; }
 }
 
 /* live build indicator on project cards */
@@ -349,3 +342,40 @@ section { padding-block: clamp(44px, 5.4vw, 78px); }
   .svc-row p { grid-column: 2 / -1; }
 }
 @media (max-width: 760px) { .svc-row svg { grid-row: 1; grid-column: 3; margin-top: 4px; } }
+
+/* Static pre-render block: present in the served HTML for crawlers,
+   removed by main.tsx the moment the app mounts. Never seen by users. */
+#prerender { position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; }
+
+
+/* ---------- accessibility & polish (WCAG 2.2 AA) ---------- */
+
+/* Visible, consistent focus everywhere — never remove the outline. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 44x44 minimum tap targets on interactive controls */
+.btn, .filters button, .hdr nav a, .ftr-links a { min-height: 44px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; }
+.filters button { display: inline-flex; align-items: center; }
+
+/* Comfortable measure: 60–75 characters on body copy */
+.lead { max-width: 62ch; }
+.cs-block p, .note p { max-width: 72ch; }
+
+/* Images never shift the layout */
+img { max-width: 100%; height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none !important; }
+}
