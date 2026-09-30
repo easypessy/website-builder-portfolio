@@ -1,0 +1,13 @@
+{
+  "name": "Easywurld",
+  "short_name": "Easywurld",
+  "description": "Marketing clarity for small businesses. Simplify. Optimize. Grow.",
+  "icons": [
+    { "src": "/brand/icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/brand/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#1E3D2F",
+  "background_color": "#FBF9F4",
+  "display": "standalone",
+  "start_url": "/"
+}

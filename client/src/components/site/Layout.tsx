@@ -85,8 +85,11 @@ function Header() {
     <header className="hdr">
       <div className="wrap hdr-in">
         <Link href="/" className="logo" aria-label="Easywurld — home">
-          Easywurld
-          <small>SIMPLIFY · OPTIMIZE · GROW</small>
+          <img src="/brand/mark.png" alt="" className="logo-mark" width={44} height={44} />
+          <span>
+            Easywurld
+            <small>SIMPLIFY · OPTIMIZE · GROW</small>
+          </span>
         </Link>
         <nav id="main-nav" data-open={open} aria-label="Main">
           {NAV.map(([label, href]) => (
@@ -117,7 +120,10 @@ function Footer() {
         <div className="ftr-grid">
           <div>
             <div className="logo" style={{ color: "var(--paper)" }}>
-              Easywurld<small style={{ color: "#9FB3A6" }}>SIMPLIFY · OPTIMIZE · GROW</small>
+              <img src="/brand/mark-light.png" alt="" className="logo-mark" width={46} height={46} />
+              <span>
+                Easywurld<small style={{ color: "#9FB3A6" }}>SIMPLIFY · OPTIMIZE · GROW</small>
+              </span>
             </div>
             <p style={{ color: "#C3D2C8", marginTop: 18, maxWidth: "34ch", fontSize: "var(--t-sm)" }}>
               Marketing clarity for small businesses. Strategy, design, content and
