@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aster Launch Campaign — where the funnel leaks</title>
+<meta name="description" content="A journey map for a property launch: two intermediate commitments between browsing and booking a viewing. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EDEBE6;--pap:#F8F7F4;--ink:#1A1B1D;--mu:#6C6E73;--br:#8C6A3F;--leak:#A8442B;--line:#D8D4CB}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1200px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Archivo',system-ui,sans-serif;letter-spacing:-.02em;font-weight:600}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+a{color:var(--br)}
+
+header{border-bottom:1px solid var(--line)}
+header .w{display:flex;justify-content:space-between;align-items:baseline;padding:22px 28px;gap:16px;flex-wrap:wrap}
+header b{font:600 18px/1 'Archivo';letter-spacing:.01em}
+header span{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}
+
+.open{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-bottom:1px solid var(--line)}
+.open .t{padding:52px 44px 52px 28px;max-width:660px;margin-left:auto}
+.open h1{font-size:clamp(28px,4vw,46px);line-height:1.08;margin:0 0 18px;max-width:18ch}
+.open p{color:var(--mu);margin:0 0 14px;max-width:52ch}
+.open .diag{background:var(--pap);border-left:1px solid var(--line);position:relative}
+.open img{width:100%;height:100%;object-fit:cover;display:block;min-height:280px}
+
+/* the map */
+.map{padding:52px 0 26px}
+.map h2{font-size:clamp(22px,3vw,30px);margin:0 0 8px}
+.map>.w>p{color:var(--mu);max-width:64ch;margin:0 0 28px}
+.stages{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--line);background:var(--pap)}
+.st{border-right:1px solid var(--line);padding:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer;
+display:flex;flex-direction:column;min-height:150px;position:relative;transition:background .16s}
+.st:last-child{border-right:0}
+.st:hover{background:#F2F0EB}
+.st:focus-visible{outline:3px solid var(--br);outline-offset:-3px}
+.st[aria-pressed="true"]{background:var(--ink);color:var(--pap)}
+.st[aria-pressed="true"] .n,.st[aria-pressed="true"] .vol{color:#B7AE9B}
+.st .n{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:var(--mu);padding:13px 15px 0}
+.st h3{margin:6px 15px 8px;font-size:17px;line-height:1.2}
+.st .vol{padding:0 15px 14px;font-size:13px;color:var(--mu);margin-top:auto}
+.st .bar{height:5px;background:#DDD8CD;margin:0 15px 15px}
+.st .bar i{display:block;height:100%;background:var(--br)}
+.st.new{border-top:3px solid var(--br)}
+.st.new::before{content:"added";position:absolute;top:-1px;right:0;background:var(--br);color:var(--pap);
+font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;padding:3px 7px;text-transform:uppercase}
+.st.leak{border-top:3px solid var(--leak)}
+.st.leak::before{content:"the leak";position:absolute;top:-1px;right:0;background:var(--leak);color:#fff;
+font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;padding:3px 7px;text-transform:uppercase}
+
+.panel{border:1px solid var(--ink);border-top:0;background:var(--pap);display:grid;grid-template-columns:1.15fr 1fr 1fr}
+.panel>div{padding:26px 28px;border-right:1px solid var(--line)}
+.panel>div:last-child{border-right:0}
+.panel h4{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--mu);margin:0 0 12px;font-weight:500}
+.panel h3{margin:0 0 10px;font-size:22px}
+.panel p{margin:0 0 14px;font-size:15px}
+.panel .msg{border-left:2px solid var(--br);padding:12px 15px;background:#F2EFE8;font-size:15px;white-space:pre-line}
+.panel ul{margin:0;padding-left:17px;font-size:14.5px;color:var(--mu)}
+.panel li{margin-bottom:6px}
+.panel .chan{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.panel .chan span{font-family:'IBM Plex Mono',monospace;font-size:11px;border:1px solid var(--line);padding:5px 9px;color:var(--mu)}
+.panel .hyp{color:var(--leak);font-size:14.5px;border-left:2px solid var(--leak);padding-left:13px;margin-top:4px}
+
+/* before / after, as two rows of a table */
+.ba{padding:56px 0;border-top:1px solid var(--line);margin-top:46px}
+.ba h2{font-size:clamp(22px,3vw,30px);margin:0 0 8px}
+.ba>.w>p{color:var(--mu);max-width:62ch;margin:0 0 26px}
+.chain{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-bottom:26px}
+.chain .node{border:1px solid var(--line);background:var(--pap);padding:14px 17px;font-size:14.5px;min-width:120px}
+.chain .node b{display:block;font:600 13px/1.2 'Archivo';margin-bottom:3px}
+.chain .node small{color:var(--mu);font-size:12px}
+.chain .arrow{display:flex;align-items:center;padding:0 10px;color:var(--mu)}
+.chain .gap{display:flex;align-items:center;padding:0 10px;color:var(--leak);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em}
+.chain.after .node.new{border-color:var(--br);border-width:2px}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin-bottom:12px}
+
+.follow{padding:50px 0;border-top:1px solid var(--line)}
+.follow h2{font-size:clamp(22px,3vw,30px);margin:0 0 8px}
+.follow>.w>p{color:var(--mu);max-width:62ch;margin:0 0 24px}
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--pap);border:1px solid var(--line)}
+th{text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+color:var(--mu);font-weight:500;padding:13px 16px;border-bottom:1px solid var(--line)}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:500;width:26%}
+td:last-child{color:var(--mu);width:34%}
+
+.honest{padding:36px 0;border-top:1px solid var(--line);color:var(--mu);font-size:15px}
+.honest .w{max-width:72ch}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size:14px}
+.note{background:var(--ink);color:#B5B1A7;font-size:12.5px;padding:13px 28px;text-align:center}
+.note a{color:#C9A167}
+@media(max-width:1000px){
+ .open{grid-template-columns:1fr}.open .t{padding:36px 28px;max-width:none}.open .diag{border-left:0;border-top:1px solid var(--line)}
+ .stages{grid-template-columns:1fr 1fr 1fr}.st{border-bottom:1px solid var(--line)}
+ .panel{grid-template-columns:1fr}.panel>div{border-right:0;border-bottom:1px solid var(--line)}
+ td:last-child{display:none}th:last-child{display:none}
+}
+@media(max-width:600px){.w{padding:0 18px}.stages{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header><div class="w"><b>Aster</b><span>Campaign architecture · concept · 2026</span></div></header>
+
+<section class="open">
+  <div class="t">
+    <h1>The funnel was not leaking at the top.</h1>
+    <p>Interest in the development was healthy — the launch generated plenty of registrations. Viewings did not follow. The brief that arrived asked for more traffic.</p>
+    <p>The numbers said otherwise. People were moving from the advert to the website in normal proportions and then stopping. Between "this looks interesting" and "book a forty-five minute appointment with a sales negotiator" there was nothing at all, and that gap is a cliff, not a step.</p>
+    <p style="color:var(--ink)"><strong>So two intermediate commitments were added.</strong> Select a stage below.</p>
+  </div>
+  <div class="diag"><img src="/demo/img/property-dev.jpg" alt="A contemporary low-rise residential development in late afternoon light" loading="eager"></div>
+</section>
+
+<section class="map"><div class="w">
+  <h2>The journey, as rebuilt</h2>
+  <p>Six stages. Two of them did not exist before this work — they are marked. The stage marked as the leak is where the original journey asked for far more commitment than the visitor had yet been given a reason to make.</p>
+  <div class="stages" id="stages"></div>
+  <div class="panel" id="panel"></div>
+</div></section>
+
+<section class="ba"><div class="w">
+  <h2>Before and after, in one line each</h2>
+  <p>Nothing was removed. The campaign simply stopped asking a stranger to skip four steps.</p>
+
+  <div class="lbl">Before — three steps, one of them enormous</div>
+  <div class="chain">
+    <div class="node"><b>Advert</b><small>Portal + paid social</small></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>Website</b><small>Gallery and price range</small></div>
+    <div class="gap">— the cliff —</div>
+    <div class="node"><b>Book a viewing</b><small>45 min, in person, named agent</small></div>
+  </div>
+
+  <div class="lbl">After — the same ends, two rungs in the middle</div>
+  <div class="chain after">
+    <div class="node"><b>Advert</b><small>Unchanged</small></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>Website</b><small>Unchanged</small></div>
+    <div class="arrow">→</div>
+    <div class="node new"><b>Floor-plan pack</b><small>Email only, instant</small></div>
+    <div class="arrow">→</div>
+    <div class="node new"><b>Ten-minute call</b><small>Phone, no obligation</small></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>Viewing</b><small>Now a small step</small></div>
+  </div>
+</div></section>
+
+<section class="follow"><div class="w">
+  <h2>Follow-up depends on what they asked for</h2>
+  <p>A person who downloaded floor plans and a person who booked a call have told you different things. Sending both the same sequence throws away the only signal the campaign generated.</p>
+  <table>
+    <thead><tr><th>They did this</th><th>What it tells you</th><th>Next contact</th><th>What is never sent</th></tr></thead>
+    <tbody>
+      <tr><td>Downloaded the floor-plan pack</td><td>Practical stage. Thinking about layout, storage, whether furniture fits.</td><td>Day 2: the two plans not in the pack. Day 6: the ten-minute call, offered once.</td><td>No price-rise warnings. They are not close enough for urgency to read as anything but pressure.</td></tr>
+      <tr><td>Booked the ten-minute call</td><td>Serious. Has questions they would rather ask a person than read.</td><td>Same day: confirmation naming who will ring. After: written answers to whatever was asked.</td><td>No generic brochure. They have moved past it.</td></tr>
+      <tr><td>Started the call booking, did not finish</td><td>Timing, not interest. Usually could not find a slot that worked.</td><td>Day 1, once: three specific times including an evening. Then stop.</td><td>No second chase. One reminder is helpful; two is a nuisance.</td></tr>
+      <tr><td>Registered, then nothing for 30 days</td><td>Early. Possibly buying in a year.</td><td>Monthly construction update. Useful whether or not they ever buy.</td><td>No "last chance" anything. There is no last chance and they know it.</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section class="honest"><div class="w">
+  Concept strategy for an invented development. There is no campaign data here — no registration counts, cost per lead, viewing rate or sales — and the proportions in the bars below each stage are illustrative, drawn to show the shape of the argument rather than to report a measurement. The transferable part is the diagnostic order: look at the middle of the journey before buying more traffic for the top of it.
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a campaign structure</a></div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/aster-campaign-map">Easywurld</a> — Aster is not a real development.</div>
+
+<script>
+var S=[
+{n:'01',t:'First impression',cls:'',vol:'Widest point',bar:100,
+ q:'Is this even the right kind of place?',
+ hyp:null,
+ was:'Unchanged by this work. The advertising was doing its job — the problem was never here, which is exactly why the brief asking for more of it was the wrong brief.',
+ msg:'Twelve houses, finished spring.\nFour minutes from the station, and the plot backs onto the park.',
+ chan:['Portal listing','Paid social','Local press'],
+ rules:['One idea per placement','Never lead with price at this stage','Same photography everywhere so the place is recognisable']},
+
+{n:'02',t:'The website',cls:'',vol:'Most visitors stop here',bar:62,
+ q:'What is it actually like, and can I afford it?',
+ hyp:null,
+ was:'Also unchanged. The site was fine. What it had at the bottom of every page was a single button asking for a forty-five minute appointment.',
+ msg:'Three house types. Floor areas, plot positions, and the price of each.\nNo "from" pricing — the real number for each plot.',
+ chan:['Website','Portal detail page'],
+ rules:['Price per plot, not a range','Every photograph dated','No countdown timers or "2 remaining" pressure devices']},
+
+{n:'03',t:'Book a viewing',cls:'leak',vol:'The drop',bar:9,
+ q:'Am I ready to sit in a room with a salesperson for an hour?',
+ hyp:'The hypothesis: this is not a persuasion failure, it is a step-size failure. The visitor is being asked for time, a diary entry, a name, a phone number and a conversation with a professional negotiator — all at once, on the strength of a website visit.',
+ was:'In the original journey this was the only thing after the website. Everything either arrived here or left.',
+ msg:'Book a viewing. Saturdays 10–4, weekdays by appointment.',
+ chan:['Website CTA','Email footer'],
+ rules:['Kept exactly as it was — it works for people who are ready','The fix is not to change this step, it is to build the ones before it']},
+
+{n:'04',t:'Floor-plan pack',cls:'new',vol:'New rung',bar:41,
+ q:'Will my furniture fit, and where do the children sleep?',
+ hyp:null,
+ was:'Added. An email address in exchange for something genuinely useful — full dimensioned plans for all three house types, including the two not on the website.',
+ msg:'The full floor plans, dimensioned, all three types.\nNo appointment, no phone call. It arrives in about a minute.',
+ chan:['Website','Retargeting','Email'],
+ rules:['Genuinely complete — a teaser version destroys the trust it is meant to build','One email field, nothing else','No phone number asked for at this stage']},
+
+{n:'05',t:'Ten-minute call',cls:'new',vol:'New rung',bar:22,
+ q:'Can I just ask two questions without being sold to?',
+ hyp:null,
+ was:'Added. Short, bookable directly, explicitly capped at ten minutes, and named as a question call rather than a consultation.',
+ msg:'Ten minutes on the phone with Dele, who knows the plots.\nAsk two questions. No viewing booked unless you ask for one.',
+ chan:['Email sequence','Website','SMS if they opted in'],
+ rules:['Ten minutes means ten minutes — overrunning breaks the promise the booking was made on','The person named is the person who rings','No viewing pitched unless the caller raises it']},
+
+{n:'06',t:'Viewing',cls:'',vol:'The goal',bar:14,
+ q:'I know what I am walking into.',
+ hyp:null,
+ was:'Same appointment as before. It now arrives after two smaller commitments instead of none, so the person turning up has plans in hand and has already spoken to the person meeting them.',
+ msg:'Saturday at eleven, with Dele — the same person you spoke to.\nPlot 7 and plot 9, about forty-five minutes.',
+ chan:['Email','SMS reminder'],
+ rules:['Confirm which plots, so nobody arrives expecting the show home','Same named person throughout','A reminder the day before, not three']}
+];
+
+var el=document.getElementById('stages'), pn=document.getElementById('panel'), cur=2;
+
+function draw(){
+  el.innerHTML='';
+  S.forEach(function(s,i){
+    var b=document.createElement('button'); b.type='button'; b.className='st '+s.cls;
+    b.setAttribute('aria-pressed',String(i===cur));
+    b.innerHTML='<span class="n">'+s.n+'</span><h3>'+s.t+'</h3>'+
+      '<span class="bar"><i style="width:'+s.bar+'%"></i></span><span class="vol">'+s.vol+'</span>';
+    b.onclick=function(){cur=i;draw();show()};
+    el.appendChild(b);
+  });
+}
+function show(){
+  var s=S[cur];
+  pn.innerHTML=
+  '<div><h4>Stage '+s.n+'</h4><h3>'+s.t+'</h3><p>'+s.was+'</p>'+
+    (s.hyp?'<div class="hyp">'+s.hyp+'</div>':'')+'</div>'+
+  '<div><h4>What they are asking themselves</h4><p style="font-size:17px">'+s.q+'</p>'+
+    '<h4 style="margin-top:20px">The message</h4><div class="msg">'+s.msg+'</div>'+
+    '<div class="chan">'+s.chan.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div></div>'+
+  '<div><h4>Rules for this stage</h4><ul>'+s.rules.map(function(r){return '<li>'+r+'</li>'}).join('')+'</ul></div>';
+}
+draw();show();
+</script>
+</body></html>

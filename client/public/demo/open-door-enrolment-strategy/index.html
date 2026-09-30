@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Door Enrolment — a campaign the length of the decision</title>
+<meta name="description" content="An intake campaign stretched to six weeks because that is how long the decision actually takes. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FCFAF4;--pap:#fff;--ink:#1C2A46;--mu:#6B7488;--ac:#C07C0E;--line:#E7E1D3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1160px;margin:0 auto;padding:0 26px}
+h1,h2,h3,h4{font-family:'Outfit',system-ui,sans-serif;font-weight:600;letter-spacing:-.018em}
+a{color:var(--ac)}
+
+header{background:var(--ink);color:#EDEFF4}
+header .w{padding:18px 26px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+header b{font-size:18px}
+header span{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#93A0BA}
+
+.open{padding:46px 0 40px}
+.open h1{font-size:clamp(29px,4.6vw,50px);line-height:1.07;margin:0 0 20px;max-width:19ch}
+.open h1 em{font-style:normal;color:var(--ac)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:start}
+.two p{color:var(--mu);margin:0 0 14px;max-width:52ch}
+.mis{border:1px solid var(--line);background:var(--pap);padding:22px 24px}
+.mis h3{font-size:15px;margin:0 0 16px;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);font-weight:600}
+.mis .m{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
+.mis .m:first-of-type{border-top:0}
+.mis .m b{font-family:'Outfit';font-weight:600}
+.mis .m span{color:var(--mu);font-size:14.5px}
+
+/* the timeline is the artwork */
+.tl{padding:20px 0 56px}
+.tl h2{font-size:clamp(23px,3.2vw,32px);margin:0 0 8px}
+.tl>.w>p{color:var(--mu);max-width:66ch;margin:0 0 30px}
+.rail{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-bottom:0}
+.rail::before{content:"";position:absolute;left:0;right:0;top:64px;height:2px;background:var(--line)}
+.wk{background:none;border:0;padding:0 8px 0 0;text-align:left;font:inherit;color:inherit;cursor:pointer;position:relative;z-index:1}
+.wk:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.wk .ph{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:8px;min-height:30px}
+.wk h3{font-size:18px;margin:0 0 14px}
+.wk .dot{width:17px;height:17px;border-radius:50%;background:var(--bg);border:2px solid var(--line);margin-bottom:16px;transition:all .2s}
+.wk[aria-pressed="true"] .dot{background:var(--ac);border-color:var(--ac);transform:scale(1.25)}
+.wk[aria-pressed="true"] .ph{color:var(--ac)}
+.wk .q{font-size:14px;color:var(--mu);line-height:1.45;padding-right:14px}
+.wk .intensity{height:6px;background:#EFE9DA;margin-top:14px;margin-right:14px}
+.wk .intensity i{display:block;height:100%;background:var(--ink)}
+
+.detail{margin-top:34px;border:1px solid var(--ink);background:var(--pap);display:grid;grid-template-columns:1fr 1fr 1fr}
+.detail>div{padding:26px 28px;border-right:1px solid var(--line)}
+.detail>div:last-child{border-right:0}
+.detail h4{font:600 11px/1 'Inter';letter-spacing:.17em;text-transform:uppercase;color:var(--mu);margin:0 0 12px}
+.detail h3{margin:0 0 6px;font-size:23px}
+.detail .ph2{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:14px}
+.detail p{margin:0 0 14px;font-size:15.5px}
+.detail .ask{border-left:2px solid var(--ac);padding-left:14px;font-size:16px;font-family:'Outfit';font-weight:500}
+.detail ul{margin:0;padding-left:17px;font-size:15px;color:var(--mu)}
+.detail li{margin-bottom:6px}
+.detail .never{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:14.5px;color:#9A5B2E}
+.detail .never b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:6px;font-weight:600}
+
+/* partner-facing */
+.partner{padding:52px 0;border-top:1px solid var(--line)}
+.partner h2{font-size:clamp(22px,3vw,30px);margin:0 0 8px}
+.partner>.w>p{color:var(--mu);max-width:64ch;margin:0 0 26px}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}
+.pg>div{padding:24px 26px}
+.pg>div:first-child{border-right:1px solid var(--line);background:var(--pap)}
+.pg h4{margin:0 0 12px;font-size:16px}
+.pg p{margin:0 0 12px;color:var(--mu);font-size:15px}
+.pg .doc{background:var(--bg);border:1px solid var(--line);padding:16px 18px;font-size:15px}
+.pg .doc b{display:block;font-family:'Outfit';margin-bottom:8px}
+.pg .doc ul{margin:0;padding-left:17px;color:var(--mu)}
+.pg .doc li{margin-bottom:5px}
+
+.deadline{padding:48px 0;border-top:1px solid var(--line)}
+.deadline .box{border:2px solid var(--ac);background:#FFF8E9;padding:26px 30px;max-width:76ch}
+.deadline h2{font-size:clamp(21px,3vw,28px);margin:0 0 12px}
+.deadline p{margin:0 0 12px;font-size:16px}
+.deadline p:last-child{margin:0;color:var(--mu);font-size:15px}
+
+.honest{padding:36px 0;border-top:1px solid var(--line);color:var(--mu);font-size:15px}
+.honest .w{max-width:72ch}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size:14px}
+.note{background:var(--ink);color:#A6B1C6;font-size:12.5px;padding:13px 26px;text-align:center}
+.note a{color:#E9B44C}
+@media(max-width:1000px){
+ .two{grid-template-columns:1fr;gap:26px}
+ .rail{grid-template-columns:1fr 1fr 1fr;row-gap:28px}.rail::before{display:none}
+ .detail{grid-template-columns:1fr}.detail>div{border-right:0;border-bottom:1px solid var(--line)}
+ .pg{grid-template-columns:1fr}.pg>div:first-child{border-right:0;border-bottom:1px solid var(--line)}
+}
+@media(max-width:600px){.w{padding:0 18px}.rail{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header><div class="w"><b>Open Door</b><span>Intake campaign · concept · 2026</span></div></header>
+
+<div class="w">
+  <div class="open">
+    <h1>The campaign ran for two weeks. The <em>decision</em> takes six.</h1>
+    <div class="two">
+      <div>
+        <p>Enrolment marketing started a fortnight before term and stopped on the first day of it. That timing came from the budget cycle, not from any observation of how a family actually decides.</p>
+        <p>Because the decision is not one decision. It is a conversation with a partner, a look at what it costs against what else that money was for, a rearrangement of who does the school run on a Wednesday, and — usually last — a comparison with the two other places nearby.</p>
+        <p>Nothing about the messages was wrong. They simply arrived after most of that had already happened, at the only point where the honest answer was "not this term".</p>
+      </div>
+      <div class="mis">
+        <h3>What the fortnight missed</h3>
+        <div class="m"><b>Week −6</b><span>One parent first wonders about it. Tells nobody.</span></div>
+        <div class="m"><b>Week −5</b><span>Mentioned at home. First objection raised: cost.</span></div>
+        <div class="m"><b>Week −4</b><span>Quiet look at three options. No contact with any of them.</span></div>
+        <div class="m"><b>Week −3</b><span>The childcare problem is identified. This is where most drop out.</span></div>
+        <div class="m"><b style="color:var(--ac)">Week −2</b><span style="color:var(--ac)">The old campaign starts here.</span></div>
+        <div class="m"><b>Week −1</b><span>Decision made or deferred to next term.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="tl"><div class="w">
+  <h2>Six weeks, staged to the question being asked</h2>
+  <p>The bar under each week is relative message volume. It is deliberately low at the start — early contact that pushes is what makes a family stop reading before the point at which they were going to be interested. Select a week.</p>
+  <div class="rail" id="rail"></div>
+  <div class="detail" id="detail"></div>
+</div></section>
+
+<section class="partner"><div class="w">
+  <h2>The decision is rarely made by one person</h2>
+  <p>Almost every enrolment involves a second adult who never visits the website, never opens the email, and holds an effective veto. Most campaigns have nothing at all for that person, which means the parent who is interested has to argue the case unaided from memory.</p>
+  <div class="pg">
+    <div>
+      <h4>What normally happens</h4>
+      <p>The enthusiastic parent reads everything, gets it, and then has to summarise a forty-minute open evening across a kitchen table at nine at night, from memory, to someone who is tired and was not asked.</p>
+      <p>The objection that comes back is almost always cost or logistics — the two things a brochure written to inspire does not address at all.</p>
+    </div>
+    <div>
+      <h4>What is provided instead</h4>
+      <p>A single side of A4, deliberately unglamorous, written for the person who was not there.</p>
+      <div class="doc">
+        <b>One page, sent after any enquiry</b>
+        <ul>
+          <li>What it costs, per term, with everything included listed and everything extra named</li>
+          <li>Exact days and times, and the latest pick-up that is actually possible</li>
+          <li>What happens if you miss a week</li>
+          <li>How to stop, and what notice is required</li>
+          <li>Two sentences on what the child would actually be doing</li>
+        </ul>
+      </div>
+      <p style="margin-top:14px;font-size:14.5px">No photographs, no adjectives, no mission statement. It is designed to survive being read sideways on someone else's phone.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="deadline"><div class="w">
+  <div class="box">
+    <h2>Deadline pressure, only in week six</h2>
+    <p>There is a real deadline — places are finite and the register closes. Saying so in week one would be true and would still be a mistake: at that stage the family has not yet decided they want it, and urgency applied to an undecided person reads as a sales technique rather than as information.</p>
+    <p>By week six the position has changed. A family that has read the cost page, spoken to a member of staff and worked out the Wednesday pick-up is no longer being pressured by a closing date — they are being reminded of one that genuinely affects them.</p>
+    <p>So: no countdowns, no "only three places left" in weeks one to five, and one plain sentence in week six. If the deadline is real, it only needs saying once.</p>
+  </div>
+</div></section>
+
+<section class="honest"><div class="w">
+  Concept strategy for an invented learning centre. There are no intake numbers, enquiry counts or conversion figures on this page, and the six-week decision period is a working assumption drawn from how the decision is described rather than a measured finding — on a live campaign the first task would be asking twenty existing parents when they first thought about it. The insight being offered is calendar alignment, not better wording.
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about an intake campaign</a></div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/open-door-enrolment-strategy">Easywurld</a> — Open Door is not a real learning centre.</div>
+
+<script>
+var W=[
+{ph:'Awareness',t:'Week 1',vol:22,
+ q:'Is this a thing that exists near me?',
+ ask:'Nothing. No enquiry is requested this week.',
+ body:'The only job is to be visible to a parent who has not yet said anything out loud to anyone. Asking for a form at this point converts the small number already decided and loses everyone else.',
+ content:['A short piece on what the term actually covers','One photograph of the room, not of children','Local pages updated so the place is findable at all'],
+ never:'No enquiry form, no deadline, no fees.'},
+
+{ph:'Awareness',t:'Week 2',vol:30,
+ q:'Would it suit my child specifically?',
+ ask:'Read something. Still no form.',
+ body:'The wondering has usually been mentioned at home by now. This is where the first objection appears, and it is nearly always cost — so the fees page goes live this week, unprompted, before anyone has to ask for it.',
+ content:['Fees published plainly, with what is and is not included','A piece written by a member of staff on who the term suits and who it does not','The first answer to "will my child be behind the others"'],
+ never:'No urgency. No comparison with other providers.'},
+
+{ph:'Logistics',t:'Week 3',vol:58,
+ q:'Can we actually make the Wednesday work?',
+ ask:'Download the one-page summary.',
+ body:'The heaviest drop-out point in the whole period, and it has nothing to do with whether the parent wants it. It is the school run, the traffic, and who leaves work early. A campaign that talks about learning outcomes this week is answering a question nobody is asking.',
+ content:['Exact times, including the latest pick-up that is genuinely possible','The one-page summary written for the partner who has not been reading','What happens if you miss a week'],
+ never:'No inspirational messaging. This week is a timetable problem.'},
+
+{ph:'Logistics',t:'Week 4',vol:64,
+ q:'What is it actually like in the room?',
+ ask:'Come to an open session, or ring and ask.',
+ body:'Now the practical objections have been met, the question turns back to substance — and the most useful thing available is access to a person. The open session is scheduled here rather than in week one, where it would have been attended only by parents who had already decided.',
+ content:['Open session, two times, one of them an evening','Named staff answering the three most common questions','A short clip of an ordinary session, unedited'],
+ never:'No "limited places" framing on the open session.'},
+
+{ph:'Decision',t:'Week 5',vol:52,
+ q:'How does this compare with the other two?',
+ ask:'Speak to us, or book a place.',
+ body:'The comparison is happening whether or not it is acknowledged. The choice made here is to be specific about who the centre is not right for — which is the only version of a comparison that a parent finds credible coming from an interested party.',
+ content:['A plain statement of what the centre does not do','Answers to the questions that came out of the open session','Direct contact with a named person, offered once'],
+ never:'No competitor named. No claim to be the best at anything.'},
+
+{ph:'Deadline',t:'Week 6',vol:78,
+ q:'When do I have to decide by?',
+ ask:'Register, or tell us you are deferring.',
+ body:'The only week where the closing date appears, said once and without decoration. Everyone contacted in this week has already engaged with something practical, so the deadline is information rather than pressure. The deferral option is offered explicitly — a family that says "next term" is a better outcome than one that goes quiet.',
+ content:['The register closes on a stated date, said plainly, once','A one-click way to say "next term, keep me on the list"','Confirmation of what happens next for anyone who signs up'],
+ never:'No countdown timer. No second or third reminder. No "final chance".'}
+];
+
+var rail=document.getElementById('rail'), det=document.getElementById('detail'), cur=2;
+function draw(){
+  rail.innerHTML='';
+  W.forEach(function(w,i){
+    var b=document.createElement('button'); b.type='button'; b.className='wk';
+    b.setAttribute('aria-pressed',String(i===cur));
+    b.innerHTML='<div class="ph">'+w.ph+'</div><div class="dot"></div><h3>'+w.t+'</h3>'+
+      '<div class="q">'+w.q+'</div><div class="intensity"><i style="width:'+w.vol+'%"></i></div>';
+    b.onclick=function(){cur=i;draw();show()};
+    rail.appendChild(b);
+  });
+}
+function show(){
+  var w=W[cur];
+  det.innerHTML=
+   '<div><div class="ph2">'+w.ph+'</div><h3>'+w.t+'</h3><p>'+w.body+'</p></div>'+
+   '<div><h4>The question this week</h4><p style="font-size:17.5px">'+w.q+'</p>'+
+     '<h4 style="margin-top:20px">What we ask for</h4><div class="ask">'+w.ask+'</div></div>'+
+   '<div><h4>What goes out</h4><ul>'+w.content.map(function(c){return '<li>'+c+'</li>'}).join('')+'</ul>'+
+     '<div class="never"><b>Not this week</b>'+w.never+'</div></div>';
+}
+draw();show();
+</script>
+</body></html>

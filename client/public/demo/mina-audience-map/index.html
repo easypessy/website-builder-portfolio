@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mina Audience Map — a demographic is not an audience</title>
+<meta name="description" content="Three buyers, three reasons, one product: segmentation by purchase motivation rather than age bracket. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF6F2;--pap:#fff;--ink:#2B211B;--mu:#857A70;--line:#E8DED5;
+      --a1:#A9603F;--a2:#6B7F5E;--a3:#4A5B78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1200px;margin:0 auto;padding:0 28px}
+h1,h2,h3,h4{font-family:'Outfit',system-ui,sans-serif;font-weight:600;letter-spacing:-.018em}
+a{color:var(--a1)}
+
+header .w{padding:26px 28px 0;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+header b{font-size:19px;font-family:'Outfit'}
+header span{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu)}
+
+.open{padding:40px 0 44px;display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+.open h1{font-size:clamp(30px,4.6vw,50px);line-height:1.07;margin:0 0 18px;max-width:16ch}
+.open p{color:var(--mu);margin:0 0 14px;max-width:52ch}
+.open .strike{display:inline-block;padding:2px 8px;background:#F0E2D8;text-decoration:line-through;
+text-decoration-color:var(--a1);text-decoration-thickness:2px;color:var(--mu)}
+.open img{width:100%;border-radius:3px;display:block}
+
+/* the three columns, compared */
+.cols{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--pap)}
+.crow{display:grid;grid-template-columns:200px repeat(3,1fr);border-bottom:1px solid var(--line)}
+.crow:last-child{border-bottom:0}
+.crow>div{padding:20px 22px;border-left:1px solid var(--line)}
+.crow>.lab{border-left:0;background:var(--bg);font:500 12px/1.4 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--mu);
+display:flex;align-items:flex-start;padding-top:22px}
+.crow.head>div{padding:24px 22px 22px}
+.crow.head h3{margin:0 0 5px;font-size:23px}
+.crow.head .who{font-size:13.5px;color:var(--mu)}
+.crow.head .swatch{height:5px;width:46px;margin-bottom:14px}
+.crow p{margin:0;font-size:15.5px}
+.crow .quote{font-family:'Outfit';font-size:17px;line-height:1.4;font-style:italic;color:var(--ink)}
+.crow .obj{border-left:2px solid currentColor;padding-left:13px;font-size:15px}
+.crow ul{margin:0;padding-left:17px;font-size:15px;color:var(--mu)}
+.crow li{margin-bottom:5px}
+.crow .no{color:var(--mu);font-size:14.5px;text-decoration:line-through;text-decoration-color:#D4BCAE}
+
+/* channel matrix */
+.matrix{padding:56px 0}
+.matrix h2{font-size:clamp(23px,3.2vw,32px);margin:0 0 8px}
+.matrix>.w>p{color:var(--mu);max-width:62ch;margin:0 0 26px}
+.mx{width:100%;border-collapse:collapse;background:var(--pap);border:1px solid var(--line)}
+.mx th,.mx td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
+.mx th{font:500 11.5px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}
+.mx td:first-child{font-weight:500;width:28%}
+.mx .lvl{display:inline-flex;gap:3px;align-items:center}
+.mx .lvl i{width:9px;height:16px;background:#E9DED4;display:block}
+.mx .lvl i.on{background:currentColor}
+.mx tr:last-child td{border-bottom:0}
+.c1{color:var(--a1)}.c2{color:var(--a2)}.c3{color:var(--a3)}
+
+/* seasonal weighting */
+.season{padding:52px 0;border-top:1px solid var(--line)}
+.season h2{font-size:clamp(23px,3.2vw,32px);margin:0 0 8px}
+.season>.w>p{color:var(--mu);max-width:64ch;margin:0 0 28px}
+.chart{background:var(--pap);border:1px solid var(--line);padding:26px 26px 18px}
+.chart .legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px;font-size:13.5px;color:var(--mu)}
+.chart .legend span{display:flex;align-items:center;gap:7px}
+.chart .legend i{width:13px;height:13px}
+.bars{display:grid;grid-template-columns:repeat(12,1fr);gap:7px;align-items:end;height:210px}
+.bars .col{display:flex;flex-direction:column-reverse;height:100%;position:relative}
+.bars .col i{display:block;width:100%}
+.bars .lbl{position:absolute;bottom:-24px;left:0;right:0;text-align:center;font-size:11.5px;color:var(--mu)}
+.chart .axis{border-top:1px solid var(--line);margin-top:30px;padding-top:14px;font-size:13.5px;color:var(--mu);max-width:70ch}
+
+.honest{padding:38px 0;border-top:1px solid var(--line);color:var(--mu);font-size:15px}
+.honest .w{max-width:72ch}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size:14px}
+.note{background:var(--ink);color:#C2B4A9;font-size:12.5px;padding:13px 28px;text-align:center}
+.note a{color:#E0A47C}
+@media(max-width:1000px){
+ .open{grid-template-columns:1fr;gap:24px}.open img{order:-1;max-height:280px;object-fit:cover}
+ .crow{grid-template-columns:1fr}
+ .crow>.lab{border-bottom:1px solid var(--line);padding:12px 20px;background:var(--ink);color:#D8CBC0}
+ .crow>div{border-left:0;border-bottom:1px dashed var(--line)}
+ .bars{grid-template-columns:repeat(6,1fr);height:170px;row-gap:34px}
+}
+@media(max-width:600px){.w{padding:0 18px}.mx td:nth-child(3),.mx th:nth-child(3){display:none}}
+</style>
+</head>
+<body>
+
+<header><div class="w"><b>Mina</b><span>Audience &amp; messaging · concept · 2026</span></div></header>
+
+<div class="w">
+  <div class="open">
+    <div>
+      <h1>“Women, 25–45” is a demographic, not an audience.</h1>
+      <p>A candle brand was writing every email, advert and product page for <span class="strike">women 25–45</span>. Three entirely different people were buying, for three incompatible reasons, and all three were receiving the same argument.</p>
+      <p>Splitting them by age would not have helped — the gift buyer and the self-treat buyer are frequently the same age, sometimes the same person in different months. The useful line is <strong>why they are buying</strong>.</p>
+    </div>
+    <img src="/demo/img/skincare-product.jpg" alt="An unbranded amber glass bottle and ceramic dish in hard sunlight" loading="eager">
+  </div>
+</div>
+
+<div class="w">
+<div class="cols">
+  <div class="crow head">
+    <div class="lab">Segment</div>
+    <div><div class="swatch" style="background:var(--a1)"></div><h3>The gift buyer</h3><div class="who">Buying for someone else, usually under time pressure</div></div>
+    <div><div class="swatch" style="background:var(--a2)"></div><h3>The self-treat buyer</h3><div class="who">Buying for themselves, usually as a small compensation</div></div>
+    <div><div class="swatch" style="background:var(--a3)"></div><h3>The wholesale buyer</h3><div class="who">Buying to resell, on a margin calculation</div></div>
+  </div>
+
+  <div class="crow">
+    <div class="lab">In their words</div>
+    <div><p class="quote">“It needs to look like I put thought into it and arrive before Saturday.”</p></div>
+    <div><p class="quote">“It has been a week. I am allowed one nice thing.”</p></div>
+    <div><p class="quote">“Will it sell at twenty-eight pounds, and can you restock in ten days?”</p></div>
+  </div>
+
+  <div class="crow">
+    <div class="lab">What they are really buying</div>
+    <div><p>Certainty. That it arrives on time, looks considered, and does not need wrapping.</p></div>
+    <div><p>Permission. A small, defensible purchase that is not extravagant.</p></div>
+    <div><p>Predictability. Consistent stock, consistent margin, no surprises for their own customers.</p></div>
+  </div>
+
+  <div class="crow">
+    <div class="lab">Message angle</div>
+    <div><p class="obj c1">Lead with the packaging and the delivery date. The candle is almost secondary — they are buying an act of thoughtfulness with a deadline attached.</p></div>
+    <div><p class="obj c2">Lead with the ritual, not the object. When it gets lit, what it replaces, why the thirty-five hours matter. Price appears late and calmly.</p></div>
+    <div><p class="obj c3">Lead with the numbers. Trade price, minimum order, lead time, restock window. No brand storytelling — they will write their own.</p></div>
+  </div>
+
+  <div class="crow">
+    <div class="lab">Primary objection</div>
+    <div><p>“What if it does not arrive in time?”<br><span style="color:var(--mu);font-size:14.5px">Answered with a cut-off date shown on the page, not in the FAQ.</span></p></div>
+    <div><p>“Twenty-eight pounds for a candle is silly.”<br><span style="color:var(--mu);font-size:14.5px">Answered with burn hours and cost per evening, without being defensive about it.</span></p></div>
+    <div><p>“Can you actually supply consistently?”<br><span style="color:var(--mu);font-size:14.5px">Answered with a published lead time and an honest out-of-stock policy.</span></p></div>
+  </div>
+
+  <div class="crow">
+    <div class="lab">What works</div>
+    <div><ul><li>Delivery cut-off on every product page</li><li>Gift note at checkout, free</li><li>Bundles that remove a decision</li><li>Search, in the two weeks before an occasion</li></ul></div>
+    <div><ul><li>Email, to people who already bought</li><li>Scent described in plain nouns</li><li>Refill, as a reason to come back</li><li>Slow, unhurried photography</li></ul></div>
+    <div><ul><li>A trade page that does not need an email to see prices</li><li>A downloadable line sheet</li><li>Direct outreach to twelve named shops</li><li>Replying within a working day</li></ul></div>
+  </div>
+
+  <div class="crow">
+    <div class="lab">What to stop sending them</div>
+    <div><p class="no">The founder's story email. They have four days and no interest.</p></div>
+    <div><p class="no">Urgency and countdown timers. Pressure turns a small treat into a pushy transaction.</p></div>
+    <div><p class="no">Everything consumer. They are on a different list and should never see a retail discount.</p></div>
+  </div>
+</div>
+</div>
+
+<section class="matrix"><div class="w">
+  <h2>Where each one is worth the effort</h2>
+  <p>Three segments and a small team means the channel plan has to say no somewhere. The blocks are relative priority, not a budget split — and two channels are marked as deliberate refusals.</p>
+  <table class="mx">
+    <thead><tr><th>Channel</th><th>Gift buyer</th><th>Self-treat</th><th>Wholesale</th></tr></thead>
+    <tbody>
+      <tr><td>Search — product and occasion terms</td>
+        <td><span class="lvl c1"><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+        <td><span class="lvl c2"><i class="on"></i><i></i><i></i></span></td>
+        <td><span class="lvl c3"><i class="on"></i><i></i><i></i></span></td></tr>
+      <tr><td>Email to existing customers</td>
+        <td><span class="lvl c1"><i class="on"></i><i class="on"></i><i></i></span></td>
+        <td><span class="lvl c2"><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+        <td><span class="lvl c3"><i></i><i></i><i></i></span></td></tr>
+      <tr><td>Organic social</td>
+        <td><span class="lvl c1"><i class="on"></i><i></i><i></i></span></td>
+        <td><span class="lvl c2"><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+        <td><span class="lvl c3"><i class="on"></i><i></i><i></i></span></td></tr>
+      <tr><td>Direct outreach to shops</td>
+        <td><span class="lvl c1"><i></i><i></i><i></i></span></td>
+        <td><span class="lvl c2"><i></i><i></i><i></i></span></td>
+        <td><span class="lvl c3"><i class="on"></i><i class="on"></i><i class="on"></i></span></td></tr>
+      <tr><td>Paid social — seasonal only</td>
+        <td><span class="lvl c1"><i class="on"></i><i class="on"></i><i></i></span></td>
+        <td><span class="lvl c2"><i class="on"></i><i></i><i></i></span></td>
+        <td><span class="lvl c3"><i></i><i></i><i></i></span></td></tr>
+      <tr><td style="color:var(--mu)">Influencer gifting <em>— refused</em></td>
+        <td colspan="3" style="color:var(--mu);font-size:14.5px">No mechanism to tell which of the three segments it reaches, and the brand cannot afford a channel it cannot read.</td></tr>
+      <tr><td style="color:var(--mu)">Marketplace listings <em>— refused</em></td>
+        <td colspan="3" style="color:var(--mu);font-size:14.5px">Competes on price with the wholesale accounts the brand is asking to stock it. The two cannot both be true.</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section class="season"><div class="w">
+  <h2>Gift demand is not constant. Plan it that way.</h2>
+  <p>The single biggest planning error would be to treat the three segments as equal all year. Two of them are steady. One is violently seasonal, and it is the one most likely to consume the whole budget in November if nobody has drawn this.</p>
+  <div class="chart">
+    <div class="legend">
+      <span><i style="background:var(--a1)"></i>Gift</span>
+      <span><i style="background:var(--a2)"></i>Self-treat</span>
+      <span><i style="background:var(--a3)"></i>Wholesale</span>
+    </div>
+    <div class="bars" id="bars"></div>
+    <p class="axis">Relative demand shape, not measured data. Wholesale peaks in September and October because shops buy ahead of a season the consumer has not thought about yet — which means the trade line sheet has to be ready two months before the gift campaign starts.</p>
+  </div>
+</div></section>
+
+<section class="honest"><div class="w">
+  Concept strategy for an invented brand. No sales, traffic, conversion or revenue figures appear anywhere on this page, and none are implied by the chart — the shapes are illustrative of a pattern, not a record of one. The quotes attributed to each segment are written to characterise a motivation, not transcribed from research.
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about audience and messaging</a></div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/mina-audience-map">Easywurld</a> — Mina is not a real brand.</div>
+
+<script>
+var MONTHS=['J','F','M','A','M','J','J','A','S','O','N','D'];
+// relative shape only — gift, self-treat, wholesale
+var DATA=[[14,30,10],[30,28,12],[18,30,14],[22,32,16],[26,30,18],[16,34,20],
+          [12,30,22],[14,28,30],[16,30,48],[20,32,52],[62,34,26],[96,30,10]];
+var bars=document.getElementById('bars');
+var COL=['#A9603F','#6B7F5E','#4A5B78'];
+DATA.forEach(function(m,i){
+  var tot=m[0]+m[1]+m[2];
+  var col=document.createElement('div'); col.className='col';
+  col.setAttribute('role','img');
+  col.setAttribute('aria-label',MONTHS[i]+': gift '+m[0]+', self-treat '+m[1]+', wholesale '+m[2]+' relative units');
+  var h='';
+  m.forEach(function(v,j){ h+='<i style="height:'+(v/1.6)+'px;background:'+COL[j]+'"></i>'; });
+  h+='<span class="lbl">'+MONTHS[i]+'</span>';
+  col.innerHTML=h; bars.appendChild(col);
+});
+</script>
+</body></html>

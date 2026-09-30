@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Good Form — the gap between booking and turning up</title>
+<meta name="description" content="An acquisition journey for a gym where the metric is attendance, not sign-ups. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#18181A;--pan:#202023;--ink:#F4F4F2;--mu:#9B9B98;--or:#FF6B2C;--line:#2F2F33;--ok:#7BD48B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1140px;margin:0 auto;padding:0 26px}
+h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;letter-spacing:-.02em;font-weight:700}
+a{color:var(--or)}
+
+header .w{padding:22px 26px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+header b{font:800 18px/1 'Archivo';text-transform:uppercase;letter-spacing:.02em}
+header span{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu)}
+
+.open{display:grid;grid-template-columns:1.1fr .9fr;border-bottom:1px solid var(--line)}
+.open .t{padding:50px 42px 50px 26px;max-width:640px;margin-left:auto}
+.open h1{font-size:clamp(29px,4.4vw,50px);line-height:1.02;margin:0 0 18px;text-transform:uppercase;max-width:15ch}
+.open h1 em{font-style:normal;color:var(--or)}
+.open p{color:var(--mu);margin:0 0 14px;max-width:50ch}
+.open img{width:100%;height:100%;min-height:290px;object-fit:cover;display:block;filter:contrast(1.1) grayscale(.25)}
+
+/* the model — sliders */
+.model{padding:52px 0}
+.model h2{font-size:clamp(23px,3.2vw,32px);text-transform:uppercase;margin:0 0 8px}
+.model>.w>p{color:var(--mu);max-width:66ch;margin:0 0 26px}
+.mgrid{display:grid;grid-template-columns:330px 1fr;gap:44px;align-items:start}
+.panel{background:var(--pan);border:1px solid var(--line);padding:24px 26px}
+.panel h3{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin:0 0 20px;font-weight:600}
+.fld{margin-bottom:22px}
+.fld label{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;margin-bottom:9px}
+.fld label b{font-family:'Archivo';font-size:17px;color:var(--or);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:44px;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer}
+input[type=range]:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+input[type=range]::-webkit-slider-runnable-track{height:5px;background:#3A3A3F}
+input[type=range]::-moz-range-track{height:5px;background:#3A3A3F}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--or);margin-top:-9.5px}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radius:50%;background:var(--or)}
+.fld small{display:block;color:var(--mu);font-size:13px;margin-top:6px}
+.panel .reset{min-height:44px;width:100%;background:transparent;border:1px solid var(--line);color:var(--mu);font:500 13.5px/1 'Inter';cursor:pointer}
+.panel .reset:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+
+.fun{display:grid;gap:10px}
+.step{display:grid;grid-template-columns:190px 1fr 108px;align-items:center;gap:16px;border:1px solid var(--line);background:var(--pan);padding:15px 18px}
+.step .nm{font:600 15px/1.25 'Archivo'}
+.step .nm small{display:block;color:var(--mu);font:400 12.5px/1.35 'Inter';margin-top:3px}
+.step .track{height:26px;background:#2A2A2E;position:relative;overflow:hidden}
+.step .track i{display:block;height:100%;background:var(--or);transition:width .3s cubic-bezier(.3,.7,.3,1)}
+.step .track i.dim{background:#4A4A50}
+.step .track i.good{background:var(--ok)}
+.step .num{text-align:right;font:700 21px/1 'Archivo';font-variant-numeric:tabular-nums}
+.step.loss{border-color:#5A2E23}
+.step.loss .num{color:#FF8A66}
+.outcome{margin-top:22px;border:1px solid var(--or);padding:22px 24px;background:#241A15}
+.outcome h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:0 0 14px}
+.outcome .big{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.outcome .big div b{display:block;font:800 30px/1 'Archivo';font-variant-numeric:tabular-nums;margin-bottom:6px}
+.outcome .big div span{font-size:13.5px;color:var(--mu)}
+.outcome p{margin:16px 0 0;font-size:14.5px;color:#D6C8C0;max-width:70ch}
+
+/* the sequence */
+.seq{padding:54px 0;border-top:1px solid var(--line)}
+.seq h2{font-size:clamp(23px,3.2vw,32px);text-transform:uppercase;margin:0 0 8px}
+.seq>.w>p{color:var(--mu);max-width:66ch;margin:0 0 28px}
+.srow{display:grid;grid-template-columns:130px 1fr 1fr;border-top:1px solid var(--line);align-items:start}
+.srow:last-child{border-bottom:1px solid var(--line)}
+.srow>div{padding:18px 20px}
+.srow .when{font:600 13px/1.3 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:var(--or)}
+.srow .when small{display:block;color:var(--mu);font:400 12px/1.3 'Inter';letter-spacing:0;text-transform:none;margin-top:4px}
+.srow h4{margin:0 0 6px;font-size:16.5px}
+.srow p{margin:0;color:var(--mu);font-size:14.5px}
+.srow .txt{border-left:2px solid var(--or);padding-left:14px;font-size:14.5px;white-space:pre-line;color:#DEDEDB}
+
+.no-show{padding:50px 0;border-top:1px solid var(--line)}
+.no-show h2{font-size:clamp(21px,3vw,28px);text-transform:uppercase;margin:0 0 10px}
+.ns{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}
+.ns>div{padding:24px 26px}
+.ns>div:first-child{border-right:1px solid var(--line);background:var(--pan)}
+.ns h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;color:var(--mu)}
+.ns .msg{border-left:2px solid var(--line);padding-left:14px;white-space:pre-line;font-size:15px;color:#DEDEDB}
+.ns .msg.good{border-left-color:var(--ok)}
+.ns .msg.bad{border-left-color:#8A4436;color:var(--mu)}
+.ns p{color:var(--mu);font-size:14px;margin:14px 0 0}
+
+.honest{padding:36px 0;border-top:1px solid var(--line);color:var(--mu);font-size:15px}
+.honest .w{max-width:72ch}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size:14px}
+.note{background:#0F0F11;color:#8E8E8B;font-size:12.5px;padding:13px 26px;text-align:center;border-top:1px solid var(--line)}
+.note a{color:var(--or)}
+@media(max-width:980px){
+ .open{grid-template-columns:1fr}.open .t{padding:34px 26px;max-width:none}.open .ph{order:-1}
+ .mgrid{grid-template-columns:1fr;gap:28px}
+ .step{grid-template-columns:1fr 72px;gap:10px}.step .track{grid-column:1/-1;order:3}
+ .srow{grid-template-columns:1fr}.srow>div{padding:12px 20px}
+ .ns{grid-template-columns:1fr}.ns>div:first-child{border-right:0;border-bottom:1px solid var(--line)}
+ .outcome .big{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header><div class="w"><b>Good Form</b><span>Acquisition journey · concept · 2026</span></div></header>
+
+<section class="open">
+  <div class="t">
+    <h1>Sign-ups were fine. <em>Attendance</em> was the problem.</h1>
+    <p>The dashboard looked healthy. Trial bookings were coming in at a reasonable cost, the ads were working, and the studio was quietly losing money every week.</p>
+    <p>A no-show trial is worse than a lead that never converts. The coach's hour is already committed, the slot cannot be resold at short notice, and nobody is standing in it. The cost is not the wasted marketing spend — it is the wasted capacity behind it.</p>
+    <p style="color:var(--ink)"><strong>So the work moved off acquisition entirely</strong> and onto the four days between booking a trial and turning up to it.</p>
+  </div>
+  <div class="ph"><img src="/demo/img/gym-coach.jpg" alt="A beginner learning a hip hinge with a coach's hand guiding their back" loading="eager"></div>
+</section>
+
+<section class="model"><div class="w">
+  <h2>Where the hour goes</h2>
+  <p>A model, not a measurement — move the sliders and the numbers follow your inputs, nothing else. It exists to make one point visible: the cheapest improvement available is almost never at the top.</p>
+  <div class="mgrid">
+    <div class="panel">
+      <h3>Your numbers</h3>
+      <div class="fld">
+        <label for="s1">Monthly enquiries<b id="v1">120</b></label>
+        <input type="range" id="s1" min="20" max="400" step="10" value="120">
+        <small>People who click through and land on the trial page.</small>
+      </div>
+      <div class="fld">
+        <label for="s2">Book a trial<b id="v2">40%</b></label>
+        <input type="range" id="s2" min="5" max="90" step="1" value="40">
+        <small>The step most agencies are hired to improve.</small>
+      </div>
+      <div class="fld">
+        <label for="s3">Attend the trial<b id="v3">55%</b></label>
+        <input type="range" id="s3" min="10" max="100" step="1" value="55">
+        <small>The step nobody was looking at.</small>
+      </div>
+      <div class="fld">
+        <label for="s4">Join after attending<b id="v4">35%</b></label>
+        <input type="range" id="s4" min="5" max="90" step="1" value="35">
+        <small>Depends on the session, not the marketing.</small>
+      </div>
+      <button class="reset" id="reset" type="button">Reset to the starting numbers</button>
+    </div>
+
+    <div>
+      <div class="fun" id="fun"></div>
+      <div class="outcome">
+        <h4>What that costs you</h4>
+        <div class="big">
+          <div><b id="o1">0</b><span>coach hours booked and not used, per month</span></div>
+          <div><b id="o2">0</b><span>members joining per month</span></div>
+          <div><b id="o3">0</b><span>extra members if attendance rose ten points, changing nothing else</span></div>
+        </div>
+        <p id="onote"></p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="seq"><div class="w">
+  <h2>The four days in between</h2>
+  <p>Four messages. None of them sell anything, because the sale already happened — the person has agreed to come. Everything here exists to reduce the two reasons people quietly drop out: forgetting, and dreading it.</p>
+  <div id="seq"></div>
+</div></section>
+
+<section class="no-show"><div class="w">
+  <h2>And when they still do not turn up</h2>
+  <div class="ns">
+    <div>
+      <h4>What most places send</h4>
+      <div class="msg bad">We missed you at your session today!
+
+Our coaches had prepared specially for you. Late cancellations affect our ability to serve other members.
+
+Rebook here: [link]</div>
+      <p>Guilt, a mild accusation, and a link. It reads as a telling-off, and the most common reason for a no-show — nerves — is exactly the thing this makes worse.</p>
+    </div>
+    <div>
+      <h4>What is sent instead</h4>
+      <div class="msg good">Hi Sam — Dele here. You were down for 7pm, no problem at all.
+
+For what it is worth, about a third of first sessions get moved. It is usually work, and occasionally it is nerves, and both are fine.
+
+Thursday 7pm and Saturday 9am are open if you want either. If now is not the moment, that is also a completely reasonable answer and I will leave you be.</div>
+      <p>Named person, no guilt, the awkward reason acknowledged out loud, two concrete times, and an explicit permission to stop. One message. There is no second chase.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="honest"><div class="w">
+  Concept strategy for an invented studio. Every number on this page comes from the sliders you set — there is no client data here, no measured baseline, and no claim about what this approach achieved anywhere, because it has not been run. The contribution is the reframing: attendance, not sign-ups, is the number that maps onto capacity.
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about an acquisition journey</a></div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/good-form-funnel">Easywurld</a> — Good Form is not a real studio.</div>
+
+<script>
+var S={s1:120,s2:40,s3:55,s4:35}, D={s1:120,s2:40,s3:55,s4:35};
+var fun=document.getElementById('fun');
+
+function calc(){
+  var enq=S.s1, booked=Math.round(enq*S.s2/100), attended=Math.round(booked*S.s3/100),
+      joined=Math.round(attended*S.s4/100), wasted=booked-attended;
+  var better=Math.round(Math.round(booked*Math.min(100,S.s3+10)/100)*S.s4/100);
+  var max=enq||1;
+  var rows=[
+   ['Enquiries','People who reach the trial page',enq,enq/max*100,''],
+   ['Booked a trial',S.s2+'% of enquiries',booked,booked/max*100,''],
+   ['Did not turn up',wasted+' coach hours, already paid for',wasted,wasted/max*100,'loss'],
+   ['Attended',S.s3+'% of bookings',attended,attended/max*100,'good'],
+   ['Joined',S.s4+'% of those who attended',joined,joined/max*100,'']
+  ];
+  fun.innerHTML=rows.map(function(r){
+    var cls=r[4]==='loss'?' loss':'';
+    var ic=r[4]==='loss'?' dim':(r[4]==='good'?' good':'');
+    return '<div class="step'+cls+'"><div class="nm">'+r[0]+'<small>'+r[1]+'</small></div>'+
+      '<div class="track"><i class="'+ic.trim()+'" style="width:'+Math.max(1,r[3])+'%"></i></div>'+
+      '<div class="num">'+r[2]+'</div></div>';
+  }).join('');
+  document.getElementById('o1').textContent=wasted;
+  document.getElementById('o2').textContent=joined;
+  document.getElementById('o3').textContent='+'+(better-joined);
+  document.getElementById('onote').textContent=
+    'On these inputs, '+wasted+' committed coach hours go unused each month. Raising attendance by ten points — with no change to spend, traffic or the booking rate — would add '+(better-joined)+
+    ' members a month. Raising the booking rate by the same ten points would add '+(Math.round(Math.round(enq*Math.min(100,S.s2+10)/100)*S.s3/100*S.s4/100)-joined)+
+    ', and cost considerably more to achieve.';
+}
+['s1','s2','s3','s4'].forEach(function(k){
+  var el=document.getElementById(k);
+  el.addEventListener('input',function(){
+    S[k]=+el.value;
+    document.getElementById('v'+k.slice(1)).textContent=(k==='s1'?S[k]:S[k]+'%');
+    calc();
+  });
+});
+document.getElementById('reset').onclick=function(){
+  ['s1','s2','s3','s4'].forEach(function(k){
+    S[k]=D[k]; document.getElementById(k).value=D[k];
+    document.getElementById('v'+k.slice(1)).textContent=(k==='s1'?D[k]:D[k]+'%');
+  });
+  calc();
+};
+calc();
+
+var SEQ=[
+ ['Immediately','Booking confirmed',
+  'Confirmation, with the awkward questions answered',
+  'Not a receipt. It answers the four things a beginner is actually worrying about and will not ask: what to wear, where to park, what happens in the first ten minutes, and whether anyone will be watching them.',
+  'You are booked for Tuesday 7pm with Dele.\n\nWear whatever you have. Trainers, not running spikes.\nPark on the street after 6, it is free.\nFirst ten minutes is a conversation, not a workout.\nThere will be four other people in and none of them will be looking at you.'],
+ ['Day 1','The coach, not the studio',
+  'A short message from the person they will meet',
+  'From Dele, by name, with a photograph. Turning up to meet a named individual is a different psychological act from turning up at a building. It is also much harder to silently skip.',
+  'Hi Sam, Dele here — I will be the one taking you through Tuesday.\n\nAnything I should know before you come in? Old injuries, anything that has put you off a gym before. Either is useful and neither is unusual.'],
+ ['Day 2','Lower the stakes',
+  'What the session is not',
+  'The single most common reason for dropping out is a private fear of being tested in front of strangers. Saying plainly that no assessment happens removes the reason without ever naming the fear.',
+  'Quick note on Tuesday: there is no assessment, no weigh-in and no photographs.\n\nWe will do about twenty minutes of very light movement so I can see how you move. That is the whole thing.'],
+ ['Day of','Practical only',
+  'One reminder, four hours before',
+  'Time, address, name. Nothing motivational — an enthusiastic message on the day reads as pressure to someone who is already nervous.',
+  '7pm tonight. 14 Mill Lane, black door, ring the bell.\nDele.\n\nIf today has gone wrong, reply and we will move it. No problem either way.']
+];
+document.getElementById('seq').innerHTML=SEQ.map(function(s){
+  return '<div class="srow"><div class="when">'+s[0]+'<small>'+s[1]+'</small></div>'+
+  '<div><h4>'+s[2]+'</h4><p>'+s[3]+'</p></div>'+
+  '<div class="txt">'+s[4]+'</div></div>';
+}).join('');
+</script>
+</body></html>

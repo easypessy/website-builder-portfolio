@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Civic Clarity — channel strategy, four hours a month</title>
+<meta name="description" content="A two-channel strategy for a referral-led consultancy, with the rejections written down. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF8;--ink:#141619;--mu:#6E747B;--ac:#3D5A73;--line:#E2E2DE;--kill:#9A4A3C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.doc{max-width:840px;margin:0 auto;padding:0 32px}
+h1,h2,h3{font-family:'Inter Tight',system-ui,sans-serif;letter-spacing:-.022em;font-weight:600}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+a{color:var(--ac)}
+
+/* a document, not a page: a cover block then numbered sections */
+.cover{padding:64px 0 40px;border-bottom:2px solid var(--ink)}
+.cover .meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:34px}
+.cover h1{font-size:clamp(30px,4.6vw,44px);line-height:1.1;margin:0 0 20px;max-width:20ch}
+.cover p{color:var(--mu);margin:0;max-width:56ch;font-size:18px}
+
+.sec{padding:44px 0;border-bottom:1px solid var(--line)}
+.sec>h2{font-size:22px;margin:0 0 6px;display:flex;gap:14px;align-items:baseline}
+.sec>h2 span{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ac);letter-spacing:.1em}
+.sec .lede{color:var(--mu);margin:0 0 22px;max-width:66ch}
+.sec p{max-width:68ch}
+.pull{border-left:3px solid var(--ink);padding:4px 0 4px 20px;margin:26px 0;font-family:'Inter Tight';font-size:21px;line-height:1.4;max-width:46ch}
+
+/* finding table */
+.fin{width:100%;border-collapse:collapse;font-size:16px;margin-top:6px}
+.fin th{text-align:left;font:400 11.5px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--mu);
+padding:0 14px 10px 0;border-bottom:1px solid var(--line)}
+.fin td{padding:13px 14px 13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.fin td:first-child{width:34%;font-weight:500}
+.fin td:last-child{color:var(--mu);width:22%;font-family:'IBM Plex Mono';font-size:13.5px}
+
+/* channel scorer — the interaction */
+.scorer{border:1px solid var(--ink);background:#fff;margin-top:8px}
+.sc-head{display:grid;grid-template-columns:1fr 78px 78px 78px 86px;gap:0;border-bottom:1px solid var(--ink);
+font:400 10.5px/1.2 'IBM Plex Mono';letter-spacing:.11em;text-transform:uppercase;color:var(--mu)}
+.sc-head div{padding:12px 14px;border-left:1px solid var(--line);text-align:center}
+.sc-head div:first-child{border-left:0;text-align:left}
+.ch{display:grid;grid-template-columns:1fr 78px 78px 78px 86px;border-bottom:1px solid var(--line);
+cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;font:inherit;color:inherit;text-align:left;width:100%;padding:0}
+.ch:last-of-type{border-bottom:0}
+.ch:hover{background:#F4F5F3}
+.ch:focus-visible{outline:3px solid var(--ac);outline-offset:-3px}
+.ch[aria-expanded="true"]{background:#F1F4F6}
+.ch>span{padding:15px 14px;border-left:1px solid var(--line);text-align:center;font-family:'IBM Plex Mono';font-size:14px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.ch>span:first-child{border-left:0;text-align:left;justify-content:flex-start;font-family:'Inter';font-size:16px;font-weight:500;gap:10px}
+.ch .tot{font-weight:500;color:var(--ac)}
+.ch.out>span:first-child{color:var(--mu)}
+.ch.out .tot{color:var(--kill)}
+.ch .badge{font:400 9.5px/1 'IBM Plex Mono';letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;border:1px solid currentColor}
+.det{padding:20px 22px;background:#F1F4F6;border-bottom:1px solid var(--line);font-size:15.5px;display:none}
+.det[data-open="true"]{display:block}
+.det p{margin:0 0 10px;max-width:70ch}
+.det .verdict{font-family:'Inter Tight';font-size:17px;font-weight:600;margin-bottom:10px}
+.det .verdict.out{color:var(--kill)}
+.det .verdict.in{color:var(--ac)}
+
+/* referral prompt generator */
+.gen{border:1px solid var(--line);background:#fff;padding:26px 28px;margin-top:10px}
+.gen h3{font-size:17px;margin:0 0 8px}
+.gen p.sm{color:var(--mu);font-size:15px;margin:0 0 20px;max-width:62ch}
+.gen label{display:block;font:500 12px/1 'Inter';letter-spacing:.11em;text-transform:uppercase;color:var(--mu);margin:0 0 7px}
+.gen .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.gen input,.gen select{width:100%;padding:12px 13px;border:1px solid var(--line);background:var(--bg);font:inherit;font-size:16px;color:var(--ink);min-height:44px}
+.gen input:focus-visible,.gen select:focus-visible{outline:3px solid var(--ac);outline-offset:1px}
+.out-box{border-left:3px solid var(--ac);background:var(--bg);padding:18px 20px;white-space:pre-line;font-size:16px;line-height:1.65;margin-top:4px}
+.gen .copy{margin-top:14px;min-height:44px;padding:0 18px;background:var(--ink);color:#fff;border:0;font:500 14px/1 'Inter';cursor:pointer}
+.gen .copy:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.gen .said{font-size:13.5px;color:var(--ac);margin-left:12px}
+
+/* rhythm */
+.rhythm{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:#fff;margin-top:8px}
+.rhythm div{padding:18px 18px 22px;border-right:1px solid var(--line)}
+.rhythm div:last-child{border-right:0}
+.rhythm b{display:block;font:400 10.5px/1 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:10px}
+.rhythm h4{font:600 16px/1.3 'Inter Tight';margin:0 0 6px}
+.rhythm p{margin:0;font-size:14.5px;color:var(--mu)}
+.rhythm .hrs{font-family:'IBM Plex Mono';font-size:13px;color:var(--ac);margin-top:10px}
+
+.sheet{width:100%;border-collapse:collapse;font-size:15px;background:#fff;border:1px solid var(--line);margin-top:8px}
+.sheet th{background:#F1F2F0;text-align:left;font:400 10.5px/1 'IBM Plex Mono';letter-spacing:.12em;text-transform:uppercase;
+color:var(--mu);padding:11px 13px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.sheet td{padding:11px 13px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.sheet tr:last-child td{border-bottom:0}
+.sheet td:last-child,.sheet th:last-child{border-right:0}
+.sheet .st{font-family:'IBM Plex Mono';font-size:13px;color:var(--ac)}
+
+.honest{padding:34px 0;color:var(--mu);font-size:15.5px;border-bottom:1px solid var(--line)}
+footer{padding:26px 0;color:var(--mu);font-size:14px}
+.note{background:var(--ink);color:#A9AEB4;font-size:12.5px;padding:13px 28px;text-align:center}
+.note a{color:#8FB4CE}
+@media(max-width:760px){
+ .sc-head,.ch{grid-template-columns:1fr 54px 54px 54px 62px}
+ .sc-head div,.ch>span{padding:11px 7px;font-size:13px}
+ .ch>span:first-child{font-size:15px;flex-wrap:wrap;gap:6px}
+ .rhythm{grid-template-columns:1fr 1fr}.rhythm div{border-bottom:1px solid var(--line)}
+ .gen .row{grid-template-columns:1fr}
+ .doc{padding:0 20px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+<div class="cover">
+  <div class="meta"><span>Civic Clarity · channel strategy</span><span>Concept · 2026</span></div>
+  <h1>Before adding channels, make the one that already works deliberate.</h1>
+  <p>A short strategy document, not a deck. Four sections, one recommendation, and the rejected options written down so they do not have to be argued about again in March.</p>
+</div>
+
+<section class="sec">
+  <h2><span>01</span>The finding</h2>
+  <p class="lede">All work arrives by referral. That was presented as the problem. It is not the problem — it is the only thing working, and it has never been given a process.</p>
+  <table class="fin">
+    <thead><tr><th>What was observed</th><th>What it actually means</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Every project in two years came from a personal recommendation</td><td>The offer is good and the market trusts it. Demand generation is not the missing piece.</td><td>Strength</td></tr>
+      <tr><td>Revenue swings by a factor of three between quarters</td><td>Not a demand problem. Referrals arrive when someone happens to think of her.</td><td>The real issue</td></tr>
+      <tr><td>Five channels started in eighteen months, none continued past six weeks</td><td>Each was abandoned at roughly the point it would have started working.</td><td>Pattern</td></tr>
+      <tr><td>No record of who referred whom, or when anyone was last contacted</td><td>The asset is entirely in her head, which means it cannot be worked deliberately.</td><td>Fixable today</td></tr>
+    </tbody>
+  </table>
+  <p class="pull">A pipeline that is invisible is not the same as a pipeline that is empty.</p>
+</section>
+
+<section class="sec">
+  <h2><span>02</span>Channels, scored</h2>
+  <p class="lede">Scored out of five on three questions: is the buyer already there, can it survive four hours a month, and does it compound. Select any row for the reasoning — including the four that were rejected.</p>
+  <div class="scorer">
+    <div class="sc-head"><div>Channel</div><div>Buyer there</div><div>Sustainable</div><div>Compounds</div><div>Total</div></div>
+    <div id="rows"></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2><span>03</span>Making referral deliberate</h2>
+  <p class="lede">The mechanism is unglamorous: a list of past clients, a reason to make contact that is not a request, and a fixed date in the diary. The prompt below is the template — fill it in and it writes the message she would actually send.</p>
+
+  <div class="gen">
+    <h3>Referral prompt</h3>
+    <p class="sm">Never "do you know anyone who needs me". Always a specific, useful thing sent to a specific person, with the ask second and small.</p>
+    <div class="row">
+      <div><label for="name">Past client's first name</label><input id="name" value="Bola"></div>
+      <div><label for="proj">What you did for them</label><input id="proj" value="the service review"></div>
+    </div>
+    <div class="row">
+      <div><label for="when">How long ago</label>
+        <select id="when"><option>four months ago</option><option selected>last spring</option><option>about a year ago</option><option>two years ago</option></select></div>
+      <div><label for="useful">The useful thing you are sending</label>
+        <select id="useful">
+          <option selected>the one-page version of the framework we used</option>
+          <option>a note on what changed in the funding rules this month</option>
+          <option>an introduction to someone solving their next problem</option>
+          <option>the short write-up of what happened after we finished</option>
+        </select></div>
+    </div>
+    <label for="outbox">The message</label>
+    <div class="out-box" id="outbox"></div>
+    <button class="copy" id="copy" type="button">Copy the message</button><span class="said" id="said" role="status"></span>
+  </div>
+
+  <table class="sheet">
+    <thead><tr><th>Month</th><th>Who gets contacted</th><th>With what</th><th>Time</th></tr></thead>
+    <tbody>
+      <tr><td class="st">Jan</td><td>Everyone from the previous year</td><td>What happened after each project finished</td><td class="st">40 min</td></tr>
+      <tr><td class="st">Apr</td><td>The six who have referred before</td><td>Something useful, no ask</td><td class="st">30 min</td></tr>
+      <tr><td class="st">Jul</td><td>Anyone not contacted in nine months</td><td>A direct, short, specific question</td><td class="st">40 min</td></tr>
+      <tr><td class="st">Oct</td><td>Everyone from the current year</td><td>Planning-season note, ask included</td><td class="st">40 min</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--mu);font-size:15px;margin-top:16px">Four dates a year, in the calendar, with the list attached. That is the entire referral system. It replaces remembering.</p>
+</section>
+
+<section class="sec">
+  <h2><span>04</span>The publishing rhythm</h2>
+  <p class="lede">Two channels, sized to the time that actually exists. Nothing here assumes a week she does not have, which is the reason the previous five attempts stopped.</p>
+  <div class="rhythm">
+    <div><b>Week 1</b><h4>Write one piece</h4><p>Nine hundred words on a question a client asked in the last month. No editorial calendar — the calendar is the client.</p><div class="hrs">90 min</div></div>
+    <div><b>Week 2</b><h4>Publish and send</h4><p>Posted, then emailed to the list. Same words both places. No rewriting for format.</p><div class="hrs">30 min</div></div>
+    <div><b>Week 3</b><h4>Two replies</h4><p>Answer whoever responded, properly. This is where the work comes from, not the post itself.</p><div class="hrs">45 min</div></div>
+    <div><b>Week 4</b><h4>Pipeline, ten minutes</h4><p>Update the spreadsheet. Who is where, what the next contact is, when.</p><div class="hrs">15 min</div></div>
+  </div>
+  <p style="margin-top:22px;color:var(--mu)">Three hours a month, leaving an hour of the budget unspent. And it is a spreadsheet, not a CRM — a sole consultant with twelve live conversations does not have a data problem, and the licence fee would buy nothing she cannot do with four columns.</p>
+</section>
+
+<section class="honest">
+  Concept strategy for an invented consultancy. No revenue, enquiry or conversion figures appear here and none are implied — the scores are a structured judgement, not a measurement. The value on offer is the order of operations: systematise the working channel before funding a new one.
+</section>
+
+<footer>A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a channel strategy</a></footer>
+</div>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/civic-clarity-channel">Easywurld</a> — Civic Clarity is not a real consultancy.</div>
+
+<script>
+var CH=[
+{n:'Referral, systematised',s:[5,5,5],in:true,badge:'Channel 1',
+ v:'Selected. It is already producing every project — it has simply never been given a date in the diary.',
+ p:['The buyer is not "there" in the sense of a platform; the buyer is downstream of someone who already trusts her. That is the shortest possible path and it is being left to chance.',
+ 'Cost is two hours a quarter. The only reason it was not already running is that referral does not feel like marketing, so it never got scheduled.']},
+{n:'Long-form writing + email list',s:[4,4,5],in:true,badge:'Channel 2',
+ v:'Selected. Slow, compounding, and the only channel where the work itself is the proof.',
+ p:['Her buyers read. They are senior people making a decision they will have to defend internally, and a well-argued nine hundred words does more of that defending than any advert.',
+ 'One piece a month is sustainable inside the budget. Twelve a year is not a lot until you have been going three years, at which point it is thirty-six pieces nobody else has written.']},
+{n:'Speaking at sector events',s:[4,2,3],in:false,badge:'Rejected',
+ v:'Rejected for now. Right room, wrong cost.',
+ p:['The audience is genuinely correct — this is where the buyers are. But a single talk costs a prep day, a travel day and a follow-up week, which is a quarter of the annual budget for one appearance.',
+ 'Revisit in year two, once the writing exists. Then a talk is an amplifier for something rather than a standalone effort that disappears the day after.']},
+{n:'LinkedIn short posts',s:[3,3,2],in:false,badge:'Rejected',
+ v:'Rejected as a primary channel. Kept only as a distribution point for the monthly piece.',
+ p:['Daily posting is the version that works and it is not available inside four hours a month. A half-hearted version produces the appearance of activity and nothing else.',
+ 'The compromise: the monthly piece gets posted there, comments get answered for two days, and nothing further is attempted.']},
+{n:'Paid search',s:[2,4,1],in:false,badge:'Rejected',
+ v:'Rejected. Nobody searches for this.',
+ p:['The service is bought after a conversation, not after a query. The obvious keywords are either almost zero volume or dominated by large firms bidding for something adjacent.',
+ 'It is also the opposite of compounding: the day the budget stops, the channel stops.']},
+{n:'Cold outreach',s:[3,2,1],in:false,badge:'Rejected',
+ v:'Rejected. It would damage the asset that is currently working.',
+ p:['Her entire position rests on being the person other people vouch for. Unsolicited approach at volume is the one activity that directly contradicts that.',
+ 'Targeted, warm, individually-written approaches are a different thing and live inside the referral system above.']}
+];
+
+var rows=document.getElementById('rows'), open=-1;
+function draw(){
+  rows.innerHTML='';
+  CH.forEach(function(c,i){
+    var tot=c.s[0]+c.s[1]+c.s[2];
+    var b=document.createElement('button');
+    b.type='button'; b.className='ch'+(c.in?'':' out');
+    b.setAttribute('aria-expanded',String(open===i));
+    b.innerHTML='<span>'+c.n+'<em class="badge" style="font-style:normal;color:'+(c.in?'#3D5A73':'#9A4A3C')+'">'+c.badge+'</em></span>'+
+      '<span>'+c.s[0]+'</span><span>'+c.s[1]+'</span><span>'+c.s[2]+'</span><span class="tot">'+tot+'/15</span>';
+    b.onclick=function(){open=(open===i?-1:i);draw()};
+    rows.appendChild(b);
+    var d=document.createElement('div');
+    d.className='det'; d.setAttribute('data-open',String(open===i));
+    d.innerHTML='<div class="verdict '+(c.in?'in':'out')+'">'+c.v+'</div>'+c.p.map(function(x){return '<p>'+x+'</p>'}).join('');
+    rows.appendChild(d);
+  });
+}
+draw();
+
+var f=['name','proj','when','useful'].map(function(id){return document.getElementById(id)});
+function build(){
+  var n=f[0].value.trim()||'there', p=f[1].value.trim()||'the work we did', w=f[2].value, u=f[3].value;
+  document.getElementById('outbox').textContent=
+    n+' — I was writing something up this week and it sent me back to '+p+' from '+w+'.\n\n'+
+    'I have put together '+u+'. No agenda, I just thought it would be genuinely useful to you. It is attached.\n\n'+
+    'One small thing, and please ignore it if nothing comes to mind: if you hear of anyone wrestling with the same problem you had before we started, I would be glad of the introduction.\n\n'+
+    'Either way, I hope it is going well.';
+}
+f.forEach(function(x){x.addEventListener('input',build);x.addEventListener('change',build)});
+build();
+document.getElementById('copy').onclick=function(){
+  var t=document.getElementById('outbox').textContent, s=document.getElementById('said');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(function(){s.textContent='Copied.';setTimeout(function(){s.textContent=''},2200)});
+  } else { s.textContent='Select the text above to copy.'; }
+};
+</script>
+</body></html>

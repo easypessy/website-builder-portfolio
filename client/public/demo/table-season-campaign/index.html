@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Table Season — filling Tuesday without discounting Friday</title>
+<meta name="description" content="A midweek-only proposition with its own name, menu and audience, and guardrails that protect the profitable nights. Concept build by Easywurld.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FDF6EC;--pap:#FFFCF6;--ink:#2E2113;--mu:#87775F;--ac:#B84B22;--gr:#5B6B45;--line:#E9DCC7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:1120px;margin:0 auto;padding:0 26px}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em}
+a{color:var(--ac)}
+
+header .w{padding:24px 26px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+header b{font-size:19px;font-family:'Fraunces'}
+header span{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu)}
+
+.open{padding:44px 0 40px}
+.open h1{font-size:clamp(30px,4.8vw,52px);line-height:1.06;margin:0 0 20px;max-width:17ch}
+.open h1 em{font-style:italic;color:var(--ac)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.two p{color:var(--mu);margin:0 0 14px;max-width:50ch}
+
+/* the week, as a yield chart you can toggle */
+.yield{padding:44px 0;border-top:1px solid var(--line)}
+.yield h2{font-size:clamp(23px,3.2vw,32px);margin:0 0 8px}
+.yield>.w>p{color:var(--mu);max-width:64ch;margin:0 0 22px}
+.toggle{display:inline-flex;border:1px solid var(--ink);margin-bottom:26px}
+.toggle button{min-height:44px;padding:0 20px;background:transparent;border:0;font:500 14.5px/1 'Inter';cursor:pointer;color:var(--ink)}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.toggle button:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:250px}
+.dcol{display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
+.dcol .stack{background:#EFE3CD;position:relative;transition:height .35s cubic-bezier(.3,.7,.3,1)}
+.dcol .stack i{position:absolute;left:0;right:0;bottom:0;background:var(--gr);transition:height .35s cubic-bezier(.3,.7,.3,1)}
+.dcol.mid .stack i{background:var(--ac)}
+.dcol .pc{position:absolute;top:-24px;left:0;right:0;text-align:center;font-size:13px;color:var(--mu);font-variant-numeric:tabular-nums}
+.dcol .dn{text-align:center;font-size:13.5px;padding-top:9px;border-top:1px solid var(--line);margin-top:9px}
+.dcol.mid .dn{color:var(--ac);font-weight:500}
+.ylegend{margin-top:18px;font-size:14px;color:var(--mu);max-width:64ch}
+
+/* the proposition, deliberately off-brand */
+.prop{padding:56px 0;border-top:1px solid var(--line)}
+.prop h2{font-size:clamp(23px,3.2vw,32px);margin:0 0 8px}
+.prop>.w>p{color:var(--mu);max-width:64ch;margin:0 0 28px}
+.cards2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink)}
+.cards2>div{padding:30px 32px}
+.cards2>div:first-child{border-right:1px solid var(--ink);background:var(--pap)}
+.cards2 .k{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-bottom:14px}
+.cards2 h3{font-size:clamp(22px,3vw,30px);margin:0 0 10px}
+.cards2 .sub{font-style:italic;color:var(--mu);margin:0 0 20px}
+.cards2 dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 18px;font-size:15px}
+.cards2 dt{color:var(--mu)}
+.cards2 dd{margin:0}
+.cards2 .menu{margin-top:22px;border-top:1px dotted var(--line);padding-top:16px}
+.cards2 .menu .mi{display:flex;justify-content:space-between;gap:16px;padding:7px 0;font-size:15px}
+.cards2 .menu .mi span:last-child{color:var(--mu);font-variant-numeric:tabular-nums}
+.cards2 .menu small{display:block;color:var(--mu);font-size:13px}
+
+/* six week message calendar */
+.cal{padding:54px 0;border-top:1px solid var(--line)}
+.cal h2{font-size:clamp(23px,3.2vw,32px);margin:0 0 8px}
+.cal>.w>p{color:var(--mu);max-width:66ch;margin:0 0 26px}
+.wkrow{display:grid;grid-template-columns:96px 1fr;border-top:1px solid var(--line);align-items:stretch}
+.wkrow:last-child{border-bottom:1px solid var(--line)}
+.wkrow .lft{padding:18px 16px;background:var(--pap);border-right:1px solid var(--line)}
+.wkrow .lft b{display:block;font-family:'Fraunces';font-size:17px}
+.wkrow .lft span{font-size:12px;color:var(--mu)}
+.wkrow .rgt{padding:16px 20px;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:start}
+.wkrow .when{font-size:13px;color:var(--ac);letter-spacing:.04em}
+.wkrow .msg{font-size:15.5px}
+.wkrow .msg b{font-family:'Fraunces';font-weight:600;display:block;margin-bottom:4px;font-size:16.5px}
+.wkrow .msg span{color:var(--mu);font-size:14.5px;display:block;margin-top:5px}
+
+/* guardrails */
+.guard{padding:50px 0;border-top:1px solid var(--line)}
+.guard h2{font-size:clamp(22px,3vw,30px);margin:0 0 8px}
+.guard>.w>p{color:var(--mu);max-width:62ch;margin:0 0 24px}
+.gl{border-left:3px solid var(--ac);padding:2px 0 2px 22px;margin-bottom:22px;max-width:74ch}
+.gl b{display:block;font-family:'Fraunces';font-size:18px;margin-bottom:5px}
+.gl p{margin:0;color:var(--mu);font-size:15.5px}
+
+.honest{padding:36px 0;border-top:1px solid var(--line);color:var(--mu);font-size:15px}
+.honest .w{max-width:72ch}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size:14px}
+.note{background:var(--ink);color:#C3B49C;font-size:12.5px;padding:13px 26px;text-align:center}
+.note a{color:#E39A6E}
+@media(max-width:920px){
+ .two{grid-template-columns:1fr;gap:18px}
+ .cards2{grid-template-columns:1fr}.cards2>div:first-child{border-right:0;border-bottom:1px solid var(--ink)}
+ .wkrow .rgt{grid-template-columns:1fr;gap:6px}
+ .days{height:200px;gap:6px}
+}
+@media(max-width:560px){.w{padding:0 18px}.dcol .dn{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header><div class="w"><b>Table Season</b><span>Campaign structure · concept · 2026</span></div></header>
+
+<div class="w">
+  <div class="open">
+    <h1>Discount the empty night. <em>Never</em> the full one.</h1>
+    <div class="two">
+      <div>
+        <p>Friday and Saturday sold out most weeks. Tuesday and Wednesday ran at under a third. The instinct in the room was a blanket twenty per cent off, and it would have worked — it would have filled midweek and quietly moved a proportion of the weekend bookings onto cheaper nights.</p>
+        <p>That is the trap. A discount visible to everyone gets used by the people who were already coming, on the nights that were already full.</p>
+      </div>
+      <div>
+        <p>So the midweek offer was built as a separate thing. Its own name, its own short menu, its own audience, and — deliberately — its own look, so that a regular Friday booker never sees it as the same restaurant made cheaper.</p>
+        <p>The audience is not the occasion diner who books three weeks ahead. It is the person who lives within a mile and decides at six o'clock that they cannot be bothered to cook.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="yield"><div class="w">
+  <h2>The week, before and after</h2>
+  <p>Covers as a share of capacity. The point of the comparison is not that midweek goes up — that is easy. It is that Friday and Saturday do not move, because nothing on offer gives a weekend booker a reason to shift.</p>
+  <div class="toggle" role="group" aria-label="Choose a scenario">
+    <button id="b-now" aria-pressed="true">As it is</button>
+    <button id="b-cut" aria-pressed="false">Blanket 20% off</button>
+    <button id="b-new" aria-pressed="false">Table Season</button>
+  </div>
+  <div class="days" id="days"></div>
+  <p class="ylegend" id="ylegend"></p>
+</div></section>
+
+<section class="prop"><div class="w">
+  <h2>Two offers that must never blur</h2>
+  <p>The clearest way to protect the weekend is to make the midweek proposition genuinely different — fewer dishes, no bookings, an earlier kitchen, and a price that is lower because the offer is smaller, not because the restaurant is discounting itself.</p>
+  <div class="cards2">
+    <div>
+      <div class="k">Thursday to Saturday</div>
+      <h3>The main room</h3>
+      <p class="sub">Unchanged. This is the business.</p>
+      <dl>
+        <dt>Booking</dt><dd>Required, often three weeks ahead</dd>
+        <dt>Menu</dt><dd>Full à la carte, eighteen dishes</dd>
+        <dt>Service</dt><dd>Two sittings, 6pm and 8:30</dd>
+        <dt>Spend</dt><dd>Occasion-level</dd>
+        <dt>Who</dt><dd>Planners, celebrations, people travelling in</dd>
+      </dl>
+    </div>
+    <div>
+      <div class="k">Tuesday and Wednesday</div>
+      <h3>Table Season</h3>
+      <p class="sub">Six dishes, no bookings, kitchen closes at nine.</p>
+      <dl>
+        <dt>Booking</dt><dd>None. Walk in, or do not.</dd>
+        <dt>Menu</dt><dd>Six dishes, changed weekly, written that morning</dd>
+        <dt>Service</dt><dd>One continuous service, 5:30 to 9</dd>
+        <dt>Spend</dt><dd>Lower, because it is less food and less labour</dd>
+        <dt>Who</dt><dd>People who live within a mile</dd>
+      </dl>
+      <div class="menu">
+        <div class="mi"><span>Chicken, charred lemon, greens<small>The one that is always on</small></span><span>£14</span></div>
+        <div class="mi"><span>Beans, chard, bread<small>Whatever the market had</small></span><span>£9</span></div>
+        <div class="mi"><span>One pudding<small>There is only ever one</small></span><span>£6</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="cal"><div class="w">
+  <h2>Six weeks, timed to when the decision is made</h2>
+  <p>A midweek dinner is not planned. It is decided somewhere between four and six in the afternoon, usually by someone tired, standing in a kitchen with nothing in the fridge. Every message in the launch is placed against that moment rather than against a marketing calendar.</p>
+  <div id="cal6"></div>
+</div></section>
+
+<section class="guard"><div class="w">
+  <h2>The guardrails</h2>
+  <p>Written down because the pressure to break them arrives around week three, on the first Tuesday that rains.</p>
+  <div class="gl"><b>Nothing is ever discounted on Thursday, Friday or Saturday.</b><p>Not a set menu, not a percentage, not a "pre-theatre" version. The weekend is the profit and it is not available to be traded for volume.</p></div>
+  <div class="gl"><b>Table Season is never described as cheaper.</b><p>It is smaller. Six dishes instead of eighteen, one service instead of two, no reservations desk. The price reflects the offer. The moment it is framed as a discount, the main room is devalued along with it.</p></div>
+  <div class="gl"><b>No bookings, ever.</b><p>It is the operational reason the price works, and it is also the thing that keeps the occasion diner away from it. A booking system would quietly turn it into a cheap version of the weekend.</p></div>
+  <div class="gl"><b>The two are marketed to different lists.</b><p>Weekend regulars are not emailed about midweek. Someone who only ever comes on a Tuesday is not sent the tasting menu announcement. Overlap is allowed to happen naturally and is never engineered.</p></div>
+  <div class="gl"><b>If midweek fills, the price goes up before the covers do.</b><p>The failure mode of a successful midweek offer is that it stays cheap forever out of nervousness. Reviewed at week twelve.</p></div>
+</div></section>
+
+<section class="honest"><div class="w">
+  Concept campaign for an invented restaurant. There is no covers, revenue or yield data here — the three scenarios in the chart are illustrative models showing the shape of an argument, not measurements of anything that happened, and the prices are placeholders. The structural idea, which is the transferable part, is segmenting by occasion rather than discounting across the board.
+</div></section>
+
+<footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a campaign structure</a></div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept build by <a href="https://website-builder-portfolio.vercel.app/projects/table-season-campaign">Easywurld</a> — Table Season is not a real restaurant.</div>
+
+<script>
+var DN=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+var MID=[false,true,true,false,false,false,false];
+var SC={
+ now:{d:[0,31,28,74,96,98,62],
+   t:'As it is. Tuesday and Wednesday run under a third full while the kitchen, the front of house and the rent are all being paid in full. Those two nights are the entire opportunity.'},
+ cut:{d:[0,58,54,66,84,86,58],
+   t:'A blanket twenty per cent. Midweek does improve — and Thursday, Friday and Saturday all drop, because the people who move are the ones who were already coming and can now choose a cheaper night. Total covers rise slightly; the money does not.'},
+ new:{d:[0,66,61,74,96,98,64],
+   t:'A separate midweek proposition. The weekend is untouched because nothing on offer is attractive to someone booking an occasion three weeks ahead — no reservations, six dishes, kitchen shut at nine.'}
+};
+var cur='now', days=document.getElementById('days'), leg=document.getElementById('ylegend');
+function draw(){
+  var s=SC[cur];
+  days.innerHTML=DN.map(function(d,i){
+    var v=s.d[i];
+    return '<div class="dcol'+(MID[i]?' mid':'')+'">'+
+      '<div class="stack" style="height:100%"><span class="pc">'+(v?v+'%':'closed')+'</span>'+
+      '<i style="height:'+v+'%"></i></div>'+
+      '<div class="dn">'+d+'</div></div>';
+  }).join('');
+  leg.textContent=s.t;
+}
+['now','cut','new'].forEach(function(k){
+  document.getElementById('b-'+k).onclick=function(){
+    cur=k;
+    ['now','cut','new'].forEach(function(j){document.getElementById('b-'+j).setAttribute('aria-pressed',String(j===k))});
+    draw();
+  };
+});
+draw();
+
+var WEEKS=[
+ ['Week 1','Quiet start',[['Tue, 4pm','Nothing announced','The first two Tuesdays run with no promotion at all. The kitchen needs to get the six dishes right before anyone is invited to judge them.']]],
+ ['Week 2','Quiet start',[['Wed, 4pm','Still nothing','One deliberate fortnight of practice. Launching into an unrehearsed service is how a good idea gets a bad first review.']]],
+ ['Week 3','Local only',[['Tue, 4:15pm','The chalkboard, photographed','Posted to the local account only, with this week\'s six dishes. Tuesday, 4:15pm, because that is when the decision is being made.'],
+   ['Sat','Cards in the shop windows','Three neighbouring businesses, asked in person. This is the whole of the offline spend.']]],
+ ['Week 4','Local only',[['Tue + Wed, 4:15pm','The board again','The same format, same time, different six dishes. Repetition is what makes it a habit rather than an event.'],
+   ['Thu','One line to the midweek list','Only to people who have come on a Tuesday. Never to the weekend list.']]],
+ ['Week 5','Widen slightly',[['Tue, 4:15pm','The board','Unchanged.'],
+   ['Wed, 5pm','A short clip of the pass','Fifteen seconds of the actual kitchen at service. No music, no voiceover.']]],
+ ['Week 6','Review',[['Tue, 4:15pm','The board','Unchanged. It is now the fixed thing people look for.'],
+   ['Fri','Count the covers, not the likes','Midweek covers and midweek spend per head, against weeks one and two. If the weekend has moved at all, the guardrails failed and the offer changes before the marketing does.']]]
+];
+document.getElementById('cal6').innerHTML=WEEKS.map(function(w){
+  return '<div class="wkrow"><div class="lft"><b>'+w[0]+'</b><span>'+w[1]+'</span></div>'+
+    '<div style="display:grid">'+w[2].map(function(m){
+      return '<div class="rgt"><div class="when">'+m[0]+'</div><div class="msg"><b>'+m[1]+'</b><span>'+m[2]+'</span></div></div>';
+    }).join('')+'</div></div>';
+}).join('');
+</script>
+</body></html>
