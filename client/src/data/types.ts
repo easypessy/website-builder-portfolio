@@ -1,7 +1,7 @@
 export type Category =
   | "Web Design"
   | "Landing Pages"
-  | "AI Automation"
+  | "Business Systems"
   | "Social Media"
   | "Digital Marketing"
   | "Copywriting"
@@ -64,7 +64,7 @@ export interface Project {
 export const CATEGORIES: Category[] = [
   "Web Design",
   "Landing Pages",
-  "AI Automation",
+  "Business Systems",
   "Social Media",
   "Digital Marketing",
   "Copywriting",

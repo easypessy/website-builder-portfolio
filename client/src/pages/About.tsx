@@ -7,7 +7,7 @@ export default function About() {
     <>
       <Seo
         title="About Easywurld — A small digital studio in Lagos"
-        description="Easywurld is an independent digital studio in Lagos combining marketing strategy, web design, content and practical AI automation for small businesses."
+        description="Easywurld is an independent digital studio in Lagos combining marketing strategy, web design, content and practical business systems for small businesses."
         path="/about"
       />
       <section style={{ paddingBottom: 20 }}>
@@ -58,7 +58,7 @@ export default function About() {
               </p>
               <h3 style={{ marginTop: 34 }}>What we decline</h3>
               <p>
-                Work that needs a claim we can't support. Automation that pretends to be human
+                Work that needs a claim we can't support. Systems that pretend to be human
                 where that matters — healthcare, money, anything with a legal consequence.
                 And projects where the honest answer is that the client doesn't need us yet.
               </p>

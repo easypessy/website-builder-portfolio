@@ -22,7 +22,7 @@ export default function Work() {
     <>
       <Seo
         title={`${filter === "All" ? "Portfolio" : filter} — Easywurld`}
-        description={`${projects.length} concept and sample projects across web design, landing pages, AI automation, social media, marketing strategy, copywriting and business documents.`}
+        description={`${projects.length} concept and sample projects across web design, landing pages, business systems, social media, marketing strategy, copywriting and business documents.`}
         path="/projects"
       />
       <section style={{ paddingBottom: 40 }}>

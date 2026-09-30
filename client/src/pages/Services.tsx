@@ -24,10 +24,10 @@ const DETAIL: Record<string, { blurb: string; items: string[]; deliver: string }
       "Event registration", "Sales pages", "Consultation booking", "Offer pages"],
     deliver: "A single page, built to convert, with the objections handled before the ask.",
   },
-  "AI Automation": {
+  "Business Systems": {
     blurb:
       "Practical assistants and workflows with explicit boundaries. We design what they refuse to do before what they do.",
-    items: ["AI receptionists", "Customer support assistants", "Sales assistants",
+    items: ["Out-of-hours enquiry desks", "Customer support assistants", "Sales assistants",
       "Lead qualification", "Appointment workflows", "Order capture", "Internal knowledge desks",
       "Follow-up sequences"],
     deliver: "A documented workflow, the conversation design, and the rules that keep it honest.",
@@ -59,8 +59,8 @@ export default function Services() {
   return (
     <>
       <Seo
-        title="Services — Strategy, Web Design, Copy & AI Automation | Easywurld"
-        description="Digital marketing strategy, web design, landing pages, AI business automation, social media management, copywriting and business reports for small businesses."
+        title="Services — Web Design, SEO & Content in Lagos | Easywurld"
+        description="Digital marketing strategy, web design, landing pages, business systems, social media management, copywriting and business reports for small businesses."
         path="/services"
       />
       <section style={{ paddingBottom: 30 }}>
