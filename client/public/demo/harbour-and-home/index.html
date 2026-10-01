@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Harbour &amp; Home — property search that starts with how you live</title>
+<meta name="description" content="Find a home by how you want to live, not by bedroom count. Walkable, space to work, room to grow, quiet street. Concept site by Easywurld.">
+<meta property="og:title" content="Harbour &amp; Home"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--stone:#F2F1ED;--pap:#FFFFFF;--ink:#17262A;--mu:#5F6E71;--teal:#1F4A4F;--br:#9A7638;--line:#DEDCD5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 16.5px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--teal)}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid var(--br);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:#fff;padding:12px 18px;z-index:300}
+.skip:focus{left:8px;top:8px}
+.w{max-width:1240px;margin:0 auto;padding:0 26px}
+h1,h2,h3{font-family:'Petrona',Georgia,serif;font-weight:600;letter-spacing:-.01em}
+.data{font-family:'Inter',system-ui,sans-serif}
+
+nav{background:var(--pap);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+nav .w{display:flex;align-items:center;gap:28px;min-height:68px;flex-wrap:wrap}
+nav .brand{font-family:'Petrona',Georgia,serif;font-size:22px;font-weight:600;text-decoration:none;color:var(--ink)}
+nav ul{display:flex;gap:24px;list-style:none;margin:0 0 0 auto;padding:0;font-size:15px}
+nav ul a{color:var(--mu);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+nav ul a:hover{color:var(--ink)}
+nav .saved{border:1px solid var(--line);min-height:44px;padding:0 16px;display:inline-flex;align-items:center;gap:8px;
+text-decoration:none;color:var(--ink);font-size:14.5px}
+
+/* single-purpose hero: lifestyle entry points */
+.hero{position:relative;border-bottom:1px solid var(--line)}
+.hero>img{width:100%;height:clamp(320px,44vw,500px);object-fit:cover}
+.hero .over{position:absolute;inset:0;background:linear-gradient(to right,rgba(16,30,33,.82) 0%,rgba(16,30,33,.42) 62%,rgba(16,30,33,.2) 100%);
+display:flex;align-items:center}
+.hero .w{color:#F2F1ED}
+.hero h1{font-size:clamp(28px,4.2vw,46px);line-height:1.1;margin:0 0 12px;max-width:17ch;color:#fff}
+.hero p{margin:0 0 24px;max-width:48ch;color:#C8D3D4}
+.entries{display:flex;gap:10px;flex-wrap:wrap}
+.entries button{min-height:48px;padding:0 20px;border:1px solid rgba(242,241,237,.45);background:rgba(16,30,33,.35);
+color:#F2F1ED;font:500 15px/1 'Inter';cursor:pointer;backdrop-filter:blur(3px)}
+.entries button:hover{background:rgba(242,241,237,.14)}
+.entries button[aria-pressed="true"]{background:#F2F1ED;color:var(--ink);border-color:#F2F1ED}
+
+/* horizontal filter bar above the grid, never a sidebar */
+.filters{background:var(--pap);border-bottom:1px solid var(--line);position:sticky;top:68px;z-index:50}
+.filters .w{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding-top:14px;padding-bottom:14px}
+.filters .f{display:flex;flex-direction:column;gap:5px}
+.filters label{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);font-weight:500}
+.filters select{min-height:44px;padding:0 12px;border:1px solid var(--line);background:var(--pap);font:inherit;font-size:15px;color:var(--ink)}
+.filters .count{margin-left:auto;font-size:14.5px;color:var(--mu)}
+.filters .clear{min-height:44px;padding:0 14px;border:1px solid var(--line);background:none;font:inherit;font-size:14.5px;cursor:pointer;color:var(--mu)}
+.filters .translate{width:100%;font-size:13.5px;color:var(--teal);background:#EEF3F2;border-left:3px solid var(--teal);padding:9px 13px}
+
+/* listings: fixed aspect ratio so properties compare fairly */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;padding:34px 0 10px}
+.card{background:var(--pap);border:1px solid var(--line);text-decoration:none;color:inherit;display:flex;flex-direction:column;
+transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(23,38,42,.1)}
+.card .ph{position:relative;background:#E7E5DE}
+.card .ph img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.card .badge{position:absolute;left:0;top:14px;background:var(--teal);color:#fff;font-size:11.5px;letter-spacing:.1em;
+text-transform:uppercase;padding:5px 11px}
+.card .badge.new{background:var(--br)}
+.card .b{padding:18px 20px 22px}
+.card .price{font-family:'Petrona',Georgia,serif;font-size:24px;font-weight:600;margin:0 0 3px}
+.card .addr{color:var(--mu);font-size:15px;margin:0 0 14px}
+.card .specs{display:flex;gap:16px;font-size:14px;color:var(--mu);padding-top:12px;border-top:1px solid var(--line);
+font-variant-numeric:tabular-nums}
+.card .specs b{color:var(--ink);font-weight:500}
+.card .why{margin-top:12px;font-size:13.5px;color:var(--teal)}
+.empty{grid-column:1/-1;padding:50px 0;color:var(--mu);text-align:left;max-width:60ch}
+
+/* detail */
+.detail{position:fixed;inset:0;z-index:120;display:none}
+.detail[data-open="true"]{display:block}
+.detail .scrim{position:absolute;inset:0;background:rgba(16,30,33,.5)}
+.detail .sheet{position:absolute;right:0;top:0;bottom:0;width:min(760px,100%);background:var(--pap);overflow:auto}
+.sheet .top{position:sticky;top:0;background:var(--pap);border-bottom:1px solid var(--line);display:flex;
+justify-content:space-between;align-items:center;padding:12px 24px;z-index:3}
+.sheet .x{background:none;border:0;font-size:24px;cursor:pointer;min-width:44px;min-height:44px;color:var(--mu)}
+.sheet .save{min-height:44px;padding:0 16px;border:1px solid var(--line);background:none;font:inherit;font-size:14.5px;cursor:pointer;color:var(--ink)}
+.sheet .save[aria-pressed="true"]{background:var(--br);border-color:var(--br);color:#fff}
+.sheet img.hero2{width:100%;aspect-ratio:3/2;object-fit:cover}
+.sheet .in{padding:26px 32px 50px}
+.sheet h2{font-size:30px;margin:0 0 4px}
+.sheet .ad{color:var(--mu);margin:0 0 18px}
+.sheet .sp{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin-bottom:24px}
+.sheet .sp div{padding:14px 16px;border-left:1px solid var(--line)}
+.sheet .sp div:first-child{border-left:0}
+.sheet .sp b{display:block;font-size:19px;font-variant-numeric:tabular-nums}
+.sheet .sp span{font-size:12.5px;color:var(--mu)}
+.sheet h3{font-size:19px;margin:26px 0 10px}
+.sheet p{color:var(--mu);margin:0 0 13px;max-width:66ch}
+.sheet .times{display:grid;grid-template-columns:1fr auto;gap:8px 18px;font-size:15px;border-top:1px solid var(--line);padding-top:14px}
+.sheet .times div{display:contents}
+.sheet .times dt{color:var(--mu);padding:7px 0;border-bottom:1px dotted var(--line)}
+.sheet .times dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;padding:7px 0;border-bottom:1px dotted var(--line)}
+.sheet .honest{background:#EEF3F2;border-left:3px solid var(--teal);padding:14px 16px;font-size:15px;color:var(--ink);margin:20px 0}
+.sheet .gal{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0}
+.sheet .gal img{aspect-ratio:3/2;object-fit:cover;width:100%}
+.vform{border:1px solid var(--line);padding:22px 24px;margin-top:24px}
+.vform h3{margin:0 0 14px}
+.vform .row{margin-bottom:13px}
+.vform label{display:block;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:7px;font-weight:500}
+.vform input,.vform select{width:100%;min-height:46px;padding:11px 12px;border:1px solid var(--line);background:var(--stone);font:inherit;font-size:16px;color:var(--ink)}
+.vform button{width:100%;min-height:50px;background:var(--teal);color:#fff;border:0;font:500 15.5px/1 'Inter';cursor:pointer}
+.vform .err{color:#8E3220;font-size:14.5px;margin-top:8px}
+.vform .ok{border-left:3px solid var(--teal);background:#EEF3F2;padding:14px 16px;font-size:15px;margin-top:12px}
+.vform .wa{display:block;text-align:center;margin-top:12px;font-size:14.5px}
+
+.policy{padding:56px 0;border-top:1px solid var(--line);margin-top:40px;background:var(--pap)}
+.policy .w{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.policy h2{font-size:clamp(22px,2.8vw,30px);margin:0 0 14px}
+.policy p{color:var(--mu);margin:0 0 13px;max-width:54ch}
+.policy ul{margin:0;padding-left:19px;color:var(--mu)}
+.policy li{margin-bottom:9px}
+.policy li b{color:var(--ink);font-weight:500}
+
+footer{padding:32px 0;color:var(--mu);font-size:14.5px}
+footer .w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.note{background:var(--ink);color:#A9B8BA;font-size:12.5px;padding:14px 26px;text-align:center}
+.note a{color:#D6B77A}
+@media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}.policy .w{grid-template-columns:1fr;gap:26px}
+ .sheet .sp{grid-template-columns:1fr 1fr}.sheet .sp div:nth-child(3){border-left:0}}
+@media(max-width:680px){
+ .grid{grid-template-columns:1fr}
+ nav ul{order:3;width:100%;margin-left:0;overflow-x:auto;padding-bottom:8px}
+ .filters{position:static}.filters .f{flex:1 1 140px}
+ .hero .over{position:static;background:var(--ink)}.hero>img{height:200px}
+ .hero .w{padding-top:28px;padding-bottom:28px}
+ .sheet .in{padding:22px 20px 44px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#results">Skip to listings</a>
+
+<nav><div class="w">
+  <a class="brand" href="#top">Harbour &amp; Home</a>
+  <ul>
+    <li><a href="#results">Properties</a></li>
+    <li><a href="#policy">Our photography policy</a></li>
+    <li><a href="https://wa.me/2349050690837?text=Hello%20Harbour%20%26%20Home">Talk to us</a></li>
+  </ul>
+  <a class="saved" href="#results">Saved <b id="savedn">0</b></a>
+</div></nav>
+
+<header class="hero" id="top">
+  <img src="/demo/img/street-quiet.jpg" alt="A quiet residential street of terraced houses with mature trees in late afternoon light" width="1536" height="1024">
+  <div class="over"><div class="w">
+    <h1>Nobody has ever wanted "three bedrooms".</h1>
+    <p>They want somewhere they can walk to the station from, or room for a workshop, or a street that is quiet on a Sunday. Start there — the bedroom count still works underneath.</p>
+    <div class="entries" id="entries" role="group" aria-label="Start from how you want to live"></div>
+  </div></div>
+</header>
+
+<div class="filters"><div class="w">
+  <div class="f"><label for="f-beds">Bedrooms</label><select id="f-beds"><option value="0">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></div>
+  <div class="f"><label for="f-max">Up to</label><select id="f-max"><option value="0">No maximum</option><option value="300">£300,000</option><option value="450">£450,000</option><option value="600">£600,000</option><option value="850">£850,000</option></select></div>
+  <div class="f"><label for="f-type">Type</label><select id="f-type"><option value="">Any</option><option>House</option><option>Flat</option><option>Bungalow</option></select></div>
+  <div class="f"><label for="f-sort">Sort</label><select id="f-sort"><option value="new">Newest</option><option value="lo">Price, low to high</option><option value="hi">Price, high to low</option></select></div>
+  <button class="clear" id="clear" type="button">Clear everything</button>
+  <span class="count" id="count"></span>
+  <div class="translate" id="translate" hidden></div>
+</div></div>
+
+<main>
+<div class="w"><div class="grid" id="results"></div></div>
+
+<section class="policy" id="policy"><div class="w">
+  <div>
+    <h2>Photography policy</h2>
+    <p>Every listing on this site is photographed to the same rules, and the rules are published because the alternative is an industry where a small flat and a large one look identical online.</p>
+    <ul>
+      <li><b>No wide-angle below 24mm.</b> It makes a room look a third larger and it is the single most common reason a viewing is a disappointment.</li>
+      <li><b>One fixed aspect ratio across every listing.</b> So two properties are compared at the same size, not at whichever crop flattered.</li>
+      <li><b>Nothing removed in editing.</b> Bins, cables, a neighbouring extension — if it is there when you visit, it is there in the photograph.</li>
+      <li><b>Every room shown, including the small one.</b> A missing room is always the worst room.</li>
+      <li><b>Dated.</b> Every photograph carries the month it was taken. Spring light on a December listing is a lie by omission.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>How the lifestyle filters work</h2>
+    <p>They are not a separate database. Each one resolves to ordinary structured fields, which is why they can be combined with the normal filters above without anything breaking.</p>
+    <ul>
+      <li><b>Walkable</b> → within 900m of the station or the high street, measured on foot, not as the crow flies.</li>
+      <li><b>Space to work</b> → floor area above 95m² or an outbuilding flagged on the record.</li>
+      <li><b>Room to grow</b> → three or more bedrooms and a garden over 40 feet.</li>
+      <li><b>Quiet street</b> → not a through road, and not within 150m of a main road.</li>
+      <li><b>Ready to move into</b> → no chain and no work flagged by the last survey we saw.</li>
+    </ul>
+    <p style="font-size:15px">The buyer speaks their own language. The database hears its own. Neither has to compromise.</p>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="w">
+  <span>Harbour &amp; Home · Viewings Thursday to Saturday · <a href="https://wa.me/2349050690837">WhatsApp</a></span>
+  <span>Photography policy published above</span>
+</div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="display:inline-block;height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept site by <a href="https://website-builder-portfolio.vercel.app/projects/harbour-and-home">Easywurld</a> — Harbour &amp; Home is not a real agency and no property here exists. It demonstrates lifestyle entry points mapped onto conventional filters.</div>
+
+<div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="dt">
+  <div class="scrim" id="dscrim"></div>
+  <div class="sheet" id="dsheet"></div>
+</div>
+
+<script>
+var IMG={living:'/demo/img/home-living.jpg',kitchen:'/demo/img/home-kitchen.jpg',workshop:'/demo/img/home-workshop.jpg',
+ house:'/demo/img/house.jpg',street:'/demo/img/street-quiet.jpg',dev:'/demo/img/property-dev.jpg'};
+
+var P=[
+{id:1,price:289,addr:'Flat 2, Mill Lane',type:'Flat',beds:2,baths:1,m2:68,img:IMG.living,gal:[IMG.kitchen,IMG.street],
+ tags:['walkable','quiet','ready'],badge:'New this week',new:true,
+ blurb:'First floor of a converted house. The back room faces south-west and gets sun from about two o\'clock, which is the whole reason to buy this flat rather than the one below it.',
+ honest:'The bathroom is small and there is no way around that. The boiler was replaced in 2022; everything else is original to the 2009 conversion.',
+ times:[['Station, on foot','7 min'],['High street','4 min'],['Nearest primary','11 min'],['Main road noise','Not audible']]},
+{id:2,price:415,addr:'38 Oakline Road',type:'House',beds:3,baths:1,m2:104,img:IMG.house,gal:[IMG.living,IMG.kitchen],
+ tags:['grow','quiet','walkable'],badge:'',new:false,
+ blurb:'A standard three-bed terrace on the quiet end of the road, where it stops being a through route. Forty-two feet of garden facing west.',
+ honest:'The kitchen is from the early 2000s and works perfectly well. It is not the kitchen in the photographs on the portals, because we did not have it styled.',
+ times:[['Station, on foot','12 min'],['High street','6 min'],['Nearest primary','5 min'],['Main road noise','Faint, mornings']]},
+{id:3,price:560,addr:'7 Cooper\'s Yard',type:'House',beds:3,baths:2,m2:131,img:IMG.workshop,gal:[IMG.living,IMG.house],
+ tags:['work','grow'],badge:'Outbuilding',new:false,
+ blurb:'The reason to look at this one is at the end of the garden: a brick outbuilding with power and light, about eighteen square metres. Currently a workshop.',
+ honest:'The outbuilding is not insulated and is cold from November. Converting it properly is a real job, not a weekend. The house itself needs nothing.',
+ times:[['Station, on foot','19 min'],['High street','9 min'],['Nearest primary','8 min'],['Main road noise','None']]},
+{id:4,price:248,addr:'Flat 11, Station Approach',type:'Flat',beds:1,baths:1,m2:46,img:IMG.kitchen,gal:[IMG.living],
+ tags:['walkable','ready'],badge:'',new:false,
+ blurb:'Ninety seconds from the platform. One large room, a separate kitchen and a genuinely usable bedroom rather than a box with a bed in it.',
+ honest:'You will hear the trains. Not constantly, and not after 11:40pm, but you will hear them. Anyone telling you otherwise has not stood in the front room.',
+ times:[['Station, on foot','2 min'],['High street','3 min'],['Nearest primary','14 min'],['Main road noise','Trains, until 11:40pm']]},
+{id:5,price:695,addr:'Grove End, plot 4',type:'House',beds:4,baths:2,m2:158,img:IMG.dev,gal:[IMG.living,IMG.kitchen],
+ tags:['grow','work','ready'],badge:'',new:false,
+ blurb:'New build, finished in March. Four bedrooms with the fourth genuinely a double, and a study that is a room rather than a landing with a desk on it.',
+ honest:'The garden is small for the size of the house — thirty feet. Developer planting, so it will look thin for two or three seasons.',
+ times:[['Station, on foot','22 min'],['High street','15 min'],['Nearest primary','6 min'],['Main road noise','None']]},
+{id:6,price:332,addr:'4 The Terrace',type:'Bungalow',beds:2,baths:1,m2:82,img:IMG.street,gal:[IMG.living,IMG.workshop],
+ tags:['quiet','ready','walkable'],badge:'Chain free',new:true,
+ blurb:'Two-bed bungalow on a cul-de-sac of eleven. No steps anywhere, including at the front door, which is rarer than it should be.',
+ honest:'It was last decorated a long time ago. Nothing is broken; it simply looks its age, and that is reflected in the asking price rather than hidden by the photographs.',
+ times:[['Station, on foot','14 min'],['High street','7 min'],['Nearest primary','9 min'],['Main road noise','None']]}
+];
+
+var ENTRIES=[
+ ['walkable','Walkable to everything','within 900m of the station or high street, measured on foot'],
+ ['work','Space to work','floor area over 95m² or a flagged outbuilding'],
+ ['grow','Room to grow','3+ bedrooms and a garden over 40 feet'],
+ ['quiet','Quiet street','not a through road, 150m+ from a main road'],
+ ['ready','Ready to move into','no chain, no work flagged on the last survey']
+];
+var active=null, saved={}, F={beds:0,max:0,type:'',sort:'new'};
+
+var eb=document.getElementById('entries');
+ENTRIES.forEach(function(e){
+  var b=document.createElement('button'); b.type='button'; b.textContent=e[1];
+  b.setAttribute('aria-pressed','false');
+  b.onclick=function(){
+    active=(active===e[0]?null:e[0]);
+    Array.prototype.forEach.call(eb.children,function(c,i){c.setAttribute('aria-pressed',String(ENTRIES[i][0]===active))});
+    var t=document.getElementById('translate');
+    if(active){t.hidden=false;t.textContent='“'+e[1]+'” is reading as: '+e[2]+'.'}else{t.hidden=true}
+    render();
+  };
+  eb.appendChild(b);
+});
+
+['beds','max','type','sort'].forEach(function(k){
+  document.getElementById('f-'+k).addEventListener('change',function(){
+    F[k]=(k==='type'||k==='sort')?this.value:+this.value; render();
+  });
+});
+document.getElementById('clear').onclick=function(){
+  F={beds:0,max:0,type:'',sort:'new'}; active=null;
+  ['beds','max','type'].forEach(function(k){document.getElementById('f-'+k).selectedIndex=0});
+  document.getElementById('f-sort').value='new';
+  Array.prototype.forEach.call(eb.children,function(c){c.setAttribute('aria-pressed','false')});
+  document.getElementById('translate').hidden=true;
+  render();
+};
+
+function match(p){
+  if(active && p.tags.indexOf(active)<0) return false;
+  if(F.beds && p.beds<F.beds) return false;
+  if(F.max && p.price>F.max) return false;
+  if(F.type && p.type!==F.type) return false;
+  return true;
+}
+function render(){
+  var list=P.filter(match);
+  if(F.sort==='lo') list.sort(function(a,b){return a.price-b.price});
+  if(F.sort==='hi') list.sort(function(a,b){return b.price-a.price});
+  if(F.sort==='new') list.sort(function(a,b){return (b.new?1:0)-(a.new?1:0)});
+  var g=document.getElementById('results');
+  document.getElementById('count').textContent=list.length+' of '+P.length+' properties';
+  if(!list.length){
+    g.innerHTML='<p class="empty">Nothing matches that combination at the moment. Rather than showing you six near-misses, we would rather say so — six listings is a real inventory, not a catalogue, and padding it would waste your afternoon. Clear a filter, or <a href="https://wa.me/2349050690837">tell us what you are after</a> and we will ring you when something arrives.</p>';
+    return;
+  }
+  g.innerHTML=list.map(function(p){
+    var why = active ? '<div class="why">Matches: '+ENTRIES.filter(function(e){return e[0]===active})[0][1].toLowerCase()+'</div>' : '';
+    return '<a class="card" href="#results" data-id="'+p.id+'" role="button" aria-haspopup="dialog">'+
+     '<div class="ph"><img src="'+p.img+'" alt="'+p.addr+', '+p.beds+' bedroom '+p.type.toLowerCase()+'" loading="lazy">'+
+     (p.badge?'<span class="badge'+(p.new?' new':'')+'">'+p.badge+'</span>':'')+'</div>'+
+     '<div class="b"><p class="price">£'+p.price+',000</p><p class="addr">'+p.addr+'</p>'+
+     '<div class="specs"><span><b>'+p.beds+'</b> bed</span><span><b>'+p.baths+'</b> bath</span><span><b>'+p.m2+'</b> m²</span><span>'+p.type+'</span></div>'+
+     why+'</div></a>';
+  }).join('');
+}
+
+var detail=document.getElementById('detail'), sheet=document.getElementById('dsheet'), lastFocus=null;
+document.getElementById('results').addEventListener('click',function(e){
+  var c=e.target.closest('.card'); if(!c) return;
+  e.preventDefault(); openP(+c.dataset.id,c);
+});
+function openP(id,from){
+  var p=P.filter(function(x){return x.id===id})[0]; lastFocus=from;
+  sheet.innerHTML=
+  '<div class="top"><button class="save" id="sv" aria-pressed="'+(saved[id]?'true':'false')+'">'+(saved[id]?'Saved':'Save this one')+'</button>'+
+   '<button class="x" id="dx" aria-label="Close property details">×</button></div>'+
+  '<img class="hero2" src="'+p.img+'" alt="'+p.addr+'">'+
+  '<div class="in"><h2>£'+p.price+',000</h2><p class="ad">'+p.addr+' · '+p.type+'</p>'+
+   '<div class="sp"><div><b>'+p.beds+'</b><span>bedrooms</span></div><div><b>'+p.baths+'</b><span>bathrooms</span></div>'+
+   '<div><b>'+p.m2+'</b><span>square metres</span></div><div><b>'+(p.badge==='Chain free'?'None':'Yes')+'</b><span>chain</span></div></div>'+
+   '<p>'+p.blurb+'</p>'+
+   '<div class="gal">'+p.gal.map(function(g){return '<img src="'+g+'" alt="Another room at '+p.addr+'" loading="lazy">'}).join('')+'</div>'+
+   '<div class="honest"><strong>Worth knowing before you come:</strong> '+p.honest+'</div>'+
+   '<h3>Getting about</h3><dl class="times">'+p.times.map(function(t){return '<div><dt>'+t[0]+'</dt><dd>'+t[1]+'</dd></div>'}).join('')+'</dl>'+
+   '<form class="vform" id="vf" novalidate><h3>Request a viewing</h3>'+
+    '<div class="row"><label for="vn">Name</label><input id="vn" autocomplete="name"></div>'+
+    '<div class="row"><label for="vp">Phone</label><input id="vp" type="tel" autocomplete="tel"></div>'+
+    '<div class="row"><label for="vd">When suits</label><select id="vd"><option>Thursday evening</option><option>Friday daytime</option><option>Saturday morning</option><option>Saturday afternoon</option></select></div>'+
+    '<button type="submit">Request a viewing</button>'+
+    '<div class="err" id="verr" role="alert"></div><div class="ok" id="vok" hidden></div>'+
+    '<a class="wa" href="https://wa.me/2349050690837?text='+encodeURIComponent('Hello Harbour & Home, about '+p.addr)+'">Or message us on WhatsApp</a>'+
+   '</form></div>';
+  detail.setAttribute('data-open','true'); document.body.style.overflow='hidden';
+  document.getElementById('dx').onclick=closeP;
+  document.getElementById('sv').onclick=function(){
+    saved[id]=!saved[id]; this.setAttribute('aria-pressed',String(!!saved[id]));
+    this.textContent=saved[id]?'Saved':'Save this one';
+    document.getElementById('savedn').textContent=Object.keys(saved).filter(function(k){return saved[k]}).length;
+  };
+  document.getElementById('vf').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var err=document.getElementById('verr'), ok=document.getElementById('vok');
+    ok.hidden=true; err.textContent='';
+    var n=document.getElementById('vn').value.trim(), ph=document.getElementById('vp').value.trim();
+    if(!n){err.textContent='We need a name for the viewing.';document.getElementById('vn').focus();return}
+    if(ph.replace(/\D/g,'').length<7){err.textContent='A phone number — viewings get rearranged and we will need to reach you.';document.getElementById('vp').focus();return}
+    ok.hidden=false;
+    ok.textContent='Thank you '+n+'. This is a concept build, so no viewing has been booked. On a live site this would reach the agency directly and be confirmed by phone the same day.';
+  });
+  setTimeout(function(){document.getElementById('dx').focus()},40);
+}
+function closeP(){
+  detail.setAttribute('data-open','false'); document.body.style.overflow='';
+  if(lastFocus) lastFocus.focus();
+}
+document.getElementById('dscrim').onclick=closeP;
+document.addEventListener('keydown',function(e){
+  if(detail.getAttribute('data-open')!=='true') return;
+  if(e.key==='Escape'){e.preventDefault();closeP();return}
+  if(e.key!=='Tab') return;
+  var f=Array.prototype.slice.call(sheet.querySelectorAll('button,a[href],input,select')).filter(function(n){return n.offsetParent!==null});
+  if(!f.length)return;
+  var first=f[0],last=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+});
+render();
+</script>
+</body></html>

@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Morrow House — tonight's menu, hours and bookings</title>
+<meta name="description" content="A thirty-cover neighbourhood restaurant. Six dishes, changed weekly. Tonight's menu, opening hours and bookings. Concept site by Easywurld.">
+<meta property="og:title" content="Morrow House"><meta property="og:type" content="restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--pap:#FBF6EC;--card:#FFFDF8;--ink:#23301F;--mu:#6E7465;--terr:#A8502A;--ol:#4B5B37;--line:#E3DCC9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--pap);color:var(--ink);font:400 17px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--terr)}
+:where(a,button,input,select,summary,[tabindex]):focus-visible{outline:3px solid var(--terr);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:var(--pap);padding:12px 18px;z-index:300}
+.skip:focus{left:8px;top:8px}
+.w{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.008em}
+
+/* header: the three questions answered before anything else */
+.bar{background:var(--ink);color:#EDE6D6}
+.bar .w{display:flex;align-items:center;gap:18px;min-height:52px;flex-wrap:wrap;font-size:14.5px}
+.bar .state{display:inline-flex;align-items:center;gap:9px;font-weight:500}
+.bar .dot{width:9px;height:9px;border-radius:50%;background:#7FBF6A}
+.bar .dot.shut{background:#C77B5A}
+.bar .ph{margin-left:auto;display:flex;gap:18px;align-items:center}
+.bar a{color:#F3D8B8;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.bar a:hover{text-decoration:underline}
+
+nav .w{display:flex;align-items:center;gap:28px;min-height:70px;flex-wrap:wrap}
+nav .brand{font-family:'Fraunces',Georgia,serif;font-size:25px;font-weight:600;text-decoration:none;color:var(--ink)}
+nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:15.5px}
+nav ul a{color:var(--mu);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+nav ul a:hover{color:var(--ink)}
+nav .book{margin-left:auto;background:var(--ink);color:var(--pap);text-decoration:none;min-height:46px;padding:0 22px;
+display:inline-flex;align-items:center;font-size:15px}
+nav .book:hover{background:var(--ol)}
+
+/* tonight block — first screen on mobile, before any photography */
+.tonight{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card)}
+.tonight .w{display:grid;grid-template-columns:1fr 300px;gap:48px;padding-top:34px;padding-bottom:34px}
+.tonight h1{font-size:clamp(26px,3.4vw,36px);margin:0 0 4px}
+.tonight .chg{font-size:13.5px;color:var(--terr);letter-spacing:.06em;margin-bottom:22px}
+.menu{margin:0}
+.dish{display:grid;grid-template-columns:1fr auto;gap:20px;padding:14px 0;border-top:1px dotted var(--line);align-items:baseline}
+.dish:first-child{border-top:0}
+.dish .nm{font-family:'Fraunces',Georgia,serif;font-size:19.5px;font-weight:500}
+.dish .nm .new{font-family:'Inter';font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--terr);
+border:1px solid var(--terr);padding:2px 6px;margin-left:10px;vertical-align:2px}
+.dish .nm .gone{font-family:'Inter';font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);
+border:1px solid var(--line);padding:2px 6px;margin-left:10px;vertical-align:2px}
+.dish p{margin:5px 0 0;color:var(--mu);font-size:15.5px;max-width:58ch}
+.dish.off .nm,.dish.off p{opacity:.5}
+.dish .pr{font-variant-numeric:tabular-nums;font-size:16.5px;white-space:nowrap}
+.hours{background:var(--pap);border:1px solid var(--line);padding:20px 22px;align-self:start}
+.hours h3{margin:0 0 14px;font-size:16px}
+.hours .today{background:var(--ink);color:var(--pap);padding:12px 14px;margin:-4px -6px 14px}
+.hours .today b{display:block;font-family:'Fraunces';font-size:18px}
+.hours .today span{font-size:13.5px;color:#C9CFBE}
+.hours dl{display:grid;grid-template-columns:auto 1fr;gap:7px 16px;margin:0;font-size:14.5px}
+.hours dt{color:var(--mu)}
+.hours dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.hours .kit{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--mu)}
+
+/* photography, sparingly — four images total */
+.strip{display:grid;grid-template-columns:1.4fr 1fr;gap:3px;background:var(--line)}
+.strip img{width:100%;height:clamp(220px,32vw,380px);object-fit:cover}
+
+.story{padding:62px 0;border-bottom:1px solid var(--line)}
+.story .w{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.story h2{font-size:clamp(24px,3vw,33px);margin:0;max-width:16ch}
+.story p{margin:0 0 15px;color:var(--mu);max-width:54ch}
+.story p:first-child{color:var(--ink)}
+
+/* the week — what changes and when */
+.week{padding:58px 0;border-bottom:1px solid var(--line)}
+.week h2{font-size:clamp(23px,2.8vw,31px);margin:0 0 8px}
+.week>.w>p{color:var(--mu);max-width:60ch;margin:0 0 26px}
+.wgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;background:var(--line);border:1px solid var(--line)}
+.wd{background:var(--card);padding:14px 12px 18px;min-height:112px}
+.wd b{display:block;font:500 11.5px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:10px}
+.wd.shut{background:#F2EEE2}
+.wd .t{font-family:'Fraunces';font-size:15.5px;margin-bottom:5px}
+.wd .s{font-size:13px;color:var(--mu);line-height:1.4}
+.wd.today{outline:2px solid var(--terr);outline-offset:-2px}
+
+/* booking */
+.book-sec{padding:60px 0;border-bottom:1px solid var(--line)}
+.book-sec .w{display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:start}
+.book-sec h2{font-size:clamp(23px,2.8vw,31px);margin:0 0 12px}
+.book-sec p{color:var(--mu);margin:0 0 14px;max-width:52ch}
+.form{background:var(--card);border:1px solid var(--line);padding:26px 28px}
+.form .row{margin-bottom:16px}
+.form label{display:block;font:500 13px/1 'Inter';letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.form input,.form select{width:100%;min-height:46px;padding:11px 12px;border:1px solid var(--line);background:var(--pap);font:inherit;font-size:16px;color:var(--ink)}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .slots{display:flex;gap:8px;flex-wrap:wrap}
+.form .slots button{min-height:44px;padding:0 14px;border:1px solid var(--line);background:var(--pap);font:inherit;font-size:15px;cursor:pointer;color:var(--ink)}
+.form .slots button[aria-pressed="true"]{background:var(--ink);color:var(--pap);border-color:var(--ink)}
+.form .slots button[disabled]{color:#B6B2A4;cursor:not-allowed;text-decoration:line-through}
+.form .go{width:100%;min-height:50px;background:var(--terr);color:#fff;border:0;font:500 16px/1 'Inter';cursor:pointer;margin-top:6px}
+.form .go:hover{background:#8F4322}
+.form .err{color:#9A3214;font-size:14.5px;margin-top:8px}
+.form .ok{border-left:3px solid var(--ol);background:var(--pap);padding:14px 16px;font-size:15.5px;margin-top:14px}
+.form .alt{font-size:14px;color:var(--mu);margin-top:14px;text-align:center}
+
+.notice{padding:36px 0;background:#F2EEE2;border-bottom:1px solid var(--line)}
+.notice .w{display:flex;gap:18px;align-items:flex-start}
+.notice .ic{font-size:22px;line-height:1}
+.notice h3{margin:0 0 6px;font-size:18px}
+.notice p{margin:0;color:var(--mu);max-width:64ch;font-size:15.5px}
+
+.find{padding:56px 0}
+.find .w{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.find h2{font-size:clamp(22px,2.6vw,29px);margin:0 0 14px}
+.find address{font-style:normal;color:var(--mu);line-height:1.9}
+.find .wa{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;background:var(--ol);color:#fff;
+text-decoration:none;font-size:15.5px;margin-top:16px}
+.find .wa:hover{background:#3C4A2C}
+
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--mu);font-size:14.5px}
+.note{background:var(--ink);color:#BCC3B0;font-size:12.5px;padding:14px 24px;text-align:center}
+.note a{color:#E8A87C}
+@media(max-width:900px){
+ nav ul{order:3;width:100%;gap:18px;padding-bottom:10px;overflow-x:auto}
+ nav .book{margin-left:0}
+ .tonight .w,.story .w,.book-sec .w,.find .w{grid-template-columns:1fr;gap:28px}
+ .hours{order:-1}
+ .strip{grid-template-columns:1fr}
+ .wgrid{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="bar"><div class="w">
+  <span class="state"><span class="dot" id="dot"></span><span id="state">Checking…</span></span>
+  <span class="ph">
+    <a href="tel:+2349050690837">0905 069 0837</a>
+    <a href="https://wa.me/2349050690837?text=Hello%20Morrow%20House%2C%20I%27d%20like%20a%20table">WhatsApp</a>
+  </span>
+</div></div>
+
+<nav><div class="w">
+  <a class="brand" href="#main">Morrow House</a>
+  <ul>
+    <li><a href="#main">Tonight</a></li>
+    <li><a href="#week">The week</a></li>
+    <li><a href="#story">The kitchen</a></li>
+    <li><a href="#find">Find us</a></li>
+  </ul>
+  <a class="book" href="#book">Book a table</a>
+</div></nav>
+
+<main id="main">
+
+<section class="tonight"><div class="w">
+  <div>
+    <h1>Tonight's menu</h1>
+    <div class="chg" id="chg">Six dishes. Changed Wednesday.</div>
+    <div class="menu" id="menu"></div>
+    <p style="color:var(--mu);font-size:15px;margin-top:20px;max-width:60ch">Everything is cooked to order by two people. If something runs out it is marked here within a few minutes, which is why there is no printed menu to be out of date.</p>
+  </div>
+  <aside class="hours">
+    <h3>Hours</h3>
+    <div class="today"><b id="tday">—</b><span id="ttime">—</span></div>
+    <dl id="hrs"></dl>
+    <div class="kit">Kitchen closes thirty minutes before the room does. Last orders are taken at the bar, not by phone.</div>
+  </aside>
+</div></section>
+
+<div class="strip">
+  <img src="/demo/img/restaurant-dish.jpg" alt="Roast chicken with charred lemon and greens on a dark ceramic plate" loading="lazy">
+  <img src="/demo/img/restaurant-room.jpg" alt="The dining room at dusk with bentwood chairs and brass wall lights" loading="lazy">
+</div>
+
+<section class="story" id="story"><div class="w">
+  <h2>Thirty covers, two cooks, one delivery a week.</h2>
+  <div>
+    <p>We buy on Tuesday and write the menu on Wednesday morning, which is the only sensible order to do it in. Six dishes is what two people can cook properly in a service.</p>
+    <p>There is no signature dish. There is usually a chicken, because it sells and it is good, and the other five change with what came back from the market.</p>
+    <p>We do not do tasting menus, we do not take a card to hold a booking, and the kitchen will happily cook something plain for a child without making a performance of it.</p>
+  </div>
+</div></section>
+
+<section class="week" id="week"><div class="w">
+  <h2>What happens on which day</h2>
+  <p>Regulars mostly want to know two things: has the menu changed, and is it busy. Both are on this grid rather than in a paragraph.</p>
+  <div class="wgrid" id="wgrid"></div>
+</div></section>
+
+<section class="notice"><div class="w">
+  <span class="ic">◆</span>
+  <div>
+    <h3>Closed Sunday 14th for a private party</h3>
+    <p>The room is taken all evening. We are open as normal on the Tuesday after. Anyone with a booking that night has been rung — if you think you have one and nobody has called, please ring us.</p>
+  </div>
+</div></section>
+
+<section class="book-sec" id="book"><div class="w">
+  <div>
+    <h2>Booking</h2>
+    <p>Tables of one to six can be booked here. Seven or more, ring us — it needs the long table and a conversation about the menu.</p>
+    <p>We hold tables for fifteen minutes. If you are running late, a message is genuinely fine and we will keep it.</p>
+    <p style="font-size:15px">Walk-ins get the four bar seats, which are kept back every night and are not bookable.</p>
+  </div>
+  <form class="form" id="bform" novalidate>
+    <div class="row two">
+      <div><label for="bd">Day</label><select id="bd"></select></div>
+      <div><label for="bp">People</label><select id="bp">
+        <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+    </div>
+    <div class="row">
+      <label id="tl">Time</label>
+      <div class="slots" id="slots" role="group" aria-labelledby="tl"></div>
+    </div>
+    <div class="row"><label for="bn">Name</label><input id="bn" autocomplete="name" placeholder="Your name"></div>
+    <div class="row"><label for="bph">Phone</label><input id="bph" type="tel" autocomplete="tel" placeholder="So we can ring if anything changes"></div>
+    <button class="go" type="submit">Request this table</button>
+    <div class="err" id="berr" role="alert"></div>
+    <div class="ok" id="bok" hidden></div>
+    <div class="alt">Or just <a href="https://wa.me/2349050690837?text=Hello%20Morrow%20House%2C%20I%27d%20like%20a%20table">message us on WhatsApp</a></div>
+  </form>
+</div></section>
+
+<section class="find" id="find"><div class="w">
+  <div>
+    <h2>Find us</h2>
+    <address>
+      14 Mill Lane<br>
+      Black door, next to the launderette<br>
+      Ring the bell if it looks shut — it often does.
+    </address>
+    <p style="color:var(--mu);margin-top:16px">Street parking is free after six. The nearest bus stop is on the main road, two minutes away.</p>
+    <a class="wa" href="https://wa.me/2349050690837?text=Hello%20Morrow%20House">Message the restaurant</a>
+  </div>
+  <div>
+    <h2>Before you ask</h2>
+    <p style="color:var(--mu)"><strong style="color:var(--ink)">Dietary requirements.</strong> Tell us when you book, not on the night. With six dishes and two cooks, notice is the difference between a good plate and an apology.</p>
+    <p style="color:var(--mu)"><strong style="color:var(--ink)">Children.</strong> Welcome, always. There is no children's menu; we will cook something plain.</p>
+    <p style="color:var(--mu)"><strong style="color:var(--ink)">Dogs.</strong> Yes, in the front half of the room.</p>
+    <p style="color:var(--mu)"><strong style="color:var(--ink)">Service charge.</strong> Not added. Tips are split between everyone working that night.</p>
+  </div>
+</div></section>
+
+</main>
+
+<footer><div class="w">Morrow House · 14 Mill Lane · <a href="tel:+2349050690837">0905 069 0837</a> · Kitchen closed Mondays</div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="display:inline-block;height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept site by <a href="https://website-builder-portfolio.vercel.app/projects/morrow-house">Easywurld</a> — Morrow House is not a real restaurant. It demonstrates a menu-first hierarchy with live opening state and an editable dish list.</div>
+
+<script>
+var DISHES=[
+ ['Chicken, charred lemon, greens','Half a bird for two, or a leg for one. The one thing always on.','£18','new'],
+ ['Beans, chard, bread','Whatever green came back on Tuesday. Vegan as written.','£11','new'],
+ ['Plaice, brown butter, capers','Whole, on the bone. Takes about twenty minutes.','£21',''],
+ ['Beef shin, mash','Braised Wednesday, better by Friday.','£19',''],
+ ['Chicory, walnut, blue cheese','Small. Order it alongside something, not instead of it.','£8','off'],
+ ['One pudding — baked quince','There is only ever one. Tonight it is quince.','£7','']
+];
+document.getElementById('menu').innerHTML=DISHES.map(function(d){
+  var tag = d[3]==='new' ? '<span class="new">New Wednesday</span>' : (d[3]==='off'?'<span class="gone">Finished tonight</span>':'');
+  return '<div class="dish'+(d[3]==='off'?' off':'')+'"><div><div class="nm">'+d[0]+tag+'</div><p>'+d[1]+'</p></div>'+
+  '<div class="pr">'+d[2]+'</div></div>';
+}).join('');
+
+var NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var HOURS=[[12,16],null,[17.5,22],[17.5,22],[17.5,22],[17.5,22.5],[12,22.5]];
+var now=new Date(), dow=now.getDay(), hr=now.getHours()+now.getMinutes()/60;
+
+function fmt(h){var H=Math.floor(h),M=Math.round((h-H)*60);return H+':'+(M<10?'0':'')+M}
+var t=HOURS[dow];
+document.getElementById('tday').textContent='Today — '+NAMES[dow];
+document.getElementById('ttime').textContent = t ? fmt(t[0])+' to '+fmt(t[1]) : 'Closed';
+var open = t && hr>=t[0] && hr<t[1];
+document.getElementById('state').textContent = open
+  ? 'Open now — kitchen until '+fmt(t[1]-0.5)
+  : (t && hr<t[0] ? 'Opens at '+fmt(t[0])+' today' : 'Closed today. Open '+(function(){for(var i=1;i<8;i++){var d=(dow+i)%7;if(HOURS[d])return NAMES[d]+' from '+fmt(HOURS[d][0])}})());
+if(!open) document.getElementById('dot').classList.add('shut');
+
+document.getElementById('hrs').innerHTML=[1,2,3,4,5,6,0].map(function(i){
+  var h=HOURS[i];
+  return '<dt'+(i===dow?' style="color:var(--ink);font-weight:500"':'')+'>'+NAMES[i].slice(0,3)+'</dt>'+
+   '<dd'+(i===dow?' style="font-weight:500"':'')+'>'+(h?fmt(h[0])+'–'+fmt(h[1]):'Closed')+'</dd>';
+}).join('');
+
+var WEEK=[['Mon','Closed','The kitchen takes a day.',true],
+['Tue','Market','6am market run. Open as normal in the evening.',false],
+['Wed','New menu','All six dishes change. The busiest night for regulars.',false],
+['Thu','Quiet','The easiest night to get a table at short notice.',false],
+['Fri','Busy','Book. Bar seats are kept back for walk-ins.',false],
+['Sat','Busy','Lunch and dinner. Lunch is the calmer one.',false],
+['Sun','Lunch only','Closed from four. No dinner service.',false]];
+var order=[1,2,3,4,5,6,0];
+document.getElementById('wgrid').innerHTML=WEEK.map(function(d,i){
+  var di=[1,2,3,4,5,6,0][i];
+  return '<div class="wd'+(d[3]?' shut':'')+(di===dow?' today':'')+'"><b>'+d[0]+'</b>'+
+  '<div class="t">'+d[1]+'</div><div class="s">'+d[2]+'</div></div>';
+}).join('');
+
+// booking
+var bd=document.getElementById('bd');
+for(var i=0;i<14;i++){
+  var d=new Date(now.getTime()+i*864e5);
+  if(!HOURS[d.getDay()]) continue;
+  var o=document.createElement('option');
+  o.textContent=(i===0?'Today, ':i===1?'Tomorrow, ':'')+NAMES[d.getDay()]+' '+d.getDate()+' '+
+    ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()];
+  o.value=d.getDay(); bd.appendChild(o);
+}
+var SLOTS=[['17:45',true],['18:15',true],['19:00',false],['19:30',true],['20:15',true],['21:00',true]];
+var chosen=null, sl=document.getElementById('slots');
+function drawSlots(){
+  sl.innerHTML='';
+  SLOTS.forEach(function(s){
+    var b=document.createElement('button'); b.type='button'; b.textContent=s[0];
+    b.setAttribute('aria-pressed',String(chosen===s[0]));
+    if(!s[1]){b.disabled=true;b.setAttribute('aria-label',s[0]+', fully booked')}
+    b.onclick=function(){chosen=s[0];drawSlots()};
+    sl.appendChild(b);
+  });
+}
+drawSlots();
+document.getElementById('bform').addEventListener('submit',function(e){
+  e.preventDefault();
+  var err=document.getElementById('berr'), ok=document.getElementById('bok');
+  ok.hidden=true; err.textContent='';
+  var n=document.getElementById('bn').value.trim(), p=document.getElementById('bph').value.trim();
+  if(!chosen){err.textContent='Please choose a time.';sl.querySelector('button:not([disabled])').focus();return}
+  if(!n){err.textContent='We need a name for the table.';document.getElementById('bn').focus();return}
+  if(p.replace(/\D/g,'').length<7){err.textContent='A phone number, so we can ring if anything changes.';document.getElementById('bph').focus();return}
+  ok.hidden=false;
+  ok.textContent='Thank you '+n+' — '+document.getElementById('bp').value+' people, '+
+    bd.options[bd.selectedIndex].textContent+' at '+chosen+'. This is a concept build, so nothing has been booked. On a live site this would reach the restaurant\'s existing reservation system.';
+  ok.focus&&ok.focus();
+});
+</script>
+</body></html>

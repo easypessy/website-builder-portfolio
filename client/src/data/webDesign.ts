@@ -4,7 +4,7 @@ export const webDesign: Project[] = [
   {
     slug: "northline-atelier",
     shot: "/shots/northline-atelier.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/vanta-label/",
+    liveUrl: "/demo/northline-atelier/index.html",
     title: "Northline Atelier",
     category: "Web Design",
     industry: "Fashion",
@@ -47,7 +47,7 @@ export const webDesign: Project[] = [
   {
     slug: "morrow-house",
     shot: "/shots/morrow-house.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/harvest-hearth/",
+    liveUrl: "/demo/morrow-house/index.html",
     title: "Morrow House",
     category: "Web Design",
     industry: "Restaurant",
@@ -90,7 +90,7 @@ export const webDesign: Project[] = [
   {
     slug: "cedar-advisory",
     shot: "/shots/cedar-advisory.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/northline/",
+    liveUrl: "/demo/cedar-advisory/index.html",
     title: "Cedar & Co. Advisory",
     category: "Web Design",
     industry: "Professional services",
@@ -262,7 +262,7 @@ export const webDesign: Project[] = [
   {
     slug: "harbour-and-home",
     shot: "/shots/harbour-and-home.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/lotus-ridge/",
+    liveUrl: "/demo/harbour-and-home/index.html",
     title: "Harbour & Home",
     category: "Web Design",
     industry: "Real estate",

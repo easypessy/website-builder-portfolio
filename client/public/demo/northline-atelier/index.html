@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Northline Atelier — Autumn Collection</title>
+<meta name="description" content="A small clothing label releasing three collections a year. Coats, shirting and knitwear made in limited runs. Concept storefront by Easywurld.">
+<meta property="og:title" content="Northline Atelier"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--pap:#F7F5F1;--ink:#171614;--mu:#6F6A62;--clay:#8A5B45;--line:#E2DED7}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--pap);color:var(--ink);font:300 17px/1.72 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:where(a,button,input,select,summary,[tabindex]):focus-visible{outline:2px solid var(--clay);outline-offset:4px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--pap);padding:12px 18px;z-index:200}
+.skip:focus{left:8px;top:8px}
+.w{max-width:1400px;margin:0 auto;padding:0 40px}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:0}
+
+/* type-only navigation, one line, never competes */
+.nav{position:sticky;top:0;z-index:50;background:rgba(247,245,241,.93);backdrop-filter:blur(7px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.stuck{border-bottom-color:var(--line)}
+.nav .w{display:flex;align-items:center;gap:40px;height:68px}
+.brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:14px;letter-spacing:.05em}
+.nav a.ln{text-decoration:none;color:var(--mu);padding:12px 0;display:inline-block;min-height:44px;line-height:20px}
+.nav a.ln:hover,.nav a.ln[aria-current]{color:var(--ink)}
+.nav .right{margin-left:auto;display:flex;gap:26px;align-items:center;font-size:14px}
+.menubtn{display:none;background:none;border:0;font:inherit;cursor:pointer;min-height:44px;min-width:44px;color:var(--ink)}
+.bag{text-decoration:none;color:var(--mu);min-height:44px;display:inline-flex;align-items:center}
+.bag b{font-weight:400;color:var(--ink)}
+
+/* full-bleed hero, no UI chrome at all */
+.hero{position:relative}
+.hero img{width:100%;height:min(86vh,820px);object-fit:cover}
+.hero .cap{position:absolute;left:40px;bottom:34px;color:#F7F5F1;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 1px 14px rgba(0,0,0,.45)}
+.hero .cap em{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-style:normal;font-size:clamp(28px,4vw,52px);letter-spacing:0;text-transform:none;margin-top:10px;line-height:1.08}
+
+/* text-forward editorial — magazine, not store */
+.lede{padding:88px 0 76px;border-bottom:1px solid var(--line)}
+.lede .w{display:grid;grid-template-columns:1fr 1fr;gap:90px}
+.lede h2{font-size:clamp(26px,3.2vw,40px);line-height:1.22;margin:0;max-width:17ch}
+.lede p{margin:0 0 20px;color:var(--mu);max-width:58ch}
+.lede p:first-of-type{color:var(--ink)}
+
+/* collection: full-bleed frames alternating with narrow text columns */
+.look{padding:0}
+.frame{position:relative}
+.frame img{width:100%;height:min(94vh,900px);object-fit:cover}
+.frame.tall img{height:auto;max-height:none}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pair img{height:min(80vh,760px);object-fit:cover;width:100%}
+.rest{padding:76px 0}
+.rest .w{max-width:620px}
+.rest h3{font-size:clamp(23px,2.6vw,32px);margin:0 0 16px;line-height:1.26}
+.rest p{color:var(--mu);margin:0 0 16px}
+.rest .meta{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:18px}
+
+/* garments: a list, not a grid of cards */
+.pieces{padding:84px 0;border-top:1px solid var(--line)}
+.pieces h2{font-size:clamp(26px,3vw,38px);margin:0 0 8px}
+.pieces .sub{color:var(--mu);margin:0 0 48px;max-width:56ch}
+.piece{display:grid;grid-template-columns:260px 1fr 180px;gap:48px;padding:34px 0;border-top:1px solid var(--line);align-items:start;
+text-decoration:none;position:relative;transition:opacity .2s}
+.piece:last-child{border-bottom:1px solid var(--line)}
+.piece:hover .pn{color:var(--clay)}
+.piece img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.piece .pn{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;margin:0 0 10px;transition:color .2s}
+.piece .pd{color:var(--mu);max-width:48ch;margin:0 0 16px;font-size:16px}
+.piece .sz{display:flex;gap:9px;flex-wrap:wrap}
+.piece .sz span{font-size:13px;color:var(--mu);border:1px solid var(--line);padding:5px 10px;letter-spacing:.06em}
+.piece .sz span.out{color:#B9B2A8;text-decoration:line-through}
+.piece .price{font-size:17px;text-align:right;color:var(--ink)}
+.piece .price small{display:block;color:var(--mu);font-size:13px;margin-top:7px}
+
+/* product panel — single column, distraction-free */
+.panel{position:fixed;inset:0;z-index:120;display:none}
+.panel[data-open="true"]{display:block}
+.panel .scrim{position:absolute;inset:0;background:rgba(23,22,20,.42)}
+.panel .sheet{position:absolute;right:0;top:0;bottom:0;width:min(640px,100%);background:var(--pap);overflow:auto;
+box-shadow:-20px 0 60px rgba(0,0,0,.14);animation:slide .34s cubic-bezier(.22,.7,.3,1)}
+@keyframes slide{from{transform:translateX(26px);opacity:.4}to{transform:none;opacity:1}}
+.sheet .inner{padding:30px 44px 60px}
+.sheet .top{display:flex;justify-content:flex-end;padding-bottom:10px}
+.sheet .x{background:none;border:0;font-size:22px;cursor:pointer;min-width:44px;min-height:44px;color:var(--mu)}
+.sheet img{width:100%;aspect-ratio:3/4;object-fit:cover;margin-bottom:28px}
+.sheet h2{font-size:33px;margin:0 0 6px}
+.sheet .pr{font-size:17px;color:var(--ink);margin:0 0 24px}
+.sheet p{color:var(--mu);margin:0 0 18px}
+.sheet .rail{border-top:1px solid var(--line);padding-top:22px;margin-top:8px}
+.sheet .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin-bottom:12px}
+.sheet .sizes{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}
+.sheet .sizes button{min-width:52px;min-height:44px;background:none;border:1px solid var(--line);font:inherit;cursor:pointer;color:var(--ink)}
+.sheet .sizes button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--pap)}
+.sheet .sizes button[disabled]{color:#BDB6AC;text-decoration:line-through;cursor:not-allowed}
+.sheet .add{width:100%;min-height:52px;background:var(--ink);color:var(--pap);border:0;font:400 15px/1 'Inter';letter-spacing:.08em;cursor:pointer}
+.sheet .add:disabled{background:#C9C3B9;cursor:not-allowed}
+.sheet dl{display:grid;grid-template-columns:auto 1fr;gap:9px 22px;font-size:15px;margin:22px 0 0}
+.sheet dt{color:var(--mu)}
+.sheet dd{margin:0}
+.sheet .said{font-size:14px;color:var(--clay);margin-top:12px;min-height:20px}
+
+/* making-of, text forward */
+.making{padding:86px 0;border-top:1px solid var(--line);background:#F2EFEA}
+.making .w{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.making h2{font-size:clamp(25px,3vw,36px);margin:0 0 18px;max-width:15ch}
+.making p{color:var(--mu);margin:0 0 16px;max-width:52ch}
+.making img{width:100%;aspect-ratio:4/3;object-fit:cover}
+
+.stock{padding:70px 0;border-top:1px solid var(--line)}
+.stock .w{max-width:760px;text-align:left}
+.stock h2{font-size:clamp(23px,2.6vw,32px);margin:0 0 14px}
+.stock p{color:var(--mu);margin:0 0 14px}
+.stock .wa{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border:1px solid var(--ink);
+text-decoration:none;font-size:15px;letter-spacing:.06em;margin-top:10px}
+.stock .wa:hover{background:var(--ink);color:var(--pap)}
+
+footer{border-top:1px solid var(--line);padding:56px 0 40px;font-size:14px;color:var(--mu)}
+footer .w{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+footer h4{font-family:'Inter';font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin:0 0 14px;font-weight:500}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin-bottom:9px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+.note{background:var(--ink);color:#B9B3A8;font-size:12.5px;padding:14px 40px;text-align:center}
+.note a{color:#D8A98C}
+
+@media(max-width:900px){
+ .w{padding:0 20px}
+ .nav ul{display:none}
+ .nav ul.open{display:flex;position:absolute;top:68px;left:0;right:0;background:var(--pap);flex-direction:column;
+ gap:0;padding:8px 20px 20px;border-bottom:1px solid var(--line)}
+ .menubtn{display:inline-block}
+ .lede .w,.making .w{grid-template-columns:1fr;gap:26px}
+ .pair{grid-template-columns:1fr}
+ .piece{grid-template-columns:120px 1fr;gap:20px}
+ .piece .price{grid-column:2;text-align:left}
+ .hero .cap{left:20px}
+ .sheet .inner{padding:24px 22px 50px}
+ footer .w{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" id="nav"><div class="w">
+  <a class="brand" href="#main">Northline</a>
+  <button class="menubtn" id="menubtn" aria-expanded="false" aria-controls="navlist" aria-label="Open menu">Menu</button>
+  <ul id="navlist">
+    <li><a class="ln" href="#collection">Collection</a></li>
+    <li><a class="ln" href="#pieces">Garments</a></li>
+    <li><a class="ln" href="#making">Making</a></li>
+    <li><a class="ln" href="#stockists">Stockists</a></li>
+  </ul>
+  <div class="right"><a class="bag" href="#stockists">Bag <b id="bagn">(0)</b></a></div>
+</div></nav>
+
+<main id="main">
+
+<section class="hero">
+  <img src="/demo/img/fashion-editorial.jpg" alt="A long bone-coloured wool coat worn in an empty gallery room with one tall window" width="1024" height="1536">
+  <div class="cap">Autumn — third collection<em>Nineteen pieces, made once.</em></div>
+</section>
+
+<section class="lede"><div class="w">
+  <h2>We release three times a year and then we stop.</h2>
+  <div>
+    <p>Northline is four people in a workshop. We cut in small runs, from mills we have used for six years, and when a run is finished it is not repeated — not as a sales device, but because the cloth was bought once.</p>
+    <p>That shapes everything here. There is no sale, no countdown, no restock notification. If a coat is gone it is gone, and the next collection will be along in roughly four months.</p>
+    <p>Each garment page tells you the mill, the weight of the cloth, who cut it and how it will behave after a year. We would rather you bought one thing and kept it than three things and replaced them.</p>
+  </div>
+</div></section>
+
+<section class="look" id="collection">
+  <div class="frame"><img src="/demo/img/coat.jpg" alt="The Harbour coat in undyed wool, photographed against a plain wall" loading="lazy"></div>
+  <div class="rest"><div class="w">
+    <div class="meta">Look 01 — the Harbour coat</div>
+    <h3>Cut long enough to sit down in, which sounds obvious and almost never is.</h3>
+    <p>Undyed Donegal wool at 740gsm, unlined through the body so it moves rather than holds its shape. The pockets are set low and deep because the first version had them at the usual height and nobody used them.</p>
+  </div></div>
+
+  <div class="pair">
+    <img src="/demo/img/fashion-rail.jpg" alt="Six garments from the collection hanging on a steel rail against a plaster wall" loading="lazy">
+    <img src="/demo/img/fashion-detail.jpg" alt="Close detail of a hand-finished seam, selvedge edge and single horn button on bone linen" loading="lazy">
+  </div>
+  <div class="rest"><div class="w">
+    <div class="meta">Look 02 — shirting</div>
+    <h3>Four shirts, one pattern, four cloths.</h3>
+    <p>The same block in oxford, brushed cotton, heavy linen and a cotton–linen mix. Buying the same shape in different weights is how most people actually dress, and it is almost impossible to do from a normal shop.</p>
+  </div></div>
+
+  <div class="frame"><img src="/demo/img/fashion-process.jpg" alt="Hands pinning a paper pattern onto natural linen on a wooden cutting table" loading="lazy"></div>
+  <div class="rest"><div class="w">
+    <div class="meta">Look 03 — knitwear</div>
+    <h3>Two jumpers. We tried five and three were not good enough.</h3>
+    <p>Lambswool from a spinner in Yorkshire, knitted on old machines that run slowly and produce a denser fabric. They will pill at the cuffs in the first month and then stop. We say so on the page rather than in an email afterwards.</p>
+  </div></div>
+</section>
+
+<section class="pieces" id="pieces"><div class="w">
+  <h2>The garments</h2>
+  <p class="sub">Price appears once, in the same size as everything else. Select any piece for cloth, fit and the honest note about how it wears.</p>
+  <div id="list"></div>
+</div></section>
+
+<section class="making" id="making"><div class="w">
+  <div>
+    <h2>Four people, one room, three runs a year.</h2>
+    <p>Patterns are cut here. Sewing is done by a workshop twenty minutes away that we have used since the beginning — eleven people, most of whom have been there longer than we have been trading.</p>
+    <p>We do not describe this as a story. It is simply the production arrangement, and it is the reason a coat takes nine weeks and costs what it costs.</p>
+    <p>If you want to know where a specific garment was made, ask. We will tell you the workshop, not a region.</p>
+  </div>
+  <img src="/demo/img/workshop.jpg" alt="The workshop: a cutting table, rolls of cloth and tools in daylight" loading="lazy">
+</div></section>
+
+<section class="stock" id="stockists"><div class="w">
+  <h2>Where to find it</h2>
+  <p>Everything is sold here and in two shops. We do not wholesale further than that, because a third account would mean making more than we can cut properly.</p>
+  <p>Fitting questions are answered by the person who made the pattern, usually the same day. Sizing between two is common on the coats — ask before you order rather than after.</p>
+  <a class="wa" href="https://wa.me/2349050690837?text=Hello%20Northline%2C%20a%20question%20about%20sizing">Ask about fit on WhatsApp</a>
+</div></section>
+
+</main>
+
+<footer><div class="w">
+  <div>
+    <div class="brand" style="font-size:19px">Northline</div>
+    <p style="margin-top:14px;max-width:38ch">Three collections a year. Made in small runs and not repeated.</p>
+  </div>
+  <div><h4>Shop</h4><ul>
+    <li><a href="#collection">Autumn collection</a></li><li><a href="#pieces">All garments</a></li><li><a href="#stockists">Stockists</a></li></ul></div>
+  <div><h4>Information</h4><ul>
+    <li><a href="#making">How it is made</a></li><li><a href="#stockists">Sizing and fit</a></li><li><a href="https://wa.me/2349050690837">Contact</a></li></ul></div>
+</div></footer>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="display:inline-block;height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept storefront by <a href="https://website-builder-portfolio.vercel.app/projects/northline-atelier">Easywurld</a> — Northline Atelier is not a real label. It demonstrates editorial image pacing and a distraction-free product page.</div>
+
+<div class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="pt">
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet"><div class="inner">
+    <div class="top"><button class="x" id="px" aria-label="Close garment details">×</button></div>
+    <img id="pimg" src="" alt="">
+    <h2 id="pt"></h2>
+    <div class="pr" id="ppr"></div>
+    <div id="pdesc"></div>
+    <div class="rail">
+      <div class="lbl">Size</div>
+      <div class="sizes" id="psz"></div>
+      <button class="add" id="padd" disabled>Select a size</button>
+      <div class="said" id="psaid" role="status"></div>
+      <dl id="pspec"></dl>
+    </div>
+  </div></div>
+</div>
+
+<script>
+var PIECES=[
+{n:'The Harbour coat',p:'£680',img:'/demo/img/coat.jpg',
+ d:'Undyed Donegal wool, 740gsm, unlined through the body. Cut long enough to sit down in.',
+ sizes:[['1',true],['2',true],['3',false],['4',true]],
+ long:['Nine weeks from cutting to finishing. The cloth is woven for us in a run of ninety metres, which is where the nineteen coats come from.',
+ 'It will not hold a sharp shape, and it is not supposed to. Unlined wool at this weight falls rather than structures.'],
+ spec:{Cloth:'Donegal wool, 740gsm',Mill:'Co. Donegal, woven to order',Made:'Workshop of eleven, twenty minutes away',Wears:'Softens at the elbows in the first winter. No lining to go through.'}},
+{n:'Oxford shirt',p:'£145',img:'/demo/img/fashion-rail.jpg',
+ d:'The house block in a heavy oxford. The same pattern as the other three shirts, in a different cloth.',
+ sizes:[['1',true],['2',true],['3',true],['4',true]],
+ long:['The collar is a point rather than a spread, cut slightly longer than standard so it sits properly under a coat.',
+ 'It is one size generous through the chest. If you are between sizes and will wear it open, take the smaller.'],
+ spec:{Cloth:'Cotton oxford, 170gsm',Mill:'Portugal',Made:'Same workshop',Wears:'Collar softens by about week three. Shrinks roughly 2% on the first wash and then stops.'}},
+{n:'Heavy linen shirt',p:'£165',img:'/demo/img/fashion-detail.jpg',
+ d:'The same block in a 260gsm linen. Creases immediately and permanently.',
+ sizes:[['1',false],['2',true],['3',true],['4',false]],
+ long:['This is the one we are asked most about and the one we are most honest about: it will be creased within an hour of putting it on, and pressing it is a short-lived exercise.',
+ 'If that will bother you, the brushed cotton is the same shape and behaves itself.'],
+ spec:{Cloth:'Linen, 260gsm',Mill:'Ireland',Made:'Same workshop',Wears:'Softens considerably over a year. Colour lightens slightly at the shoulders.'}},
+{n:'Lambswool crew',p:'£210',img:'/demo/img/fashion-process.jpg',
+ d:'Knitted slowly on old machines, which gives a denser fabric than the usual.',
+ sizes:[['1',true],['2',false],['3',true],['4',true]],
+ long:['It will pill at the cuffs and under the arms in the first month. Then it stops. A comb sorts it out and after that the garment is stable for years.',
+ 'We considered treating the yarn to prevent it and the treated version felt worse, so we did not.'],
+ spec:{Cloth:'Lambswool, 4-ply',Mill:'Yorkshire spinner',Made:'Knitted in Scotland, finished here',Wears:'Pills for a month, then settles. Do not tumble dry, ever.'}},
+{n:'Workshop trouser',p:'£195',img:'/demo/img/retail.jpg',
+ d:'Cotton drill, high rise, deep front pockets, no tapering below the knee.',
+ sizes:[['1',true],['2',true],['3',true],['4',false]],
+ long:['Cut from a pattern we use ourselves in the workshop, which is the entire design brief. The leg is straight because a tapered leg is miserable to kneel in.',
+ 'Unhemmed as standard, with a length guide on the care card. We will hem them if you ask.'],
+ spec:{Cloth:'Cotton drill, 320gsm',Mill:'Japan',Made:'Same workshop',Wears:'Fades at the thigh and seat. Knees will go eventually; we will patch them.'}}
+];
+
+var list=document.getElementById('list'), bag=0;
+list.innerHTML=PIECES.map(function(x,i){
+  return '<a class="piece" href="#pieces" data-i="'+i+'" role="button" aria-haspopup="dialog">'+
+   '<img src="'+x.img+'" alt="'+x.n+'" loading="lazy">'+
+   '<div><h3 class="pn">'+x.n+'</h3><p class="pd">'+x.d+'</p>'+
+   '<div class="sz">'+x.sizes.map(function(s){return '<span class="'+(s[1]?'':'out')+'">'+s[0]+'</span>'}).join('')+'</div></div>'+
+   '<div class="price">'+x.p+'<small>Including UK delivery</small></div></a>';
+}).join('');
+
+var panel=document.getElementById('panel'), lastFocus=null, chosen=null, cur=0;
+
+function open(i,from){
+  cur=i; chosen=null; lastFocus=from;
+  var x=PIECES[i];
+  document.getElementById('pimg').src=x.img;
+  document.getElementById('pimg').alt=x.n;
+  document.getElementById('pt').textContent=x.n;
+  document.getElementById('ppr').textContent=x.p;
+  document.getElementById('pdesc').innerHTML=x.long.map(function(p){return '<p>'+p+'</p>'}).join('');
+  var sz=document.getElementById('psz'); sz.innerHTML='';
+  x.sizes.forEach(function(s){
+    var b=document.createElement('button'); b.type='button'; b.textContent=s[0];
+    b.setAttribute('aria-pressed','false');
+    if(!s[1]){b.disabled=true; b.setAttribute('aria-label','Size '+s[0]+', sold out')}
+    b.onclick=function(){
+      chosen=s[0];
+      Array.prototype.forEach.call(sz.children,function(c){c.setAttribute('aria-pressed',String(c===b))});
+      var add=document.getElementById('padd'); add.disabled=false; add.textContent='Add — size '+s[0];
+    };
+    sz.appendChild(b);
+  });
+  var add=document.getElementById('padd'); add.disabled=true; add.textContent='Select a size';
+  document.getElementById('psaid').textContent='';
+  document.getElementById('pspec').innerHTML=Object.keys(x.spec).map(function(k){
+    return '<dt>'+k+'</dt><dd>'+x.spec[k]+'</dd>'}).join('');
+  panel.setAttribute('data-open','true');
+  document.body.style.overflow='hidden';
+  setTimeout(function(){document.getElementById('px').focus()},40);
+}
+function close(){
+  panel.setAttribute('data-open','false');
+  document.body.style.overflow='';
+  if(lastFocus) lastFocus.focus();
+}
+list.addEventListener('click',function(e){
+  var a=e.target.closest('.piece'); if(!a) return;
+  e.preventDefault(); open(+a.dataset.i,a);
+});
+document.getElementById('px').onclick=close;
+document.getElementById('scrim').onclick=close;
+document.getElementById('padd').onclick=function(){
+  bag++; document.getElementById('bagn').textContent='('+bag+')';
+  document.getElementById('psaid').textContent=PIECES[cur].n+', size '+chosen+' — added. This is a concept build, so nothing is charged.';
+};
+document.addEventListener('keydown',function(e){
+  if(panel.getAttribute('data-open')!=='true') return;
+  if(e.key==='Escape'){e.preventDefault();close();return}
+  if(e.key!=='Tab') return;
+  var f=Array.prototype.slice.call(panel.querySelectorAll('button:not([disabled]),a[href]'))
+    .filter(function(n){return n.offsetParent!==null});
+  if(!f.length) return;
+  var first=f[0], last=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+});
+
+var mb=document.getElementById('menubtn'), nl=document.getElementById('navlist');
+mb.onclick=function(){var o=nl.classList.toggle('open');mb.setAttribute('aria-expanded',String(o));mb.textContent=o?'Close':'Menu'};
+nl.addEventListener('click',function(e){if(e.target.classList.contains('ln')){nl.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='Menu'}});
+
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('stuck',scrollY>8)},{passive:true});
+</script>
+</body></html>
