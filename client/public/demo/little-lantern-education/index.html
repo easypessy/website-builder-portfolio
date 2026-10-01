@@ -6,13 +6,13 @@
 <title>Little Lantern — content for parents with ninety seconds</title>
 <meta name="description" content="Four anxiety-led content pillars for a learning centre, answered briefly by named staff. Concept build by Easywurld.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#FFFBF0;--pap:#fff;--ink:#1F2A44;--mu:#5E6880;--ac:#B9820F;--ac2:#E0A82E;--line:#EBE2CE}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .w{max-width:960px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:'Outfit',system-ui,sans-serif;font-weight:600;letter-spacing:-.015em}
+h1,h2,h3{font-family:'Lora',Georgia,serif;font-weight:600;}
 a{color:var(--ac)}
 
 header{padding:26px 0 0}
@@ -36,7 +36,7 @@ font:500 14px/1 'Inter';cursor:pointer}
 .qs{display:grid;gap:10px}
 .qbtn{display:block;width:100%;text-align:left;background:#28334F;border:1px solid #3A4562;color:#F3F1EA;
 padding:18px 54px 18px 20px;border-radius:5px;cursor:pointer;position:relative;min-height:44px;
-font:600 19px/1.3 'Outfit',system-ui,sans-serif;transition:background .16s}
+font:600 19px/1.3 'Lora',Georgia,serif;transition:background .16s}
 .qbtn:hover{background:#313D5C}
 .qbtn:focus-visible{outline:3px solid var(--ac2);outline-offset:2px}
 .qbtn small{display:block;font:400 13.5px/1.4 'Inter';color:#9FA9C0;margin-top:5px}
@@ -47,8 +47,8 @@ font:600 19px/1.3 'Outfit',system-ui,sans-serif;transition:background .16s}
 @keyframes in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .answer .staff{display:flex;align-items:center;gap:11px;margin-bottom:14px}
 .answer .av{width:38px;height:38px;border-radius:50%;background:var(--ac2);color:#2A2107;display:grid;place-items:center;
-font:600 14px/1 'Outfit';flex:none}
-.answer .staff b{display:block;font:600 14.5px/1.2 'Outfit'}
+font:600 14px/1 'Lora';flex:none}
+.answer .staff b{display:block;font:600 14.5px/1.2 'Lora'}
 .answer .staff span{font-size:12.5px;color:var(--mu)}
 .answer p{margin:0 0 13px;font-size:16.5px;max-width:62ch}
 .answer .short{font-weight:500}
@@ -63,7 +63,7 @@ font:500 14px/1 'Inter';color:var(--mu);cursor:pointer}
 .pillars>.w>p{color:var(--mu);max-width:60ch;margin:0 0 26px}
 .pl{border-top:1px solid var(--line);padding:22px 0;display:grid;grid-template-columns:52px 1fr 1.1fr;gap:24px;align-items:start}
 .pl:last-child{border-bottom:1px solid var(--line)}
-.pl .n{font:600 26px/1 'Outfit';color:var(--ac2)}
+.pl .n{font:600 26px/1 'Lora';color:var(--ac2)}
 .pl h3{margin:0 0 6px;font-size:19px}
 .pl p{margin:0;color:var(--mu);font-size:15.5px}
 .pl .rule{background:#FDF8EA;border-left:3px solid var(--ac2);padding:12px 15px;font-size:14.5px}
@@ -90,6 +90,32 @@ footer{padding:28px 0;color:var(--mu);font-size:14.5px}
  .lg2{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- real post previews: the image and the caption as they would actually appear ---- */
+.previews{padding:56px 0;border-top:1px solid var(--line)}
+.previews h2{font-size:clamp(23px,3vw,31px);margin:0 0 8px}
+.previews>.w>p.i{color:var(--mu);max-width:64ch;margin:0 0 30px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);overflow:hidden}
+.pcard .ph{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.pcard .av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;
+font:600 12px/1 'Inter',sans-serif;color:#fff}
+.pcard .hn{font:600 14px/1.2 'Inter',sans-serif;color:#15171a}
+.pcard .hn span{display:block;font-weight:400;font-size:12px;color:#6b7280;margin-top:2px}
+.pcard>img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#eee}
+.pcard.sq>img{aspect-ratio:1/1}
+.pcard .quote{aspect-ratio:4/5;display:flex;align-items:center;padding:26px;color:#fff;
+font:500 20px/1.38 'Lora',Georgia,serif}
+.pcard .acts{display:flex;gap:14px;padding:10px 14px 4px;color:#6b7280;font-size:13px}
+.pcard .cap{padding:4px 14px 16px;font:400 14.5px/1.55 'Inter',sans-serif;color:#15171a;white-space:pre-line}
+.pcard .cap b{font-weight:600}
+.pcard .plan{margin-top:auto;border-top:1px solid var(--line);background:#F6F5F2;padding:13px 14px;font-size:13px;color:#4b5563}
+.pcard .plan b{display:block;font:600 10.5px/1 'Inter',sans-serif;letter-spacing:.13em;text-transform:uppercase;
+color:#6b7280;margin-bottom:6px}
+.pcard .plan .meta{margin-top:8px;padding-top:8px;border-top:1px dotted #d8d5cd;display:flex;gap:12px;flex-wrap:wrap;font-size:12px}
+@media(max-width:1000px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pgrid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -167,6 +193,58 @@ footer{padding:28px 0;color:var(--mu);font-size:14.5px}
   <h2>On using worry as a hook</h2>
   <p>Anxiety-led content has an obvious failure mode: manufacture the fear, then sell the cure. The line drawn here is that every post has to leave a parent able to act on their own, without the centre. If the only resolution offered is "book an assessment", it does not go out.</p>
   <p style="font-size:14.5px;color:#98A2B8">Concept system. It has not run on a live account, so there are no follower, engagement or enquiry figures to report — and none are implied. The staff names below are invented.</p>
+</div></section>
+
+<section class="previews"><div class="w">
+  <h2>What the posts actually look like</h2>
+  <p class="i">Large type, one question per post, a named member of staff, and an age tag so a parent can skip the eighty per cent that is not about their child.</p>
+  <div class="pgrid">
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#D18A18">LL</span>
+          <span class="hn">Little Lantern<span>Ages 6–7 · 1d</span></span></div>
+        <img src="/demo/img/parent-reading.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Little Lantern</b> Is my child behind with reading?
+
+Almost certainly not. At six, one child may be reading chapter books and another is still sounding out three letters. Both are normal, and the gap usually closes within eighteen months.
+
+What we would look at is a child avoiding books they used to like. Not speed.
+
+— Amara O., reading lead</div>
+        <div class="plan"><b>Why this post</b>Answers the question parents will not ask at the gate. No assessment is offered at the end, which is the rule for every post in this pillar.
+          <div class="meta"><span>Tuesday · 19:30</span><span>Image + long caption</span></div></div>
+      </article>
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#D18A18">LL</span>
+          <span class="hn">Little Lantern<span>Ages 8–9 · 4d</span></span></div>
+        <img src="/demo/img/homework-desk.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Little Lantern</b> He refuses to do homework. Every night.
+
+Nightly refusal is usually about the size of the task, not the subject. The sheet looks like one large object instead of six small ones.
+
+Agree a stop time before you start. Do the first question out loud together. Let the rest be imperfect.
+
+— Kemi A., head of centre</div>
+        <div class="plan"><b>Why this post</b>A real desk with unfinished work on it. Photographing a tidy, happy child here would contradict the post.
+          <div class="meta"><span>Friday · 18:45</span><span>Image + long caption</span></div></div>
+      </article>
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#D18A18">LL</span>
+          <span class="hn">Little Lantern<span>Ages 6–9 · 1w</span></span></div>
+        <img src="/demo/img/classroom.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Little Lantern</b> How much screen time is too much?
+
+There is no honest number. What matters more is what the screen replaces.
+
+Protect the hour before bed, keep meals screen-free, and stop counting the rest. Three rules a tired parent can actually keep.
+
+— Amara O., reading lead</div>
+        <div class="plan"><b>Why this post</b>The only classroom photograph in the rotation. Used sparingly, because classroom pictures are what the account did before and they changed nothing.
+          <div class="meta"><span>Tuesday · 19:30</span><span>Image + long caption</span></div></div>
+      </article>
+  </div>
 </div></section>
 
 <footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a content system</a></div></footer>

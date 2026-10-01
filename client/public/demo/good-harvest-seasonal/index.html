@@ -6,18 +6,18 @@
 <title>Good Harvest — a seasonal campaign instead of a discount feed</title>
 <meta name="description" content="Replacing price-led posts with seasonality: what is good this week, what it costs, what to do with it. Concept build by Easywurld.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F5F7F0;--pap:#FCFDF9;--ink:#1C2C18;--mu:#6E7A68;--ac:#5A7F2E;--warm:#A8641E;--line:#DCE3D3}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .w{max-width:1120px;margin:0 auto;padding:0 26px}
-h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.008em}
+h1,h2,h3,h4{font-family:'Lora',Georgia,serif;font-weight:600;letter-spacing:-.008em}
 a{color:var(--ac)}
 
 .rule{border-top:1px solid var(--line)}
 header .w{padding:34px 0 26px;display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap}
-header .n{font:600 21px/1 'Fraunces',Georgia,serif}
+header .n{font:600 21px/1 'Lora',Georgia,serif}
 header .s{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
 
 .open{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;padding:34px 0 46px;border-top:1px solid var(--line)}
@@ -67,14 +67,14 @@ font:500 13px/1.1 'Inter';color:var(--mu);display:flex;flex-direction:column;ali
 .items{margin:0;padding:0;list-style:none}
 .items li{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-bottom:1px dotted var(--line);font-size:15.5px}
 .items li:last-child{border-bottom:0}
-.items b{font-family:'Fraunces',Georgia,serif;font-weight:600}
+.items b{font-family:'Lora',Georgia,serif;font-weight:600}
 .items small{display:block;color:var(--mu);font-size:13.5px;font-weight:400;font-family:'Inter'}
 .items .price{color:var(--warm);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:14.5px}
 .recipe{background:#F1F4EA;border-left:3px solid var(--ac);padding:15px 17px;font-size:15px}
-.recipe b{display:block;font-family:'Fraunces',Georgia,serif;font-size:17px;margin-bottom:7px}
+.recipe b{display:block;font-family:'Lora',Georgia,serif;font-size:17px;margin-bottom:7px}
 .recipe span{color:var(--mu);font-size:13.5px;display:block;margin-top:9px}
 .grower{font-size:15px}
-.grower b{display:block;font-family:'Fraunces',Georgia,serif;font-size:17px;margin-bottom:6px}
+.grower b{display:block;font-family:'Lora',Georgia,serif;font-size:17px;margin-bottom:6px}
 .grower p{margin:0 0 10px;color:var(--mu);font-size:14.5px}
 .grower .miles{font-size:13px;color:var(--ac);letter-spacing:.05em}
 .capline{padding:18px 26px;border-top:1px solid var(--line);background:#F1F4EA;font-size:14.5px;white-space:pre-line}
@@ -109,6 +109,32 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size
 }
 @media(max-width:560px){.w{padding:0 18px}.months{grid-template-columns:repeat(4,1fr)}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- real post previews: the image and the caption as they would actually appear ---- */
+.previews{padding:56px 0;border-top:1px solid var(--line)}
+.previews h2{font-size:clamp(23px,3vw,31px);margin:0 0 8px}
+.previews>.w>p.i{color:var(--mu);max-width:64ch;margin:0 0 30px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);overflow:hidden}
+.pcard .ph{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.pcard .av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;
+font:600 12px/1 'Inter',sans-serif;color:#fff}
+.pcard .hn{font:600 14px/1.2 'Inter',sans-serif;color:#15171a}
+.pcard .hn span{display:block;font-weight:400;font-size:12px;color:#6b7280;margin-top:2px}
+.pcard>img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#eee}
+.pcard.sq>img{aspect-ratio:1/1}
+.pcard .quote{aspect-ratio:4/5;display:flex;align-items:center;padding:26px;color:#fff;
+font:500 20px/1.38 'Lora',Georgia,serif}
+.pcard .acts{display:flex;gap:14px;padding:10px 14px 4px;color:#6b7280;font-size:13px}
+.pcard .cap{padding:4px 14px 16px;font:400 14.5px/1.55 'Inter',sans-serif;color:#15171a;white-space:pre-line}
+.pcard .cap b{font-weight:600}
+.pcard .plan{margin-top:auto;border-top:1px solid var(--line);background:#F6F5F2;padding:13px 14px;font-size:13px;color:#4b5563}
+.pcard .plan b{display:block;font:600 10.5px/1 'Inter',sans-serif;letter-spacing:.13em;text-transform:uppercase;
+color:#6b7280;margin-bottom:6px}
+.pcard .plan .meta{margin-top:8px;padding-top:8px;border-top:1px dotted #d8d5cd;display:flex;gap:12px;flex-wrap:wrap;font-size:12px}
+@media(max-width:1000px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pgrid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -185,6 +211,54 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mu);font-size
 
 <section class="honest"><div class="w">
   Concept campaign. It has not been run, so there is no margin, basket-size or engagement data to report and none is implied. Prices shown are illustrative placeholders rather than a real price list, and the growers named are invented. On a live account these would be the shop's actual weekly prices, photographed on the counter the morning they change.
+</div></section>
+
+<section class="previews"><div class="w">
+  <h2>The three formats, as posted</h2>
+  <p class="i">Same stock the shop already has, photographed flat on the counter in daylight. Price still appears — it has simply stopped being the headline.</p>
+  <div class="pgrid">
+      <article class="pcard sq">
+        <div class="ph"><span class="av" style="background:#5A7F2E">GH</span>
+          <span class="hn">Good Harvest<span>Monday · good this week</span></span></div>
+        <img src="/demo/img/counter-flatlay.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Good Harvest</b> Good this week.
+
+Squash is in and will keep on a shelf until Christmas, which makes £2.40 a reasonable thing to do.
+
+Beetroot comes with the tops. Cook them like chard — do not bin them.
+
+Blackberries are also in every hedge for free and we are fine with that.</div>
+        <div class="plan"><b>Why this post</b>The anchor post. Three items, real prices, written the morning the board changes. Shot on the counter in about ninety seconds.
+          <div class="meta"><span>Monday · 08:15</span><span>Flat-lay, 4:5</span></div></div>
+      </article>
+      <article class="pcard sq">
+        <div class="ph"><span class="av" style="background:#5A7F2E">GH</span>
+          <span class="hn">Good Harvest<span>Wednesday · recipe card</span></span></div>
+        <img src="/demo/img/foodbox.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Good Harvest</b> Squash, roasted hard.
+
+Wedges, skin on, high heat, and leave them alone until the edges blacken.
+
+Undercooked squash is the reason people say they do not like squash.</div>
+        <div class="plan"><b>Why this post</b>One card a week, using only what was in Monday's list. It never introduces an ingredient the shop is not holding.
+          <div class="meta"><span>Wednesday · 17:00</span><span>Flat-lay, 1:1</span></div></div>
+      </article>
+      <article class="pcard sq">
+        <div class="ph"><span class="av" style="background:#5A7F2E">GH</span>
+          <span class="hn">Good Harvest<span>Friday · meet the grower</span></span></div>
+        <img src="/demo/img/market-produce.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Good Harvest</b> Ashgrove, twelve miles away.
+
+Four polytunnels, none of the tomatoes round or uniform. They grade for flavour and sell the ugly ones cheapest.
+
+What is on our counter today was picked there on Wednesday.</div>
+        <div class="plan"><b>Why this post</b>Fortnightly, not weekly. A thin month does not get a padded one — if there is nobody new to visit, the slot stays empty.
+          <div class="meta"><span>Friday · 12:00</span><span>Photo + named farm</span></div></div>
+      </article>
+  </div>
 </div></section>
 
 <footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about a seasonal campaign</a></div></footer>

@@ -6,31 +6,31 @@
 <title>Pulse Method — carousel series</title>
 <meta name="description" content="A six-slide teaching carousel format for a strength studio, built to be read with the sound off. Concept build by Easywurld.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0E0E0E;--pan:#171717;--ink:#F5F3F0;--mu:#9A9691;--or:#FF6A13;--line:#2B2B2B}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .w{max-width:1140px;margin:0 auto;padding:0 26px}
-h1,h2,h3,.big{font-family:'Archivo',system-ui,sans-serif;letter-spacing:-.02em}
+h1,h2,h3,.big{font-family:'Lora',Georgia,serif;}
 
 /* ticker header — nothing like a normal nav */
 .bar{border-bottom:1px solid var(--line);overflow:hidden;background:var(--or);color:#0E0E0E}
-.bar div{display:flex;gap:44px;white-space:nowrap;padding:9px 0;font:700 12px/1 'Archivo';letter-spacing:.2em;text-transform:uppercase;animation:slide 26s linear infinite}
+.bar div{display:flex;gap:44px;white-space:nowrap;padding:9px 0;font:700 12px/1 'Lora';letter-spacing:.2em;text-transform:uppercase;animation:slide 26s linear infinite}
 @keyframes slide{to{transform:translateX(-50%)}}
 header .w{padding-top:34px;padding-bottom:34px;display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap}
-header h1{margin:0;font-size:34px;font-weight:800;text-transform:uppercase}
+header h1{margin:0;font-size:34px;font-weight:600;}
 header p{margin:0 0 4px;color:var(--mu);font-size:14px}
 
 .hero{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .hero .txt{padding:52px 26px 52px;max-width:600px;margin-left:auto;width:100%}
-.hero h2{font-size:clamp(32px,5vw,58px);line-height:.98;font-weight:800;text-transform:uppercase;margin:0 0 18px}
+.hero h2{font-size:clamp(32px,5vw,58px);line-height:.98;font-weight:600;margin:0 0 18px}
 .hero h2 em{font-style:normal;color:var(--or)}
 .hero p{color:var(--mu);max-width:44ch;margin:0 0 14px}
 .hero .img{background:#000;position:relative;min-height:300px}
 .hero .img img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.12) grayscale(.2)}
 .hero .img::after{content:"Shot in the studio. Not a stock gym.";position:absolute;left:0;bottom:0;background:var(--or);color:#0E0E0E;
-font:700 11px/1 'Archivo';letter-spacing:.16em;text-transform:uppercase;padding:9px 13px}
+font:700 11px/1 'Lora';letter-spacing:.16em;text-transform:uppercase;padding:9px 13px}
 
 /* the carousel player — the centrepiece */
 .player{padding:58px 0 40px;display:grid;grid-template-columns:340px 1fr;gap:54px;align-items:start}
@@ -40,10 +40,10 @@ font:700 11px/1 'Archivo';letter-spacing:.16em;text-transform:uppercase;padding:
 @keyframes fade{from{opacity:0}to{opacity:1}}
 .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.15) grayscale(.35)}
 .slide .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 22%,rgba(0,0,0,.15))}
-.slide .n{position:absolute;top:16px;left:18px;font:800 12px/1 'Archivo';letter-spacing:.18em;color:var(--or)}
+.slide .n{position:absolute;top:16px;left:18px;font:600 12px/1 'Lora';letter-spacing:.18em;color:var(--or)}
 .slide .body{position:relative}
-.slide .kicker{font:700 11px/1 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:9px}
-.slide h3{font-size:27px;line-height:1.02;font-weight:800;text-transform:uppercase;margin:0 0 9px}
+.slide .kicker{font:700 11px/1 'Lora';letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:9px}
+.slide h3{font-size:27px;line-height:1.02;font-weight:600;margin:0 0 9px}
 .slide p{margin:0;font-size:14.5px;line-height:1.45;color:#DAD6D1}
 .sub{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(0,0,0,.82);border-left:3px solid var(--or);
 padding:9px 11px;font-size:13.5px;line-height:1.35;z-index:3}
@@ -61,21 +61,21 @@ font:600 13px/1 'Inter';border-radius:3px;cursor:pointer}
 .ctrls button.on{background:var(--or);border-color:var(--or);color:#0E0E0E}
 .ctrls .pos{color:var(--mu);font-size:13px;margin-left:auto}
 
-.why h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin:0 0 18px;font-weight:700}
+.why h3{font-size:12px;letter-spacing:.2em;color:var(--or);margin:0 0 18px;font-weight:700}
 .why dl{margin:0;display:grid;gap:0}
-.why dt{font:700 17px/1.3 'Archivo';padding:16px 0 5px;border-top:1px solid var(--line)}
+.why dt{font:700 17px/1.3 'Lora';padding:16px 0 5px;border-top:1px solid var(--line)}
 .why dd{margin:0 0 16px;color:var(--mu);font-size:15px;max-width:58ch}
 .banned{border:1px solid var(--line);border-left:3px solid #FF4A4A;padding:18px 20px;margin-top:8px}
-.banned b{display:block;font:700 12px/1 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:#FF4A4A;margin-bottom:10px}
+.banned b{display:block;font:700 12px/1 'Lora';letter-spacing:.18em;text-transform:uppercase;color:#FF4A4A;margin-bottom:10px}
 .banned ul{margin:0;padding-left:18px;color:var(--mu);font-size:14.5px}
 .banned li{margin-bottom:5px}
 
 /* hook library — a table, not cards */
 .hooks{border-top:1px solid var(--line);padding:52px 0 10px}
-.hooks h2{font-size:clamp(26px,3.4vw,38px);text-transform:uppercase;font-weight:800;margin:0 0 8px}
+.hooks h2{font-size:clamp(26px,3.4vw,38px);font-weight:600;margin:0 0 8px}
 .hooks>.w>p{color:var(--mu);max-width:60ch;margin:0 0 26px}
 table{width:100%;border-collapse:collapse;font-size:15px}
-th{text-align:left;font:700 11px/1 'Archivo';letter-spacing:.18em;text-transform:uppercase;color:var(--mu);padding:0 14px 11px 0;border-bottom:1px solid var(--line)}
+th{text-align:left;font:700 11px/1 'Lora';letter-spacing:.18em;text-transform:uppercase;color:var(--mu);padding:0 14px 11px 0;border-bottom:1px solid var(--line)}
 td{padding:14px 14px 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
 td:first-child{color:var(--or);font-weight:600;width:30%}
 td:last-child{color:var(--mu);width:26%}
@@ -84,7 +84,7 @@ tr:hover td{background:#131313}
 .cadence{padding:48px 0;border-top:1px solid var(--line);margin-top:44px}
 .week{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
 .day{background:var(--bg);padding:14px 10px;min-height:118px}
-.day b{display:block;font:700 11px/1 'Archivo';letter-spacing:.14em;color:var(--mu);margin-bottom:9px}
+.day b{display:block;font:700 11px/1 'Lora';letter-spacing:.14em;color:var(--mu);margin-bottom:9px}
 .day .ev{background:var(--or);color:#0E0E0E;font:600 12px/1.3 'Inter';padding:6px 7px;margin-bottom:5px}
 .day .ev.ghost{background:transparent;border:1px dashed var(--line);color:var(--mu)}
 .day .note{font-size:11px;color:var(--mu);margin-top:6px;line-height:1.3}
@@ -179,7 +179,7 @@ footer a{color:var(--or)}
 </div></section>
 
 <section class="cadence"><div class="w">
-  <h2 style="font-size:clamp(24px,3vw,32px);text-transform:uppercase;font-weight:800;margin:0 0 8px">Posted against the booking window</h2>
+  <h2 style="font-size:clamp(24px,3vw,32px);text-transform:uppercase;font-weight:600;margin:0 0 8px">Posted against the booking window</h2>
   <p style="color:var(--mu);max-width:62ch;margin:0">Classes for the following week open on Thursday evening. The teaching carousel lands Tuesday, so it has had two days to be seen before anyone is asked to book anything.</p>
   <div class="week">
     <div class="day"><b>Mon</b><div class="ev ghost">—</div></div>

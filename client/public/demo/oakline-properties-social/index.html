@@ -6,19 +6,19 @@
 <title>Oakline Properties — neighbourhood content direction</title>
 <meta name="description" content="Property content that sells the area before the building: neighbourhood guides, buyer questions, and a one-in-four listing rule. Concept build by Easywurld.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#EFF2ED;--pap:#FFFFFF;--ink:#16221A;--mu:#67765F;--ac:#33613F;--line:#D6DED2}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.62 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .w{max-width:1160px;margin:0 auto;padding:0 26px}
-h1,h2,h3{font-family:'Inter Tight',system-ui,sans-serif;letter-spacing:-.025em;font-weight:600}
+h1,h2,h3{font-family:'Lora',Georgia,serif;font-weight:600}
 .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
 a{color:var(--ac)}
 
 header{border-bottom:1px solid var(--line)}
 header .w{display:flex;align-items:center;justify-content:space-between;padding:20px 26px;gap:16px}
-.lg{font:600 19px/1 'Inter Tight';letter-spacing:-.02em}
+.lg{font:600 19px/1 'Lora';}
 .lg span{display:block;font:400 10.5px/1 'IBM Plex Mono';letter-spacing:.2em;color:var(--mu);margin-top:6px}
 header .meta{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mu);letter-spacing:.06em;text-align:right}
 
@@ -68,7 +68,7 @@ padding-bottom:5px;min-height:44px;transition:transform .16s}
 .stop{flex:0 0 clamp(210px,24vw,260px);border-left:1px solid var(--line);padding:0 20px 0 20px;scroll-snap-align:start}
 .stop:first-child{padding-left:0;border-left:0}
 .stop .t{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ac);letter-spacing:.1em;margin-bottom:10px}
-.stop h4{font:600 17px/1.25 'Inter Tight';margin:0 0 8px}
+.stop h4{font:600 17px/1.25 'Lora';margin:0 0 8px}
 .stop p{font-size:14px;color:var(--mu);margin:0}
 .stop .line{height:1px;background:var(--line);margin:14px 0;position:relative}
 .stop .line::before{content:"";position:absolute;left:0;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--ac)}
@@ -79,7 +79,7 @@ padding-bottom:5px;min-height:44px;transition:transform .16s}
 .q>.w>p{color:var(--mu);max-width:62ch;margin:0 0 24px}
 details{border-top:1px solid var(--line)}
 details:last-of-type{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;padding:17px 40px 17px 0;font:600 17px/1.35 'Inter Tight';position:relative;list-style:none;min-height:44px}
+summary{cursor:pointer;padding:17px 40px 17px 0;font:600 17px/1.35 'Lora';position:relative;list-style:none;min-height:44px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";position:absolute;right:6px;top:15px;font:400 21px/1 'IBM Plex Mono';color:var(--ac)}
 details[open] summary::after{content:"–"}
@@ -98,6 +98,32 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mu);font-size
 }
 @media(max-width:600px){.w{padding:0 18px}.bar16{grid-template-columns:repeat(4,1fr)}header .meta{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ---- real post previews: the image and the caption as they would actually appear ---- */
+.previews{padding:56px 0;border-top:1px solid var(--line)}
+.previews h2{font-size:clamp(23px,3vw,31px);margin:0 0 8px}
+.previews>.w>p.i{color:var(--mu);max-width:64ch;margin:0 0 30px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);overflow:hidden}
+.pcard .ph{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.pcard .av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;
+font:600 12px/1 'Inter',sans-serif;color:#fff}
+.pcard .hn{font:600 14px/1.2 'Inter',sans-serif;color:#15171a}
+.pcard .hn span{display:block;font-weight:400;font-size:12px;color:#6b7280;margin-top:2px}
+.pcard>img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#eee}
+.pcard.sq>img{aspect-ratio:1/1}
+.pcard .quote{aspect-ratio:4/5;display:flex;align-items:center;padding:26px;color:#fff;
+font:500 20px/1.38 'Lora',Georgia,serif}
+.pcard .acts{display:flex;gap:14px;padding:10px 14px 4px;color:#6b7280;font-size:13px}
+.pcard .cap{padding:4px 14px 16px;font:400 14.5px/1.55 'Inter',sans-serif;color:#15171a;white-space:pre-line}
+.pcard .cap b{font-weight:600}
+.pcard .plan{margin-top:auto;border-top:1px solid var(--line);background:#F6F5F2;padding:13px 14px;font-size:13px;color:#4b5563}
+.pcard .plan b{display:block;font:600 10.5px/1 'Inter',sans-serif;letter-spacing:.13em;text-transform:uppercase;
+color:#6b7280;margin-bottom:6px}
+.pcard .plan .meta{margin-top:8px;padding-top:8px;border-top:1px dotted #d8d5cd;display:flex;gap:12px;flex-wrap:wrap;font-size:12px}
+@media(max-width:1000px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pgrid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -158,6 +184,54 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mu);font-size
 
 <section class="honest"><div class="w">
   Concept direction. No reach, engagement or enquiry data — it has not been run on a live account, and the agency, the neighbourhood and the listings here are invented. Photography would be documentary and commissioned locally rather than licensed from a stock library; the frame at the top is a placeholder for a real street the agency actually sells on.
+</div></section>
+
+<section class="previews"><div class="w">
+  <h2>The posts themselves</h2>
+  <p class="i">Documentary photography, wide crops, and property data set small so it reads as fact rather than sales copy. Three of the four formats are shown here; the fourth is the listing.</p>
+  <div class="pgrid">
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#33613F">O</span>
+          <span class="hn">Oakline<span>Neighbourhood guide · 2d</span></span></div>
+        <img src="/demo/img/street-quiet.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Oakline</b> The walk to the station.
+
+Four minutes to the platform — measured on a Tuesday at 8:10, not estimated from a map.
+
+The bad bit: the junction at the top is loud until about nine.
+
+Whole walk, six stops, in the carousel.</div>
+        <div class="plan"><b>Why this post</b>Opens with the area, not a property. The listing on that street follows a fortnight later, by which point the reader has a reason to care where it is.
+          <div class="meta"><span>Tuesday · 07:45</span><span>Carousel, 6 frames</span></div></div>
+      </article>
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#33613F">O</span>
+          <span class="hn">Oakline<span>Sunday on this street · 5d</span></span></div>
+        <img src="/demo/img/street-shops.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Oakline</b> Sunday on this street.
+
+Church bells at ten. Market until two. Parking is fine until the football, and then it is not.
+
+This is the day most buyers never come and look.</div>
+        <div class="plan"><b>Why this post</b>Filmed on the one day a viewing will never happen. It is the single most saved format, because nobody else publishes the inconvenient day.
+          <div class="meta"><span>Sunday · 11:00</span><span>Video, 20 sec, subtitled</span></div></div>
+      </article>
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#33613F">O</span>
+          <span class="hn">Oakline<span>Two-bed, Oakline Road · 1w</span></span></div>
+        <img src="/demo/img/home-living.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Oakline</b> Two bedrooms, first floor, south-facing back room.
+
+Four minutes to the station — the walk we posted last week.
+
+£289,000. Viewings Thursday and Saturday.</div>
+        <div class="plan"><b>Why this post</b>The payoff post, capped at one in four. Price and data are set small and plain; no wide-angle lens, no removed bins.
+          <div class="meta"><span>Thursday · 17:30</span><span>Carousel, 5 frames</span></div></div>
+      </article>
+  </div>
 </div></section>
 
 <footer><div class="w">A concept build · <a href="https://wa.me/2349050690837">Talk to Easywurld about content direction</a></div></footer>

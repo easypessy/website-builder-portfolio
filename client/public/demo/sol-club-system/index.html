@@ -6,7 +6,7 @@
 <title>Sol Club — content system</title>
 <meta name="description" content="A three-pillar monthly content rotation for an independent clothing label. Concept build by Easywurld.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F3EFEA;--ink:#231F1C;--mu:#6E655C;--ac:#8E5335;--line:#DED6CB}
 *{box-sizing:border-box}
@@ -15,20 +15,20 @@ a{color:var(--ac)}
 .w{max-width:1180px;margin:0 auto;padding:0 28px}
 header{padding:38px 0 0}
 .brandline{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
-.brandline h1{font:500 30px/1 'Playfair Display',Georgia,serif;letter-spacing:.01em;margin:0}
+.brandline h1{font:500 30px/1 'Lora',Georgia,serif;letter-spacing:.01em;margin:0}
 .brandline span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
 .intro{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:end;padding:44px 0 34px;border-bottom:1px solid var(--line)}
-.intro h2{font:500 clamp(30px,4.6vw,52px)/1.1 'Playfair Display',Georgia,serif;margin:0 0 14px;letter-spacing:-.01em}
+.intro h2{font:500 clamp(30px,4.6vw,52px)/1.1 'Lora',Georgia,serif;margin:0 0 14px;}
 .intro p{margin:0;color:var(--mu);max-width:46ch}
 .intro em{font-style:italic;color:var(--ink)}
 
 /* layout: sticky legend + grid */
 .main{display:grid;grid-template-columns:265px 1fr;gap:56px;padding:40px 0 10px;align-items:start}
 .legend{position:sticky;top:28px}
-.legend h3{font:500 13px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin:0 0 18px}
+.legend h3{font:500 13px/1 'Inter';letter-spacing:.18em;color:var(--mu);margin:0 0 18px}
 .pill{display:block;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:15px 0;cursor:pointer;font:inherit;color:var(--ink);min-height:44px}
 .pill:last-of-type{border-bottom:1px solid var(--line)}
-.pill b{display:flex;align-items:center;gap:9px;font:500 17px/1.2 'Playfair Display',Georgia,serif}
+.pill b{display:flex;align-items:center;gap:9px;font:500 17px/1.2 'Lora',Georgia,serif}
 .pill i{width:9px;height:9px;border-radius:50%;flex:none;font-style:normal}
 .pill small{display:block;color:var(--mu);font-size:13px;margin-top:5px;padding-left:18px}
 .pill[aria-pressed="false"]{opacity:.42}
@@ -48,7 +48,7 @@ background:linear-gradient(to top,rgba(20,16,13,.78),rgba(20,16,13,0))}
 .tile.process img{filter:grayscale(.55) contrast(1.08)}
 .tile.pov{background:var(--ink)}
 .tile.pov .quote{position:absolute;inset:0;display:flex;align-items:center;padding:26px;color:#F3EFEA;
-font:italic 500 19px/1.35 'Playfair Display',Georgia,serif}
+font:italic 500 19px/1.35 'Lora',Georgia,serif}
 
 /* detail drawer */
 .drawer{position:fixed;inset:auto 0 0 0;background:#fff;border-top:1px solid var(--line);box-shadow:0 -14px 40px rgba(35,31,28,.16);
@@ -56,7 +56,7 @@ transform:translateY(100%);transition:transform .32s cubic-bezier(.22,.7,.3,1);z
 .drawer[data-open="true"]{transform:none}
 .drawer .w{padding-top:26px;padding-bottom:34px}
 .dh{display:flex;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:22px}
-.dh h3{margin:0;font:500 24px/1.2 'Playfair Display',Georgia,serif}
+.dh h3{margin:0;font:500 24px/1.2 'Lora',Georgia,serif}
 .dh .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;padding:5px 10px;border-radius:2px}
 .x{margin-left:auto;background:none;border:1px solid var(--line);width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:19px;color:var(--mu)}
 .dcols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:38px}
@@ -67,7 +67,7 @@ transform:translateY(100%);transition:transform .32s cubic-bezier(.22,.7,.3,1);z
 .rules{margin:0;padding-left:18px}
 
 .calendar{border-top:1px solid var(--line);margin-top:60px;padding:44px 0 0}
-.calendar h3{font:500 26px/1.2 'Playfair Display',Georgia,serif;margin:0 0 6px}
+.calendar h3{font:500 26px/1.2 'Lora',Georgia,serif;margin:0 0 6px}
 .calendar>.w>p{color:var(--mu);margin:0 0 26px;max-width:58ch}
 .weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .wk{background:var(--bg);padding:18px 16px 22px}

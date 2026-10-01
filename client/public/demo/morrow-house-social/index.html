@@ -6,13 +6,13 @@
 <title>Morrow House — content built on the kitchen's week</title>
 <meta name="description" content="A restaurant content calendar that follows kitchen operations instead of fighting them. Concept build by Easywurld.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#FAF4E9;--pap:#FFFDF8;--ink:#2C2114;--mu:#7C7061;--ac:#A94A18;--gr:#4A5A3C;--line:#E4D9C6}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.62 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .w{max-width:1160px;margin:0 auto;padding:0 26px}
-h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em}
+h1,h2,h3,h4{font-family:'Lora',Georgia,serif;font-weight:600;}
 a{color:var(--ac)}
 
 /* masthead like a chalkboard, not a nav */
@@ -77,7 +77,7 @@ display:flex;flex-direction:column;min-height:172px;transition:border-color .18s
 .steps li{counter-increment:s;padding:15px 0 15px 44px;border-top:1px solid var(--line);position:relative;font-size:15px}
 .steps li::before{content:counter(s);position:absolute;left:0;top:14px;width:26px;height:26px;border-radius:50%;background:var(--ink);
 color:var(--bg);font:600 12px/26px 'Inter';text-align:center}
-.steps li b{display:block;font-family:'Fraunces',Georgia,serif;font-size:17px;margin-bottom:3px}
+.steps li b{display:block;font-family:'Lora',Georgia,serif;font-size:17px;margin-bottom:3px}
 
 footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mu);font-size:14px;margin-top:50px}
 .note{background:var(--ink);color:#CFC0A8;font-size:12.5px;padding:13px 26px;text-align:center}
@@ -92,6 +92,32 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mu);font-size
 }
 @media(max-width:600px){.days{grid-template-columns:1fr 1fr}.w{padding:0 18px}.strip{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---- real post previews: the image and the caption as they would actually appear ---- */
+.previews{padding:56px 0;border-top:1px solid var(--line)}
+.previews h2{font-size:clamp(23px,3vw,31px);margin:0 0 8px}
+.previews>.w>p.i{color:var(--mu);max-width:64ch;margin:0 0 30px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);overflow:hidden}
+.pcard .ph{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.pcard .av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;
+font:600 12px/1 'Inter',sans-serif;color:#fff}
+.pcard .hn{font:600 14px/1.2 'Inter',sans-serif;color:#15171a}
+.pcard .hn span{display:block;font-weight:400;font-size:12px;color:#6b7280;margin-top:2px}
+.pcard>img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#eee}
+.pcard.sq>img{aspect-ratio:1/1}
+.pcard .quote{aspect-ratio:4/5;display:flex;align-items:center;padding:26px;color:#fff;
+font:500 20px/1.38 'Lora',Georgia,serif}
+.pcard .acts{display:flex;gap:14px;padding:10px 14px 4px;color:#6b7280;font-size:13px}
+.pcard .cap{padding:4px 14px 16px;font:400 14.5px/1.55 'Inter',sans-serif;color:#15171a;white-space:pre-line}
+.pcard .cap b{font-weight:600}
+.pcard .plan{margin-top:auto;border-top:1px solid var(--line);background:#F6F5F2;padding:13px 14px;font-size:13px;color:#4b5563}
+.pcard .plan b{display:block;font:600 10.5px/1 'Inter',sans-serif;letter-spacing:.13em;text-transform:uppercase;
+color:#6b7280;margin-bottom:6px}
+.pcard .plan .meta{margin-top:8px;padding-top:8px;border-top:1px dotted #d8d5cd;display:flex;gap:12px;flex-wrap:wrap;font-size:12px}
+@media(max-width:1000px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pgrid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -151,6 +177,50 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mu);font-size
       <li><b>Templates with the words already in them</b>The specials-board story has the layout fixed; the only variable is the dish and the number left.</li>
       <li><b>A weekly ten-minute check, not a monthly review</b>Short and frequent beats long and quarterly for a business with no marketing person.</li>
     </ol>
+  </div>
+</div></section>
+
+<section class="previews"><div class="w">
+  <h2>Three days, three posts</h2>
+  <p class="i">Shot on a phone by whoever is already on shift. Nothing here needed a studio, a stylist or anyone coming in early.</p>
+  <div class="pgrid">
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#A94A18">MH</span>
+          <span class="hn">Morrow House<span>Tuesday · market</span></span></div>
+        <img src="/demo/img/market-produce.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Morrow House</b> Tuesday market.
+
+What came back: two crates of chard, the last of the squash, and beetroot that is genuinely good this week.
+
+Most of it will be on the board tomorrow.</div>
+        <div class="plan"><b>Why this post</b>Three frames taken in the van park at seven in the morning. This run happens whether or not anyone photographs it, which is why it anchors the week.
+          <div class="meta"><span>Tuesday · 09:20</span><span>3 frames, phone</span></div></div>
+      </article>
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#A94A18">MH</span>
+          <span class="hn">Morrow House<span>Wednesday · new board</span></span></div>
+        <img src="/demo/img/menu-board.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Morrow House</b> New board from tonight.
+
+The beef shin is back. So is the chard from yesterday.
+
+Six things, as usual. Kitchen closes at 9:30.</div>
+        <div class="plan"><b>Why this post</b>The most useful post of the week for a regular deciding where to eat, and the easiest — the board is being written anyway. Always before 4pm.
+          <div class="meta"><span>Wednesday · 15:40</span><span>Photo of the actual board</span></div></div>
+      </article>
+      <article class="pcard">
+        <div class="ph"><span class="av" style="background:#A94A18">MH</span>
+          <span class="hn">Morrow House<span>Friday · the room at 7</span></span></div>
+        <img src="/demo/img/restaurant-room.jpg" alt="" loading="lazy">
+        <div class="acts"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="cap"><b>Morrow House</b> Two tables left at 8.
+
+Ring us — it is faster than the booking system.</div>
+        <div class="plan"><b>Why this post</b>Posted while people are still deciding where to go. If the room is quiet we post nothing rather than staging a full one.
+          <div class="meta"><span>Friday · 17:50</span><span>One frame, front of house</span></div></div>
+      </article>
   </div>
 </div></section>
 
