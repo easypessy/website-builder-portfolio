@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Clear Homepage — a professional services page, before and after</title>
+<meta name="description" content="The same advisory firm homepage written two ways. Toggle between the original 412 words and the 248-word rewrite and watch where the visitor's question moves. Sample by Easywurld.">
+<meta property="og:title" content="The Clear Homepage"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--pap:#FFFFFF;--off:#F6F5F3;--ink:#111214;--mu:#63676C;--cl:#9E3F1B;--line:#E3E1DD}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--pap);color:var(--ink);font:400 17px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:400;line-height:1.3;margin:0}
+:where(a,button,input,select,summary,[tabindex]):focus-visible{outline:2px solid var(--cl);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:#fff;padding:12px 18px;z-index:300}
+.skip:focus{left:8px;top:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+.narrow{max-width:680px}
+
+/* toggle bar */
+.bar{position:sticky;top:0;z-index:90;background:var(--ink);color:#fff}
+.bi{display:flex;align-items:center;gap:16px;min-height:58px;flex-wrap:wrap;padding:9px 0}
+.bi .lab{font-size:13px;color:#A9ADB2;letter-spacing:.03em}
+.seg{display:flex;border:1px solid #3A3D42;border-radius:6px;overflow:hidden}
+.seg button{min-height:40px;padding:0 20px;background:transparent;color:#C8CCD1;border:0;font:500 14px 'Inter',sans-serif;cursor:pointer}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--ink)}
+.count{margin-left:auto;font-size:13.5px;color:#A9ADB2;font-variant-numeric:tabular-nums}
+.count b{color:#fff;font-weight:600}
+@media(max-width:700px){.count{margin-left:0;width:100%}}
+
+/* firm header */
+.fh{border-bottom:1px solid var(--line)}
+.fhi{display:flex;align-items:center;gap:20px;min-height:76px}
+.mark{font-family:'Libre Baskerville',serif;font-size:19px;letter-spacing:.02em}
+.mark small{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-top:2px}
+.fnav{margin-left:auto;display:flex;gap:28px}
+.fnav a{text-decoration:none;font-size:14.5px;color:var(--mu);padding:10px 0}
+.fnav a:hover{color:var(--ink)}
+.menub{display:none;margin-left:auto;min-height:44px;padding:0 14px;border:1px solid var(--line);background:#fff;border-radius:6px;font:500 14px 'Inter',sans-serif}
+@media(max-width:820px){
+  .fnav{display:none;position:absolute;top:76px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:6px 26px 14px;z-index:80}
+  .fnav.open{display:flex}
+  .fnav a{padding:13px 0;border-bottom:1px solid var(--line)}
+  .menub{display:block}
+}
+
+/* hero */
+.hero{padding:74px 0 60px;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+@media(max-width:880px){.hero{grid-template-columns:1fr;gap:30px;padding:46px 0 38px}}
+.hero h1{font-size:clamp(28px,3.9vw,42px);max-width:16ch}
+.lede{font-size:18.5px;color:var(--mu);margin:20px 0 0;max-width:46ch}
+.ha{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;text-decoration:none;font-size:15px;font-weight:500;border:1px solid var(--ink)}
+.btn.p{background:var(--ink);color:#fff}
+.btn.s{background:transparent;color:var(--ink)}
+.himg{border:1px solid var(--line)}
+.himg img{width:100%;height:330px;object-fit:cover}
+@media(max-width:880px){.himg img{height:220px}}
+
+section{padding:58px 0}
+.alt{background:var(--off);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+h2.sh{font-size:clamp(23px,2.8vw,29px);max-width:22ch;margin-bottom:22px}
+.body p{margin:0 0 18px;max-width:68ch}
+.body p:last-child{margin:0}
+
+/* questions list */
+.qs{display:grid;grid-template-columns:1fr 1fr;gap:34px 46px;margin-top:8px}
+@media(max-width:820px){.qs{grid-template-columns:1fr;gap:26px}}
+.q h3{font-size:19px;margin-bottom:9px}
+.q p{margin:0;color:var(--mu);font-size:16px}
+
+/* credentials */
+.creds{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line)}
+.cr{flex:1 1 210px;padding:22px 26px 22px 0;border-right:1px solid var(--line)}
+.cr:last-child{border-right:0}
+@media(max-width:820px){.cr{flex:1 1 100%;border-right:0;border-bottom:1px solid var(--line);padding-right:0}}
+.cr b{display:block;font-family:'Libre Baskerville',serif;font-size:25px;font-weight:400;margin-bottom:5px}
+.cr span{font-size:14.5px;color:var(--mu)}
+
+/* annotations */
+.annot{background:var(--ink);color:#DDE0E3;padding:60px 0}
+.annot h2{color:#fff;font-size:clamp(23px,2.8vw,29px);max-width:24ch}
+.annot>.wrap>p{color:#A9ADB2;max-width:62ch;margin:14px 0 30px}
+.notes{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:#2A2D31;border:1px solid #2A2D31}
+@media(max-width:820px){.notes{grid-template-columns:1fr}}
+.nt{background:var(--ink);padding:24px 26px}
+.nt h3{font-size:17px;color:#fff;margin-bottom:9px}
+.nt p{margin:0;font-size:15px;color:#A9ADB2}
+.nt .was{display:block;margin-top:12px;padding-top:12px;border-top:1px solid #33373C;font-size:14px;color:#8E9398;font-style:italic}
+.metrics{display:flex;gap:40px;flex-wrap:wrap;margin-top:34px;padding-top:26px;border-top:1px solid #33373C}
+.me b{display:block;font-family:'Libre Baskerville',serif;font-size:30px;color:#fff;font-weight:400}
+.me span{font-size:13.5px;color:#A9ADB2}
+
+.honest{border-left:2px solid var(--cl);padding-left:22px;max-width:66ch;margin-top:34px;color:#A9ADB2;font-size:15px}
+.honest b{color:#fff;font-weight:600}
+
+.cta2{text-align:left;padding:62px 0}
+.cta2 h2{font-size:clamp(24px,3vw,32px);max-width:20ch}
+.cta2 p{color:var(--mu);max-width:48ch;margin:14px 0 26px}
+footer{border-top:1px solid var(--line);padding:30px 0;font-size:14px;color:var(--mu);display:flex;gap:18px;flex-wrap:wrap}
+.note{background:var(--ink);color:#A9ADB2;font-size:13.5px;line-height:1.65;padding:18px 24px;text-align:center}
+.note a{color:#fff}
+[data-sw]{transition:opacity .22s ease}
+[data-sw].out{opacity:0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="bar"><div class="wrap bi">
+  <span class="lab">Same firm, same page, two versions:</span>
+  <div class="seg" role="group" aria-label="Choose copy version">
+    <button id="bBefore" aria-pressed="false">Before</button>
+    <button id="bAfter" aria-pressed="true">After</button>
+  </div>
+  <span class="count">Body copy: <b id="wc">248</b> words · first client-facing sentence in paragraph <b id="pc">1</b></span>
+</div></div>
+
+<header class="fh"><div class="wrap fhi">
+  <div class="mark">Westcombe Partners<small>Advisory</small></div>
+  <button class="menub" id="menub" aria-expanded="false" aria-controls="fnav">Menu</button>
+  <nav class="fnav" id="fnav" aria-label="Main">
+    <a class="ln" href="#work">What we do</a>
+    <a class="ln" href="#who">Who we help</a>
+    <a class="ln" href="#about">The firm</a>
+    <a class="ln" href="#talk">Contact</a>
+  </nav>
+</div></header>
+
+<main id="main">
+
+<div class="wrap hero">
+  <div>
+    <h1 data-sw id="h1">Something in the business has stopped adding up.</h1>
+    <p class="lede" data-sw id="lede">You are not sure whether it is pricing, cash timing, or a cost that grew quietly. We find out, in plain language, and tell you what to do about it.</p>
+    <div class="ha">
+      <a class="btn p" href="#talk" id="cta1">Book a first conversation</a>
+      <a class="btn s" href="#work">See how we work</a>
+    </div>
+  </div>
+  <div class="himg"><img src="/demo/img/firm-office.jpg" alt="A quiet meeting room with a plain oak table, four chairs and a stack of document folders by a tall window." width="1400" height="933"></div>
+</div>
+
+<section class="alt" id="work"><div class="wrap">
+  <h2 class="sh" data-sw id="h2a">The questions clients arrive with</h2>
+  <div class="qs" data-sw id="qs">
+    <div class="q"><h3>Why is profit falling while sales rise?</h3><p>Usually a pricing or mix problem that has been invisible for two or three quarters. We find it in the numbers you already have.</p></div>
+    <div class="q"><h3>Can we afford to hire?</h3><p>A cash-timing question more often than a profit question. We model the months either side of the decision.</p></div>
+    <div class="q"><h3>Is this contract worth renewing?</h3><p>We cost it properly, including the time it takes that nobody is billing for.</p></div>
+    <div class="q"><h3>What is this business actually worth?</h3><p>A valuation you can defend, with the assumptions written down so a buyer can argue with them.</p></div>
+  </div>
+</div></section>
+
+<section id="who"><div class="wrap">
+  <h2 class="sh" data-sw id="h2b">Who we work with</h2>
+  <div class="body narrow" data-sw id="who-body">
+    <p>Owner-managed businesses between roughly ten and ninety staff, usually at the point where the founder can no longer hold the whole picture in their head. Manufacturing, logistics, professional services and food production.</p>
+    <p>We are a poor fit for pre-revenue startups and for anyone looking for a signature on accounts prepared elsewhere.</p>
+  </div>
+  <div class="creds" style="margin-top:34px">
+    <div class="cr"><b>1998</b><span>Founded in Leeds</span></div>
+    <div class="cr"><b>Three</b><span>Partners, all chartered</span></div>
+    <div class="cr"><b>Two offices</b><span>Leeds and Manchester</span></div>
+    <div class="cr"><b>Fixed fees</b><span>Agreed before work starts</span></div>
+  </div>
+</div></section>
+
+<section class="alt" id="about"><div class="wrap">
+  <h2 class="sh" data-sw id="h2c">How a first conversation goes</h2>
+  <div class="body narrow" data-sw id="about-body">
+    <p>Forty-five minutes, no charge, no document required. You describe what is bothering you. We say whether it is something we can help with and roughly what it would take.</p>
+    <p>If it is not our kind of problem we will say so in that call rather than in a proposal three weeks later.</p>
+  </div>
+</div></section>
+
+<section class="cta2" id="talk"><div class="wrap">
+  <h2 data-sw id="h2d">Tell us what has stopped adding up.</h2>
+  <p>No form with eleven fields. A phone number and a sentence is enough to start.</p>
+  <div class="ha">
+    <a class="btn p" href="https://wa.me/2349050690837">Message on WhatsApp</a>
+    <a class="btn s" href="https://website-builder-portfolio.vercel.app/contact">Send an enquiry</a>
+  </div>
+</div></section>
+
+<section class="annot"><div class="wrap">
+  <h2>What changed, and why</h2>
+  <p>Four structural edits. None of them made the page cleverer — they moved the reader's question in front of the firm's history.</p>
+  <div class="notes">
+    <div class="nt"><h3>The headline names a problem, not a firm</h3><p>A visitor arrives mid-worry. The first line should describe the worry, so they know they are in the right place before they decide to keep reading.</p><span class="was">Was: "Westcombe Partners — Chartered Advisers Since 1998"</span></div>
+    <div class="nt"><h3>Section headings became questions</h3><p>Clients do not search for "our service offering". They search for the question they are stuck on. The headings now match the words in their head.</p><span class="was">Was: "Our Services" / "Our Approach" / "Our Values"</span></div>
+    <div class="nt"><h3>Credentials moved below the fold and halved</h3><p>Founding date, office count and qualifications are still there. They now act as reassurance after interest, rather than as a barrier before it.</p><span class="was">Was: 180 words of firm history in the opening two paragraphs</span></div>
+    <div class="nt"><h3>The call to action describes the next event</h3><p>"Book a first conversation" tells the reader what will physically happen. "Get in touch" tells them nothing, so they weigh the risk themselves.</p><span class="was">Was: "Get in touch to discuss your requirements"</span></div>
+  </div>
+  <div class="metrics">
+    <div class="me"><b>412 → 248</b><span>Body words</span></div>
+    <div class="me"><b>¶5 → ¶1</b><span>First client-facing sentence</span></div>
+    <div class="me"><b>3 → 1</b><span>Calls to action above the fold</span></div>
+  </div>
+  <p class="honest"><b>No performance data.</b> This is a sample rewrite produced to demonstrate structure, not a live client page, so there is no A/B test, no conversion change and no enquiry figure to report. The only measurable claims on this page are the three counts above, and each of them is a property of the text itself.</p>
+</div></section>
+
+<div class="wrap"><footer>
+  <span>Westcombe Partners — sample copy. Not a real firm.</span>
+  <span>Leeds · Manchester</span>
+</footer></div>
+</main>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="display:inline-block;height:16px;width:16px;vertical-align:-3px;margin-right:6px">Sample copywriting by <a href="https://website-builder-portfolio.vercel.app/projects/clear-homepage-rewrite">Easywurld</a> — Westcombe Partners is not a real firm and no figures above describe a real business. It demonstrates a homepage rewrite judged on structure: toggle Before and After to read both versions in the same typeface.</div>
+
+<script>
+(function(){
+var BEFORE={
+  h1:'Westcombe Partners — Chartered Advisers Since 1998',
+  lede:'Established in Leeds in 1998, Westcombe Partners is a full-service chartered advisory practice with offices in Leeds and Manchester, serving clients across the North of England with integrity, diligence and a commitment to excellence.',
+  cta1:'Get in touch to discuss your requirements',
+  h2a:'Our Services',
+  h2b:'Our Approach',
+  h2c:'Our Values',
+  h2d:'Get in touch to discuss your requirements.',
+  qs:'<div class="q"><h3>Audit &amp; Assurance</h3><p>A comprehensive range of audit and assurance services delivered to the highest professional standards.</p></div>'+
+     '<div class="q"><h3>Taxation</h3><p>Corporate and personal taxation services tailored to the individual circumstances of each client.</p></div>'+
+     '<div class="q"><h3>Corporate Finance</h3><p>Transaction support, valuations and due diligence across a broad spectrum of sectors.</p></div>'+
+     '<div class="q"><h3>Business Advisory</h3><p>Strategic advice drawing on more than twenty-five years of combined partner experience.</p></div>',
+  whob:'<p>The practice was founded by David Westcombe and Alan Pryce, who had previously spent a combined twenty-two years at national firms before establishing an independent practice built on closer client relationships. The firm opened its Manchester office in 2007 and now employs eighteen staff across both locations.</p>'+
+       '<p>All three partners are chartered accountants and members of their respective professional bodies. The firm is registered to carry on audit work and is regulated for a range of investment business activities.</p>',
+  aboutb:'<p>Our approach is built on four core values: integrity, excellence, partnership and progress. We believe that lasting client relationships are founded on trust, technical rigour and a genuine understanding of each client\u2019s commercial objectives.</p>'+
+         '<p>Every engagement is partner-led. We pride ourselves on being responsive, approachable and commercially minded in everything we do.</p>',
+  wc:412,pc:5
+};
+var AFTER={}, keys=['h1','lede','cta1','h2a','h2b','h2c','h2d'];
+var el={};
+keys.forEach(function(k){el[k]=document.getElementById(k)});
+el.qs=document.getElementById('qs');
+el.whob=document.getElementById('who-body');
+el.aboutb=document.getElementById('about-body');
+keys.forEach(function(k){AFTER[k]=el[k].textContent});
+AFTER.qs=el.qs.innerHTML;
+AFTER.whob=el.whob.innerHTML;
+AFTER.aboutb=el.aboutb.innerHTML;
+AFTER.wc=248;AFTER.pc=1;
+
+var wc=document.getElementById('wc'), pc=document.getElementById('pc');
+var bB=document.getElementById('bBefore'), bA=document.getElementById('bAfter');
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function apply(S){
+  keys.forEach(function(k){el[k].textContent=S[k]});
+  el.qs.innerHTML=S.qs;
+  el.whob.innerHTML=S.whob;
+  el.aboutb.innerHTML=S.aboutb;
+  wc.textContent=S.wc;pc.textContent=S.pc;
+}
+function swap(S,isAfter){
+  bA.setAttribute('aria-pressed',String(isAfter));
+  bB.setAttribute('aria-pressed',String(!isAfter));
+  var nodes=document.querySelectorAll('[data-sw]');
+  if(reduce){apply(S);return}
+  nodes.forEach(function(n){n.classList.add('out')});
+  setTimeout(function(){
+    apply(S);
+    nodes.forEach(function(n){n.classList.remove('out')});
+  },210);
+}
+bB.onclick=function(){swap(BEFORE,false)};
+bA.onclick=function(){swap(AFTER,true)};
+
+var mb=document.getElementById('menub'), nl=document.getElementById('fnav');
+mb.onclick=function(){var o=nl.classList.toggle('open');mb.setAttribute('aria-expanded',String(o));mb.textContent=o?'Close':'Menu'};
+nl.addEventListener('click',function(e){if(e.target.classList.contains('ln')){nl.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='Menu'}});
+})();
+</script>
+</body></html>

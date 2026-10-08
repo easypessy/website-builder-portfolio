@@ -4,7 +4,7 @@ export const copywriting: Project[] = [
   {
     slug: "clear-homepage-rewrite",
     shot: "/shots/clear-homepage-rewrite.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/copy-vault/",
+    liveUrl: "/demo/clear-homepage-rewrite/index.html",
     title: "The Clear Homepage",
     category: "Copywriting",
     industry: "Professional services",
@@ -32,7 +32,7 @@ export const copywriting: Project[] = [
     tags: ["Homepage", "Structure", "B2B"],
     visual: {
       archetype: "copy", bg: "#FFFFFF", ink: "#111214", accent: "#B4451F", muted: "#6F7378",
-      head: "'Inter Tight', system-ui, sans-serif", body: "'Inter', system-ui, sans-serif", variant: 0,
+      head: "'Libre Baskerville', Georgia, serif", body: "'Inter', system-ui, sans-serif", variant: 0,
       words: ["BEFORE", "AFTER", "412 words", "248 words"],
     },
   },
