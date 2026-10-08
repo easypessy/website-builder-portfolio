@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VendorReply — Turn social messages into structured orders</title>
+<meta name="description" content="A concept order-capture workflow for vendors selling through Instagram and WhatsApp: read the thread, fill the order card, flag the payment for a human. Built by Easywurld.">
+<meta property="og:title" content="VendorReply"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF9F2;--pap:#FFFFFF;--ink:#2B1D12;--mu:#7A6A58;--amb:#B5620A;--ambl:#FCEFDD;--line:#EADFD0;--ok:#2C6E4A;--okb:#E0F0E6;--stop:#9B2C2C;--stopb:#FBE8E8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.66 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{font-family:'Lora',Georgia,serif;font-weight:600;line-height:1.25;margin:0}
+:where(a,button,input,select,summary,[tabindex]):focus-visible{outline:2px solid var(--amb);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:8px;top:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,249,242,.94);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.stuck{border-color:var(--line)}
+.nb{display:flex;align-items:center;gap:20px;min-height:66px}
+.logo{font-family:'Lora',serif;font-weight:600;font-size:19.5px}
+.logo em{font-style:normal;color:var(--amb)}
+.nlinks{margin-left:auto;display:flex;gap:25px;align-items:center}
+.nlinks a{text-decoration:none;color:var(--mu);font-size:14.5px;padding:10px 0}
+.nlinks a:hover{color:var(--ink)}
+.menub{display:none;margin-left:auto;min-height:44px;padding:0 14px;border:1px solid var(--line);background:var(--pap);border-radius:6px;font:500 14px 'Inter',sans-serif}
+@media(max-width:880px){
+  .nlinks{display:none;position:absolute;top:66px;left:0;right:0;background:var(--pap);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 24px 16px}
+  .nlinks.open{display:flex}
+  .nlinks a{padding:13px 0;border-bottom:1px solid var(--line);width:100%}
+  .menub{display:block}
+}
+
+/* hero: text left, narrow image strip right */
+.hero{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:end;padding:58px 0 46px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:28px;padding:38px 0 32px}}
+.kick{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--amb);font-weight:600;margin-bottom:14px}
+.hero h1{font-size:clamp(30px,4.4vw,46px);max-width:17ch}
+.hero p{color:var(--mu);font-size:18px;max-width:48ch;margin:18px 0 0}
+.hb{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:6px;text-decoration:none;font-size:15px;font-weight:500;border:1px solid var(--amb)}
+.btn.p{background:var(--amb);color:#fff}
+.btn.s{background:transparent;color:var(--amb)}
+.hstrip img{height:300px;width:100%;object-fit:cover;border:1px solid var(--line)}
+@media(max-width:900px){.hstrip img{height:200px}}
+
+.sect{padding:58px 0;border-top:1px solid var(--line)}
+.shead{max-width:62ch;margin-bottom:30px}
+.shead h2{font-size:clamp(24px,3vw,31px)}
+.shead p{color:var(--mu);margin:12px 0 0}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);background:var(--pap)}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+.pane{padding:0}
+.pane+.pane{border-left:1px solid var(--line)}
+@media(max-width:900px){.pane+.pane{border-left:0;border-top:1px solid var(--line)}}
+.ptop{padding:14px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.ptop h3{font-size:15.5px}
+.ptop .sub{font-size:12.5px;color:var(--mu);margin-left:auto}
+.dm{padding:18px 20px;min-height:430px;max-height:430px;overflow-y:auto;background:#FCFAF7;display:flex;flex-direction:column;gap:9px}
+.b{max-width:85%;padding:9px 13px;border-radius:12px;font-size:14.5px;line-height:1.5}
+.b.them{background:#F0ECE6;align-self:flex-start;border-bottom-left-radius:3px}
+.b.me{background:var(--ambl);align-self:flex-end;border-bottom-right-radius:3px}
+.b .mt{display:block;font-size:10.5px;color:#9B8A77;margin-top:3px}
+.b.proof{background:#fff;border:1px dashed var(--amb);align-self:flex-start;font-size:13.5px;color:var(--amb);font-weight:500}
+.b.in{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.card{padding:4px 20px 18px;min-height:430px}
+.crow{display:grid;grid-template-columns:118px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #F4EDE4;align-items:baseline}
+.crow dt{font-size:12.5px;color:var(--mu);letter-spacing:.03em;text-transform:uppercase;font-weight:600}
+.crow dd{margin:0;font-size:15.5px;font-weight:500;min-height:22px}
+.crow dd.empty{color:#C2B5A4;font-weight:400;font-style:italic}
+.crow.hit dd{animation:flash .5s ease}
+@keyframes flash{from{background:#FBE6C8}to{background:transparent}}
+.crow.ask dd{color:var(--amb)}
+.cfoot{padding:16px 20px;border-top:1px solid var(--line);background:#FFFCF8}
+.state{display:inline-block;padding:6px 13px;border-radius:4px;font-size:13.5px;font-weight:600;margin-bottom:9px}
+.state.draft{background:#F1EBE3;color:var(--mu);border:1px solid var(--line)}
+.state.hold{background:var(--stopb);color:var(--stop);border:1px solid #F0C4C4}
+.state.ok{background:var(--okb);color:var(--ok);border:1px solid #B6DCC4}
+.cfoot p{margin:0;font-size:14px;color:var(--mu)}
+.verify{margin-top:12px;min-height:44px;padding:0 18px;border-radius:6px;border:1px solid var(--stop);background:#fff;color:var(--stop);font:600 14px 'Inter',sans-serif;cursor:pointer}
+.verify:hover{background:var(--stop);color:#fff}
+.verify[disabled]{opacity:.45;cursor:not-allowed}
+
+.ctrl{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ghost{min-height:44px;padding:0 17px;border:1px solid var(--line);background:var(--pap);border-radius:6px;font:500 14px 'Inter',sans-serif;cursor:pointer}
+.ghost:hover{border-color:var(--amb);color:var(--amb)}
+.hint{font-size:13.5px;color:var(--mu);margin-top:12px;max-width:70ch}
+
+/* checkpoint */
+.chk{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+@media(max-width:880px){.chk{grid-template-columns:1fr;gap:26px}}
+.chk ol{margin:0;padding-left:22px;color:var(--mu)}
+.chk li{margin-bottom:14px;font-size:15.5px}
+.chk li b{color:var(--ink)}
+.quote{border-left:3px solid var(--amb);padding:4px 0 4px 22px;font-family:'Lora',serif;font-size:19px;line-height:1.55}
+.quote span{display:block;margin-top:12px;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--mu)}
+
+/* export */
+.exp{background:var(--pap);border:1px solid var(--line);overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{text-align:left;padding:11px 16px;border-bottom:1px solid #F4EDE4}
+th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);background:#FFFCF8;font-weight:600}
+td.flag{color:var(--stop);font-weight:500}
+td.good{color:var(--ok);font-weight:500}
+
+.limits{background:var(--pap);border:1px solid var(--line);padding:28px 30px;max-width:72ch}
+.limits ul{margin:14px 0 0;padding-left:20px;color:var(--mu)}
+.limits li{margin-bottom:9px;font-size:15px}
+
+.cta{background:var(--ink);color:#EADCCB;padding:62px 0}
+.cta h2{font-size:clamp(25px,3vw,33px);color:#fff;max-width:22ch}
+.cta p{color:#B5A28C;max-width:50ch;margin:14px 0 26px}
+.cta .btn.p{background:#D2791C;border-color:#D2791C}
+.cta .btn.s{color:#EADCCB;border-color:#604934}
+footer{padding:34px 0;font-size:14px;color:var(--mu)}
+.note{background:var(--ink);color:#C2B09B;font-size:13.5px;line-height:1.65;padding:18px 24px;text-align:center}
+.note a{color:#fff}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="nav" id="nav"><div class="wrap nb">
+  <div class="logo">Vendor<em>Reply</em></div>
+  <button class="menub" id="menub" aria-expanded="false" aria-controls="navlist">Menu</button>
+  <nav class="nlinks" id="navlist" aria-label="Main">
+    <a class="ln" href="#split">Thread to order</a>
+    <a class="ln" href="#chk">The checkpoint</a>
+    <a class="ln" href="#export">Daily export</a>
+    <a class="ln" href="#limits">Limits</a>
+  </nav>
+</div></div>
+
+<main id="main">
+
+<div class="wrap hero">
+  <div>
+    <div class="kick">Order capture from social messages</div>
+    <h1>The order is in the thread. It is just scattered across forty messages.</h1>
+    <p>Vendors selling through Instagram and WhatsApp reconstruct every order by scrolling back: item, size, colour, address, payment proof. VendorReply reads the thread and fills the card — then stops at the payment and asks a human.</p>
+    <div class="hb">
+      <a class="btn p" href="#split">Play the thread</a>
+      <a class="btn s" href="#chk">Why it stops at payment</a>
+    </div>
+  </div>
+  <div class="hstrip"><img src="/demo/img/vendor-packing.jpg" alt="A vendor's packing table from above: folded garments in tissue paper, brown mailer bags, tape and a handwritten notebook." width="1400" height="933"></div>
+</div>
+
+<section class="sect" id="split"><div class="wrap">
+  <div class="shead">
+    <h2>One conversation, one order card</h2>
+    <p>Step through a real-shaped customer thread. Each message that carries a fact fills a field on the right. Notice how little of the conversation is actually order information.</p>
+  </div>
+
+  <div class="split">
+    <div class="pane">
+      <div class="ptop"><h3>Instagram DM</h3><span class="sub">@buyer_adaeze</span></div>
+      <div class="dm" id="dm" role="log" aria-live="polite" aria-label="Customer message thread"></div>
+    </div>
+    <div class="pane">
+      <div class="ptop"><h3>Order card</h3><span class="sub" id="fillct">0 of 7 fields</span></div>
+      <dl class="card" id="card">
+        <div class="crow" data-k="item"><dt>Item</dt><dd class="empty">waiting</dd></div>
+        <div class="crow" data-k="size"><dt>Size</dt><dd class="empty">waiting</dd></div>
+        <div class="crow" data-k="colour"><dt>Colour</dt><dd class="empty">waiting</dd></div>
+        <div class="crow" data-k="qty"><dt>Quantity</dt><dd class="empty">waiting</dd></div>
+        <div class="crow" data-k="name"><dt>Name</dt><dd class="empty">waiting</dd></div>
+        <div class="crow" data-k="addr"><dt>Delivery</dt><dd class="empty">waiting</dd></div>
+        <div class="crow" data-k="pay"><dt>Payment</dt><dd class="empty">waiting</dd></div>
+      </dl>
+      <div class="cfoot">
+        <div id="cstate"><span class="state draft">Draft — reading thread</span></div>
+        <p id="cwhy">Fields fill as facts appear. Anything the customer has not said is asked for directly, once.</p>
+        <button class="verify" id="verify" disabled>Confirm payment manually</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctrl">
+    <button class="ghost" id="play">Play thread</button>
+    <button class="ghost" id="step">Next message</button>
+    <button class="ghost" id="rst">Reset</button>
+  </div>
+  <p class="hint">Scripted demonstration. No account is connected and no model is running in this page — the extraction is illustrated, not performed.</p>
+</div></section>
+
+<section class="sect" id="chk"><div class="wrap">
+  <div class="shead">
+    <h2>Let the system do the transcription, keep the trust decision human</h2>
+    <p>Everything up to payment is clerical work: reading, sorting, copying. Payment is a judgement with money attached, and it is where fraud enters a social-selling business.</p>
+  </div>
+  <div class="chk">
+    <ol>
+      <li><b>A screenshot is not a payment.</b> Edited transfer receipts are common enough that no vendor should accept an image as proof without checking the account.</li>
+      <li><b>The system flags, the person decides.</b> The order sits at "payment unverified" until a human opens the banking app and confirms the money arrived.</li>
+      <li><b>No goods move on a flag.</b> Packing and dispatch are blocked at that state, so the checkpoint cannot be skipped by accident on a busy day.</li>
+      <li><b>The delay is honest with the customer.</b> The reply says the order is held until payment clears, rather than implying it is already confirmed.</li>
+    </ol>
+    <div class="quote">If the machine can be wrong and the cost of being wrong is a parcel you never get back, a person has to look.<span>Design note — the one rule that shaped this build</span></div>
+  </div>
+</div></section>
+
+<section class="sect" id="export"><div class="wrap">
+  <div class="shead">
+    <h2>What the bookkeeper gets at the end of the day</h2>
+    <p>One export, one row per order, payment state included. Sample rows below — illustrative, not from a real shop.</p>
+  </div>
+  <div class="exp">
+    <table>
+      <caption class="hint" style="caption-side:bottom;text-align:left;padding:12px 16px">Sample data for demonstration. These are not real orders or customers.</caption>
+      <thead><tr><th>Ref</th><th>Customer</th><th>Item</th><th>Size</th><th>Qty</th><th>Delivery</th><th>Payment</th></tr></thead>
+      <tbody>
+        <tr><td>0412-A</td><td>Adaeze N.</td><td>Linen shirt dress</td><td>14</td><td>1</td><td>Surulere</td><td class="good">Verified 16:40</td></tr>
+        <tr><td>0412-B</td><td>Kemi O.</td><td>Wide-leg trouser</td><td>12</td><td>2</td><td>Yaba</td><td class="flag">Awaiting check</td></tr>
+        <tr><td>0412-C</td><td>Tobi A.</td><td>Linen shirt dress</td><td>16</td><td>1</td><td>Ikeja pickup</td><td class="good">Verified 11:05</td></tr>
+        <tr><td>0412-D</td><td>Ngozi E.</td><td>Cotton wrap top</td><td>10</td><td>1</td><td>Lekki Phase 1</td><td class="flag">Proof unreadable</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<section class="sect" id="limits"><div class="wrap">
+  <div class="shead"><h2>Honest limits</h2></div>
+  <div class="limits">
+    <p style="margin:0;color:var(--mu)">Concept workflow. It has not processed a real order, so there are no accuracy rates, time savings or error reductions to report.</p>
+    <ul>
+      <li>Extraction from casual chat is imperfect. Voice notes, photos of handwriting and mixed-language messages are the common failure cases.</li>
+      <li>An address given as "the usual place" cannot be resolved without order history, and will always be asked for again.</li>
+      <li>The payment checkpoint is deliberate friction. A vendor who finds it slow will be tempted to remove it, which removes the point of the build.</li>
+      <li>Instagram's messaging rules change. Anything depending on their interface needs maintenance, not just a launch.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <h2>Selling in the DMs and losing orders in them?</h2>
+  <p>Tell us what your worst thread looks like. The messy ones are more useful than the tidy ones.</p>
+  <div class="hb">
+    <a class="btn p" href="https://wa.me/2349050690837">Message Easywurld on WhatsApp</a>
+    <a class="btn s" href="https://website-builder-portfolio.vercel.app/contact">Start a project</a>
+  </div>
+</div></section>
+
+<div class="wrap"><footer>VendorReply — concept order capture. Built as a portfolio piece.</footer></div>
+</main>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="display:inline-block;height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept workflow by <a href="https://website-builder-portfolio.vercel.app/projects/vendorreply-order-capture">Easywurld</a> — VendorReply is not a real product and the thread is scripted. It demonstrates structured extraction from an unstructured chat with a deliberate human checkpoint at payment.</div>
+
+<script>
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var dm=document.getElementById('dm'), fillct=document.getElementById('fillct');
+var cstate=document.getElementById('cstate'), cwhy=document.getElementById('cwhy'), verify=document.getElementById('verify');
+
+var THREAD=[
+ {w:'them',t:'Hiii good afternoon 😊',tm:'14:02'},
+ {w:'them',t:'Is the shirt dress from your last post still available?',tm:'14:02',k:'item',v:'Linen shirt dress'},
+ {w:'me',t:'Good afternoon! Yes, the linen shirt dress is in stock. Which size do you need?',tm:'14:09'},
+ {w:'them',t:'Do you have 14',tm:'14:31',k:'size',v:'UK 14'},
+ {w:'them',t:'And is the cream one still there or only the olive',tm:'14:31'},
+ {w:'me',t:'Both are available in 14. Cream or olive?',tm:'14:40'},
+ {w:'them',t:'Cream please',tm:'15:58',k:'colour',v:'Cream'},
+ {w:'them',t:'Actually can I take one only for now',tm:'15:59',k:'qty',v:'1'},
+ {w:'me',t:'Noted — one cream shirt dress, UK 14. Can I take the name and delivery address?',tm:'16:04'},
+ {w:'them',t:'Adaeze Nwosu',tm:'16:20',k:'name',v:'Adaeze Nwosu'},
+ {w:'them',t:'send it to my sister place, 14 Bode Thomas off the main road, Surulere. She closes 6pm',tm:'16:21',k:'addr',v:'14 Bode Thomas, Surulere · before 6pm'},
+ {w:'me',t:'Thank you. That is confirmed as one cream shirt dress, UK 14, to 14 Bode Thomas, Surulere.',tm:'16:25'},
+ {w:'them',t:'I have sent the transfer',tm:'16:38'},
+ {w:'them',t:'[image: transfer receipt screenshot]',tm:'16:38',proof:true,k:'pay',v:'Proof received — unverified'}
+];
+
+var i=0, filled=0, timer=null;
+
+function bubble(m){
+  var d=document.createElement('div');
+  d.className='b '+(m.proof?'proof':m.w)+(reduce?'':' in');
+  d.innerHTML=(m.proof?'📎 ':'')+m.t.replace(/</g,'&lt;')+'<span class="mt">'+m.tm+'</span>';
+  dm.appendChild(d);
+  dm.scrollTop=dm.scrollHeight;
+}
+function fill(k,v){
+  var row=document.querySelector('.crow[data-k="'+k+'"]');
+  if(!row)return;
+  var dd=row.querySelector('dd');
+  dd.textContent=v;dd.classList.remove('empty');
+  row.classList.remove('hit');void row.offsetWidth;row.classList.add('hit');
+  if(k==='pay')row.classList.add('ask');
+  filled++;fillct.textContent=filled+' of 7 fields';
+}
+function states(){
+  if(filled>=7){
+    cstate.innerHTML='<span class="state hold">Held — payment unverified</span>';
+    cwhy.textContent='Every field is captured, so nothing else needs asking. The order will not move to packing until a person opens the banking app and confirms the transfer landed. A screenshot is not proof.';
+    verify.disabled=false;
+  }else if(filled>0){
+    cstate.innerHTML='<span class="state draft">Draft — '+filled+' of 7 captured</span>';
+    cwhy.textContent='Fields fill as facts appear. Anything still missing is asked for directly, once, rather than inferred.';
+  }
+}
+function next(){
+  if(i>=THREAD.length){stop();return}
+  var m=THREAD[i++];
+  bubble(m);
+  if(m.k)fill(m.k,m.v);
+  states();
+  if(i>=THREAD.length)stop();
+}
+function stop(){
+  if(timer){clearInterval(timer);timer=null}
+  document.getElementById('play').textContent='Play thread';
+}
+document.getElementById('step').onclick=function(){stop();next()};
+document.getElementById('play').onclick=function(){
+  if(timer){stop();return}
+  if(i>=THREAD.length)reset();
+  this.textContent='Pause';
+  timer=setInterval(next,reduce?150:950);
+};
+function reset(){
+  stop();dm.innerHTML='';i=0;filled=0;
+  fillct.textContent='0 of 7 fields';
+  document.querySelectorAll('.crow').forEach(function(r){
+    var dd=r.querySelector('dd');dd.textContent='waiting';
+    dd.classList.add('empty');r.classList.remove('hit','ask');
+  });
+  cstate.innerHTML='<span class="state draft">Draft — reading thread</span>';
+  cwhy.textContent='Fields fill as facts appear. Anything the customer has not said is asked for directly, once.';
+  verify.disabled=true;verify.textContent='Confirm payment manually';
+}
+document.getElementById('rst').onclick=reset;
+verify.onclick=function(){
+  cstate.innerHTML='<span class="state ok">Confirmed by a person · 16:44</span>';
+  cwhy.textContent='A human checked the account and confirmed the transfer. Only now does the order release to packing, and only now is the customer told it is confirmed.';
+  var row=document.querySelector('.crow[data-k="pay"]');
+  row.classList.remove('ask');
+  row.querySelector('dd').textContent='Verified by staff';
+  this.disabled=true;this.textContent='Payment confirmed';
+};
+reset();
+
+var mb=document.getElementById('menub'), nl=document.getElementById('navlist');
+mb.onclick=function(){var o=nl.classList.toggle('open');mb.setAttribute('aria-expanded',String(o));mb.textContent=o?'Close':'Menu'};
+nl.addEventListener('click',function(e){if(e.target.classList.contains('ln')){nl.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='Menu'}});
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('stuck',scrollY>8)},{passive:true});
+})();
+</script>
+</body></html>

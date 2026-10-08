@@ -74,7 +74,7 @@ export const aiAutomation: Project[] = [
   {
     slug: "estateflow-lead-qualification",
     shot: "/shots/estateflow-lead-qualification.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/estateflow/",
+    liveUrl: "/demo/estateflow-lead-qualification/index.html",
     title: "EstateFlow Lead Desk",
     category: "Business Systems",
     industry: "Real estate",
@@ -102,14 +102,14 @@ export const aiAutomation: Project[] = [
     tags: ["Property", "WhatsApp", "Routing"],
     visual: {
       archetype: "workflow", bg: "#F5F7F4", ink: "#18281F", accent: "#2E7D52", muted: "#6E7D72",
-      head: "'Inter Tight', system-ui, sans-serif", body: "'Inter', system-ui, sans-serif", variant: 0,
+      head: "'Source Serif 4', Georgia, serif", body: "'Inter', system-ui, sans-serif", variant: 0,
       words: ["Enquiry", "Qualify", "Route", "Agent"],
     },
   },
   {
     slug: "bookflow-appointments",
     shot: "/shots/bookflow-appointments.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/bookflow/",
+    liveUrl: "/demo/bookflow-appointments/index.html",
     title: "BookFlow Appointments",
     category: "Business Systems",
     industry: "Salon & clinic",
@@ -137,14 +137,14 @@ export const aiAutomation: Project[] = [
     tags: ["Scheduling", "Waitlist", "Lifecycle"],
     visual: {
       archetype: "workflow", bg: "#FAF7FB", ink: "#2A1F33", accent: "#7A4FBF", muted: "#7A7080",
-      head: "'Outfit', system-ui, sans-serif", body: "'Inter', system-ui, sans-serif", variant: 1,
+      head: "'Lora', Georgia, serif", body: "'Inter', system-ui, sans-serif", variant: 1,
       words: ["Booked", "Confirmed", "Cancelled", "Refilled"],
     },
   },
   {
     slug: "vendorreply-order-capture",
     shot: "/shots/vendorreply-order-capture.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/vendorreply/",
+    liveUrl: "/demo/vendorreply-order-capture/index.html",
     title: "VendorReply",
     category: "Business Systems",
     industry: "E-commerce",
@@ -168,11 +168,11 @@ export const aiAutomation: Project[] = [
       "Split-screen artwork: the messy conversation on one side, the clean order card on the other. That contrast is the entire value proposition and needs no explanation.",
     result:
       "Concept workflow. Demonstrates structured extraction from unstructured chat, with a deliberate human checkpoint at the payment step.",
-    takeaway: "Automate the transcription, not the trust decision.",
+    takeaway: "Let the system do the transcription. Keep the trust decision human.",
     tags: ["Social commerce", "Extraction", "Human-in-the-loop"],
     visual: {
       archetype: "workflow", bg: "#FFF9F2", ink: "#2B1D12", accent: "#D97706", muted: "#83725F",
-      head: "'Inter Tight', system-ui, sans-serif", body: "'Inter', system-ui, sans-serif", variant: 2,
+      head: "'Lora', Georgia, serif", body: "'Inter', system-ui, sans-serif", variant: 2,
       words: ["DM thread", "Extract", "Order card", "Verify payment"],
     },
   },

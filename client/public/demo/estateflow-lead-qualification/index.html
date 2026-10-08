@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EstateFlow Lead Desk — Qualify property enquiries before the call</title>
+<meta name="description" content="A WhatsApp-first qualification flow for a residential agency: four questions, a routing decision, and a summary card on the agent's desk before the first call. Concept build by Easywurld.">
+<meta property="og:title" content="EstateFlow Lead Desk"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F7F4;--pap:#FFFFFF;--ink:#18281F;--mu:#5E6D62;--grn:#2E7D52;--line:#DFE5DF;--warn:#A8651B;--chat:#E7F0E8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;font-weight:600;line-height:1.2;margin:0}
+:where(a,button,input,select,summary,[tabindex]):focus-visible{outline:2px solid var(--grn);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:8px;top:8px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:60;background:rgba(245,247,244,.93);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.stuck{border-color:var(--line)}
+.nb{display:flex;align-items:center;gap:20px;min-height:66px}
+.logo{font-family:'Source Serif 4',serif;font-weight:600;font-size:19px;letter-spacing:.01em}
+.logo span{color:var(--grn)}
+.nlinks{margin-left:auto;display:flex;gap:26px;align-items:center}
+.nlinks a{text-decoration:none;color:var(--mu);font-size:14.5px;padding:10px 0}
+.nlinks a:hover{color:var(--ink)}
+.menub{display:none;margin-left:auto;min-height:44px;padding:0 14px;border:1px solid var(--line);background:var(--pap);border-radius:6px;font:500 14px 'Inter',sans-serif}
+@media(max-width:860px){
+  .nlinks{display:none;position:absolute;top:66px;left:0;right:0;background:var(--pap);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 24px 16px}
+  .nlinks.open{display:flex}
+  .nlinks a{padding:13px 0;border-bottom:1px solid var(--line);width:100%}
+  .menub{display:block}
+}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:64px 0 54px}
+.kick{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--grn);font-weight:600;margin-bottom:16px}
+.hero h1{font-size:clamp(32px,4.3vw,47px)}
+.hero p{color:var(--mu);font-size:18px;max-width:46ch;margin:18px 0 0}
+.hb{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:6px;text-decoration:none;font-size:15px;font-weight:500;border:1px solid var(--grn)}
+.btn.p{background:var(--grn);color:#fff}
+.btn.s{background:transparent;color:var(--grn)}
+.heroimg{border-radius:4px;overflow:hidden;border:1px solid var(--line)}
+.heroimg img{width:100%;height:340px;object-fit:cover}
+@media(max-width:860px){.hero{grid-template-columns:1fr;gap:30px;padding:40px 0}.heroimg img{height:230px}}
+
+/* the desk */
+.sect{padding:58px 0;border-top:1px solid var(--line)}
+.shead{max-width:60ch;margin-bottom:34px}
+.shead h2{font-size:clamp(25px,3vw,32px)}
+.shead p{color:var(--mu);margin:12px 0 0}
+.desk{display:grid;grid-template-columns:360px 1fr;gap:34px;align-items:start}
+@media(max-width:900px){.desk{grid-template-columns:1fr;gap:26px}}
+
+/* phone */
+.phone{background:#111;border-radius:22px;padding:11px;box-shadow:0 14px 40px rgba(24,40,31,.17)}
+.pscreen{background:var(--chat);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;height:490px}
+.pbar{background:var(--grn);color:#fff;padding:12px 15px;display:flex;align-items:center;gap:11px;flex:0 0 auto}
+.pav{width:33px;height:33px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:13px;font-weight:600}
+.pbar b{font-size:14.5px;font-weight:600;display:block}
+.pbar em{font-size:11.5px;opacity:.8;font-style:normal}
+.thread{flex:1;overflow-y:auto;padding:16px 13px;display:flex;flex-direction:column;gap:9px}
+.msg{max-width:84%;padding:9px 12px;border-radius:9px;font-size:14px;line-height:1.5;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.msg.them{background:#fff;align-self:flex-start;border-top-left-radius:2px}
+.msg.me{background:#D6F0D8;align-self:flex-end;border-top-right-radius:2px}
+.msg .t{display:block;font-size:10.5px;color:var(--mu);margin-top:3px;text-align:right}
+.typing{align-self:flex-start;background:#fff;padding:11px 14px;border-radius:9px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#B4BEB6;animation:bl 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.replies{flex:0 0 auto;padding:11px;background:#fff;border-top:1px solid #D9E2DA;display:flex;flex-wrap:wrap;gap:7px;min-height:62px;align-content:center}
+.rep{min-height:36px;padding:7px 13px;border-radius:17px;border:1px solid var(--grn);background:#fff;color:var(--grn);font:500 13.5px 'Inter',sans-serif;cursor:pointer}
+.rep:hover{background:var(--grn);color:#fff}
+.rdone{font-size:13px;color:var(--mu);padding:0 4px}
+
+/* agent card */
+.agent{background:var(--pap);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.ahead{padding:15px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ahead h3{font-size:17px}
+.stamp{margin-left:auto;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--mu);font-weight:600}
+.fields{padding:6px 20px 14px}
+.fr{display:grid;grid-template-columns:132px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #EFF3EF;align-items:baseline}
+.fr:last-child{border-bottom:0}
+.fr dt{font-size:13px;color:var(--mu);letter-spacing:.02em}
+.fr dd{margin:0;font-size:15.5px;font-weight:500;min-height:23px}
+.fr dd.empty{color:#AFBBB2;font-weight:400;font-style:italic}
+.fr.fill dd{animation:pop .45s ease}
+@keyframes pop{from{background:#D9F0E0;opacity:.3}to{background:transparent;opacity:1}}
+.route{padding:17px 20px;border-top:1px solid var(--line);background:#FAFCFA;min-height:96px}
+.rlbl{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-weight:600;margin-bottom:9px}
+.badge{display:inline-block;padding:6px 13px;border-radius:4px;font-size:14px;font-weight:600;margin-bottom:9px}
+.badge.ag{background:#DCF0E3;color:#1C5B3A;border:1px solid #AFD6BF}
+.badge.nu{background:#FBEFD8;color:#7A4A10;border:1px solid #E6CFA0}
+.badge.wt{background:#EEF1EE;color:var(--mu);border:1px solid var(--line)}
+.rwhy{font-size:14.5px;color:var(--mu)}
+.ctrl{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.ghost{min-height:42px;padding:0 17px;border:1px solid var(--line);background:var(--pap);border-radius:6px;font:500 14px 'Inter',sans-serif;cursor:pointer}
+.ghost:hover{border-color:var(--grn);color:var(--grn)}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:8px}
+@media(max-width:880px){.flow{grid-template-columns:1fr}}
+.step{position:relative;padding:22px 24px 24px;background:var(--pap);border:1px solid var(--line);border-right-width:0}
+.step:last-child{border-right-width:1px}
+@media(max-width:880px){.step{border-right-width:1px;border-bottom-width:0}.step:last-child{border-bottom-width:1px}}
+.sn{font-family:'Source Serif 4',serif;font-size:13px;color:var(--grn);font-weight:600;margin-bottom:9px}
+.step h4{margin:0 0 7px;font-size:16px;font-family:'Source Serif 4',serif;font-weight:600}
+.step p{margin:0;font-size:14px;color:var(--mu);line-height:1.6}
+.fail{margin-top:11px;padding-top:11px;border-top:1px dashed #D5DED7;font-size:13px;color:var(--warn)}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media(max-width:860px){.rules{grid-template-columns:1fr;gap:20px}}
+.rule{border-left:2px solid var(--grn);padding-left:18px}
+.rule h4{margin:0 0 7px;font-size:16.5px;font-family:'Source Serif 4',serif;font-weight:600}
+.rule p{margin:0;font-size:14.5px;color:var(--mu)}
+.rule code{font-size:13px;background:#EAF0EB;padding:2px 6px;border-radius:3px;color:#1C5B3A}
+
+/* limits */
+.limits{background:var(--pap);border:1px solid var(--line);border-radius:6px;padding:28px 30px;max-width:72ch}
+.limits ul{margin:14px 0 0;padding-left:20px;color:var(--mu)}
+.limits li{margin-bottom:9px;font-size:15px}
+
+/* cta + footer */
+.cta{background:var(--ink);color:#EAF0EB;padding:62px 0;text-align:left}
+.cta h2{font-size:clamp(25px,3vw,33px);color:#fff;max-width:20ch}
+.cta p{color:#A9BBAF;max-width:48ch;margin:14px 0 26px}
+.cta .btn.p{background:var(--grn);border-color:var(--grn)}
+.cta .btn.s{color:#EAF0EB;border-color:#4A6153}
+footer{padding:34px 0;font-size:14px;color:var(--mu)}
+.note{background:var(--ink);color:#B9C8BE;font-size:13.5px;line-height:1.65;padding:18px 24px;text-align:center}
+.note a{color:#fff}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="nav" id="nav"><div class="wrap nb">
+  <div class="logo">Estate<span>Flow</span></div>
+  <button class="menub" id="menub" aria-expanded="false" aria-controls="navlist">Menu</button>
+  <nav class="nlinks" id="navlist" aria-label="Main">
+    <a class="ln" href="#desk">The desk</a>
+    <a class="ln" href="#flow">How it routes</a>
+    <a class="ln" href="#rules">Rules</a>
+    <a class="ln" href="#limits">Limits</a>
+  </nav>
+</div></div>
+
+<main id="main">
+
+<div class="wrap hero">
+  <div>
+    <div class="kick">Lead qualification workflow</div>
+    <h1>Know the answer to the first four questions before you dial.</h1>
+    <p>A residential agency receives enquiries all day. Most are not ready. EstateFlow asks the four questions that decide whether a call is worth making, then puts the answers on the agent's desk.</p>
+    <div class="hb">
+      <a class="btn p" href="#desk">Try the qualification flow</a>
+      <a class="btn s" href="#flow">See the routing logic</a>
+    </div>
+  </div>
+  <div class="heroimg"><img src="/demo/img/estate-keys.jpg" alt="A letting agent's desk with keys on a paper tag, a printed floor plan and a notebook in afternoon light." width="1400" height="933"></div>
+</div>
+
+<section class="sect" id="desk"><div class="wrap">
+  <div class="shead">
+    <h2>The enquiry and the desk, side by side</h2>
+    <p>Tap a reply on the phone. Watch the agent's summary card fill in and the routing decision change as the picture gets clearer. Nothing here is connected to a real agency.</p>
+  </div>
+  <div class="desk">
+    <div class="phone">
+      <div class="pscreen">
+        <div class="pbar">
+          <div class="pav">EF</div>
+          <div><b>EstateFlow</b><em id="pstat">online</em></div>
+        </div>
+        <div class="thread" id="thread" role="log" aria-live="polite" aria-label="Enquiry conversation"></div>
+        <div class="replies" id="replies"></div>
+      </div>
+    </div>
+
+    <div class="agent">
+      <div class="ahead">
+        <h3>Agent summary</h3>
+        <span class="stamp" id="stamp">0 of 4 answered</span>
+      </div>
+      <dl class="fields" id="fields">
+        <div class="fr" data-k="budget"><dt>Budget</dt><dd class="empty">not yet asked</dd></div>
+        <div class="fr" data-k="area"><dt>Area</dt><dd class="empty">not yet asked</dd></div>
+        <div class="fr" data-k="timeline"><dt>Timeline</dt><dd class="empty">not yet asked</dd></div>
+        <div class="fr" data-k="finance"><dt>Finance status</dt><dd class="empty">not yet asked</dd></div>
+        <div class="fr" data-k="note"><dt>Free text</dt><dd class="empty">—</dd></div>
+      </dl>
+      <div class="route">
+        <div class="rlbl">Routing decision</div>
+        <div id="rbadge"><span class="badge wt">Waiting for answers</span></div>
+        <div class="rwhy" id="rwhy">The decision is held until budget and timeline are both known. A partial answer is allowed; a guess is not.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ctrl">
+    <button class="ghost" id="restart">Restart the enquiry</button>
+    <button class="ghost" id="vague">Replay with vague answers</button>
+  </div>
+</div></section>
+
+<section class="sect" id="flow"><div class="wrap">
+  <div class="shead">
+    <h2>Four questions, then a decision</h2>
+    <p>Each step has a stated failure path. That is the part most flow diagrams leave out, and the part an agency owner needs to audit before trusting it with enquiries.</p>
+  </div>
+  <div class="flow">
+    <div class="step"><div class="sn">01</div><h4>Budget</h4><p>Accepts a range, a single figure, or "not sure". A range is banded to the nearest bracket.</p><div class="fail">If refused twice: pass to nurture, do not press.</div></div>
+    <div class="step"><div class="sn">02</div><h4>Area</h4><p>Matched against the areas the agency actually covers, including common misspellings and informal names.</p><div class="fail">If outside coverage: polite decline with a reason.</div></div>
+    <div class="step"><div class="sn">03</div><h4>Timeline</h4><p>Sorts into moving now, within six months, or browsing. Browsing is a valid answer, not a failure.</p><div class="fail">If vague: ask once more, then record as unknown.</div></div>
+    <div class="step"><div class="sn">04</div><h4>Finance</h4><p>Asks whether a mortgage is agreed in principle. Never gives advice, never quotes a rate.</p><div class="fail">If asked for advice: hand to a human immediately.</div></div>
+  </div>
+</div></section>
+
+<section class="sect" id="rules"><div class="wrap">
+  <div class="shead">
+    <h2>What the system is not allowed to do</h2>
+    <p>The constraints matter more than the capabilities. A qualification flow that oversteps costs an agency more than one it under-delivers on.</p>
+  </div>
+  <div class="rules">
+    <div class="rule"><h4>No valuations</h4><p>Any question about what a property is worth is routed to a named agent. The flow replies <code>that needs a person</code> and stops.</p></div>
+    <div class="rule"><h4>No price negotiation</h4><p>Asking price is read from the listing and repeated verbatim. The flow has no authority to discuss movement on it.</p></div>
+    <div class="rule"><h4>No silent decline</h4><p>An enquiry outside coverage gets a written reason and, where possible, a direction to try instead. It is never dropped.</p></div>
+  </div>
+</div></section>
+
+<section class="sect" id="limits"><div class="wrap">
+  <div class="shead"><h2>Honest limits</h2></div>
+  <div class="limits">
+    <p style="margin:0;color:var(--mu)">This is a concept build. It has never handled a real enquiry, so there is no data to quote — no lead volumes, no conversion figures, no time saved.</p>
+    <ul>
+      <li>The conversation above is a scripted demonstration, not a live model. Replies are fixed.</li>
+      <li>Banding budgets loses detail. An agency with unusual price brackets would need the bands rewritten.</li>
+      <li>Area matching depends on a maintained list of covered areas. It will fail on a new development with no established name.</li>
+      <li>A qualification flow filters; it does not sell. Every qualified lead still needs the agent to call.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <h2>Want the same thing built around your enquiries?</h2>
+  <p>The questions differ by business. The shape — ask, band, route, summarise — usually does not.</p>
+  <div class="hb">
+    <a class="btn p" href="https://wa.me/2349050690837">Message Easywurld on WhatsApp</a>
+    <a class="btn s" href="https://website-builder-portfolio.vercel.app/contact">Start a project</a>
+  </div>
+</div></section>
+
+<div class="wrap"><footer>EstateFlow — concept lead desk. Built as a portfolio piece.</footer></div>
+</main>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="display:inline-block;height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept workflow by <a href="https://website-builder-portfolio.vercel.app/projects/estateflow-lead-qualification">Easywurld</a> — EstateFlow is not a real agency and the conversation is scripted. It demonstrates conversational qualification with an explicit routing decision and stated failure paths.</div>
+
+<script>
+(function(){
+var thread=document.getElementById('thread'), replies=document.getElementById('replies');
+var stamp=document.getElementById('stamp'), rbadge=document.getElementById('rbadge'), rwhy=document.getElementById('rwhy');
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+var SCRIPT=[
+ {ask:"Hello — thanks for the enquiry about the three-bedroom on Alder Row. Four quick questions so I can get you to the right agent. First, roughly what budget are you working to?",
+  opts:[{t:"Around £420,000",v:"£400k–£450k",k:"budget"},
+        {t:"Maybe 380 to 450",v:"£350k–£450k (range given)",k:"budget"},
+        {t:"Not sure yet",v:"Not stated",k:"budget",vague:true}]},
+ {ask:"Noted. Which areas are you looking at? We cover Alder Row, Fenwick, Northgate and the Mill Quarter.",
+  opts:[{t:"Northgate mainly",v:"Northgate",k:"area"},
+        {t:"Fenwick or Mill Quarter",v:"Fenwick, Mill Quarter",k:"area"},
+        {t:"Anywhere decent",v:"No preference stated",k:"area",vague:true}]},
+ {ask:"Thanks. How soon are you hoping to move?",
+  opts:[{t:"Within two months",v:"Moving now (under 3 months)",k:"timeline"},
+        {t:"Sometime this year",v:"Within 6 months",k:"timeline"},
+        {t:"Just looking for now",v:"Browsing",k:"timeline",vague:true}]},
+ {ask:"Last one. Do you have a mortgage agreed in principle?",
+  opts:[{t:"Yes, agreed in principle",v:"Agreed in principle",k:"finance"},
+        {t:"Applied, waiting",v:"Application in progress",k:"finance"},
+        {t:"Haven't started",v:"Not started",k:"finance",vague:true}]},
+ {ask:"That's everything I need. I'm passing this to an agent with a summary — they'll have your answers before they call, so you won't be asked again. Anything you want them to know?",
+  opts:[{t:"Needs a garden",v:"Garden essential",k:"note"},
+        {t:"School catchment matters",v:"School catchment is the priority",k:"note"},
+        {t:"Nothing else",v:"—",k:"note"}]}
+];
+
+var step=0, answers={}, vagueCount=0;
+
+function time(){return new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}
+
+function bubble(text,who){
+  var d=document.createElement('div');
+  d.className='msg '+who;
+  d.innerHTML=text.replace(/</g,'&lt;')+'<span class="t">'+time()+'</span>';
+  thread.appendChild(d);
+  thread.scrollTop=thread.scrollHeight;
+  return d;
+}
+
+function typing(cb){
+  if(reduce){cb();return}
+  var d=document.createElement('div');
+  d.className='typing';d.innerHTML='<i></i><i></i><i></i>';
+  thread.appendChild(d);thread.scrollTop=thread.scrollHeight;
+  setTimeout(function(){d.remove();cb()},680);
+}
+
+function setField(k,v){
+  var row=document.querySelector('.fr[data-k="'+k+'"]');
+  if(!row)return;
+  var dd=row.querySelector('dd');
+  dd.textContent=v;dd.classList.remove('empty');
+  row.classList.remove('fill');void row.offsetWidth;row.classList.add('fill');
+}
+
+function answered(){
+  return ['budget','area','timeline','finance'].filter(function(k){return answers[k]}).length;
+}
+
+function route(){
+  var n=answered();
+  stamp.textContent=n+' of 4 answered';
+  if(n<3){
+    rbadge.innerHTML='<span class="badge wt">Waiting for answers</span>';
+    rwhy.textContent='The decision is held until budget and timeline are both known. A partial answer is allowed; a guess is not.';
+    return;
+  }
+  var browsing = answers.timeline==='Browsing';
+  var noBudget = !answers.budget || answers.budget==='Not stated';
+  if(browsing || noBudget || vagueCount>=2){
+    rbadge.innerHTML='<span class="badge nu">Nurture list</span>';
+    rwhy.textContent='Not ready for an agent call. Added to the monthly new-listings email for the areas mentioned. Nobody spends a call on this yet, and nobody forgets about it either.';
+  }else{
+    rbadge.innerHTML='<span class="badge ag">Pass to agent</span>';
+    rwhy.textContent='Budget, area and timeline all align with current stock. The summary above goes to the agent with the enquiry, so the call opens at question five rather than question one.';
+  }
+}
+
+function render(){
+  replies.innerHTML='';
+  if(step>=SCRIPT.length){
+    var d=document.createElement('div');
+    d.className='rdone';
+    d.textContent='Conversation complete — the summary is on the agent\u2019s desk.';
+    replies.appendChild(d);
+    document.getElementById('pstat').textContent='handed to agent';
+    return;
+  }
+  var s=SCRIPT[step];
+  typing(function(){
+    bubble(s.ask,'them');
+    s.opts.forEach(function(o){
+      var b=document.createElement('button');
+      b.className='rep';b.type='button';b.textContent=o.t;
+      b.onclick=function(){
+        bubble(o.t,'me');
+        answers[o.k]= o.v==='Not stated'?null:o.v;
+        setField(o.k,o.v);
+        if(o.vague)vagueCount++;
+        step++;route();render();
+      };
+      replies.appendChild(b);
+    });
+  });
+}
+
+function reset(){
+  thread.innerHTML='';replies.innerHTML='';
+  step=0;answers={};vagueCount=0;
+  document.getElementById('pstat').textContent='online';
+  document.querySelectorAll('.fr').forEach(function(r){
+    var dd=r.querySelector('dd');
+    dd.textContent=r.dataset.k==='note'?'—':'not yet asked';
+    dd.classList.add('empty');r.classList.remove('fill');
+  });
+  route();render();
+}
+
+document.getElementById('restart').onclick=reset;
+document.getElementById('vague').onclick=function(){
+  reset();
+  var i=0;
+  var tick=setInterval(function(){
+    if(step>=SCRIPT.length){clearInterval(tick);return}
+    var btns=replies.querySelectorAll('.rep');
+    if(!btns.length)return;
+    btns[btns.length-1].click();
+    i++;
+    if(i>6){clearInterval(tick)}
+  },reduce?120:900);
+};
+
+reset();
+
+var mb=document.getElementById('menub'), nl=document.getElementById('navlist');
+mb.onclick=function(){var o=nl.classList.toggle('open');mb.setAttribute('aria-expanded',String(o));mb.textContent=o?'Close':'Menu'};
+nl.addEventListener('click',function(e){if(e.target.classList.contains('ln')){nl.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='Menu'}});
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('stuck',scrollY>8)},{passive:true});
+})();
+</script>
+</body></html>

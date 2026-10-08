@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BookFlow — Booking, reminders and waitlist refill for a small studio</title>
+<meta name="description" content="A booking workflow for a salon or clinic: confirmations, reminders, and an automatic waitlist offer when a client cancels. Concept build by Easywurld.">
+<meta property="og:title" content="BookFlow Appointments"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF7FB;--pap:#FFFFFF;--ink:#2A1F33;--mu:#6F6578;--vio:#6B45A8;--vl:#F0E9F7;--line:#E6DFEB;--ok:#2F7A52;--okb:#E2F2E8;--warn:#9A5B12;--warnb:#FBEEDC}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.66 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{font-family:'Lora',Georgia,serif;font-weight:600;line-height:1.25;margin:0}
+:where(a,button,input,select,summary,[tabindex]):focus-visible{outline:2px solid var(--vio);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:8px;top:8px}
+.wrap{max-width:1150px;margin:0 auto;padding:0 24px}
+
+.nav{position:sticky;top:0;z-index:60;background:rgba(250,247,251,.94);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.stuck{border-color:var(--line)}
+.nb{display:flex;align-items:center;gap:20px;min-height:68px}
+.logo{font-family:'Lora',serif;font-weight:600;font-size:20px}
+.logo em{font-style:normal;color:var(--vio)}
+.nlinks{margin-left:auto;display:flex;gap:26px;align-items:center}
+.nlinks a{text-decoration:none;color:var(--mu);font-size:14.5px;padding:10px 0}
+.nlinks a:hover{color:var(--ink)}
+.menub{display:none;margin-left:auto;min-height:44px;padding:0 14px;border:1px solid var(--line);background:var(--pap);border-radius:7px;font:500 14px 'Inter',sans-serif}
+@media(max-width:880px){
+  .nlinks{display:none;position:absolute;top:68px;left:0;right:0;background:var(--pap);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 24px 16px}
+  .nlinks.open{display:flex}
+  .nlinks a{padding:13px 0;border-bottom:1px solid var(--line);width:100%}
+  .menub{display:block}
+}
+
+/* hero: full-bleed image band with overlaid text block, asymmetric */
+.band{position:relative;margin-top:10px}
+.band img{width:100%;height:420px;object-fit:cover}
+.bcard{background:var(--pap);border:1px solid var(--line);padding:38px 40px;max-width:600px;margin:-110px 0 0 24px;position:relative}
+@media(max-width:880px){.band img{height:260px}.bcard{margin:-60px 16px 0;padding:28px 24px}}
+.kick{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--vio);font-weight:600;margin-bottom:14px}
+.bcard h1{font-size:clamp(28px,3.8vw,40px)}
+.bcard p{color:var(--mu);margin:16px 0 0;font-size:17.5px}
+.hb{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:7px;text-decoration:none;font-size:15px;font-weight:500;border:1px solid var(--vio)}
+.btn.p{background:var(--vio);color:#fff}
+.btn.s{background:transparent;color:var(--vio)}
+
+.sect{padding:62px 0}
+.sect+.sect{border-top:1px solid var(--line)}
+.shead{max-width:62ch;margin-bottom:32px}
+.shead h2{font-size:clamp(24px,3vw,31px)}
+.shead p{color:var(--mu);margin:12px 0 0}
+
+/* calendar */
+.cal{background:var(--pap);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.calbar{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.calbar h3{font-size:17px}
+.wk{font-size:13.5px;color:var(--mu)}
+.legend{margin-left:auto;display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--mu)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.days{display:grid;grid-template-columns:repeat(5,1fr)}
+@media(max-width:780px){.days{grid-template-columns:1fr}}
+.day{border-right:1px solid var(--line);padding:0 0 14px}
+.day:last-child{border-right:0}
+@media(max-width:780px){.day{border-right:0;border-bottom:1px solid var(--line)}}
+.dh{padding:12px 14px;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--mu);font-weight:600;border-bottom:1px solid #F1ECF4}
+.slot{margin:9px 10px 0;padding:10px 12px;border-radius:6px;border:1px solid var(--line);background:#FCFBFD;font-size:13.5px;line-height:1.45;cursor:pointer;text-align:left;width:calc(100% - 20px);display:block;font-family:'Inter',sans-serif;min-height:62px}
+.slot:hover{border-color:var(--vio)}
+.slot b{display:block;font-size:13px;font-weight:600;margin-bottom:2px}
+.slot span{color:var(--mu);font-size:12.5px}
+.slot[data-s="confirmed"]{background:var(--vl);border-color:#DCCDEC}
+.slot[data-s="cancelled"]{background:#F6F4F7;border-style:dashed;color:#A99FB2;text-decoration:line-through}
+.slot[data-s="refilled"]{background:var(--okb);border-color:#B5DCC5}
+.slot[data-s="free"]{background:#FBFAFC;border-style:dashed;color:#A99FB2;cursor:default}
+.slot[data-s="refilled"] b:after{content:" ↻";color:var(--ok)}
+.tag{display:inline-block;margin-top:5px;font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;padding:2px 6px;border-radius:3px}
+.tag.c{background:#E3D7F0;color:#4B2E78}
+.tag.r{background:#CFE9DA;color:#1E5C3C}
+.tag.x{background:#EDEAEF;color:#8A7F94}
+
+.under{display:grid;grid-template-columns:1fr 380px;gap:30px;margin-top:26px;align-items:start}
+@media(max-width:960px){.under{grid-template-columns:1fr}}
+.log{background:var(--pap);border:1px solid var(--line);border-radius:8px;padding:6px 22px 18px;max-height:340px;overflow-y:auto}
+.log h4{font-size:15px;padding:16px 0 10px;position:sticky;top:0;background:var(--pap)}
+.ev{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:10px 0;border-top:1px solid #F2EEF5;font-size:14px;align-items:baseline}
+.ev time{color:var(--mu);font-size:12.5px;font-variant-numeric:tabular-nums}
+.ev p{margin:0;color:var(--mu)}
+.ev p b{color:var(--ink);font-weight:600}
+.ev.new{animation:slide .4s ease}
+@keyframes slide{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.waitp{background:var(--pap);border:1px solid var(--line);border-radius:8px;padding:22px}
+.waitp h4{font-size:15px;margin-bottom:4px}
+.waitp>p{font-size:13.5px;color:var(--mu);margin:0 0 14px}
+.wl{list-style:none;margin:0;padding:0}
+.wl li{display:flex;align-items:center;gap:11px;padding:10px 0;border-top:1px solid #F2EEF5;font-size:14px}
+.wl .ini{width:30px;height:30px;border-radius:50%;background:var(--vl);color:var(--vio);display:grid;place-items:center;font-size:12px;font-weight:600;flex:0 0 auto}
+.wl small{display:block;color:var(--mu);font-size:12px}
+.wl li[data-taken="1"] .ini{background:var(--okb);color:var(--ok)}
+.ctrl{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.ghost{min-height:44px;padding:0 17px;border:1px solid var(--line);background:var(--pap);border-radius:7px;font:500 14px 'Inter',sans-serif;cursor:pointer}
+.ghost:hover{border-color:var(--vio);color:var(--vio)}
+.hint{font-size:13.5px;color:var(--mu);margin-top:12px}
+
+/* states */
+.states{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:880px){.states{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.states{grid-template-columns:1fr}}
+.st{padding:20px 20px 22px;border-top:3px solid var(--vio);background:var(--pap)}
+.st h4{font-size:16px;margin-bottom:7px}
+.st p{margin:0;font-size:14px;color:var(--mu)}
+.st .trig{display:block;margin-top:10px;font-size:12.5px;color:var(--vio);font-weight:500}
+
+/* messages */
+.msgs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:880px){.msgs{grid-template-columns:1fr}}
+.mcard{background:var(--pap);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.mtop{padding:11px 16px;background:#F6F2F9;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--mu);font-weight:600}
+.mbody{padding:16px;font-size:14.5px;line-height:1.6}
+.mbody p{margin:0 0 10px}
+.mbody p:last-child{margin:0}
+.mwhen{padding:11px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--mu)}
+
+.limits{background:var(--pap);border:1px solid var(--line);border-radius:8px;padding:28px 30px;max-width:72ch}
+.limits ul{margin:14px 0 0;padding-left:20px;color:var(--mu)}
+.limits li{margin-bottom:9px;font-size:15px}
+
+.cta{background:var(--ink);color:#E6DCEF;padding:64px 0}
+.cta h2{font-size:clamp(25px,3vw,33px);color:#fff;max-width:22ch}
+.cta p{color:#AFA3BA;max-width:50ch;margin:14px 0 26px}
+.cta .btn.p{background:#8A63C4;border-color:#8A63C4}
+.cta .btn.s{color:#E6DCEF;border-color:#574466}
+footer{padding:34px 0;font-size:14px;color:var(--mu)}
+.note{background:var(--ink);color:#BCAFC7;font-size:13.5px;line-height:1.65;padding:18px 24px;text-align:center}
+.note a{color:#fff}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="nav" id="nav"><div class="wrap nb">
+  <div class="logo">Book<em>Flow</em></div>
+  <button class="menub" id="menub" aria-expanded="false" aria-controls="navlist">Menu</button>
+  <nav class="nlinks" id="navlist" aria-label="Main">
+    <a class="ln" href="#week">The week</a>
+    <a class="ln" href="#states">Lifecycle</a>
+    <a class="ln" href="#msgs">Messages</a>
+    <a class="ln" href="#limits">Limits</a>
+  </nav>
+</div></div>
+
+<main id="main">
+
+<div class="band">
+  <img src="/demo/img/salon-chair.jpg" alt="A quiet studio interior with a single styling chair by a window, folded towels and amber bottles on a pale wood counter." width="1400" height="933">
+  <div class="wrap" style="padding:0"><div class="bcard">
+    <div class="kick">Booking &amp; waitlist workflow</div>
+    <h1>The money is in refilling the gap, not in taking the booking.</h1>
+    <p>A six-chair studio loses more to last-minute cancellations than to empty diary pages. BookFlow handles the whole appointment lifecycle, and offers a freed slot to the waitlist without anyone being asked.</p>
+    <div class="hb">
+      <a class="btn p" href="#week">Cancel a booking and watch</a>
+      <a class="btn s" href="#states">See the lifecycle</a>
+    </div>
+  </div></div>
+</div>
+
+<section class="sect" id="week"><div class="wrap">
+  <div class="shead">
+    <h2>A week in the diary</h2>
+    <p>Select any confirmed appointment to cancel it. The slot is offered to the waitlist in order, and the event log records every step. This is a scripted demonstration — no real diary is connected.</p>
+  </div>
+
+  <div class="cal">
+    <div class="calbar">
+      <h3>Week of 12 October</h3>
+      <span class="wk">Studio floor · 2 practitioners</span>
+      <div class="legend">
+        <span><i style="background:#E8DCF4"></i>Confirmed</span>
+        <span><i style="background:#F0EDF2;border:1px dashed #C9C1D1"></i>Cancelled</span>
+        <span><i style="background:#D5EBDF"></i>Refilled</span>
+      </div>
+    </div>
+    <div class="days" id="days"></div>
+  </div>
+
+  <div class="under">
+    <div class="log" id="log"><h4>Event log</h4><div id="events"></div></div>
+    <div class="waitp">
+      <h4>Waitlist</h4>
+      <p>Clients who asked to be told about earlier openings. Offered in the order they joined.</p>
+      <ul class="wl" id="wait"></ul>
+    </div>
+  </div>
+
+  <div class="ctrl">
+    <button class="ghost" id="reset">Reset the week</button>
+    <button class="ghost" id="auto">Cancel one for me</button>
+  </div>
+  <p class="hint">Every refill shown here is a slot that would otherwise have stayed empty. That is the only claim this build makes.</p>
+</div></section>
+
+<section class="sect" id="states"><div class="wrap">
+  <div class="shead">
+    <h2>Four states and the transitions between them</h2>
+    <p>The design work in a booking system is not the booking form. It is deciding what happens at each transition, and which ones are allowed to happen without a person.</p>
+  </div>
+  <div class="states">
+    <div class="st"><h4>Booked</h4><p>Slot held against live availability. Double-booking is prevented at the write, not checked afterwards.</p><span class="trig">→ confirmation sent instantly</span></div>
+    <div class="st"><h4>Confirmed</h4><p>Client has replied or tapped confirm. Reminders are scheduled at 24 hours and 2 hours.</p><span class="trig">→ reminders queued</span></div>
+    <div class="st"><h4>Cancelled</h4><p>Released immediately rather than held. The studio would rather have an open slot it can sell than a courtesy hold.</p><span class="trig">→ waitlist offer fires</span></div>
+    <div class="st"><h4>Refilled</h4><p>First waitlist client to accept takes it. Later acceptances get a straight answer, not silence.</p><span class="trig">→ others told it has gone</span></div>
+  </div>
+</div></section>
+
+<section class="sect" id="msgs"><div class="wrap">
+  <div class="shead">
+    <h2>What the client actually receives</h2>
+    <p>Three messages, written to be read on a phone between other things. No marketing attached to a reminder.</p>
+  </div>
+  <div class="msgs">
+    <div class="mcard">
+      <div class="mtop">Confirmation</div>
+      <div class="mbody"><p>Hi Amara — you're booked in for a cut and finish on Tuesday 14 October at 10:30 with Rose. About 75 minutes.</p><p>Reply CHANGE if you need a different time.</p></div>
+      <div class="mwhen">Sent immediately on booking</div>
+    </div>
+    <div class="mcard">
+      <div class="mtop">Reminder</div>
+      <div class="mbody"><p>Tomorrow at 10:30 with Rose. Parking is easiest on Mill Street after 10.</p><p>If you can't make it, tell us now and we'll offer the slot to someone on the waitlist.</p></div>
+      <div class="mwhen">24 hours before · second at 2 hours</div>
+    </div>
+    <div class="mcard">
+      <div class="mtop">Waitlist offer</div>
+      <div class="mbody"><p>A slot has opened: Tuesday 14 October, 10:30 with Rose.</p><p>First to reply YES takes it. We'll tell you either way within the hour.</p></div>
+      <div class="mwhen">Sent the moment a cancellation lands</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sect" id="limits"><div class="wrap">
+  <div class="shead"><h2>Honest limits</h2></div>
+  <div class="limits">
+    <p style="margin:0;color:var(--mu)">Concept workflow. It has not run in a live studio, so there is no measured no-show reduction and no recovered revenue figure to quote.</p>
+    <ul>
+      <li>The week above is scripted. Cancelling and refilling are demonstrations, not a connected calendar.</li>
+      <li>Waitlist refill only works if the waitlist is real. A studio with three names on it will see very little.</li>
+      <li>A same-day cancellation at 9pm is unlikely to refill whatever the system does. The mechanism helps most with 24–72 hours of notice.</li>
+      <li>Messaging costs money per send. At high volume that has to be priced in before any saving is claimed.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <h2>If cancellations are costing you the most, start there.</h2>
+  <p>The booking form is the easy part. Tell us what happens in your diary when someone drops out.</p>
+  <div class="hb">
+    <a class="btn p" href="https://wa.me/2349050690837">Message Easywurld on WhatsApp</a>
+    <a class="btn s" href="https://website-builder-portfolio.vercel.app/contact">Start a project</a>
+  </div>
+</div></section>
+
+<div class="wrap"><footer>BookFlow — concept booking workflow. Built as a portfolio piece.</footer></div>
+</main>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="display:inline-block;height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept workflow by <a href="https://website-builder-portfolio.vercel.app/projects/bookflow-appointments">Easywurld</a> — BookFlow is not a real studio and the diary is scripted. It demonstrates an appointment lifecycle where a cancellation triggers a waitlist offer and a visible refill.</div>
+
+<script>
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var DAYS=['Mon 13','Tue 14','Wed 15','Thu 16','Fri 17'];
+var BASE=[
+ [{t:'09:00',n:'Ifeoma O.',s:'Colour refresh',st:'confirmed'},{t:'11:30',n:'Grace A.',s:'Cut & finish',st:'confirmed'},{t:'15:00',n:'—',s:'Open',st:'free'}],
+ [{t:'10:30',n:'Amara N.',s:'Cut & finish',st:'confirmed'},{t:'13:00',n:'Tunde B.',s:'Beard trim',st:'confirmed'},{t:'16:00',n:'Hauwa S.',s:'Treatment',st:'confirmed'}],
+ [{t:'09:30',n:'Chidi E.',s:'Consultation',st:'confirmed'},{t:'12:00',n:'—',s:'Open',st:'free'},{t:'14:30',n:'Nneka U.',s:'Colour',st:'confirmed'}],
+ [{t:'10:00',n:'Bisi F.',s:'Cut & finish',st:'confirmed'},{t:'12:30',n:'Segun A.',s:'Cut',st:'confirmed'},{t:'15:30',n:'Zainab K.',s:'Treatment',st:'confirmed'}],
+ [{t:'09:00',n:'Lara M.',s:'Colour',st:'confirmed'},{t:'11:00',n:'—',s:'Open',st:'free'},{t:'14:00',n:'Obi D.',s:'Cut & finish',st:'confirmed'}]
+];
+var WAIT=[{n:'Fola Adeyemi',p:'Any afternoon'},{n:'Ruth Okonkwo',p:'Mornings only'},{n:'Dami Lawal',p:'Any time this week'}];
+
+var state, waitState, clock;
+var daysEl=document.getElementById('days'), eventsEl=document.getElementById('events'), waitEl=document.getElementById('wait');
+
+function stamp(){
+  clock+=Math.floor(Math.random()*3)+1;
+  var h=9+Math.floor(clock/60), m=clock%60;
+  return ('0'+h).slice(-2)+':'+('0'+m).slice(-2);
+}
+function logEvent(html){
+  var d=document.createElement('div');
+  d.className='ev'+(reduce?'':' new');
+  d.innerHTML='<time>'+stamp()+'</time><p>'+html+'</p>';
+  eventsEl.insertBefore(d,eventsEl.firstChild);
+}
+
+function drawWait(){
+  waitEl.innerHTML='';
+  waitState.forEach(function(w){
+    var li=document.createElement('li');
+    li.dataset.taken=w.taken?'1':'0';
+    var ini=w.n.split(' ').map(function(x){return x[0]}).join('');
+    li.innerHTML='<span class="ini">'+ini+'</span><span>'+w.n+'<small>'+(w.taken?'Took a slot this week':w.p)+'</small></span>';
+    waitEl.appendChild(li);
+  });
+}
+
+function draw(){
+  daysEl.innerHTML='';
+  state.forEach(function(col,di){
+    var d=document.createElement('div');d.className='day';
+    d.innerHTML='<div class="dh">'+DAYS[di]+'</div>';
+    col.forEach(function(ap,ai){
+      var b=document.createElement('button');
+      b.className='slot';b.type='button';b.dataset.s=ap.st;
+      b.dataset.d=di;b.dataset.a=ai;
+      if(ap.st==='free')b.disabled=true;
+      var tag= ap.st==='confirmed'?'<span class="tag c">Confirmed</span>'
+             : ap.st==='refilled'?'<span class="tag r">Refilled</span>'
+             : ap.st==='cancelled'?'<span class="tag x">Cancelled</span>':'';
+      b.innerHTML='<b>'+ap.t+' · '+ap.n+'</b><span>'+ap.s+'</span>'+tag;
+      if(ap.st==='confirmed')b.setAttribute('aria-label','Cancel '+ap.n+' at '+ap.t+' on '+DAYS[di]);
+      d.appendChild(b);
+    });
+    daysEl.appendChild(d);
+  });
+}
+
+function cancel(di,ai){
+  var ap=state[di][ai];
+  if(ap.st!=='confirmed')return;
+  var who=ap.n, when=DAYS[di]+' '+ap.t;
+  ap.st='cancelled'; ap.n=who+' (out)';
+  draw();
+  logEvent('<b>'+who+'</b> cancelled '+when+'. Slot released immediately.');
+  var next=waitState.filter(function(w){return !w.taken})[0];
+  setTimeout(function(){
+    if(!next){
+      logEvent('Waitlist empty — slot stays open and appears on the booking page.');
+      return;
+    }
+    logEvent('Offer sent to <b>'+next.n+'</b> and 2 others. First reply takes it.');
+    setTimeout(function(){
+      next.taken=true;
+      ap.st='refilled'; ap.n=next.n.split(' ')[0]+' '+next.n.split(' ')[1][0]+'.';
+      ap.s='Refilled from waitlist';
+      draw();drawWait();
+      logEvent('<b>'+next.n+'</b> accepted. '+when+' refilled. Others told it has gone.');
+    },reduce?60:1100);
+  },reduce?60:800);
+}
+
+daysEl.addEventListener('click',function(e){
+  var b=e.target.closest('.slot');
+  if(!b||b.disabled)return;
+  cancel(+b.dataset.d,+b.dataset.a);
+});
+
+function reset(){
+  state=JSON.parse(JSON.stringify(BASE));
+  waitState=JSON.parse(JSON.stringify(WAIT));
+  clock=0;eventsEl.innerHTML='';
+  draw();drawWait();
+  logEvent('Week opened. 12 appointments confirmed, 3 slots open.');
+}
+document.getElementById('reset').onclick=reset;
+document.getElementById('auto').onclick=function(){
+  for(var d=0;d<state.length;d++)for(var a=0;a<state[d].length;a++)
+    if(state[d][a].st==='confirmed'){cancel(d,a);return}
+  logEvent('Nothing left to cancel — reset the week to run it again.');
+};
+reset();
+
+var mb=document.getElementById('menub'), nl=document.getElementById('navlist');
+mb.onclick=function(){var o=nl.classList.toggle('open');mb.setAttribute('aria-expanded',String(o));mb.textContent=o?'Close':'Menu'};
+nl.addEventListener('click',function(e){if(e.target.classList.contains('ln')){nl.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='Menu'}});
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('stuck',scrollY>8)},{passive:true});
+})();
+</script>
+</body></html>
