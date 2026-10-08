@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Local First — a 90-day local visibility plan for a neighbourhood business</title>
+<meta name="description" content="A working document: listings audit, review routine, twelve local content topics and a weekly checklist for a business that is invisible in local search. Concept plan by Easywurld.">
+<meta property="og:title" content="Local First — local visibility plan"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F6F8;--pap:#FFFFFF;--ink:#16222E;--mu:#5B6875;--blu:#245F8F;--bl:#E8F0F7;--line:#DCE3E9;--ok:#226B4A;--okb:#E2F1E9;--bad:#8E3B2A;--badb:#F8E7E3;--warn:#8A5B12;--warnb:#FAEFDC}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--blu)}
+h1,h2,h3,h4{font-family:'Lora',Georgia,serif;font-weight:600;line-height:1.3;margin:0}
+:where(a,button,input,select,summary,[tabindex]):focus-visible{outline:2px solid var(--blu);outline-offset:3px}
+.skip{position:absolute;left:-9999px;background:var(--ink);color:#fff;padding:12px 18px;z-index:300}
+.skip:focus{left:8px;top:8px}
+
+/* document shell */
+.doc{max-width:1120px;margin:30px auto 0;background:var(--pap);border:1px solid var(--line);display:grid;grid-template-columns:252px 1fr}
+@media(max-width:900px){.doc{grid-template-columns:1fr;margin-top:0;border-left:0;border-right:0}}
+
+/* sidebar */
+.side{border-right:1px solid var(--line);padding:30px 24px;position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto}
+@media(max-width:900px){.side{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}}
+.docid{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--blu);font-weight:600}
+.side h2{font-size:17px;margin:10px 0 4px}
+.side .meta{font-size:13px;color:var(--mu);line-height:1.6;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.toc{list-style:none;margin:0;padding:0;counter-reset:t}
+.toc li{counter-increment:t}
+.toc a{display:block;padding:8px 0 8px 28px;position:relative;font-size:14.5px;text-decoration:none;color:var(--mu);line-height:1.45}
+.toc a:before{content:counter(t,decimal-leading-zero);position:absolute;left:0;font-size:12px;color:var(--blu);font-variant-numeric:tabular-nums;top:9px}
+.toc a:hover,.toc a.on{color:var(--ink)}
+.prt{margin-top:22px;width:100%;min-height:44px;border:1px solid var(--line);background:var(--pap);border-radius:5px;font:500 14px 'Inter',sans-serif;cursor:pointer}
+.prt:hover{border-color:var(--blu);color:var(--blu)}
+
+/* main */
+.body{padding:40px 52px 60px;min-width:0}
+@media(max-width:900px){.body{padding:30px 24px 44px}}
+.title{padding-bottom:26px;border-bottom:2px solid var(--ink);margin-bottom:34px}
+.title h1{font-size:clamp(27px,3.6vw,37px);max-width:21ch}
+.title p{color:var(--mu);margin:14px 0 0;max-width:60ch}
+.badge{display:inline-block;background:var(--bl);color:var(--blu);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:3px;margin-bottom:14px}
+
+sect,section{display:block}
+section{padding:34px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sn{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--blu);font-weight:600;margin-bottom:10px}
+section h2{font-size:clamp(21px,2.5vw,26px);margin-bottom:14px}
+section h3{font-size:17.5px;margin:26px 0 10px}
+section p{margin:0 0 15px;max-width:68ch;color:#30404E}
+section p.m{color:var(--mu)}
+ul.plain{margin:0 0 15px;padding-left:20px;color:#30404E}
+ul.plain li{margin-bottom:8px}
+
+/* audit table */
+.tw{overflow-x:auto;border:1px solid var(--line);margin:6px 0 10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:14.5px}
+th,td{text-align:left;padding:12px 15px;border-bottom:1px solid #EDF1F4;vertical-align:top}
+th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);background:#F8FAFB;font-weight:600}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;padding:3px 9px;border-radius:3px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.pill.bad{background:var(--badb);color:var(--bad)}
+.pill.warn{background:var(--warnb);color:var(--warn)}
+.pill.ok{background:var(--okb);color:var(--ok)}
+.fixb{min-height:34px;padding:0 12px;border:1px solid var(--line);background:var(--pap);border-radius:4px;font:500 13px 'Inter',sans-serif;cursor:pointer;white-space:nowrap}
+.fixb:hover{border-color:var(--blu);color:var(--blu)}
+.fixb[disabled]{opacity:.4;cursor:default}
+.prog{display:flex;align-items:center;gap:12px;margin:14px 0 4px;font-size:14px;color:var(--mu);flex-wrap:wrap}
+.pbar{flex:1;min-width:160px;height:7px;background:#E7ECF0;border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--blu);transition:width .4s ease}
+
+/* roadmap */
+.rm{border:1px solid var(--line)}
+.rmi{border-bottom:1px solid var(--line)}
+.rmi:last-child{border-bottom:0}
+.rmh{width:100%;text-align:left;background:var(--pap);border:0;padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;min-height:56px;font-family:'Inter',sans-serif}
+.rmh:hover{background:#F8FAFB}
+.rmh .ph{font-family:'Lora',serif;font-size:16.5px;font-weight:600}
+.rmh .dr{font-size:13px;color:var(--mu);margin-left:auto;padding-right:8px}
+.rmh .ch{width:11px;height:11px;border-right:2px solid var(--blu);border-bottom:2px solid var(--blu);transform:rotate(45deg);transition:transform .2s;flex:0 0 auto;margin-top:-4px}
+.rmh[aria-expanded="true"] .ch{transform:rotate(-135deg);margin-top:3px}
+.rmb{padding:2px 18px 20px;display:none}
+.rmb.open{display:block}
+.rmb ol{margin:0;padding-left:20px;color:#30404E}
+.rmb li{margin-bottom:9px;font-size:15px}
+.rmb .own{display:inline-block;margin-left:6px;font-size:12px;color:var(--mu);background:#F1F5F8;padding:1px 7px;border-radius:3px}
+
+/* keyword map */
+.kw{border:1px solid var(--line);overflow-x:auto}
+.kwrow{display:grid;grid-template-columns:1.6fr 1fr 1.4fr;gap:0;min-width:560px}
+.kwrow>div{padding:12px 15px;border-bottom:1px solid #EDF1F4;font-size:14.5px}
+.kwrow.h>div{background:#F8FAFB;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);font-weight:600}
+.kwrow>div:nth-child(2),.kwrow>div:nth-child(3){color:var(--mu)}
+.kwrow:last-child>div{border-bottom:0}
+
+/* checklist */
+.chk{border:1px solid var(--line);padding:6px 20px 16px;background:#FCFDFE}
+.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #EDF1F4;font-size:15px;cursor:pointer;min-height:44px}
+.chk label:last-child{border-bottom:0}
+.chk input{width:20px;height:20px;margin-top:2px;flex:0 0 auto;accent-color:var(--blu)}
+.chk small{display:block;color:var(--mu);font-size:13px;margin-top:2px}
+.chk input:checked+span{color:var(--mu);text-decoration:line-through}
+.dn{font-size:14px;color:var(--mu);padding-top:12px}
+
+.callout{background:var(--bl);border-left:3px solid var(--blu);padding:18px 22px;margin:4px 0 16px;max-width:70ch}
+.callout p{margin:0;font-size:15px;color:#24404F}
+.honest{border:1px solid var(--line);background:#FBFCFD;padding:22px 24px;max-width:72ch}
+.honest p{margin:0 0 12px}
+.honest p:last-child{margin:0}
+
+.endcta{padding:34px 0 0}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:5px;text-decoration:none;font-size:15px;font-weight:500;border:1px solid var(--blu);margin:0 10px 10px 0}
+.btn.p{background:var(--blu);color:#fff}
+.btn.s{background:transparent;color:var(--blu)}
+
+.note{background:var(--ink);color:#A8BAC8;font-size:13.5px;line-height:1.65;padding:18px 24px;text-align:center;margin-top:30px}
+.note a{color:#fff}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  body{background:#fff}
+  .side,.prt,.note,.endcta{display:none}
+  .doc{grid-template-columns:1fr;border:0;margin:0;max-width:none}
+  .body{padding:0}
+  section{page-break-inside:avoid}
+  .rmb{display:block!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#body">Skip to the document</a>
+
+<div class="doc">
+  <aside class="side">
+    <div class="docid">Working document</div>
+    <h2>Local First</h2>
+    <p class="meta">Local visibility plan<br>Neighbourhood services business<br>Prepared by Easywurld · v1.2</p>
+    <nav aria-label="Contents"><ol class="toc" id="toc">
+      <li><a href="#s1">Where the business stands</a></li>
+      <li><a href="#s2">Listings audit</a></li>
+      <li><a href="#s3">Review routine</a></li>
+      <li><a href="#s4">Twelve local topics</a></li>
+      <li><a href="#s5">Ninety-day roadmap</a></li>
+      <li><a href="#s6">Weekly checklist</a></li>
+      <li><a href="#s7">What this plan cannot promise</a></li>
+    </ol></nav>
+    <button class="prt" id="prt">Print this document</button>
+  </aside>
+
+  <div class="body" id="body">
+    <div class="title">
+      <span class="badge">Concept plan · no client data</span>
+      <h1>Local visibility is maintenance, not a launch.</h1>
+      <p>A plan written for an anonymised neighbourhood services business: strong word of mouth, almost no digital presence, and aggregator sites outranking it for its own name. Three things usually run separately — listings, reviews and content — treated here as one weekly routine.</p>
+    </div>
+
+    <section id="s1">
+      <div class="sn">Section one</div>
+      <h2>Where the business stands</h2>
+      <p>The business has traded for eleven years and takes most of its work from recommendation. That is a strength and the reason the gap went unnoticed: nobody searching was ever the source of a job, so nobody missed them.</p>
+      <ul class="plain">
+        <li>Searching the business name returns two directory aggregators above anything the business controls.</li>
+        <li>Opening hours differ across four platforms. Two still show hours changed three years ago.</li>
+        <li>Fourteen reviews, the most recent eight months old, none responded to.</li>
+        <li>No pages on the site that answer a question anyone types before buying.</li>
+      </ul>
+      <div class="callout"><p>The problem is not ranking. The problem is that four platforms disagree about the business, and a search engine resolving that disagreement will trust the aggregator that is consistent over the business that is not.</p></div>
+    </section>
+
+    <section id="s2">
+      <div class="sn">Section two</div>
+      <h2>Listings audit</h2>
+      <p class="m">Every platform where the business appears, what is wrong, and who fixes it. Mark an item corrected to see the consistency score move — this is a working tracker, not a report.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Platform</th><th>Problem found</th><th>State</th><th>Action</th></tr></thead>
+        <tbody id="audit">
+          <tr data-row><td>Business profile</td><td>Closing time wrong on Saturdays. No category set. No photos since 2023.</td><td><span class="pill bad">Incorrect</span></td><td><button class="fixb">Mark corrected</button></td></tr>
+          <tr data-row><td>Facebook page</td><td>Old phone number. Address missing the unit number.</td><td><span class="pill bad">Incorrect</span></td><td><button class="fixb">Mark corrected</button></td></tr>
+          <tr data-row><td>Directory A</td><td>Duplicate entry created by a customer in 2019, still live.</td><td><span class="pill warn">Duplicate</span></td><td><button class="fixb">Mark corrected</button></td></tr>
+          <tr data-row><td>Directory B</td><td>Correct details but no description and no link to the site.</td><td><span class="pill warn">Thin</span></td><td><button class="fixb">Mark corrected</button></td></tr>
+          <tr data-row><td>Own website footer</td><td>Hours written as an image, so nothing can read them.</td><td><span class="pill bad">Incorrect</span></td><td><button class="fixb">Mark corrected</button></td></tr>
+        </tbody>
+      </table></div>
+      <div class="prog">
+        <span>Consistency</span>
+        <span class="pbar"><i id="pfill"></i></span>
+        <span id="ptxt">0 of 5 corrected</span>
+      </div>
+      <p class="m">Name, address, phone and hours must read identically everywhere, down to the abbreviation of the street type. That is the whole standard.</p>
+    </section>
+
+    <section id="s3">
+      <div class="sn">Section three</div>
+      <h2>Review routine</h2>
+      <p>Reviews stopped because asking was left to whoever remembered. The fix is to attach the request to an event that already happens: the job being finished and paid for.</p>
+      <h3>The loop</h3>
+      <ol class="plain">
+        <li>Job completed and invoice settled.</li>
+        <li>Same day, a short message: one sentence of thanks, one direct link, no form.</li>
+        <li>Every review answered within three working days, including the poor ones.</li>
+        <li>One sentence from a recent review added to the site each month.</li>
+      </ol>
+      <div class="callout"><p>Target the rate, not the total. Roughly one in six people asked will write something, so a business completing twelve jobs a week should expect about two reviews a week — not forty next Tuesday.</p></div>
+      <h3>Answering a bad one</h3>
+      <p>Acknowledge the specific thing, say what changed, offer to continue off the platform. No defence of the company and no apology template. Future customers read the reply more carefully than the complaint.</p>
+    </section>
+
+    <section id="s4">
+      <div class="sn">Section four</div>
+      <h2>Twelve local topics</h2>
+      <p class="m">Each one is a question a person in the area types before they buy, with the intent behind it noted. One page each, published at one a week for twelve weeks.</p>
+      <div class="kw">
+        <div class="kwrow h"><div>Topic / page</div><div>Intent</div><div>Why this one</div></div>
+        <div class="kwrow"><div>What a call-out costs in this area</div><div>Commercial</div><div>Price is the first question and nobody local publishes it</div></div>
+        <div class="kwrow"><div>Emergency or can it wait until Monday</div><div>Informational</div><div>Captures the panic search at 9pm</div></div>
+        <div class="kwrow"><div>Which streets we cover same-day</div><div>Local</div><div>Names the actual neighbourhoods, which aggregators cannot</div></div>
+        <div class="kwrow"><div>How to describe the fault on the phone</div><div>Informational</div><div>Shortens the call and demonstrates competence</div></div>
+        <div class="kwrow"><div>What we check before quoting</div><div>Trust</div><div>Answers the fear of a quote changing on the day</div></div>
+        <div class="kwrow"><div>Older properties in the area and what goes wrong</div><div>Local</div><div>Specific to the housing stock nearby</div></div>
+        <div class="kwrow"><div>Landlord obligations, plainly</div><div>Commercial</div><div>Reaches a repeat-booking audience</div></div>
+        <div class="kwrow"><div>What we will not take on</div><div>Trust</div><div>Saves both sides a wasted visit</div></div>
+        <div class="kwrow"><div>Parking and access on the narrow streets</div><div>Local</div><div>Nothing else on the web answers it</div></div>
+        <div class="kwrow"><div>Signs you are being overcharged</div><div>Informational</div><div>High share rate within local groups</div></div>
+        <div class="kwrow"><div>Seasonal: what fails first in the rains</div><div>Seasonal</div><div>Publish six weeks ahead of the season</div></div>
+        <div class="kwrow"><div>How soon we can usually get to you</div><div>Commercial</div><div>Honest answer beats "fast response"</div></div>
+      </div>
+    </section>
+
+    <section id="s5">
+      <div class="sn">Section five</div>
+      <h2>Ninety-day roadmap</h2>
+      <p class="m">Three phases. Open each one for the tasks and who owns them. Nothing in month one requires writing anything.</p>
+      <div class="rm" id="rm">
+        <div class="rmi">
+          <button class="rmh" aria-expanded="true" aria-controls="p1"><span class="ch"></span><span class="ph">Days 1–30 · Correct what exists</span><span class="dr">6 tasks</span></button>
+          <div class="rmb open" id="p1"><ol>
+            <li>Claim or recover every listing found in the audit.<span class="own">Owner</span></li>
+            <li>Write one canonical set of details and apply it everywhere.<span class="own">Easywurld</span></li>
+            <li>Remove the duplicate directory entry.<span class="own">Easywurld</span></li>
+            <li>Replace the image of opening hours with real text.<span class="own">Easywurld</span></li>
+            <li>Add twelve current photographs of actual work.<span class="own">Owner</span></li>
+            <li>Reply to all fourteen existing reviews.<span class="own">Owner</span></li>
+          </ol></div>
+        </div>
+        <div class="rmi">
+          <button class="rmh" aria-expanded="false" aria-controls="p2"><span class="ch"></span><span class="ph">Days 31–60 · Start the loops</span><span class="dr">5 tasks</span></button>
+          <div class="rmb" id="p2"><ol>
+            <li>Attach the review request to job completion and test it on ten jobs.<span class="own">Owner</span></li>
+            <li>Publish the first four topic pages.<span class="own">Easywurld</span></li>
+            <li>Add a weekly post to the business profile — one photo, two sentences.<span class="own">Owner</span></li>
+            <li>Record the questions customers ask on the phone for later topics.<span class="own">Owner</span></li>
+            <li>Check the listing details have not reverted.<span class="own">Easywurld</span></li>
+          </ol></div>
+        </div>
+        <div class="rmi">
+          <button class="rmh" aria-expanded="false" aria-controls="p3"><span class="ch"></span><span class="ph">Days 61–90 · Make it routine</span><span class="dr">5 tasks</span></button>
+          <div class="rmb" id="p3"><ol>
+            <li>Publish topic pages five to twelve.<span class="own">Easywurld</span></li>
+            <li>Hand the weekly checklist to whoever will actually run it.<span class="own">Both</span></li>
+            <li>Review which pages brought calls and write two more like them.<span class="own">Easywurld</span></li>
+            <li>Set a standing monthly reminder to re-check listings.<span class="own">Owner</span></li>
+            <li>Decide what happens in month four, in writing.<span class="own">Both</span></li>
+          </ol></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s6">
+      <div class="sn">Section six</div>
+      <h2>Weekly checklist</h2>
+      <p class="m">Twenty minutes, once a week, by someone who is not a marketer. If a task needs explaining it does not belong on this list. Tick them off — this resets when the page reloads.</p>
+      <div class="chk" id="chk">
+        <label><input type="checkbox"><span>Answer every new review<small>Three working days maximum, including the poor ones</small></span></label>
+        <label><input type="checkbox"><span>Post once to the business profile<small>One photograph of real work and two sentences</small></span></label>
+        <label><input type="checkbox"><span>Ask the week's completed jobs for a review<small>Same message every time, sent the day the invoice clears</small></span></label>
+        <label><input type="checkbox"><span>Check the business profile for edits you did not make<small>Members of the public can suggest changes and they are sometimes accepted</small></span></label>
+        <label><input type="checkbox"><span>Write down one question a customer asked<small>This is where next quarter's pages come from</small></span></label>
+      </div>
+      <p class="dn" id="dn">0 of 5 done this week.</p>
+    </section>
+
+    <section id="s7">
+      <div class="sn">Section seven</div>
+      <h2>What this plan cannot promise</h2>
+      <div class="honest">
+        <p>This is a concept plan written for a portfolio. It has not been executed, so there is no ranking data, no call volume and no enquiry figure attached to it. Any number on this page describes the plan itself — tasks, weeks, topics — not a result.</p>
+        <p>Local search position depends on distance from the searcher, competitor activity and platform changes that nobody controls. A business three streets further out can do everything here and still sit below a closer competitor doing less.</p>
+        <p>The honest expectation is that correcting listings fixes a correctness problem within weeks, reviews compound over months, and content takes a quarter before it is worth judging. A plan that promises faster is guessing.</p>
+      </div>
+      <div class="endcta">
+        <a class="btn p" href="https://wa.me/2349050690837">Talk to Easywurld on WhatsApp</a>
+        <a class="btn s" href="https://website-builder-portfolio.vercel.app/contact">Start a project</a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="note"><img src="/brand/mark-light.png" alt="Easywurld" width="16" height="16" style="display:inline-block;height:16px;width:16px;vertical-align:-3px;margin-right:6px">Concept plan by <a href="https://website-builder-portfolio.vercel.app/projects/local-first-visibility">Easywurld</a> — the business described is anonymised and composite, and no figures here describe a real company. It demonstrates a local visibility plan delivered as a working, printable document rather than a dashboard.</div>
+
+<script>
+(function(){
+/* audit tracker */
+var rows=document.querySelectorAll('#audit tr[data-row]');
+var fill=document.getElementById('pfill'), ptxt=document.getElementById('ptxt');
+var done=0;
+function upd(){
+  fill.style.width=Math.round(done/rows.length*100)+'%';
+  ptxt.textContent=done+' of '+rows.length+' corrected';
+}
+rows.forEach(function(r){
+  r.querySelector('.fixb').addEventListener('click',function(){
+    r.querySelector('.pill').className='pill ok';
+    r.querySelector('.pill').textContent='Corrected';
+    this.disabled=true;this.textContent='Done';
+    done++;upd();
+  });
+});
+upd();
+
+/* roadmap accordion */
+document.querySelectorAll('.rmh').forEach(function(h){
+  h.addEventListener('click',function(){
+    var open=h.getAttribute('aria-expanded')==='true';
+    h.setAttribute('aria-expanded',String(!open));
+    document.getElementById(h.getAttribute('aria-controls')).classList.toggle('open',!open);
+  });
+});
+
+/* checklist */
+var boxes=document.querySelectorAll('#chk input');
+var dn=document.getElementById('dn');
+boxes.forEach(function(b){
+  b.addEventListener('change',function(){
+    var n=0;boxes.forEach(function(x){if(x.checked)n++});
+    dn.textContent=n+' of '+boxes.length+' done this week.'+(n===boxes.length?' That is the whole routine.':'');
+  });
+});
+
+/* toc highlight */
+var links=[].slice.call(document.querySelectorAll('.toc a'));
+var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var i=secs.indexOf(e.target);
+      links.forEach(function(l,j){l.classList.toggle('on',i===j)});
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  secs.forEach(function(s){if(s)io.observe(s)});
+}
+
+document.getElementById('prt').onclick=function(){window.print()};
+})();
+</script>
+</body></html>

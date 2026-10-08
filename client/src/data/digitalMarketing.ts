@@ -4,7 +4,7 @@ export const digitalMarketing: Project[] = [
   {
     slug: "local-first-visibility",
     shot: "/shots/local-first-visibility.jpg",
-    liveUrl: "https://easywurld-studio-8u8s-two.vercel.app/swiftsend/",
+    liveUrl: "/demo/local-first-visibility/index.html",
     title: "Local First",
     category: "Digital Marketing",
     industry: "Local services",
@@ -32,7 +32,7 @@ export const digitalMarketing: Project[] = [
     tags: ["Local SEO", "Reviews", "Systems"],
     visual: {
       archetype: "strategy", bg: "#F4F6F8", ink: "#16222E", accent: "#2A6FA8", muted: "#6B7885",
-      head: "'Inter Tight', system-ui, sans-serif", body: "'Inter', system-ui, sans-serif", variant: 0,
+      head: "'Lora', Georgia, serif", body: "'Inter', system-ui, sans-serif", variant: 0,
       words: ["Listings", "Reviews", "Content", "Weekly"],
     },
   },
