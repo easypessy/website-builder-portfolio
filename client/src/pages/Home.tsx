@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { projects, CATEGORIES, countFor } from "@/data";
 import ProjectCard from "@/components/site/ProjectCard";
+import HomeHero from "@/components/site/HomeHero";
 import { Seo, Reveal, WA } from "@/components/site/Layout";
 
 const PROBLEMS = [
@@ -38,35 +39,8 @@ export default function Home() {
         path="/"
       />
 
-      {/* HERO */}
-      <section style={{ paddingTop: "clamp(28px,4vw,48px)", paddingBottom: "clamp(28px,4vw,52px)" }}>
-        <div className="wrap">
-          <Reveal>
-            <p className="eyebrow">Marketing clarity for small businesses</p>
-            <h1 style={{ maxWidth: "16ch" }}>
-              Marketing clarity for businesses ready to grow.
-            </h1>
-          </Reveal>
-          <Reveal delay={90}>
-            <div style={{ display: "grid", gridTemplateColumns: "1.15fr 1fr", gap: 48, alignItems: "end", marginTop: 26 }}
-              className="hero-split">
-              <p className="lead" style={{ maxWidth: "46ch" }}>
-                Easywurld helps businesses simplify their message, improve their online
-                presence and build practical digital systems through strategy, design,
-                content and practical systems.
-              </p>
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", paddingBottom: 6 }}>
-                <Link href="/projects" className="btn btn-solid">
-                  Explore our work <ArrowUpRight size={17} />
-                </Link>
-                <a href={WA} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                  Start a project
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* HOMEPAGE HERO — dimensional Easywurld brand scene */}
+      <HomeHero />
 
       <div className="marquee" aria-hidden="true">
         <div className="marquee-track">

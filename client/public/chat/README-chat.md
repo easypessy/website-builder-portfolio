@@ -5,21 +5,17 @@ It is loaded at the bottom of `client/index.html` with `<script src="/chat/easyw
 
 ---
 
-## 1. Your WhatsApp number — the one thing you must change
+## 1. WhatsApp number
 
-Open `easywurld-chat.js`. Around **line 24**:
+The widget is currently set to the Easywurld public number `0905 069 0837`:
 
 ```js
-whatsapp: "234XXXXXXXXXX",
+whatsapp: "2349050690837",
 ```
 
-Replace with country code + number, **digits only** — no `+`, no spaces, no leading zero on the local part.
-
-- Your number `0905 069 0837` becomes `2349050690837`
-- So the line reads: `whatsapp: "2349050690837",`
-
-That single value feeds every WhatsApp link the widget opens, including the pre-filled
-message built from the name / business / need form.
+If the number changes, use country code + number, **digits only** — no `+`, no spaces,
+no leading zero on the local part. That single value feeds every WhatsApp link the
+widget opens, including the pre-filled message built from the name / business / need form.
 
 ## 2. Changing the wording
 
