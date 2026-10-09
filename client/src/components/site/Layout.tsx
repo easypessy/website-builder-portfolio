@@ -91,8 +91,8 @@ function Header() {
         <Link href="/" className="logo" aria-label="Easywurld — home">
           <img src="/brand/mark.png" alt="" className="logo-mark" width={44} height={44} />
           <span>
-            Easywurld
-            <small>SIMPLIFY · OPTIMIZE · GROW</small>
+            EASYWURLD
+            <small>SIMPLIFY. OPTIMIZE. GROW.</small>
           </span>
         </Link>
         <nav id="main-nav" data-open={open} aria-label="Main">
@@ -126,7 +126,7 @@ function Footer() {
             <div className="logo" style={{ color: "var(--paper)" }}>
               <img src="/brand/mark-light.png" alt="" className="logo-mark" width={46} height={46} />
               <span>
-                Easywurld<small style={{ color: "#9FB3A6" }}>SIMPLIFY · OPTIMIZE · GROW</small>
+                EASYWURLD<small style={{ color: "#9FB3A6" }}>SIMPLIFY. OPTIMIZE. GROW.</small>
               </span>
             </div>
             <p style={{ color: "#C3D2C8", marginTop: 18, maxWidth: "34ch", fontSize: "var(--t-sm)" }}>

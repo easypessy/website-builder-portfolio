@@ -20,12 +20,12 @@
     tagline: "Simplify. Optimize. Grow.",
 
     /* ▼▼▼ CHANGE YOUR WHATSAPP NUMBER HERE — digits only, country code first ▼▼▼ */
-    whatsapp: "234XXXXXXXXXX",
+    whatsapp: "2349050690837",
     /* ▲▲▲ e.g. "2349050690837". Nothing else in this file needs editing for it. ▲▲▲ */
 
-    accent: "#1E3D2F",
+    accent: "#27473A",
     ink: "#14170F",
-    paper: "#FBF9F4",
+    paper: "#FAE7C7",
     line: "#DBD3C4",
     launcherLabel: "Chat with Easywurld",
     greeting:
